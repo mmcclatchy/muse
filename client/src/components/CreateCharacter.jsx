@@ -4,6 +4,7 @@ import FreeSoloCreateOptionDialog from './Material-UI/FreeSoloCreateOptionDialog
 import Button from '@material-ui/core/Button';
 
 import { getTraits } from '../store/actions/traits';
+import { SET_TRAITS, TOKEN_KEY } from '../store/constants/constants';
 
 
 
@@ -13,9 +14,22 @@ export default function CreateCharacter() {
   const traits = useSelector(state => state.traits);
   
   useEffect(() => {
-    console.log('ABOUT TO DISPATCH')
-    dispatch(getTraits);
-    console.log('JUST AFTER DISPATCH RESOLVES')
+    // dispatch(getTraits);
+    
+    
+    const fetchTraits = async () => {
+      const token = localStorage.getItem(TOKEN_KEY)
+      const response = await fetch('api/traits', { 'Content-Type': 'application/json' });
+      if (response.ok) {
+        // const data = await response.json()
+        // console.log('RESPONSE: ', data)
+        const { payload } = await response.json();
+        console.log('PAYLOAD: ', payload)
+        dispatch({ type: SET_TRAITS, payload })
+      }
+    }
+    fetchTraits()
+    
   }, [])
   
   const handleChange = () => {
@@ -36,34 +50,40 @@ export default function CreateCharacter() {
     <div className="create-character">
       <div className="create-character__traits">
       
-        {/* <FreeSoloCreateOptionDialog 
+        <FreeSoloCreateOptionDialog 
           key='1' 
-          type={'Name'}
+          type={'First Name'}
           onChange={handleChange}
-          traits={traits.physical} /> */}
+          traits={traits.firstName} />
           
         <FreeSoloCreateOptionDialog 
           key='2' 
+          type={'Last Name'}
+          onChange={handleChange}
+          traits={traits.firstName} />
+          
+        <FreeSoloCreateOptionDialog 
+          key='3' 
           type={'Physical Characteristics'} 
           traits={traits.physical} />
           
         <FreeSoloCreateOptionDialog 
-          key='3'
+          key='4'
           type={'Character Strengths'} 
           traits={traits.strengths} />
           
         <FreeSoloCreateOptionDialog 
-          key='4'
+          key='5'
           type={'Character Weaknesses'} 
           traits={traits.weaknesses} />
           
         <FreeSoloCreateOptionDialog 
-          key='5'
+          key='6'
           type={'Motivations'} 
           traits={traits.motivations} />
           
         <FreeSoloCreateOptionDialog 
-          key='6'
+          key='7'
           type={'Secrets'} 
           traits={traits.secrets} />
           

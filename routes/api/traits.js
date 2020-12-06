@@ -20,6 +20,7 @@ router.get('/',
   })
   
   const sortedTraits = sortTraits(traits)
+  console.log('*******\n\nSORTED TRAITS: ', sortedTraits, '\n\n')
   
   res.json({ payload: sortedTraits })
 }))

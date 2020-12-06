@@ -39,7 +39,7 @@ const sortTraits = traits => {
     sortedTraits[trait.TraitType.type] = { 
       ...sortedTraits[trait.TraitType.type],
       ...normalize(trait),
-      typeId: trait.typeId,
+      // typeId: trait.typeId,
     }
   })
   

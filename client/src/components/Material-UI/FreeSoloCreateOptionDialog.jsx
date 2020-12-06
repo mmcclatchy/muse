@@ -35,53 +35,58 @@ export default function FreeSoloCreateOptionDialog(props) {
     
     handleClose();
   };
+  
+  const handleChange = (event, newValue) => {
+    if (typeof newValue === 'string') {
+      // timeout to avoid instant validation of the dialog's form.
+      setTimeout(() => {
+        toggleOpen(true);
+        setDialogValue({
+          name: newValue,
+        });
+      });
+    } else if (newValue && newValue.inputValue) {
+      toggleOpen(true);
+      setDialogValue({
+        name: newValue.inputValue,
+      });
+    } else {
+      setValue(newValue);
+    }
+  }
+  
+  const filterOptions = (options, params) => {
+    const filtered = filter(options, params);
+
+    if (params.inputValue !== '') {
+      filtered.push({
+        inputValue: params.inputValue,
+        name: `Add "${params.inputValue}"`,
+      });
+    }
+
+    return filtered;
+  }
+  
+  const getOptionLabel = (option) => {
+    console.log(option)
+    if (typeof option === 'number') return
+    if (typeof option === 'string') return option;
+    
+    if (option.inputValue) return option.inputValue;
+    
+    return option.name;
+  }
 
   return (
     <React.Fragment>
-      <Autocomplete
+      {!props.traits ? null : <Autocomplete
         value={value}
-        onChange={(event, newValue) => {
-          if (typeof newValue === 'string') {
-            // timeout to avoid instant validation of the dialog's form.
-            setTimeout(() => {
-              toggleOpen(true);
-              setDialogValue({
-                name: newValue,
-              });
-            });
-          } else if (newValue && newValue.inputValue) {
-            toggleOpen(true);
-            setDialogValue({
-              name: newValue.inputValue,
-            });
-          } else {
-            setValue(newValue);
-          }
-        }}
-        filterOptions={(options, params) => {
-          const filtered = filter(options, params);
-
-          if (params.inputValue !== '') {
-            filtered.push({
-              inputValue: params.inputValue,
-              name: `Add "${params.inputValue}"`,
-            });
-          }
-
-          return filtered;
-        }}
-        id={props.traits ? `${props.type}-${props.traits.id}` : null}
-        options={props.traits ? Object.values(props.traits) : [] }
-        getOptionLabel={(option) => {
-          // e.g value selected with enter, right from the input
-          if (typeof option === 'string') {
-            return option;
-          }
-          if (option.inputValue) {
-            return option.inputValue;
-          }
-          return option.name;
-        }}
+        onChange={handleChange}
+        filterOptions={filterOptions}
+        id={`${props.type}-${props.traits.id}`}
+        options={Object.values(props.traits)}
+        getOptionLabel={getOptionLabel}
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
@@ -91,7 +96,7 @@ export default function FreeSoloCreateOptionDialog(props) {
         renderInput={(params) => (
           <TextField {...params} label={props.type} variant="outlined" />
         )}
-      />
+      />}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={handleSubmit}>
           <DialogTitle id="form-dialog-title">Add a New {props.type} Trait</DialogTitle>
