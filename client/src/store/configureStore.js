@@ -15,6 +15,7 @@ const reducer = combineReducers({
 });
 
 const configureStore = initialState => {
+  console.log('INSIDE CONFIGURE STORE')
   return createStore(
     reducer,
     initialState,

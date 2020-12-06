@@ -4,7 +4,9 @@ import { API, SET_TRAIT_TYPES } from '../constants/constants';
 
 // API Middleware receives an action object and parses the data to make a specific fetch request
 const api = ({ dispatch, getState }) => next => async action => {
+  console.log('PASSING THROUGH API MIDDLEWARE: ', action)
   if (action.type !== API) return next(action);
+  console.log('PICKED UP BY API MIDDLEWARE')
   
   const { authentication: { token } } = getState();
 
@@ -19,6 +21,8 @@ const api = ({ dispatch, getState }) => next => async action => {
     },
     body: body
   });
+  
+  console.log('RESPONSE: ', response)
 
   if (response.ok) {
     const { payload, traitTypes } = await response.json();

@@ -13,7 +13,9 @@ export default function CreateCharacter() {
   const traits = useSelector(state => state.traits);
   
   useEffect(() => {
+    console.log('ABOUT TO DISPATCH')
     dispatch(getTraits);
+    console.log('JUST AFTER DISPATCH RESOLVES')
   }, [])
   
   const handleChange = () => {
