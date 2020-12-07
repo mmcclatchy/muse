@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import { useDispatch } from 'react-redux';
-import { setFormTrait } from '../../store/actions/character';
+import { postFormTrait, setFormTrait } from '../../store/actions/createCharacters';
 
 
 
@@ -23,6 +23,11 @@ export default function FreeSoloCreateOptionDialog(props) {
 
   useEffect(() => {
     if (!value) return
+    console.log('VALUE!!!: ', value)
+    if (value.new) {
+      console.log('NEW TRAIT!!!!')
+      dispatch(postFormTrait(value))
+    }
     dispatch(setFormTrait(value))
   }, [value])
   
@@ -31,7 +36,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   const handleClose = () => {
     setDialogValue({
       name: '',
-      typeid: 0,
+      type: '',
     });
 
     toggleOpen(false);
@@ -39,10 +44,12 @@ export default function FreeSoloCreateOptionDialog(props) {
 
 
   const handleSubmit = (event) => {
+    console.log('DIALOG VALUE: ', dialogValue)
     event.preventDefault();
     setValue({
       name: dialogValue.name,
-      typeId: dialogValue.typeId
+      type: props.traits[0].type,
+      new: true
     });
     console.log('VALUE: ', value)
     handleClose();
@@ -65,6 +72,7 @@ export default function FreeSoloCreateOptionDialog(props) {
       toggleOpen(true);
       setDialogValue({
         name: newValue.inputValue,
+        type: props.traits[0].type
       });
     } else {
       setValue(newValue);

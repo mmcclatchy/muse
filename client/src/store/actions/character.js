@@ -15,6 +15,6 @@ export const getCharacters = () => {
 
 
 export const setFormTrait = trait => async dispatch => {
-  const type = trait.type
+  console.log('SET FORM TRAIT: ', trait)
   dispatch({ type: CREATE_CHARACTER, payload: trait })
 }

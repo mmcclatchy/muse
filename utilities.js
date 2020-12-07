@@ -18,9 +18,20 @@ const handleValidationErrors = (req, res, next) => {
 
 
 const normalize = query => {
+  const normalized = {};
+  
+  if (!Array.isArray(query)) return normalized[query.id] = query;
+  
+  query.forEach(obj => normalized[obj.id] = obj);
+  
+  return normalized
+}
+
+const normalizeTrait = query => {
   const normalized = {}
   
   if (!Array.isArray(query)) {
+    
     normalized[query.id] = { id: query.id, name: query.name, type: query.TraitType.type };
     return normalized
   }
@@ -42,7 +53,7 @@ const sortTraits = traits => {
     // Sort Traits by Trait Type then normalize
     sortedTraits[trait.TraitType.type] = { 
       ...sortedTraits[trait.TraitType.type],
-      ...normalize(trait),
+      ...normalizeTrait(trait),
       // typeId: trait.typeId,
     }
   })
@@ -55,5 +66,6 @@ const sortTraits = traits => {
 module.exports = { 
   handleValidationErrors,
   normalize,
+  normalizeTrait,
   sortTraits,
 };
