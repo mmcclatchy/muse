@@ -22,7 +22,6 @@ export default function FreeSoloCreateOptionDialog(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('USE EFFECT VALUE: ', value)
     if (!value) return
     dispatch(setFormTrait(value))
   }, [value])
@@ -115,7 +114,7 @@ export default function FreeSoloCreateOptionDialog(props) {
       />}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">Add a New {props.type} Trait</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add new {props.type}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Did not see what you were looking for in our list? Please, add it!
