@@ -5,7 +5,7 @@ export default function characterReducer(state = {}, { type, payload }) {
   
   switch (type) {
     case SET_CHARACTERS:
-      return { ...state, ...payload }
+      return { ...state, ...payload };  
     
     default:
       return state

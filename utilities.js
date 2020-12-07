@@ -21,11 +21,15 @@ const normalize = query => {
   const normalized = {}
   
   if (!Array.isArray(query)) {
-    normalized[query.id] = { id: query.id, name: query.name };
+    normalized[query.id] = { id: query.id, name: query.name, type: query.TraitType.type };
     return normalized
   }
   
-  query.forEach(obj => normalized[obj.id] = { id: query.id, name: query.name })
+  query.forEach(obj => normalized[obj.id] = { 
+    id: query.id, 
+    name: query.name,
+    type: query.TraitType.type
+  })
   
   return normalized
 }

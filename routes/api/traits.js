@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../auth');
 const { Trait, TraitType } = require('../../db/models');
-const { normalize, sortTraits } = require('../../utilities')
+const { sortTraits } = require('../../utilities')
 
 const router = express.Router();
 
@@ -20,7 +20,6 @@ router.get('/',
   })
   
   const sortedTraits = sortTraits(traits)
-  console.log('*******\n\nSORTED TRAITS: ', sortedTraits, '\n\n')
   
   res.json({ payload: sortedTraits })
 }))

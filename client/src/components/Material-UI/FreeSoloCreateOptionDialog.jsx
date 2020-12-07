@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useEffect }  from 'react';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,6 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import { useDispatch } from 'react-redux';
+import { setFormTrait } from '../../store/actions/character';
+
 
 
 const filter = createFilterOptions();
@@ -16,11 +19,20 @@ export default function FreeSoloCreateOptionDialog(props) {
   const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: '' });
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    console.log('USE EFFECT VALUE: ', value)
+    if (!value) return
+    dispatch(setFormTrait(value))
+  }, [value])
+  
+  
   
   const handleClose = () => {
     setDialogValue({
       name: '',
+      typeid: 0,
     });
 
     toggleOpen(false);
@@ -31,13 +43,17 @@ export default function FreeSoloCreateOptionDialog(props) {
     event.preventDefault();
     setValue({
       name: dialogValue.name,
+      typeId: dialogValue.typeId
     });
-    
+    console.log('VALUE: ', value)
     handleClose();
   };
   
+  
   const handleChange = (event, newValue) => {
+    console.log('HANDLE CHANGE: NEW VALUE: ', newValue)
     if (typeof newValue === 'string') {
+      console.log('CONDITIONAL 1', )
       // timeout to avoid instant validation of the dialog's form.
       setTimeout(() => {
         toggleOpen(true);
@@ -46,6 +62,7 @@ export default function FreeSoloCreateOptionDialog(props) {
         });
       });
     } else if (newValue && newValue.inputValue) {
+      console.log('CONDITIONAL 2')
       toggleOpen(true);
       setDialogValue({
         name: newValue.inputValue,
@@ -69,7 +86,6 @@ export default function FreeSoloCreateOptionDialog(props) {
   }
   
   const getOptionLabel = (option) => {
-    console.log(option)
     if (typeof option === 'number') return
     if (typeof option === 'string') return option;
     
@@ -77,15 +93,15 @@ export default function FreeSoloCreateOptionDialog(props) {
     
     return option.name;
   }
-
+  
   return (
     <React.Fragment>
       {!props.traits ? null : <Autocomplete
         value={value}
         onChange={handleChange}
         filterOptions={filterOptions}
-        id={`${props.type}-${props.traits.id}`}
-        options={Object.values(props.traits)}
+        id={`${props.type.split(' ').join('')}`}
+        options={props.traits}
         getOptionLabel={getOptionLabel}
         selectOnFocus
         clearOnBlur
