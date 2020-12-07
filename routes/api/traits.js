@@ -32,10 +32,16 @@ router.post(
   '/',
   // requireAuth,
   asyncHandler(async (req, res) => {
-    const data = req.body;
-    const traitType = await TraitType.findOne({ where: { type: data.type } });
-    const trait = await Trait.create({ name: data.name, typeId: traitType.id });
-    res.status(201).json({ payload: normalize(trait) })
+    console.log('I am in the route!!!!!!!!!!!!')
+    try {
+      const data = req.body;
+      const traitType = await TraitType.findOne({ where: { type: data.type } });
+      const trait = await Trait.create({ name: data.name, typeId: traitType.id });
+      res.status(201).json({ payload: normalize(trait) });
+      
+    } catch(e) {
+      console.log('*********\n\n', e)
+    }
   })
 );
 

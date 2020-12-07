@@ -1,5 +1,5 @@
 import { API, CREATE_CHARACTER, TOKEN_KEY } from '../constants/constants';
-import { baseApiUrl } from '../../config/config'
+import { baseApiUrl, originUrl } from '../../config/config'
 
 
 export const setFormTrait = trait => async dispatch => {
@@ -29,17 +29,18 @@ export const setFormTrait = trait => async dispatch => {
 export const postFormTrait = trait => async dispatch => {
   const token = localStorage.getItem(TOKEN_KEY);
   console.log('POST FORM TRAIT!')
+  console.log('TRAIT!!!!!: ', trait)
   const response = await fetch(`${baseApiUrl}/traits`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
-    body: trait
+    body: JSON.stringify(trait)
   });
   
   if (response.ok) {
-    const payload = response.json()
+    const payload = await response.json()
     dispatch({ type: CREATE_CHARACTER, payload })
   }
 }
