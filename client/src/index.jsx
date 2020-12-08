@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import theme from './components/theme';
 
 
 const store = configureStore()
@@ -11,7 +14,10 @@ const store = configureStore()
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <CssBaseline />
+      <ThemeProvider theme={theme} >
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

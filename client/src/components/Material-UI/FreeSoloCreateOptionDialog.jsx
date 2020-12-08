@@ -117,7 +117,9 @@ export default function FreeSoloCreateOptionDialog(props) {
         style={{ width: 300 }}
         freeSolo
         renderInput={(params) => (
-          <TextField {...params} label={props.type} variant="outlined" />
+          <TextField {...params} 
+            label={props.type} 
+            variant="outlined" />
         )}
       />}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

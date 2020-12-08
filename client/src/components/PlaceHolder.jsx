@@ -14,8 +14,8 @@ const PlaceHolder = () => {
   
   return (
     <>
-      <h1>Protected Main Page</h1>
-      <button onClick={handleClick} >Log Out</button>
+      {/* <h1>Protected Main Page</h1>
+      <button onClick={handleClick} >Log Out</button> */}
       <CreateCharacter />
     </>
   )
