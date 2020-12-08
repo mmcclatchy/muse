@@ -10,16 +10,35 @@ import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import { useDispatch } from 'react-redux';
 import { postFormTrait, setFormTrait } from '../../store/actions/createCharacters';
-
+import sizing from '@material-ui/system/sizing'
+import { makeStyles } from '@material-ui/core/styles';
+import theme from '../theme';
 
 
 const filter = createFilterOptions();
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& .MuiFormLabel-root": {
+      fontSize: 13
+    },
+    height: 25
+  },
+  // autocomplete: {
+    
+  //   height: 25,
+  //   margin: '10px 0', 
+  //   boxSizing: "border-box",
+  // }
+}))
+
 
 export default function FreeSoloCreateOptionDialog(props) {
   const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: '' });
   const dispatch = useDispatch()
+  const classes = useStyles(theme)
 
   useEffect(() => {
     if (!value) return
@@ -101,6 +120,9 @@ export default function FreeSoloCreateOptionDialog(props) {
     return option.name;
   }
   
+  
+  
+  
   return (
     <React.Fragment>
       {!props.traits ? null : <Autocomplete
@@ -112,13 +134,19 @@ export default function FreeSoloCreateOptionDialog(props) {
         getOptionLabel={getOptionLabel}
         selectOnFocus
         clearOnBlur
+        className={classes.autocomplete}
         handleHomeEndKeys
         renderOption={(option) => option.name}
-        style={{ width: 300 }}
+        style={{ width: '100%', margin: 5 }}
         freeSolo
+        // maxHeight={'75%'}
+        size='small'
         renderInput={(params) => (
           <TextField {...params} 
-            label={props.type} 
+            label={props.type}
+            className={classes.root}
+            size='small'
+            style={{ height: 30, margin: '3px 0', boxSizing: "border-box" }}
             variant="outlined" />
         )}
       />}

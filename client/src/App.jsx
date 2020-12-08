@@ -13,7 +13,7 @@ import theme from './components/theme';
 
 
 const useStyles = makeStyles(theme => ({
-  body: {
+  main: {
     top: 0,
     left: 0,
     height: '100vh',
@@ -40,7 +40,7 @@ const App = () => {
   
   return (
   <BrowserRouter>
-    <body className={classes.body}>
+    <main className={classes.main}>
       {/* <Navigation /> */}
       <AppBar />
       <Switch>
@@ -48,7 +48,7 @@ const App = () => {
         <Route path='/login' exact={ true } component={ LoginForm } />
         <Route path='/signup' exact={ true } component={ SignUpForm } />
       </Switch>
-    </body>
+    </main>
   </BrowserRouter>
   )
 }

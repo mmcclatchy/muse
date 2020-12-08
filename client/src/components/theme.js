@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { Autocomplete } from '@material-ui/lab/Autocomplete';
 
 
 const font = `'Montserrat', helvetica, sans-serif`;
@@ -42,7 +43,7 @@ const theme = createMuiTheme({
   overrides: {
     AppBar: {
       height: 25
-    }
+    },
   }
 })
 

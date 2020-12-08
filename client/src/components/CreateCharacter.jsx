@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexFlow: 'column',
     height: '100%',
+    width: '96%'
+  },
+  cc__title: {
+    margin: '10px auto',
   }
 }))
 
@@ -47,7 +51,7 @@ export default function CreateCharacter() {
     <div className={classes.container}>
       {/* <div className="create-character__traits"> */}
         
-          <h3 className="form__title">Create a New Character</h3>
+          <h3 className={classes.cc__title}>Create a New Character</h3>
           
           <FreeSoloCreateOptionDialog 
             key='1' 
