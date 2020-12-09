@@ -16,10 +16,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      avatarUrl: {
+      imageUrl: {
         type: Sequelize.STRING,
       },
-      description: {
+      bio: {
         type: Sequelize.STRING
       },
       createdAt: {

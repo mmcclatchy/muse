@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    avatarUrl: {
+    imageUrl: {
       type: DataTypes.STRING,
     },
-    description: DataTypes.STRING
+    bio: DataTypes.STRING
   }, {});
   Character.associate = function(models) {
     
