@@ -1,6 +1,7 @@
 import React from 'react';
 import './grid.css'
-import PlaceHolder from '../../PlaceHolder';
+import CreateCharacter from '../../CreateCharacter';
+import DisplayCharacter from '../../DisplayCharacter/DisplayCharacter';
 
 
 export default function Grid() {
@@ -9,18 +10,24 @@ export default function Grid() {
   return (
     <div className="grid">
       <div className="grid_nav">
-        <PlaceHolder />
-      </div>
-      
-      <div className="grid_sandbox">
-      
-      </div>
-      
-      <div className="grid_card">
         
       </div>
       
-      <div className="grid_create">
+      <div className="grid_photo">
+        <DisplayCharacter />
+      
+      </div>
+      
+      <div className="grid_form">
+        <CreateCharacter />
+        
+      </div>
+      
+      <div className="grid_display">
+        
+      </div>
+      
+      <div className="grid_footer">
         
       </div>
     </div>

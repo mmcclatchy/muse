@@ -6,3 +6,4 @@ export const SET_CHARACTERS = 'capstone/api/SET_CHARACTERS';
 export const SET_TRAITS = 'capstone/api/SET_TRAITS';
 export const SET_TRAIT_TYPES = 'capstone/api/SET_TRAIT_TYPES';
 export const CREATE_CHARACTER = 'capstone/CreateCharacter/CREATE_CHARACTER'
+export const SET_IMAGE_URL = 'capstone/CreateCharacter/SET_IMAGE_URL'

@@ -16,6 +16,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      avatarUrl: {
+        type: Sequelize.STRING,
+      },
       description: {
         type: Sequelize.STRING
       },

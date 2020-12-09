@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FreeSoloCreateOptionDialog from './Material-UI/FreeSoloCreateOptionDialog';
 
@@ -7,18 +7,25 @@ import { SET_TRAITS } from '../store/constants/constants';
 import { compare } from '../utilities';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './theme';
-import { FormHelperText } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { setFormTrait, setImageUrl } from '../store/actions/createCharacters';
 
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexFlow: 'column',
+    justifyContent: 'space-around',
     height: '100%',
-    width: '96%'
+    maxHeight: '700px',
+    width: '96%',
+    margin: '15px 10px'
   },
   cc__title: {
     margin: '10px auto',
+  }, 
+  bio: {
+    margin: '20px 0'
   }
 }))
 
@@ -26,6 +33,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function CreateCharacter() {
   const traits = useSelector(state => state.traits);
+  const [avatar, setAvatar] = useState('')
+  const [bio, setBio] = useState('')
   const dispatch = useDispatch();
   const classes = useStyles(theme)
   
@@ -42,9 +51,20 @@ export default function CreateCharacter() {
     }
     
     fetchTraits()
-    
   }, [])
   
+  
+  const handleImgChange = e => setAvatar(e.target.value)
+  const handleBioChange = e => setBio(e.target.value)
+  
+  useEffect(() => {
+    console.log(avatar)
+    dispatch(setImageUrl(avatar))
+  }, [avatar])
+  
+  useEffect(() => {
+    dispatch(setFormTrait({ type: 'description', description: bio }))
+  }, [bio])
 
   
   return (
@@ -94,6 +114,20 @@ export default function CreateCharacter() {
             type={'Secrets'} 
             className={classes.traits}
             traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null} />
+          
+          <TextField 
+            className={classes.image}
+            label='Character Image URL' 
+            onChange={handleImgChange} />
+          
+          <TextField
+            className={classes.bio}
+            label="Bio"
+            multiline
+            onChange={handleBioChange}
+            rows={5}
+            defaultValue=""
+            variant="outlined" />
           
       {/* </div> */}
     </div>

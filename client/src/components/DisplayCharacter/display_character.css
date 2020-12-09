@@ -1,0 +1,36 @@
+.display_character {
+    display: flex;
+    max-height: 700px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-family: 'Marck Script', cursive;
+    color: rgba(0, 0, 0, .65)
+}
+
+.image_wrapper {
+    display: flex;
+    /* max-height: 300px; */
+    justify-content: flex-end;
+}
+
+.character_image_box {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    max-height: 425px;
+    grid-column: 1 / 2;
+}
+
+.character_image {
+    max-height: 425px;
+}
+
+.character_info_wrapper {
+    width: 100%;
+    height: 100%;
+    grid-column: 2 / 4;
+    display: flex;
+    justify-content: flex-start;
+}
+

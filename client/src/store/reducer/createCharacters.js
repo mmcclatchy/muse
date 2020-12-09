@@ -1,6 +1,17 @@
-import { CREATE_CHARACTER } from '../constants/constants';
+import { CREATE_CHARACTER, SET_IMAGE_URL } from '../constants/constants';
 
-export default function characterReducer(state = {}, { type, payload }) {
+const initState = {
+  firstName: '',
+  lastName: '',
+  physical: '',
+  strengths: '',
+  weaknesses: '',
+  motivations: '',
+  secrets: '',
+}
+
+
+export default function characterReducer(state = initState, { type, payload }) {
   Object.freeze(state);
   
   switch (type) { 
@@ -12,6 +23,9 @@ export default function characterReducer(state = {}, { type, payload }) {
       console.log('newState: ', newState)
       return newState
     
+    case SET_IMAGE_URL:
+      return { ...state, imageUrl: payload }
+      
     default:
       return state
   }

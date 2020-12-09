@@ -20,9 +20,9 @@ const filter = createFilterOptions();
 const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiFormLabel-root": {
-      fontSize: 13
+      // fontSize: 13
     },
-    height: 25
+    // height: 25
   },
   // autocomplete: {
     
@@ -140,14 +140,14 @@ export default function FreeSoloCreateOptionDialog(props) {
         style={{ width: '100%', margin: 5 }}
         freeSolo
         // maxHeight={'75%'}
-        size='small'
+        // size='small'
         renderInput={(params) => (
           <TextField {...params} 
             label={props.type}
             className={classes.root}
-            size='small'
-            style={{ height: 30, margin: '3px 0', boxSizing: "border-box" }}
-            variant="outlined" />
+            // size='small'
+            style={{ boxSizing: "border-box" }}
+            variant="standard" />
         )}
       />}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

@@ -1,10 +1,18 @@
-import { API, CREATE_CHARACTER, TOKEN_KEY } from '../constants/constants';
+import { 
+  // API, 
+  SET_IMAGE_URL,
+  CREATE_CHARACTER, 
+  TOKEN_KEY 
+} from '../constants/constants';
 import { baseApiUrl, originUrl } from '../../config/config'
 
 
 export const setFormTrait = trait => async dispatch => {
-  console.log('SET FORM TRAIT: ', trait)
   dispatch({ type: CREATE_CHARACTER, payload: trait })
+}
+
+export const setImageUrl = imageUrl => async dispatch => {
+  dispatch({ type: SET_IMAGE_URL, payload: imageUrl })
 }
 
 
@@ -28,8 +36,7 @@ export const setFormTrait = trait => async dispatch => {
         
 export const postFormTrait = trait => async dispatch => {
   const token = localStorage.getItem(TOKEN_KEY);
-  console.log('POST FORM TRAIT!')
-  console.log('TRAIT!!!!!: ', trait)
+  
   const response = await fetch(`${baseApiUrl}/traits`, {
     method: 'POST',
     headers: {
