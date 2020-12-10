@@ -28,8 +28,7 @@ export default function characterReducer(state = initState, { type, payload }) {
       return newState;
 
     case SET_NEW_CHARACTER_TRAIT:
-      console.log('SET_NEW_CHARACTER_TRAIT: ', payload);
-
+      
       const newState1 = { ...state };
       newState1[payload.type] = payload;
       return newState1;

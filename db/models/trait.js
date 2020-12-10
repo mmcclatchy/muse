@@ -21,5 +21,15 @@ module.exports = (sequelize, DataTypes) => {
     Trait.belongsTo(models.TraitType, { foreignKey: 'typeId' });
     
   };
+  
+  Trait.prototype.cleanedForRedux = function(traitType) {
+    return {
+      id: this.id,
+      name: this.name,
+      type: traitType
+      
+    }
+  }
+  
   return Trait;
 };

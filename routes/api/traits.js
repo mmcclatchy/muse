@@ -36,7 +36,7 @@ router.post(
     const traitType = await TraitType.findOne({ where: { type: data.type } });
     const trait = await Trait.create({ name: data.name, typeId: traitType.id });
     
-    res.status(201).json({ payload: normalize(trait) });
+    res.status(201).json(trait.cleanedForRedux(data.type));
   })
 );
 

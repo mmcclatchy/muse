@@ -55,7 +55,7 @@ export const postFormTrait = (trait) => async (dispatch) => {
   if (response.ok) {
     const payload = await response.json();
     console.log('POST FORM TRAIT RESPONSE: ', payload);
-    dispatch({ type: SET_NEW_CHARACTER_TRAIT, payload });
-    // dispatch({ type: SET_NEW_TRAIT, payload })
+    dispatch({ type: SET_CHARACTER_TRAIT, payload });
+    dispatch({ type: SET_NEW_TRAIT, payload })
   }
 };
