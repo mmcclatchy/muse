@@ -1,5 +1,4 @@
 .display_character {
-    display: flex;
     max-height: 700px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

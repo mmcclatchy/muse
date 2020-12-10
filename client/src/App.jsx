@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AppBar from './components/Material-UI/AppBar';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './components/theme';
+import SplashPage from './components/SplashPage/SplashPage';
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,9 +43,9 @@ const App = () => {
   <BrowserRouter>
     <main className={classes.main}>
       {/* <Navigation /> */}
-      <AppBar />
       <Switch>
-        <ProtectedRoute isLoggedIn={token} path='/' exact={ true } component={ Grid } />
+        {/* <ProtectedRoute isLoggedIn={token} path='/' exact={ true } component={ Grid } /> */}
+        <SplashPage />
         <Route path='/login' exact={ true } component={ LoginForm } />
         <Route path='/signup' exact={ true } component={ SignUpForm } />
       </Switch>
