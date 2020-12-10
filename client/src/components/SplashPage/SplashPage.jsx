@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './splash_page.css';
 import Button from '@material-ui/core/Button';
 import AuthModal from './AuthModal/AuthModal';
+import { useSelector } from 'react-redux';
 
 
 export default function SplashPage() {
   const [loginOpen, setLoginOpen] = React.useState(false);
   const [signUpOpen, setSignUpOpen] = React.useState(false);
+  const token = useSelector(state => state.authentication.token)
   
   
   const handleLoginOpen = () => {
@@ -25,6 +27,10 @@ export default function SplashPage() {
     setLoginOpen(false);
   };
   
+  useEffect(() => {
+    if (token) handleClose()
+  }, [token])
+  
   
   return (
     <div className="splash_page">
@@ -33,13 +39,17 @@ export default function SplashPage() {
         <div className="feature__subtitle">Spark Your Story</div>
         <div className="buttons">
           <Button 
-            variant="outlined" 
+            variant="contained"
+            disableElevation
+            style={{ margin: '40px 60px'}} 
             color="secondary" 
             onClick={handleLoginOpen} >
             Login
           </Button>
           <Button 
-            variant="outlined" 
+            variant="contained"
+            disableElevation
+            style={{ margin: '40px 60px'}} 
             color="secondary" 
             onClick={handleSignUpOpen} >
             Sign Up

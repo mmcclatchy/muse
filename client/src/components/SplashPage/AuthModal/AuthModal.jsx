@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import LoginForm from './authForms/LoginForm';
 import SignUpForm from './authForms/SignUpForm';
+import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function TransitionsModal(props) {
-  const classes = useStyles();
+  const classes = useStyles(theme);
   
 
   return (

@@ -1,5 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Autocomplete } from '@material-ui/lab/Autocomplete';
 
 
 const font = `'Montserrat', helvetica, sans-serif`;
