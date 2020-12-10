@@ -29,5 +29,19 @@ module.exports = (sequelize, DataTypes) => {
     });
     
   };
+  
+  Character.prototype.cleanedForRedux = function() {
+    return {
+      [this.id]: {
+        id: this.id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        imageUrl: this.imageUrl,
+        bio: this.bio,
+        traits: this.Traits.map(trait => trait.id)
+      }
+    }
+  }
+  
   return Character;
 };

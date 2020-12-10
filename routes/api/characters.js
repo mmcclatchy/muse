@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../auth');
 const { sortTraits, normalize } = require('../../utilities');
-const { Character, Trait, CharacterTrait } = require('../../db/models');
+const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
 
 const router = express.Router();
 
@@ -19,76 +19,40 @@ router.post(
   '/',
   // requireAuth,
   asyncHandler(async (req, res) => {
-    data = req.body
-    
-    for (let datum in data) {
-      if (data[datum].type) delete data[datum].type
-    }
-    console.log('*******\n\n', data, '\n\n*********')
-    console.log(`
-      ${data.firstName.name}
-      ${data.lastName.name}
-      ${data.imageUrl}
-      ${data.bio}
-      ${data.physical.id}
-      ${data.strengths.id}
-      ${data.weaknesses.id}
-      ${data.motivations.id}
-      ${data.secrets.id}
-    `)
-    
+    const { firstName, lastName, imageUrl, bio } = req.body;
+
     const character = await Character.create({
-      firstName: data.firstName.name,
-      lastName: data.lastName.name,
-      imageUrl: data.imageUrl,
-      bio: data.bio,
-      // traits: [
-      //   data.physical.id,
-      //   data.strengths.id,
-      //   data.weaknesses.id,
-      //   data.motivations.id,
-      //   data.secrets.id
-      // ]
-    }, 
-    // {
-    //   include: [{
-    //     association: Trait,
-    //     as: 'traits'
-    //   }]
-    // }
-    );
+      firstName: firstName.name,
+      lastName: lastName.name,
+      imageUrl,
+      bio,
+    });
     
-    console.log('CHARACTER: ', character)
-    // character.setTraits([
-    //   data.physical.id,
-    //   data.strengths.id,
-    //   data.weaknesses.id,
-    //   data.motivations.id,
-    //   data.secrets.id
-    // ])
-    // character.save()
-    
-    const traitsIds = [
-      data.physical.id,
-      data.strengths.id,
-      data.weaknesses.id,
-      data.motivations.id,
-      data.secrets.id
-    ];
-    console.log('********\n\nTraitIds: ', traitsIds, '\n\n************')
-    const traits = traitsIds.map(async traitId => {
-      const characterTrait = await CharacterTrait.create({
-        characterId: character.id,
-        traitId: traitId
-      }, {
-        include: [Trait]
-      });
-      return characterTrait
-    })
-    console.log('*********\n\n', traits, '\n\n***********')
-    character.traits = sortTraits(traits)
-    
-    res.status(201).json(normalize(character))
+    const characterTraits = [
+      { characterId: character.id, traitId: req.body.physical.id },
+      { characterId: character.id, traitId: req.body.strengths.id },
+      { characterId: character.id, traitId: req.body.weaknesses.id },
+      { characterId: character.id, traitId: req.body.motivations.id },
+      { characterId: character.id, traitId: req.body.secrets.id },
+    ]
+
+    await CharacterTrait.bulkCreate(characterTraits, {
+      
+    });
+
+    const eagerCharacter = await Character.findOne({
+      where: { id: character.id },
+      attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio'],
+      include: [
+        {
+          model: Trait,
+          attributes: ['id'],
+          through: { attributes: [] },
+        },
+      ],
+    });
+
+    res.status(201).json(eagerCharacter.cleanedForRedux());
   })
 );
 
