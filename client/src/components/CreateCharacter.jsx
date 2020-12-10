@@ -26,12 +26,13 @@ const useStyles = makeStyles((theme) => ({
   cc__title: {
     margin: '10px auto',
   },
-  bio: {
+  characterBio: {
     margin: '20px 0',
   },
   header: {
     display: 'flex',
   },
+  
 }));
 
 export default function CreateCharacter() {
@@ -175,8 +176,10 @@ export default function CreateCharacter() {
         className={classes.characterBio}
         label='Bio'
         multiline
-        onChange={handleBioChange}
         rows={5}
+        inputProps={{ maxlength: 500 }}
+        helperText={`${characterBio.length}/500`}
+        onChange={handleBioChange}
         defaultValue=''
         variant='outlined'
       />

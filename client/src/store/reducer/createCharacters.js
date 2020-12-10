@@ -1,4 +1,9 @@
-import { CREATE_CHARACTER, SET_BIO, SET_IMAGE_URL } from '../constants/constants';
+import {
+  SET_CHARACTER_TRAIT,
+  SET_BIO,
+  SET_IMAGE_URL,
+  SET_NEW_CHARACTER_TRAIT,
+} from '../constants/constants';
 
 const initState = {
   firstName: '',
@@ -9,26 +14,33 @@ const initState = {
   motivations: '',
   secrets: '',
   bio: '',
-}
-
+};
 
 export default function characterReducer(state = initState, { type, payload }) {
   Object.freeze(state);
-  
-  switch (type) { 
-    
-    case CREATE_CHARACTER:
-      const newState = { ...state }
-      newState[payload.type] = payload
-      return newState
-    
+
+  switch (type) {
+    case SET_CHARACTER_TRAIT:
+      console.log('SET_CHARACTER_TRAIT: ', payload);
+
+      const newState = { ...state };
+      newState[payload.type] = payload;
+      return newState;
+
+    case SET_NEW_CHARACTER_TRAIT:
+      console.log('SET_NEW_CHARACTER_TRAIT: ', payload);
+
+      const newState1 = { ...state };
+      newState1[payload.type] = payload;
+      return newState1;
+
     case SET_IMAGE_URL:
-      return { ...state, imageUrl: payload }
-    
+      return { ...state, imageUrl: payload };
+
     case SET_BIO:
-      return { ...state, bio: payload }
-      
+      return { ...state, bio: payload };
+
     default:
-      return state
+      return state;
   }
 }

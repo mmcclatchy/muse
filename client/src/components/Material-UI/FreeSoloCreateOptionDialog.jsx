@@ -42,10 +42,15 @@ export default function FreeSoloCreateOptionDialog(props) {
 
   useEffect(() => {
     if (!value) return
+    
     if (value.new) {
+      console.log('NEW VALUE')
       dispatch(postFormTrait(value))
     }
-    dispatch(setFormTrait(value))
+    else {
+      dispatch(setFormTrait(value))
+      
+    }
   }, [value])
   
   
@@ -138,7 +143,7 @@ export default function FreeSoloCreateOptionDialog(props) {
           <TextField {...params} 
             label={props.type}
             className={classes.root}
-            // size='small'
+            color="primary"
             style={{ boxSizing: "border-box" }}
             variant="standard" />
         )}

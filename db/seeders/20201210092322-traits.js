@@ -62,6 +62,11 @@ module.exports = {
       new Trait(3, 'Missing an eye'),
       new Trait(3, 'Walks with a significant limp'),
       new Trait(3, 'Stutters'),
+      new Trait(3, 'Thick accent'),
+      new Trait(3, 'Deaf'),
+      new Trait(3, 'Excessively energetic'),
+      new Trait(3, 'Constantly jittering'),
+      new Trait(3, 'Half of face is paralyzed'),
       new Trait(3, 'Tattooed face'),
       new Trait(3, 'Booming voice'),
       new Trait(3, 'Mousy voice'),
@@ -103,6 +108,7 @@ module.exports = {
       new Trait(6, 'Justice'),
       new Trait(6, 'Absolve guilt'),
       new Trait(6, 'Freedom'),
+      new Trait(6, 'Wealth / Money'),
       new Trait(6, 'Family'),
       new Trait(6, 'Fame'),
       new Trait(6, 'Fulfill their destiny'),
@@ -117,10 +123,11 @@ module.exports = {
       new Trait(7, 'The notorious local thief'),
       new Trait(7, 'A renowned hero of a distant land'),
       new Trait(7, 'A spy'),
+      new Trait(7, 'Provides safe harbor for those hiding from the law'),
     ]);
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Traits', null, {});
-  },
+  }
 };

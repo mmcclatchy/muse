@@ -17,7 +17,7 @@ router.get(
 
 router.post(
   '/',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { firstName, lastName, imageUrl, bio } = req.body;
 
@@ -37,7 +37,7 @@ router.post(
     ]
 
     await CharacterTrait.bulkCreate(characterTraits, {
-      
+      // ignoreDuplicates: true
     });
 
     const eagerCharacter = await Character.findOne({

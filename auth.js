@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { jwtConfig } = require("./config");
-const { User } = require("./db/models/user");
+const { User } = require("./db/models");
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -30,7 +30,9 @@ const getUserToken = (user) => {
 const restoreUser = (req, res, next) => {
   // token being parsed from request's cookies by the cookie-parser middleware
   // function in app.js:
-  const { token } = req.cookies;
+  // const { token } = req.cookies;
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]
 
   if (!token) {
     // Send a "401 Unauthorized" response status code
@@ -44,9 +46,10 @@ const restoreUser = (req, res, next) => {
     }
 
     const { id } = jwtPayload.data;
-
+    
     try {
-      req.user = await User.findByPk(id);
+      const user = await User.findByPk(parseInt(id, 10));
+      req.user = user
     } catch (e) {
       // remove the token cookie
       res.clearCookie("token");

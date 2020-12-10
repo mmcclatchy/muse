@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: {
       type: DataTypes.STRING,
     },
-    bio: DataTypes.STRING
+    bio: DataTypes.STRING(500)
   }, {});
   Character.associate = function(models) {
     
@@ -26,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       through: models.CharacterTrait,
       foreignKey: 'characterId',
       otherKey: 'traitId',
+      // onDelete: 'CASCADE',
+      // hooks: true
     });
     
   };
