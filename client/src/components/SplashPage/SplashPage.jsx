@@ -15,13 +15,14 @@ export default function SplashPage() {
   };
 
   const handleSignUpOpen = () => {
-    setLoginOpen(false);
     setSignUpOpen(true);
+    setLoginOpen(false);
   };
   
   const handleClose = () => {
-    setLoginOpen(false);
+    // debugger;
     setSignUpOpen(false);
+    setLoginOpen(false);
   };
   
   

@@ -41,7 +41,8 @@ export default function TransitionsModal(props) {
         <Fade in={props.loginOpen || props.signUpOpen}>
           <div className={classes.paper}>
           
-            TODO: Login and Signup form
+            {props.loginOpen  ?  'Login'  :  null}
+            {props.signUpOpen  ?  'Sign Up'  :  null}
           
           </div>
         </Fade>
