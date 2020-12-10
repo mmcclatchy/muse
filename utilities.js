@@ -19,7 +19,7 @@ const handleValidationErrors = (req, res, next) => {
 
 const normalize = query => {
   const normalized = {};
-  
+  console.log('QUERY: ', query)
   if (!Array.isArray(query)) return normalized[query.id] = query;
   
   query.forEach(obj => normalized[obj.id] = obj);

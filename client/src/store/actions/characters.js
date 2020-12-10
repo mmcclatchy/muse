@@ -1,8 +1,7 @@
 import { 
   API, 
   TOKEN_KEY,
-  SET_CHARACTERS, 
-  CREATE_CHARACTER, 
+  SET_CHARACTERS,
   POST_CHARACTER } from '../constants/constants';
 import { baseApiUrl } from '../../config/config'
 
@@ -20,14 +19,9 @@ export const getCharacters = () => {
 }
 
 
-export const setFormTrait = trait => async dispatch => {
-  console.log('SET FORM TRAIT: ', trait)
-  dispatch({ type: CREATE_CHARACTER, payload: trait })
-}
-
 
 export const postCharacter = character => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN_KEY);
+  const token = localStorage.getItem(TOKEN_KEY);
   
   const response = await fetch(`${baseApiUrl}/characters`, {
     method: 'POST',

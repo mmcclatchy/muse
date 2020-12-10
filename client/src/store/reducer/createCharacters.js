@@ -1,4 +1,4 @@
-import { CREATE_CHARACTER, SET_IMAGE_URL } from '../constants/constants';
+import { CREATE_CHARACTER, SET_BIO, SET_IMAGE_URL } from '../constants/constants';
 
 const initState = {
   firstName: '',
@@ -8,6 +8,7 @@ const initState = {
   weaknesses: '',
   motivations: '',
   secrets: '',
+  bio: '',
 }
 
 
@@ -24,7 +25,12 @@ export default function characterReducer(state = initState, { type, payload }) {
       return newState
     
     case SET_IMAGE_URL:
+      console.log('SET_IMAGE_URL: ', payload)
       return { ...state, imageUrl: payload }
+    
+    case SET_BIO:
+      console.log('SET_BIO: ', payload)
+      return { ...state, bio: payload }
       
     default:
       return state

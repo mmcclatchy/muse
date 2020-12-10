@@ -8,7 +8,7 @@ import { compare } from '../utilities';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './theme';
 import TextField from '@material-ui/core/TextField';
-import { setFormTrait, setImageUrl } from '../store/actions/createCharacters';
+import { setFormTrait, setImageUrl, setBio } from '../store/actions/createCharacters';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import IconButton from '@material-ui/core/IconButton';
 import { postCharacter } from '../store/actions/characters';
@@ -37,19 +37,22 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateCharacter() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
-  const [bio, setBio] = useState('');
-  const firstName = useSelector((state) => state.createCharacters.firstname);
-  const lastName = useSelector((state) => state.createCharacters.lastname);
+  const [characterBio, setCharacterBio] = useState('');
+  const firstName = useSelector((state) => state.createCharacters.firstName);
+  const lastName = useSelector((state) => state.createCharacters.lastName);
   const physical = useSelector((state) => state.createCharacters.physical);
   const strengths = useSelector((state) => state.createCharacters.strengths);
   const weaknesses = useSelector((state) => state.createCharacters.weaknesses);
   const motivations = useSelector((state) => state.createCharacters.motivations);
   const secrets = useSelector((state) => state.createCharacters.secrets);
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
-  
+  const bio = useSelector(state => state.createCharacters.bio)
   const dispatch = useDispatch();
   const classes = useStyles(theme);
 
+  
+  
+  // Fetch Character Traits on init render of component
   useEffect(() => {
     // dispatch(getTraits);
 
@@ -65,22 +68,43 @@ export default function CreateCharacter() {
     fetchTraits();
   }, []);
 
+  
+  // Set Local State
   const handleImgChange = (e) => setAvatar(e.target.value);
-  const handleBioChange = (e) => setBio(e.target.value);
+  const handleBioChange = (e) => setCharacterBio(e.target.value);
+  
+  
+  // Post Character Traits and Info to the Backend
   const handleSaveClick = () => {
-    const character = {};
-    dispatch(postCharacter());
+    const character = {
+      firstName,
+      lastName,
+      physical,
+      strengths,
+      weaknesses,
+      motivations,
+      secrets,
+      imageUrl,
+      bio
+    };
+    console.log('CHARACTER: ', character)
+    dispatch(postCharacter(character));
   };
-
+  
+  
+  // Dispatch Url to Redux
   useEffect(() => {
     console.log(avatar);
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 
+  // Dispatch Bio to Redux
   useEffect(() => {
-    dispatch(setFormTrait({ type: 'description', description: bio }));
-  }, [bio]);
+    dispatch(setBio(characterBio));
+  }, [characterBio]);
 
+  
+  
   return (
     <div className={classes.container}>
       {/* <div className="create-character__traits"> */}
@@ -150,7 +174,7 @@ export default function CreateCharacter() {
       />
 
       <TextField
-        className={classes.bio}
+        className={classes.characterBio}
         label='Bio'
         multiline
         onChange={handleBioChange}
