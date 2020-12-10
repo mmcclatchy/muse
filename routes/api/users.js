@@ -43,7 +43,6 @@ router.post(
   // validateUsernameAndPassword,
   asyncHandler(async (req, res, next) => {
     const { username, password } = req.body;
-    console.log("🚀 ~ file: users.js ~ line 49 ~ req.body", req.body)
     const user = await User.findOne({
       where: { username },
     });

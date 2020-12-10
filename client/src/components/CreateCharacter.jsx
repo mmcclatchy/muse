@@ -87,14 +87,12 @@ export default function CreateCharacter() {
       imageUrl,
       bio
     };
-    console.log('CHARACTER: ', character)
     dispatch(postCharacter(character));
   };
   
   
   // Dispatch Url to Redux
   useEffect(() => {
-    console.log(avatar);
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 

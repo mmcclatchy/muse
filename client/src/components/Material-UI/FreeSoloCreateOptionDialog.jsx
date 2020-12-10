@@ -42,9 +42,7 @@ export default function FreeSoloCreateOptionDialog(props) {
 
   useEffect(() => {
     if (!value) return
-    console.log('VALUE!!!: ', value)
     if (value.new) {
-      console.log('NEW TRAIT!!!!')
       dispatch(postFormTrait(value))
     }
     dispatch(setFormTrait(value))
@@ -63,22 +61,18 @@ export default function FreeSoloCreateOptionDialog(props) {
 
 
   const handleSubmit = (event) => {
-    console.log('DIALOG VALUE: ', dialogValue)
     event.preventDefault();
     setValue({
       name: dialogValue.name,
       type: props.traits[0].type,
       new: true
     });
-    console.log('VALUE: ', value)
     handleClose();
   };
   
   
   const handleChange = (event, newValue) => {
-    console.log('HANDLE CHANGE: NEW VALUE: ', newValue)
     if (typeof newValue === 'string') {
-      console.log('CONDITIONAL 1', )
       // timeout to avoid instant validation of the dialog's form.
       setTimeout(() => {
         toggleOpen(true);
@@ -87,7 +81,6 @@ export default function FreeSoloCreateOptionDialog(props) {
         });
       });
     } else if (newValue && newValue.inputValue) {
-      console.log('CONDITIONAL 2')
       toggleOpen(true);
       setDialogValue({
         name: newValue.inputValue,

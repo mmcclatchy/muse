@@ -9,11 +9,6 @@ import { useSelector } from 'react-redux';
 export default function DisplayCharacter() {
   const imageUrl = useSelector(state => state.createCharacters.imageUrl)
   
-  useEffect(() => {
-    console.log('DisplayCharacter RERENDER')
-  }, [imageUrl])
-  
-  // https://i.pinimg.com/originals/7d/19/ba/7d19ba85ac2963592f9e185f32c2ad6b.jpg
   
   return (
     <div className="display_character">

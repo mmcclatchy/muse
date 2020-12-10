@@ -16,14 +16,12 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target)
     const newUser = {
       username,
       email,
       password,
       confirm,
     };
-    console.log("handleSubmit -> newUser", newUser)
     dispatch(signUp(newUser))
   };
 
