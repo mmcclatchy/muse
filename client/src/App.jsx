@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
-import SignUpForm from './components/SignUpForm';
+// import LoginForm from './components/SplashPage/AuthModal/authForms/LoginForm';
+// import SignUpForm from './components/SignUpForm';
 import Grid from './components/structure/Grid/Grid';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -45,9 +45,11 @@ const App = () => {
       {/* <Navigation /> */}
       <Switch>
         {/* <ProtectedRoute isLoggedIn={token} path='/' exact={ true } component={ Grid } /> */}
+        
         <SplashPage />
-        <Route path='/login' exact={ true } component={ LoginForm } />
-        <Route path='/signup' exact={ true } component={ SignUpForm } />
+          
+        {/* <Route path='/login' exact={ true } component={ LoginForm } />
+        <Route path='/signup' exact={ true } component={ SignUpForm } /> */}
       </Switch>
     </main>
   </BrowserRouter>

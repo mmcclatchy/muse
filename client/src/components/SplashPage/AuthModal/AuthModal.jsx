@@ -3,6 +3,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import LoginForm from './authForms/LoginForm';
+import SignUpForm from './authForms/SignUpForm';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -41,8 +43,8 @@ export default function TransitionsModal(props) {
         <Fade in={props.loginOpen || props.signUpOpen}>
           <div className={classes.paper}>
           
-            {props.loginOpen  ?  'Login'  :  null}
-            {props.signUpOpen  ?  'Sign Up'  :  null}
+            {props.loginOpen  ?  <LoginForm />  :  null}
+            {props.signUpOpen  ?  <SignUpForm />  :  null}
           
           </div>
         </Fade>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../store/authentication';
+import { signUp } from '../../../../store/authentication';
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('');
