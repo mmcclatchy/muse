@@ -1,13 +1,18 @@
+.app-bar {
+    height: 55px
+}
+
 .grid {
     /* height: 93vh; */
     max-width: 1200px;
-    height: 97vh;
+    height: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 250px 1fr 1fr 1fr;
     grid-template-rows: 425px 1fr 100px;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    background-color: rgba(242,242,242,.75);
 }
 
 .grid_nav {
@@ -20,6 +25,7 @@
     grid-area: 1 / 2 / 2 / 5;
     border: thin solid black;
     display: grid;
+    /* background-color: rgba(242,242,242,.4); */
 }
 
 .grid_form {

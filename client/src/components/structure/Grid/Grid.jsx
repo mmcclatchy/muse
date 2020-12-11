@@ -2,14 +2,14 @@ import React from 'react';
 import './grid.css'
 import CreateCharacter from '../../CreateCharacter';
 import DisplayCharacter from '../../DisplayCharacter/DisplayCharacter';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '../../Material-UI/AppBar';
 
 export default function Grid() {
   
   
   return (
-    <>
-      <AppBar />
+    <div className='background'>
+      <AppBar className='app-bar' />
       <div className="grid">
         <div className="grid_nav">
           
@@ -33,6 +33,6 @@ export default function Grid() {
           
         </div>
       </div>
-    </>
+    </div>
   )
 }

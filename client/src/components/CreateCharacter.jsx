@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import FreeSoloCreateOptionDialog from './Material-UI/FreeSoloCreateOptionDialog';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import TextField from '@material-ui/core/TextField';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import Button from '@material-ui/core/Button';
 
 // import { getTraits } from '../store/actions/traits';
 import { SET_TRAITS } from '../store/constants/constants';
 import { compare } from '../utilities';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import theme from './theme';
-import TextField from '@material-ui/core/TextField';
 import { setFormTrait, setImageUrl, setBio } from '../store/actions/createCharacters';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import IconButton from '@material-ui/core/IconButton';
 import { postCharacter } from '../store/actions/characters';
+import theme from './theme';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
   },
+  save: {
+    maxHeight: '30px'
+  }
   
 }));
 
@@ -108,11 +112,16 @@ export default function CreateCharacter() {
     <div className={classes.container}>
       {/* <div className="create-character__traits"> */}
       <div className={classes.header}>
-        <div></div>
+        
         <h3 className={classes.cc__title}>Create a New Character</h3>
-        <IconButton onClick={handleSaveClick}>
-          <SaveAltIcon color='secondary' aria-label='save character' />
-        </IconButton>
+        <Button
+          variant='contained'
+          color='secondary'
+          className={classes.save}
+          startIcon={<SaveAltIcon />}
+          disableElevation
+        >Save
+        </Button>
       </div>
 
       <FreeSoloCreateOptionDialog

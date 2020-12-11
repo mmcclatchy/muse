@@ -12,4 +12,6 @@
 
 html, body {
     height: 100%;
+    background-image: url(./components/open_landscape_light_blur.jpg);
+    background-size: 250vh;
 }

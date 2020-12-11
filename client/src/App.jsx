@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import LoginForm from './components/SplashPage/AuthModal/authForms/LoginForm';
-// import SignUpForm from './components/SignUpForm';
 import Grid from './components/structure/Grid/Grid';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -37,19 +35,29 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
+  useEffect(() => {
+    
+  }, [token])
+  
+  
   if (!loaded) return null;
   
   return (
   <BrowserRouter>
     <main className={classes.main}>
-      {/* <Navigation /> */}
       <Switch>
-        {/* <ProtectedRoute isLoggedIn={token} path='/' exact={ true } component={ Grid } /> */}
+        <ProtectedRoute 
+          isLoggedIn={token} 
+          path='/' 
+          exact={ true } 
+          component={ Grid } />
         
-        <SplashPage />
+        <Route 
+          isLoggedIn={!token} 
+          path='/' 
+          exact={true} 
+          component={SplashPage} />
           
-        {/* <Route path='/login' exact={ true } component={ LoginForm } />
-        <Route path='/signup' exact={ true } component={ SignUpForm } /> */}
       </Switch>
     </main>
   </BrowserRouter>

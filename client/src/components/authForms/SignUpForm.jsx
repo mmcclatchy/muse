@@ -150,22 +150,6 @@ const LoginForm = () => {
         </Button>
          
       </div>
-      
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='username'
-          value={username}
-          onChange={updateProperty(setUsername)}
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updateProperty(setPassword)}
-        />
-        <button type='submit'>Login</button>
-      </form> */}
     </div>
   )
 };
