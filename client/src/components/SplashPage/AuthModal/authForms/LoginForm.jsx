@@ -11,14 +11,21 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
-    minHeight: '500px',
-    minWidth: '500px',
+    minHeight: '400px',
+    minWidth: '400px',
     display: 'flex',
     flexFlow: 'column',
   },
   
   title: {
-    margin: '50px auto',
+    margin: '40px auto 0px',
+    fontFamily: `'Sonsie One', cursive`,
+    fontSize: '50px'
+  },
+  
+  subTitle: {
+    margin: '40px auto 50px',
+    fontSize: '20px'
   },
   
   textField: {
@@ -67,7 +74,8 @@ const LoginForm = () => {
   return (
     <div className={classes.wrapper}>
       
-      <h1 className={classes.title}>Log In</h1>
+      <h1 className={classes.title}>Muse</h1>
+      <h1 className={classes.subTitle}>Welcome Back</h1>
     
       <TextField 
         label="Username" 
@@ -90,6 +98,7 @@ const LoginForm = () => {
           onClick={handleDemoClick} 
           variant='contained'
           color='secondary'
+          disableElevation
           className={classes.buttons}
         >Demo
         </Button>
@@ -98,6 +107,7 @@ const LoginForm = () => {
           onClick={handleClick} 
           variant='contained'
           color='primary'
+          disableElevation
           className={classes.buttons}
           disabled={username && password  ?  false  :  true}
         >Login
