@@ -1,38 +1,70 @@
-# Solo React Project
+# **Muse**
 
-This is the backend for the Solo React project.
+---
 
-## Getting started
+## **Table of Contents**
 
-1. Clone this repository
-2. Install dependencies (`npm install`)
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file with CREATEDB privileges
+- [Summary](#Summary)
+- [Features](#Features)
+- [Application Structure](#Application-Structure)
+- [Database Schema](#Database-Schema)
+- [Primary Components](#Primary-Components)
+- [Placeholder](#Placeholder)
 
-5. Run
-   * `npm run db:create`
-   * `npm run db:migrate`
-   * `npm run db:seed:all`
-   * `npm start`
+---
 
-## Deploy to Heroku
+## **Summary**
 
-1. Create a new project
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run `$ heroku login`
-5. Add heroku as a remote to this git repo `$ heroku git:remote -a <project_name>`
-6. Push the project to heroku `$ git push heroku master`
-7. Connect to the heroku shell and prepare your database
+- Muse helps story tellers move past "writer's block" through an easy to use interface to find or create characters, scenes, and story arcs. It is a place meant to spark a story teller's imagination so they can better tell their stories
+- Muse is a single-page web application that utilizes an Express, React, Redux architecture.
 
-```bash
-    $ heroku run bash
-    $ sequelize-cli db:migrate
-    $ sequelize-cli db:seed:all
-```
-(You can interact with your database this way as youd like, but beware that `db:drop` should not be run in the heroku environment)
+---
 
-8. Add a `REACT_APP_BASE_URL` config var.  This should be the full URL of your react app: i.e. "https://solo-react.herokuapp.com"
+## **Features**
 
-9. profit
+Muse allows users to:
+
+- Create an account
+- Log in / out
+- Create and search for character traits
+- Create, read, update, and delete characters
+- Add and remove characters from a scene
+- Create, read, update, and delete scenes
+- Add and remove scenes from a story arc
+- Create, read, update, and delete story arcs
+
+---
+
+## **Application Structure**
+
+- **Back end**
+
+  - The application's back end server was built using Express and utilizes Sequelize as the ORM for the PostgreSQL database.
+  - It is a RESTful structure that accepts AJAX calls using JSON.
+  - The end points and SQL queries were structured to minimize the amount of queries while also being mindful of how the data was structured for Redux.
+
+- **Front end**
+
+  - The front end was built with React and Redux in order to give the user the most responsive experience possible.
+  - All data is normalized so that accessing data remains in constant time as well as keeping the code clean and DRY.
+
+- **Technologies**
+
+  - [React.js](https://reactjs.org/)
+  - [Redux](#https://redux.js.org/)
+  - [Material-UI](#https://material-ui.com/)
+  - [Express.js](#https://expressjs.com/)
+  - [Node.js](#https://nodejs.org/en/)
+  - [Sequelize ORM](#https://sequelize.org/)
+  - [PostgreSQL](#https://www.postgresql.org/)
+
+---
+
+## **Database Schema**
+
+![Database Schema](./muse_db_schema.png)
+
+---
+
+## **Primary Components**
+
