@@ -32,9 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     display: 'flex',
+    backgroundColor: theme.palette.primary.main,
   },
   save: {
-    maxHeight: '30px'
+    maxHeight: '30px',
+    margin: 'auto 7px',
   }
   
 }));
@@ -126,43 +128,49 @@ export default function CreateCharacter() {
 
       <FreeSoloCreateOptionDialog
         key='1'
-        type={'First Name'}
+        typeLabel='First Name'
         className={classes.traits}
+        traitType='firstName'
         traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
       />
 
       <FreeSoloCreateOptionDialog
         key='2'
-        type={'Last Name'}
+        typeLabel='Last Name'
         className={classes.traits}
+        traitType='lastName'
         traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
       />
 
       <FreeSoloCreateOptionDialog
         key='3'
-        type={'Physical Characteristics'}
+        typeLabel='Identifying Characteristics'
         className={classes.traits}
+        traitType='physical'
         traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
       />
 
       <FreeSoloCreateOptionDialog
         key='4'
-        type={'Character Strengths'}
+        typeLabel='Character Strengths'
         className={classes.traits}
+        traitType='strengths'
         traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
       />
 
       <FreeSoloCreateOptionDialog
         key='5'
-        type={'Character Weaknesses'}
+        typeLabel='Character Weaknesses'
         className={classes.traits}
+        traitType='weaknesses'
         traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
       />
 
       <FreeSoloCreateOptionDialog
         key='6'
-        type={'Motivations'}
+        typeLabel='Motivations'
         className={classes.traits}
+        traitType='motivations'
         traits={
           traits.motivations ? Object.values(traits.motivations).sort(compare) : null
         }
@@ -170,8 +178,9 @@ export default function CreateCharacter() {
 
       <FreeSoloCreateOptionDialog
         key='7'
-        type={'Secrets'}
+        typeLabel='Secrets'
         className={classes.traits}
+        traitType='secrets'
         traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
       />
 

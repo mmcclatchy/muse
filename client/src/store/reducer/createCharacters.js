@@ -2,7 +2,7 @@ import {
   SET_CHARACTER_TRAIT,
   SET_BIO,
   SET_IMAGE_URL,
-  SET_NEW_CHARACTER_TRAIT,
+  CLEAR_CHARACTER_TRAIT,
 } from '../constants/constants';
 
 const initState = {
@@ -26,12 +26,11 @@ export default function characterReducer(state = initState, { type, payload }) {
       const newState = { ...state };
       newState[payload.type] = payload;
       return newState;
-
-    case SET_NEW_CHARACTER_TRAIT:
-      
-      const newState1 = { ...state };
-      newState1[payload.type] = payload;
-      return newState1;
+    
+    case CLEAR_CHARACTER_TRAIT:
+      const newStateClear = { ...state };
+      newStateClear[payload] = '';
+      return newStateClear
 
     case SET_IMAGE_URL:
       return { ...state, imageUrl: payload };

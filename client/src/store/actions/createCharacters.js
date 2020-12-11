@@ -4,8 +4,8 @@ import {
   SET_CHARACTER_TRAIT,
   SET_BIO,
   TOKEN_KEY,
-  SET_NEW_CHARACTER_TRAIT,
   SET_NEW_TRAIT,
+  CLEAR_CHARACTER_TRAIT,
 } from '../constants/constants';
 import { baseApiUrl, originUrl } from '../../config/config';
 
@@ -13,6 +13,12 @@ export const setFormTrait = (trait) => async (dispatch) => {
   if (!trait) return;
   dispatch({ type: SET_CHARACTER_TRAIT, payload: trait });
 };
+
+export const clearFormTrait = traitType => async dispatch => {
+  if (!traitType) return;
+  
+  dispatch({ type: CLEAR_CHARACTER_TRAIT, payload: traitType })
+}
 
 export const setImageUrl = (imageUrl) => async (dispatch) => {
   dispatch({ type: SET_IMAGE_URL, payload: imageUrl });

@@ -17,23 +17,25 @@
 
 .grid_nav {
     grid-area: 1 / 1 / 4 / 2;
-    border: thin solid black;
+    /* border: thin solid black; */
     display: flex;
+    border-right: thin solid rgba(0,0,0,.15)
 }
 
 .grid_photo {
     grid-area: 1 / 2 / 2 / 5;
-    border: thin solid black;
+    /* border: thin solid black; */
     display: grid;
     /* background-color: rgba(242,242,242,.4); */
 }
 
 .grid_form {
     grid-area: 2 / 2 / 3 / 5;
-    border: thin solid black;
+    /* border: thin solid black; */
     display: flex;
     flex-flow: column;
     height: 100%;
+    margin-top: 40px;
 }
 
 /* .grid_display {
@@ -44,5 +46,5 @@
 
 .grid_footer {
     grid-area: 3 / 2 / 4 / 5;
-    border: thin solid black;
+    /* border: thin solid black; */
 }

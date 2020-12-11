@@ -1,5 +1,7 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect }  from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,53 +10,37 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
-import { useDispatch } from 'react-redux';
-import { postFormTrait, setFormTrait } from '../../store/actions/createCharacters';
-import sizing from '@material-ui/system/sizing'
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../theme';
+
+import {
+  postFormTrait,
+  setFormTrait,
+  clearFormTrait,
+} from '../../store/actions/createCharacters';
+
 
 
 const filter = createFilterOptions();
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& .MuiFormLabel-root": {
-      // fontSize: 13
-    },
-    // height: 25
-  },
-  // autocomplete: {
-    
-  //   height: 25,
-  //   margin: '10px 0', 
-  //   boxSizing: "border-box",
-  // }
-}))
-
 
 export default function FreeSoloCreateOptionDialog(props) {
   const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: '' });
-  const dispatch = useDispatch()
-  const classes = useStyles(theme)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!value) return
-    
+    if (!value) {
+      dispatch(clearFormTrait(props.traitType));
+      return;
+    }
+
     if (value.new) {
-      console.log('NEW VALUE')
-      dispatch(postFormTrait(value))
+      console.log('NEW VALUE');
+      dispatch(postFormTrait(value));
+    } else {
+      dispatch(setFormTrait(value));
     }
-    else {
-      dispatch(setFormTrait(value))
-      
-    }
-  }, [value])
-  
-  
-  
+  }, [value]);
+
   const handleClose = () => {
     setDialogValue({
       name: '',
@@ -64,20 +50,20 @@ export default function FreeSoloCreateOptionDialog(props) {
     toggleOpen(false);
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setValue({
       name: dialogValue.name,
       type: props.traits[0].type,
-      new: true
+      new: true,
     });
     handleClose();
   };
-  
-  
+
   const handleChange = (event, newValue) => {
+    console.log('HANDLE CHANGE: ', newValue);
     if (typeof newValue === 'string') {
+      console.log('CONDITIONAL 1: ', newValue);
       // timeout to avoid instant validation of the dialog's form.
       setTimeout(() => {
         toggleOpen(true);
@@ -86,16 +72,18 @@ export default function FreeSoloCreateOptionDialog(props) {
         });
       });
     } else if (newValue && newValue.inputValue) {
+      console.log('CONDITIONAL 2: ', newValue);
       toggleOpen(true);
       setDialogValue({
         name: newValue.inputValue,
-        type: props.traits[0].type
+        type: props.traits[0].type,
       });
     } else {
+      console.log('CONDITIONAL 3: ', newValue);
       setValue(newValue);
     }
-  }
-  
+  };
+
   const filterOptions = (options, params) => {
     const filtered = filter(options, params);
 
@@ -107,62 +95,64 @@ export default function FreeSoloCreateOptionDialog(props) {
     }
 
     return filtered;
-  }
-  
+  };
+
   const getOptionLabel = (option) => {
-    if (typeof option === 'number') return
+    if (typeof option === 'number') return;
     if (typeof option === 'string') return option;
-    
+
     if (option.inputValue) return option.inputValue;
-    
+
     return option.name;
-  }
-  
-  
-  
-  
+  };
+
   return (
     <React.Fragment>
-      {!props.traits ? null : <Autocomplete
-        value={value}
-        onChange={handleChange}
-        filterOptions={filterOptions}
-        id={`${props.type.split(' ').join('')}`}
-        options={props.traits}
-        getOptionLabel={getOptionLabel}
-        selectOnFocus
-        clearOnBlur
-        className={classes.autocomplete}
-        handleHomeEndKeys
-        renderOption={(option) => option.name}
-        style={{ width: '100%', margin: 5 }}
-        freeSolo
-        // maxHeight={'75%'}
-        // size='small'
-        renderInput={(params) => (
-          <TextField {...params} 
-            label={props.type}
-            className={classes.root}
-            color="primary"
-            style={{ boxSizing: "border-box" }}
-            variant="standard" />
-        )}
-      />}
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      {!props.traits ? null : (
+        <Autocomplete
+          value={value}
+          onChange={handleChange}
+          filterOptions={filterOptions}
+          id={props.traitType}
+          options={props.traits}
+          getOptionLabel={getOptionLabel}
+          selectOnFocus
+          clearOnBlur
+          clearOnEscape
+          handleHomeEndKeys
+          renderOption={(option) => option.name}
+          style={{ width: '100%', margin: 5 }}
+          freeSolo
+          // maxHeight={'75%'}
+          // size='small'
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={props.typeLabel}
+              color='primary'
+              style={{ boxSizing: 'border-box' }}
+              variant='standard'
+            />
+          )}
+        />
+      )}
+      <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
         <form onSubmit={handleSubmit}>
-          <DialogTitle id="form-dialog-title">Add new {props.type}</DialogTitle>
+          <DialogTitle id='form-dialog-title'>Add new {props.typeLabel}</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Did not see what you were looking for in our list? Please, add it!
             </DialogContentText>
             <TextField
               autoFocus
-              margin="dense"
-              id="name"
+              margin='dense'
+              id='name'
               value={dialogValue.name}
-              onChange={(event) => setDialogValue({ ...dialogValue, name: event.target.value })}
-              label={props.type}
-              type="text"
+              onChange={(event) =>
+                setDialogValue({ ...dialogValue, name: event.target.value })
+              }
+              label={props.typeLabel}
+              type='text'
             />
             {/* <TextField
               margin="dense"
@@ -174,10 +164,10 @@ export default function FreeSoloCreateOptionDialog(props) {
             /> */}
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleClose} color='primary'>
               Cancel
             </Button>
-            <Button type="submit" color="primary">
+            <Button type='submit' color='primary'>
               Add
             </Button>
           </DialogActions>

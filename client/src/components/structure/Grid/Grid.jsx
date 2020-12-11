@@ -9,7 +9,7 @@ export default function Grid() {
   
   
   return (
-    <div className='background'>
+    <div>
       <AppBar className='app-bar' />
       <div className="grid">
         <div className="grid_nav">

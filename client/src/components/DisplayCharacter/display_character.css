@@ -2,7 +2,7 @@
     max-height: 700px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    font-family: 'Marck Script', cursive;
+    font-family: var(--font-display-title);
     color: rgba(0, 0, 0, .65)
 }
 

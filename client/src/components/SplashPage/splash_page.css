@@ -17,10 +17,10 @@
     margin-top: 150px;
     font-size: 6rem;
     font-weight: bold;
-    font-family: 'Sonsie One', cursive;
+    font-family: var(--font-header);
 }
 
 .feature__subtitle {
     font-size: 2.5rem;
-    font-family: 'Sonsie One', cursive;
+    font-family: var(--font-header);
 }

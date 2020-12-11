@@ -8,6 +8,9 @@
 
 :root {
     margin: 0;
+    --font-header: 'Sonsie One', cursive;
+    --font-display-title: 'Marck Script', cursive;
+    --font-display-text: 'Montserrat', sans-serif;
 }
 
 html, body {
