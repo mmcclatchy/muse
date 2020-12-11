@@ -31,5 +31,6 @@
     grid-column: 2 / 4;
     display: flex;
     justify-content: flex-start;
+    padding-right: 15px
 }
 
