@@ -1,12 +1,11 @@
-import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { login } from '../../../../store/authentication';
-import spacing from '@material-ui/system/spacing'
-import './auth.css';
+import { login } from '../../store/authentication';
+// import './auth.css';
+import TextField from '@material-ui/core/TextField';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import theme from '../../../theme';
+import theme from '../theme';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
@@ -34,13 +33,13 @@ const useStyles = makeStyles(theme => ({
   
   button_wrapper: {
     display: 'flex',
-    justifyContent: 'space-around'
+    flexFlow: 'column',
   },
   
   buttons: {
-    minWidth: '100px',
+    width: '100%',
     minHeight: '40px',
-    marginTop: '50px'
+    marginTop: '30px'
   }
   
 }))
@@ -53,13 +52,11 @@ const LoginForm = () => {
   const classes = useStyles(theme)
   
   
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     dispatch(login(username, password));
   };
   
-  const handleDemoClick = (e) => {
-    e.preventDefault();
+  const handleDemoClick = () => {
     dispatch(login('Demo-lition', 'password'));
   };
 
@@ -82,7 +79,6 @@ const LoginForm = () => {
         variant="outlined" 
         value={username}
         className={classes.textField}
-        my='10px'
         onChange={updateProperty(setUsername)} />
       
       <TextField 
@@ -90,10 +86,19 @@ const LoginForm = () => {
         variant="outlined" 
         value={password}
         className={classes.textField}
-        my='10px'
+        type='password'
         onChange={updateProperty(setPassword)} />
       
       <div className={classes.button_wrapper}>
+        <Button 
+          onClick={handleClick} 
+          variant='contained'
+          color='primary'
+          disableElevation
+          className={classes.buttons}
+        >Login
+        </Button> 
+        
         <Button 
           onClick={handleDemoClick} 
           variant='contained'
@@ -101,17 +106,7 @@ const LoginForm = () => {
           disableElevation
           className={classes.buttons}
         >Demo
-        </Button>
-        
-        <Button 
-          onClick={handleClick} 
-          variant='contained'
-          color='primary'
-          disableElevation
-          className={classes.buttons}
-          disabled={username && password  ?  false  :  true}
-        >Login
-        </Button>  
+        </Button> 
       </div>
       
       {/* <form onSubmit={handleSubmit}>

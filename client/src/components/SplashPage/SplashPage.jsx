@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './splash_page.css';
 import Button from '@material-ui/core/Button';
 import AuthModal from './AuthModal/AuthModal';
 import { useSelector } from 'react-redux';
 
-
 export default function SplashPage() {
-  const [loginOpen, setLoginOpen] = React.useState(false);
-  const [signUpOpen, setSignUpOpen] = React.useState(false);
-  const token = useSelector(state => state.authentication.token)
-  
-  
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const token = useSelector((state) => state.authentication.token);
+
   const handleLoginOpen = () => {
     setLoginOpen(true);
     setSignUpOpen(false);
@@ -20,48 +18,49 @@ export default function SplashPage() {
     setSignUpOpen(true);
     setLoginOpen(false);
   };
-  
+
   const handleClose = () => {
     // debugger;
     setSignUpOpen(false);
     setLoginOpen(false);
   };
-  
+
   useEffect(() => {
-    if (token) handleClose()
-  }, [token])
-  
-  
+    if (token) handleClose();
+  }, [token]);
+
+
   return (
-    <div className="splash_page">
-      <div className="feature">
-        <div className="feature__title">Muse</div>
-        <div className="feature__subtitle">Spark Your Story</div>
-        <div className="buttons">
-          <Button 
-            variant="contained"
+    <div className='splash_page'>
+      <div className='feature'>
+        <div className='feature__title'>Muse</div>
+        <div className='feature__subtitle'>Spark Your Story</div>
+        <div className='buttons'>
+          <Button
+            variant='contained'
             disableElevation
-            style={{ margin: '40px 60px'}} 
-            color="secondary" 
-            onClick={handleLoginOpen} >
+            style={{ margin: '40px 60px' }}
+            color='secondary'
+            onClick={handleLoginOpen}>
             Login
           </Button>
-          <Button 
-            variant="contained"
+          <Button
+            variant='contained'
             disableElevation
-            style={{ margin: '40px 60px'}} 
-            color="secondary" 
-            onClick={handleSignUpOpen} >
+            style={{ margin: '40px 60px' }}
+            color='secondary'
+            onClick={handleSignUpOpen}>
             Sign Up
           </Button>
         </div>
-        <div className="modal">
+        <div className='modal'>
           <AuthModal
             loginOpen={loginOpen}
             signUpOpen={signUpOpen}
-            handleClose={handleClose} />
+            handleClose={handleClose}
+          />
         </div>
       </div>
     </div>
-  )
+  );
 }

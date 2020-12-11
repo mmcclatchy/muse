@@ -3,8 +3,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import LoginForm from './authForms/LoginForm';
-import SignUpForm from './authForms/SignUpForm';
+import LoginForm from '../../authForms/LoginForm';
+import SignUpForm from '../../authForms/SignUpForm';
 import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
