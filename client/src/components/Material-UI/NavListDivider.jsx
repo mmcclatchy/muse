@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
   },
 }));
 
@@ -19,19 +19,19 @@ export default function ListDividers() {
   return (
     <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem button>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Create Character" />
       </ListItem>
       <Divider />
       <ListItem button divider>
-        <ListItemText primary="Drafts" />
+        <ListItemText primary="Create Scene" />
       </ListItem>
       <ListItem button>
-        <ListItemText primary="Trash" />
+        <ListItemText primary="Create Story" />
       </ListItem>
       <Divider light />
-      <ListItem button>
+      {/* <ListItem button>
         <ListItemText primary="Spam" />
-      </ListItem>
+      </ListItem> */}
     </List>
   );
 }

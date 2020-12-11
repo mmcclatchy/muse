@@ -3,6 +3,7 @@ import './grid.css'
 import CreateCharacter from '../../CreateCharacter';
 import DisplayCharacter from '../../DisplayCharacter/DisplayCharacter';
 import AppBar from '../../Material-UI/AppBar';
+import NavListDivider from '../../Material-UI/NavListDivider'
 
 export default function Grid() {
   
@@ -12,7 +13,7 @@ export default function Grid() {
       <AppBar className='app-bar' />
       <div className="grid">
         <div className="grid_nav">
-          
+          <NavListDivider />
         </div>
         
         <div className="grid_photo">
