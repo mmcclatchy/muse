@@ -45,20 +45,20 @@ const App = () => {
   return (
   <BrowserRouter>
     <main className={classes.main}>
-      <Switch>
-        <ProtectedRoute 
+      {/* <Switch> */}
+        {/* <ProtectedRoute 
           isLoggedIn={token} 
           path='/' 
           exact={ true } 
           component={ Grid } />
         
         <Route 
-          isLoggedIn={!token} 
           path='/' 
           exact={true} 
-          component={SplashPage} />
+          component={SplashPage} /> */}
           
-      </Switch>
+      {/* </Switch> */}
+      {token  ?  <Grid />  :  <SplashPage />}
     </main>
   </BrowserRouter>
   )

@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +12,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Button from '@material-ui/core/Button';
+
+import { logout } from '../../store/authentication';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +46,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const token = useSelector(state => state.authentication.token)
+  const dispatch = useDispatch()
   const open = Boolean(anchorEl);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
+  const handleLogOut = () => {
+    dispatch(logout())
+    return <Redirect to='/' />
   };
 
   const handleMenu = (event) => {
@@ -69,8 +78,16 @@ export default function MenuAppBar() {
               <Typography variant="h6" className={classes.title}>
                 Muse
               </Typography>
-              {auth && (
+              {token && (
                 <div>
+                  <Button 
+                    variant="contained"
+                    disableElevation
+                    size='small' 
+                    color="secondary" 
+                    onClick={handleLogOut}>
+                    Log Out
+                  </Button>
                   <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
