@@ -51,12 +51,20 @@
     opacity: 0;
 }
 
-.trait-appear.trait-appear-active,
-.trait-enter.fade-enter-active {
+.trait-appear-active,
+.trait-enter-active {
     opacity: 1;
     transition: opacity 1000ms linear;
 }
 
+.trait-exit {
+    opacity: 1;
+}
+
+.trait-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+}
 
 .bio {
     grid-area: bio;

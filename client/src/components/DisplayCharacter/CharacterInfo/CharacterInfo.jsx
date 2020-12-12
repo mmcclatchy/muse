@@ -16,24 +16,24 @@ export default function CharacterInfo() {
   const bio = useSelector(state => state.createCharacters.bio)
 
   
-  const duration = 1000;
+  // const duration = 1000;
   
-  const defaultStyle = {
-    margin: '10px 20px 2px 75px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    fontFamily: 'var(--font-display-title)',
-    alignSelf: 'start',
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0,
-  }
+  // const defaultStyle = {
+  //   margin: '10px 20px 2px 75px',
+  //   fontSize: '16px',
+  //   fontWeight: 'bold',
+  //   fontFamily: 'var(--font-display-title)',
+  //   alignSelf: 'start',
+  //   transition: `opacity ${duration}ms ease-in-out`,
+  //   opacity: 0,
+  // }
   
-  const transitionStyles = {
-    entering: { opacity: 1 },
-    entered:  { opacity: 1 },
-    exiting:  { opacity: 0 },
-    exited:  { opacity: 0 },
-  }
+  // const transitionStyles = {
+  //   entering: { opacity: 1 },
+  //   entered:  { opacity: 1 },
+  //   exiting:  { opacity: 0 },
+  //   exited:  { opacity: 0 },
+  // }
   
   
   return (
@@ -41,7 +41,7 @@ export default function CharacterInfo() {
       <div className="first-name">{firstName}</div>
       <div className="last-name">{lastName}</div>
       <div className="traits_wrapper">
-        <Transition in={physical} timeout={duration} >
+        {/* <Transition in={physical} timeout={duration} >
           {state => (
             <p 
               style={{ ...defaultStyle, ...transitionStyles[state] }}
@@ -50,7 +50,10 @@ export default function CharacterInfo() {
               {physical}
             </p>
           )}
-        </Transition>
+        </Transition> */}
+        <CSSTransition in={physical} timeout={1000} classNames='trait'>
+          <p className="trait">{physical}</p>
+        </CSSTransition>
           
         <p className="trait strengths">{strengths}</p>
         <p className="trait weaknesses">{weaknesses}</p>
