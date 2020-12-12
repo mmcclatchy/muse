@@ -17,11 +17,13 @@ export default function CharacterInfo() {
     <div style={{ backgroundImage: `url(${infoFrame})` }} className='info_display'>
       <div className="first-name">{firstName}</div>
       <div className="last-name">{lastName}</div>
-      <p className="trait">{physical}</p>
-      <p className="trait">{strengths}</p>
-      <p className="trait">{weaknesses}</p>
-      <p className="trait">{motivations}</p>
-      <p className="traits">{secrets}</p>
+      <div className="traits_wrapper">
+        <p className="trait id-char">{physical}</p>
+        <p className="trait strengths">{strengths}</p>
+        <p className="trait weaknesses">{weaknesses}</p>
+        <p className="trait motivations">{motivations}</p>
+        <p className="trait secrets">{secrets}</p>  
+      </div>
       <div className="blocked-off"></div>
       <p className="bio">{bio}</p>
     </div>

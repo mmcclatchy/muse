@@ -7,37 +7,50 @@
     background-position: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    align-items: center;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 
+        'firstName lastName'
+        'traits bio';
+    align-items: flex-start;
     border-left: thick solid rgb(56, 20, 3)
 }
 
 .first-name,
 .last-name {
-    margin-top: 45px;
+    margin-top: 40px;
     text-align: center;
     font-size: 40px;
     font-family: var(--font-display-title);
     color: rgba(0, 0, 0, .65);
-    min-height: 80px;
+    min-height: 60px;
 }
 
+.first-name {
+    grid-area: firstName;
+}
+
+.last-name {
+    grid-area: lastName;
+}
+.traits-wrapper {
+    grid-area: traits;
+    display: flex;
+    align-items: flex-start;
+}
 
 .trait {
-    margin: 5px 65px;
+    margin: 10px 20px 2px 75px;
     /* height: 2.25em; */
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     font-family: var(--font-display-title);
     align-self: start;
-    /* padding-left: 20px; */
-}
-
-.blocked-off {
-    grid-area: 6 / 1 / 7 / 3;
 }
 
 .bio {
-    grid-area: 2 / 2 / 6 / 3;
-    
+    grid-area: bio;
+    margin: 2px 60px 2px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    word-wrap: normal;
 }
