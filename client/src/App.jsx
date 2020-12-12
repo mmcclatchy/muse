@@ -58,7 +58,12 @@ const App = () => {
           component={SplashPage} /> */}
           
       {/* </Switch> */}
-      {token  ?  <Grid />  :  <SplashPage />}
+      {token  
+        ? <>
+            <AppBar className='app-bar' />
+            <Grid />
+          </>
+        :  <SplashPage />}
     </main>
   </BrowserRouter>
   )

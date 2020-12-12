@@ -1,6 +1,6 @@
 import React from 'react';
 import './character_info.css';
-import infoFrame from './character_info.jpg';
+import infoFrame from './open_book.png';
 import { useSelector } from 'react-redux';
 
 export default function CharacterInfo() {
@@ -11,16 +11,19 @@ export default function CharacterInfo() {
   const weaknesses = useSelector((state) => state.createCharacters.weaknesses.name);
   const motivations = useSelector((state) => state.createCharacters.motivations.name);
   const secrets = useSelector((state) => state.createCharacters.secrets.name);
+  const bio = useSelector(state => state.createCharacters.bio)
 
   return (
     <div style={{ backgroundImage: `url(${infoFrame})` }} className='info_display'>
-      {/* <div className="space_holder"></div> */}
-      <p className='character_name'>{`${firstName || ''} ${lastName || ''}`}</p>
-      <p className='traits physical'>Physical Characteristics: {physical}</p>
-      <p className="traits">Strengths: {strengths}</p>
-      <p className="traits">Weakneses: {weaknesses}</p>
-      <p className="traits">Motivations: {motivations}</p>
-      <p className="traits">Secrets: {secrets}</p>
+      <div className="first-name">{firstName}</div>
+      <div className="last-name">{lastName}</div>
+      <p className="trait">{physical}</p>
+      <p className="trait">{strengths}</p>
+      <p className="trait">{weaknesses}</p>
+      <p className="trait">{motivations}</p>
+      <p className="traits">{secrets}</p>
+      <div className="blocked-off"></div>
+      <p className="bio">{bio}</p>
     </div>
   );
 }

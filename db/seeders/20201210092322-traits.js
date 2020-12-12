@@ -88,7 +88,7 @@ module.exports = {
       new Trait(5, 'Cheater'),
       new Trait(5, 'Coward'),
       new Trait(5, 'Short Tempered'),
-      new Trait(5, 'Has to prove the smartest person in the room'),
+      new Trait(5, `Has to prove they're the smartest person in the room`),
       new Trait(5, 'Codependent'),
       new Trait(5, 'Prideful'),
       new Trait(5, 'Greedy'),

@@ -5,13 +5,15 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    display: flex;
-    flex-flow: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
     align-items: center;
     border-left: thick solid rgb(56, 20, 3)
 }
 
-.character_name {
+.first-name,
+.last-name {
     margin-top: 45px;
     text-align: center;
     font-size: 40px;
@@ -20,13 +22,22 @@
     min-height: 80px;
 }
 
-.traits {
-    margin: 5px auto;
-    font-size: 15px;
+
+.trait {
+    margin: 5px 65px;
+    /* height: 2.25em; */
+    font-size: 18px;
     font-weight: bold;
-    font-family: var(--font-display-text);
+    font-family: var(--font-display-title);
+    align-self: start;
+    /* padding-left: 20px; */
 }
 
-.physical {
-    top: 100px;
+.blocked-off {
+    grid-area: 6 / 1 / 7 / 3;
+}
+
+.bio {
+    grid-area: 2 / 2 / 6 / 3;
+    
 }

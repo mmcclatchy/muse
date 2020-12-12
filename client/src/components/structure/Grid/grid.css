@@ -1,5 +1,5 @@
 .app-bar {
-    height: 55px
+    /* height: 55px; */
 }
 
 .grid {
@@ -13,6 +13,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     background-color: rgba(242,242,242,.75);
+    /* box-shadow: -10px 0px 5px 0px rgba(0, 0, 0, .25), 10px 0px 10px 0px rgba(0, 0, 0, .25); */
 }
 
 .grid_nav {
@@ -26,7 +27,6 @@
     grid-area: 1 / 2 / 2 / 5;
     /* border: thin solid black; */
     display: grid;
-    /* background-color: rgba(242,242,242,.4); */
 }
 
 .grid_form {
