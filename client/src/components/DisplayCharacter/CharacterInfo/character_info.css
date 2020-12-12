@@ -40,12 +40,23 @@
 
 .trait {
     margin: 10px 20px 2px 75px;
-    /* height: 2.25em; */
     font-size: 16px;
     font-weight: bold;
     font-family: var(--font-display-title);
     align-self: start;
 }
+
+.trait-appear,
+.trait-enter {
+    opacity: 0;
+}
+
+.trait-appear.trait-appear-active,
+.trait-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms linear;
+}
+
 
 .bio {
     grid-area: bio;

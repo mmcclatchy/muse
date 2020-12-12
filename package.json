@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
+    "@types/react-transition-group": "^4.4.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
