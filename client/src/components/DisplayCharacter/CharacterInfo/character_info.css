@@ -5,44 +5,48 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    
+}
+
+.info_grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: 60px repeat(5, 1fr);
     grid-template-areas: 
-        'first-name last-name'
+        'first last'
         'trait1 bio'
         'trait2 bio'
         'trait3 bio'
         'trait4 bio'
-        'trait5 bio'
-        'blocked-off blocked-off';
+        'trait5 bio';
     align-items: flex-start;
-    border-left: thick solid rgb(56, 20, 3)
+    margin: 40px 70px 0px 70px;
+    max-height: 325px;
+    height: 100%;
 }
 
-
-.first-name,
-.last-name {
-    margin-top: 40px;
+.first,
+.last {
+    /* margin-top: 40px; */
     text-align: center;
     font-size: 40px;
     font-family: var(--font-display-title);
     color: rgba(0, 0, 0, .65);
     /* min-height: 40px; */
-    max-height: 20px;
-    min-height: 20px;
+    /* max-height: 20px;
+    min-height: 20px; */
 }
 
-.first-name {
-    grid-area: first-name;
+.first {
+    grid-area: first;
 }
 
-.last-name {
-    grid-area: last-name;
+.last {
+    grid-area: last;
 }
 
 .trait {
-    margin: 2px 20px 2px 75px;
+    margin: 4px 20px 4px 10px;
     /* height: 2.25em; */
     font-size: 18px;
     font-weight: bold;
@@ -71,41 +75,39 @@
     grid-area: trait5;
 }
 
-.blocked-off {
-    grid-area: blocked-off;
-}
+
 
 .bio {
     grid-area: bio;
-    margin: 2px 60px 2px 20px;
-    font-size: 20px;
+    margin: 2px 0px 2px 30px;
+    font-size: 18px;
     font-weight: bold;
 }
 
-.first-name-enter,
-.first-name-exit-done,
-.last-name-enter,
-.last-name-exit-done,
+.first-enter,
+.first-exit-done,
+.last-enter,
+.last-exit-done,
 .trait-enter,
 .trait-exit-done {
     opacity: 0;
 }
 
-.first-name-enter-active,
-.last-name-enter-active,
+.first-enter-active,
+.last-enter-active,
 .trait-enter-active {
     opacity: 1;
     transition: opacity 1000ms linear;
 }
 
-.first-name-exit,
-.last-name-exit,
+.first-exit,
+.last-exit,
 .trait-exit {
     opacity: 1;
 }
 
-.first-name-exit-active,
-.last-name-exit-active,
+.first-exit-active,
+.last-exit-active,
 .trait-exit-active {
     opacity: 0;
     transition: opacity 1000ms linear;
