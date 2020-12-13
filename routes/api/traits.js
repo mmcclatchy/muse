@@ -9,7 +9,7 @@ const router = express.Router();
 // Get all Character Traits and Trait Types
 router.get(
   '/',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const traits = await Trait.findAll({
       attributes: ['id', 'name', 'typeId'],
@@ -30,7 +30,7 @@ router.get(
 // Post a new character Trait
 router.post(
   '/',
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const data = req.body;
     const traitType = await TraitType.findOne({ where: { type: data.type } });

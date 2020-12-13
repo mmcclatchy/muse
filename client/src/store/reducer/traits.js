@@ -5,16 +5,11 @@ export default function traitsReducer(state = {}, { type, payload }) {
 
   switch (type) {
     case SET_TRAITS:
-      console.log('SET_TRAITS: ', payload);
 
       return { ...state, ...payload };
 
     case SET_NEW_TRAIT:
-      console.log('SET_NEW_TRAITS: ', payload);
 
-      // const newState = { ...state };
-      // newState[payload.type] = { ...payload };
-      // return newState;
       const newState = { ...state };
       newState[payload.type][payload.id] = payload
       return newState

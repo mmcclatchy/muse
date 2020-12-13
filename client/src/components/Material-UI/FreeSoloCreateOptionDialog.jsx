@@ -34,7 +34,6 @@ export default function FreeSoloCreateOptionDialog(props) {
     }
 
     if (value.new) {
-      console.log('NEW VALUE');
       dispatch(postFormTrait(value));
     } else {
       dispatch(setFormTrait(value));
@@ -61,9 +60,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   };
 
   const handleChange = (event, newValue) => {
-    console.log('HANDLE CHANGE: ', newValue);
     if (typeof newValue === 'string') {
-      console.log('CONDITIONAL 1: ', newValue);
       // timeout to avoid instant validation of the dialog's form.
       setTimeout(() => {
         toggleOpen(true);
@@ -72,14 +69,12 @@ export default function FreeSoloCreateOptionDialog(props) {
         });
       });
     } else if (newValue && newValue.inputValue) {
-      console.log('CONDITIONAL 2: ', newValue);
       toggleOpen(true);
       setDialogValue({
         name: newValue.inputValue,
         type: props.traits[0].type,
       });
     } else {
-      console.log('CONDITIONAL 3: ', newValue);
       setValue(newValue);
     }
   };

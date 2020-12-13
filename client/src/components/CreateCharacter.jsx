@@ -65,10 +65,11 @@ export default function CreateCharacter() {
     // dispatch(getTraits);
 
     const fetchTraits = async () => {
-      
       const response = await fetch('api/traits', { 
         'Content-Type': 'application/json',
-        authorization: `Bearer ${token}`
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
