@@ -11,13 +11,15 @@
     --font-header: 'Sonsie One', cursive;
     --font-display-title: 'Marck Script', cursive;
     --font-display-text: 'Montserrat', sans-serif;
+    --primary: #8aacc8;
+    --secondary: #1a237e;
 }
 
 body {
     height: 100%;
     max-height: 1100px;
     background-image: url(./components/open_landscape_light_blur.jpg);
-    background-size: 135vw 135vh;
+    background-size: 150% 175%;
     
 }
 

@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cc__title: {
     margin: '10px auto',
+    // fontFamily: 'var(--font-display-text)',
+    fontSize: 17,
+    fontWeight: 'bold'
   },
   characterBio: {
     margin: '20px 0',
@@ -118,7 +121,6 @@ export default function CreateCharacter() {
   
   return (
     <div className={classes.container}>
-      {/* <div className="create-character__traits"> */}
       <div className={classes.header}>
         
         <h3 className={classes.cc__title}>Create a New Character</h3>
@@ -209,7 +211,6 @@ export default function CreateCharacter() {
         variant='outlined'
       />
 
-      {/* </div> */}
     </div>
   );
 }

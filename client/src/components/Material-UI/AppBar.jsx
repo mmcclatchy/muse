@@ -15,6 +15,8 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
 import { logout } from '../../store/authentication';
+import { toggleDrawer } from '../../store/actions/navigation';
+import { SatelliteSharp } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,6 +51,7 @@ export default function MenuAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const token = useSelector(state => state.authentication.token)
+  const drawerOpen = useSelector(state => state.navigation.drawerOpen)
   const dispatch = useDispatch()
   const open = Boolean(anchorEl);
 
@@ -64,6 +67,10 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const handleDrawerToggle = () => {
+    dispatch(toggleDrawer(!drawerOpen))
+  }
 
   return (
     <div className={classes.root}>
@@ -73,7 +80,13 @@ export default function MenuAppBar() {
         
             <Toolbar variant='dense' >
             
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <IconButton 
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit" 
+                onClick={handleDrawerToggle}
+                aria-label="menu"
+              >
                 <MenuIcon />
               </IconButton>
               <Typography variant="h6" className={classes.title}>

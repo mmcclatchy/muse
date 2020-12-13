@@ -11,6 +11,24 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     // backgroundColor: theme.palette.background.paper,
   },
+  overrides: {
+    MuiListItem: {
+      root: {
+        "&$selected": {
+          backgroundColor: theme.palette.primary.main,
+          "&:hover": {
+            backgroundColor: "orange",
+          },
+        },
+      },
+      button: {
+        "&:hover": {
+          backgroundColor: theme.palette.primary.light,
+        },
+      },
+    },
+  },
+  
 }));
 
 export default function ListDividers() {

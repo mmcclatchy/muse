@@ -4,7 +4,8 @@ import authentication from './authentication';
 import api from './middleware/api';
 import traits from './reducer/traits';
 import characters from './reducer/characters';
-import createCharacters from './reducer/createCharacters'
+import createCharacters from './reducer/createCharacters';
+import navigation from './reducer/navigation';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -14,14 +15,15 @@ const reducer = combineReducers({
   characters,
   traits,
   createCharacters,
+  navigation,
 });
 
-const configureStore = initialState => {
+const configureStore = (initialState) => {
   // console.log('INSIDE CONFIGURE STORE')
   return createStore(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(thunk, api)),
+    composeEnhancers(applyMiddleware(thunk, api))
   );
 };
 
