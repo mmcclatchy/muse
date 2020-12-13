@@ -29,6 +29,7 @@
     grid-area: 1 / 2 / 2 / 5;
     /* border: thin solid black; */
     display: grid;
+    margin-top: 15px;
 }
 
 .grid_form {
