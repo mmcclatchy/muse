@@ -7,10 +7,15 @@
     background-position: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas: 
-        'firstName lastName'
-        'traits bio';
+        'first-name last-name'
+        'trait1 bio'
+        'trait2 bio'
+        'trait3 bio'
+        'trait4 bio'
+        'trait5 bio'
+        'blocked-off blocked-off';
     align-items: flex-start;
     border-left: thick solid rgb(56, 20, 3)
 }
@@ -22,54 +27,84 @@
     font-size: 40px;
     font-family: var(--font-display-title);
     color: rgba(0, 0, 0, .65);
-    min-height: 60px;
+    /* min-height: 40px; */
+    max-height: 20px;
 }
 
 .first-name {
-    grid-area: firstName;
+    grid-area: first-name;
 }
 
 .last-name {
-    grid-area: lastName;
-}
-.traits-wrapper {
-    grid-area: traits;
-    display: flex;
-    align-items: flex-start;
+    grid-area: last-name;
 }
 
 .trait {
-    margin: 10px 20px 2px 75px;
-    font-size: 16px;
+    margin: 2px 20px 2px 75px;
+    /* height: 2.25em; */
+    font-size: 18px;
     font-weight: bold;
     font-family: var(--font-display-title);
     align-self: start;
+    /* padding-left: 20px; */
 }
 
-.trait-appear,
-.trait-enter {
-    opacity: 0;
+.id-char {
+    grid-area: trait1;
 }
 
-.trait-appear-active,
-.trait-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms linear;
+.strengths {
+    grid-area: trait2;
 }
 
-.trait-exit {
-    opacity: 1;
+.weaknesses {
+    grid-area: trait3;
 }
 
-.trait-exit-active {
-    opacity: 0;
-    transition: opacity 1000ms;
+.motivations {
+    grid-area: trait4;
+}
+
+.secrets {
+    grid-area: trait5;
+}
+
+.blocked-off {
+    grid-area: blocked-off;
 }
 
 .bio {
     grid-area: bio;
     margin: 2px 60px 2px 20px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
-    word-wrap: normal;
+}
+
+.first-name-enter,
+.first-name-exit-done,
+.last-name-enter,
+.last-name-exit-done,
+.trait-enter,
+.trait-exit-done {
+    opacity: 0;
+}
+
+.first-name-enter-active,
+.last-name-enter-active,
+.trait-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms linear;
+}
+
+.first-name-exit,
+.last-name-exit,
+.trait-exit {
+    opacity: 1;
+}
+
+.first-name-exit-active,
+.last-name-exit-active,
+.trait-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms linear;
 }

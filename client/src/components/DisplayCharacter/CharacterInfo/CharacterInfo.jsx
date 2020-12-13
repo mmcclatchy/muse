@@ -4,15 +4,16 @@ import { CSSTransition, Transition } from 'react-transition-group';
 
 import './character_info.css';
 import infoFrame from './open_book.png';
+import TraitRender from './TraitRender';
 
 export default function CharacterInfo() {
-  const firstName = useSelector((state) => state.createCharacters.firstName.name);
-  const lastName = useSelector((state) => state.createCharacters.lastName.name);
-  const physical = useSelector((state) => state.createCharacters.physical.name);
-  const strengths = useSelector((state) => state.createCharacters.strengths.name);
-  const weaknesses = useSelector((state) => state.createCharacters.weaknesses.name);
-  const motivations = useSelector((state) => state.createCharacters.motivations.name);
-  const secrets = useSelector((state) => state.createCharacters.secrets.name);
+  const { firstId, name: firstName } = useSelector((state) => state.createCharacters.firstName);
+  const { lastId, name: lastName } = useSelector((state) => state.createCharacters.lastName);
+  const { physId, name: physical } = useSelector((state) => state.createCharacters.physical);
+  const { strId, name: strengths } = useSelector((state) => state.createCharacters.strengths);
+  const { weakId, name: weaknesses } = useSelector((state) => state.createCharacters.weaknesses);
+  const { motId, name: motivations } = useSelector((state) => state.createCharacters.motivations);
+  const { secId, name: secrets } = useSelector((state) => state.createCharacters.secrets);
   const bio = useSelector(state => state.createCharacters.bio)
 
   
@@ -34,32 +35,37 @@ export default function CharacterInfo() {
   //   exiting:  { opacity: 0 },
   //   exited:  { opacity: 0 },
   // }
-  
+  console.log('PHYSICAL: ', Boolean(physical))
   
   return (
     <div style={{ backgroundImage: `url(${infoFrame})` }} className='info_display'>
-      <div className="first-name">{firstName}</div>
-      <div className="last-name">{lastName}</div>
-      <div className="traits_wrapper">
-        {/* <Transition in={physical} timeout={duration} >
-          {state => (
-            <p 
-              style={{ ...defaultStyle, ...transitionStyles[state] }}
-              // className="trait"
-            >
-              {physical}
-            </p>
-          )}
-        </Transition> */}
-        <CSSTransition in={physical} timeout={1000} classNames='trait'>
-          <p className="trait">{physical}</p>
-        </CSSTransition>
-          
-        <p className="trait strengths">{strengths}</p>
-        <p className="trait weaknesses">{weaknesses}</p>
-        <p className="trait motivations">{motivations}</p>
-        <p className="trait secrets">{secrets}</p>  
-      </div>
+      <CSSTransition in={firstName} timeout={1000} classNames='first-name'>
+        <TraitRender id={firstId} trait={firstName} classNames='first-name' />
+      </CSSTransition>
+      
+      <CSSTransition in={lastName} timeout={1000} classNames='last-name'>
+        <TraitRender id={lastId} trait={lastName} classNames='last-name' />
+      </CSSTransition>
+      
+      <CSSTransition in={physical} timeout={1000} classNames='trait'>
+        <TraitRender id={physId} trait={physical} classNames='trait' timeout={1000} />
+      </CSSTransition>
+      
+      <CSSTransition in={strengths} timeout={1000} classNames='trait'>
+        <TraitRender id={strId} trait={strengths} classNames='trait' timeout={1000} />
+      </CSSTransition>
+      
+      <CSSTransition in={weaknesses} timeout={1000} classNames='trait'>
+        <TraitRender id={weakId} trait={weaknesses} classNames='trait' timeout={1000} />
+      </CSSTransition>
+      
+      <CSSTransition in={motivations} timeout={1000} classNames='trait'>
+        <TraitRender id={motId} trait={motivations} classNames='trait' timeout={1000} />
+      </CSSTransition>
+      
+      <CSSTransition in={secrets} timeout={1000} classNames='trait'>
+        <TraitRender id={secId} trait={secrets} classNames='trait' timeout={1000} />
+      </CSSTransition>
       <div className="blocked-off"></div>
       <p className="bio">{bio}</p>
     </div>
