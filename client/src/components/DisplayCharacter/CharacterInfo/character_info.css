@@ -50,7 +50,7 @@
 .trait {
     margin: 4px 40px 4px 30px;
     /* height: 2.25em; */
-    font-size: 18px;
+    font-size: 16.5px;
     font-weight: bold;
     font-family: var(--font-display-title);
     align-self: start;
@@ -82,7 +82,7 @@
 .bio {
     grid-area: bio;
     margin: 2px 0px 2px 30px;
-    font-size: 18px;
+    font-size: 16.5px;
     font-weight: bold;
 }
 
