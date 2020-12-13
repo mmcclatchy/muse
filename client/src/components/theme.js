@@ -6,14 +6,14 @@ const font = `'Montserrat', helvetica, sans-serif`;
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#64b5f6',
+      main: '#8aacc8',
       light: '#9be7ff',
       dark: '#2286c3'
     },
     secondary: {
-      main: '#f44336',
+      main: '#1a237e',
       light: '#ff7961',
-      dark: '#ba000d'
+      dark: '#000051'
     }
   },
   font: {

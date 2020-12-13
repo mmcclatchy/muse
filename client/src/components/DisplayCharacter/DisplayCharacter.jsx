@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './display_character.css';
 import imageFrame from "./image_frame.png";
-import portal from './portal.jpg';
+import portal from './portal2.jpg';
 import CharacterInfo from './CharacterInfo/CharacterInfo';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
