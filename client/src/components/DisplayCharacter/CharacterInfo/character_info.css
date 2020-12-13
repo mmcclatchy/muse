@@ -20,7 +20,7 @@
         'trait4 bio'
         'trait5 bio';
     align-items: flex-start;
-    margin: 40px 70px 0px 70px;
+    margin: 40px 50px 0px 50px;
     max-height: 325px;
     height: 100%;
 }
@@ -39,14 +39,16 @@
 
 .first {
     grid-area: first;
+    margin-right: 10px;
 }
 
 .last {
     grid-area: last;
+    margin-left: 10px;
 }
 
 .trait {
-    margin: 4px 20px 4px 10px;
+    margin: 4px 40px 4px 30px;
     /* height: 2.25em; */
     font-size: 18px;
     font-weight: bold;
