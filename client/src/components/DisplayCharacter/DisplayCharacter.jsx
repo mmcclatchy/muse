@@ -21,19 +21,15 @@ export default function DisplayCharacter() {
     <div className="display_character">
       <div className='image_wrapper'>
         <div className="default_background" style={{ backgroundImage: `url(${portal})` }}>
-        {/* <TransitionGroup> */}
+        
         <CSSTransition 
-          key={nextKey()}
           in={imageUrl}
           timeout={2000}
           classNames='character_image_box'
         >
-          <div 
-            style={{backgroundImage: `url(${imageUrl})`}}
-            className="character_image_box">
-          </div>
+          <img src={imageUrl} className='character_image_box' />
         </CSSTransition>  
-        {/* </TransitionGroup> */}
+        
         <img 
           src={imageFrame}
           className='character_image'

@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     
     display: 'flex',
     justifyContent: 'center',
+    position: 'relative',
   },
   navGrid: {
     maxWidth: 1240,

@@ -16,18 +16,11 @@ export default function CharacterInfo() {
   const { id: secId, name: secrets } = useSelector((state) => state.createCharacters.secrets);
   const bio = useSelector(state => state.createCharacters.bio)
 
-  // const keyCycle = () => {
-  //   let key = 0;
-  //   return () => key === 9 ? key = 0 : ++key
-  // }
-  
-  // const nextKey = keyCycle();
-  
-  console.log(firstId)
   
   return (
     <div style={{ backgroundImage: `url(${infoFrame})` }} className='info_display'>
       <div className="info_grid">
+      
         <CSSTransition in={firstName} timeout={1000} classNames='first'>
           <TraitRender id={firstId} trait={firstName} classNames='first' timeout={1000} />
         </CSSTransition>
@@ -55,8 +48,9 @@ export default function CharacterInfo() {
         <CSSTransition in={secrets} timeout={1000} classNames='trait'>
           <TraitRender id={secId} trait={secrets} classNames='trait' timeout={1000} />
         </CSSTransition>
-        {/* <div className="blocked-off"></div> */}
+        
         <p className="bio">{bio}</p>
+        
       </div>
     </div>
   );
