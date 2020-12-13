@@ -53,7 +53,8 @@ export default function CreateCharacter() {
   const motivations = useSelector((state) => state.createCharacters.motivations);
   const secrets = useSelector((state) => state.createCharacters.secrets);
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
-  const bio = useSelector(state => state.createCharacters.bio)
+  const bio = useSelector(state => state.createCharacters.bio);
+  const token = useSelector(state => state.authentication.token);
   const dispatch = useDispatch();
   const classes = useStyles(theme);
 
@@ -64,7 +65,11 @@ export default function CreateCharacter() {
     // dispatch(getTraits);
 
     const fetchTraits = async () => {
-      const response = await fetch('api/traits', { 'Content-Type': 'application/json' });
+      
+      const response = await fetch('api/traits', { 
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`
+      });
 
       if (response.ok) {
         const { payload } = await response.json();
@@ -121,6 +126,7 @@ export default function CreateCharacter() {
           color='secondary'
           className={classes.save}
           startIcon={<SaveAltIcon />}
+          onClick={handleSaveClick}
           disableElevation
         >Save
         </Button>
@@ -195,7 +201,7 @@ export default function CreateCharacter() {
         label='Bio'
         multiline
         rows={5}
-        inputProps={{ maxlength: 500 }}
+        inputProps={{ maxLength: 500 }}
         helperText={`${characterBio.length}/500`}
         onChange={handleBioChange}
         defaultValue=''

@@ -10,7 +10,7 @@ export default function TraitRender(props) {
   return (
     <TransitionGroup>
       <CSSTransition
-        timeout={props.timeout}
+        timeout={props.timeout || 0}
         key={props.id}
         classNames={props.classNames}
       >

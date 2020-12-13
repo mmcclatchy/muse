@@ -48,7 +48,7 @@ export const setBio = (bio) => async (dispatch) => {
 
 export const postFormTrait = (trait) => async (dispatch) => {
   const token = localStorage.getItem(TOKEN_KEY);
-
+  console.log('TOKEN: ', token)
   const response = await fetch(`${baseApiUrl}/traits`, {
     method: 'POST',
     headers: {

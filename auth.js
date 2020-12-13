@@ -33,6 +33,8 @@ const restoreUser = (req, res, next) => {
   // const { token } = req.cookies;
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]
+  console.log('AUTH HEADERS: ', req.headers)
+  console.log('AUTH TOKEN: ', token)
 
   if (!token) {
     // Send a "401 Unauthorized" response status code
@@ -47,9 +49,12 @@ const restoreUser = (req, res, next) => {
 
     const { id } = jwtPayload.data;
     
+    console.log('AUTH ID: ', id, typeof id)
+    
     try {
       const user = await User.findByPk(parseInt(id, 10));
       req.user = user
+      console.log('AUTH USER: ', user)
     } catch (e) {
       // remove the token cookie
       res.clearCookie("token");
