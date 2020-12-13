@@ -50,7 +50,7 @@ const restoreUser = (req, res, next) => {
     try {
       const user = await User.findByPk(parseInt(id, 10));
       req.user = user
-      console.log('AUTH USER: ', user)
+      
     } catch (e) {
       // remove the token cookie
       res.clearCookie("token");
