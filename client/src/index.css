@@ -13,10 +13,11 @@
     --font-display-text: 'Montserrat', sans-serif;
 }
 
-html, body {
+body {
     height: 100%;
+    max-height: 1100px;
     background-image: url(./components/open_landscape_light_blur.jpg);
-    background-size: 250vh;
+    background-size: 100vw 105vh;
     
 }
 
