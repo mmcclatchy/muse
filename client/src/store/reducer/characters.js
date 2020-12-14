@@ -8,7 +8,6 @@ export default function characterReducer(state = {}, { type, payload }) {
       return { ...state, ...payload };  
     
     case SET_SUCCESS:
-      console.log('SET_SUCCESS: ', payload)
       return { ...state, ...payload }
     
     default:

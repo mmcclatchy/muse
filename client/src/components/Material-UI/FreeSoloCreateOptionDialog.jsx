@@ -42,9 +42,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   }, [value]);
   
   useEffect(() => {
-    console.log('USE EFFECT')
     if (success) {
-      console.log('USE EFFECT SUCCESS')
       setValue(null)
     }
   }, [success])
