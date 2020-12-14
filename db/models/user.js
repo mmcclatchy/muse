@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60],
       },
     },
+    avatarUrl: {
+      type: DataTypes.STRING,
+    }
   }, {});
 
   User.associate = function(models) {

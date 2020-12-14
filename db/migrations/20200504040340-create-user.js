@@ -22,8 +22,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(60).BINARY,
       },
-      tokenId: {
-        type: Sequelize.STRING(36),
+      avatarUrl: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
