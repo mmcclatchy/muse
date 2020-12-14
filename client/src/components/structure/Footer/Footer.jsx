@@ -26,6 +26,7 @@ export default function Footer() {
         <div className="my_info">
           <div className="name">Mark McClatchy</div>
           <div className="job_title">Full-Stack Software Engineer</div>
+          <div className="email">markmcclatchy@gmail.com</div>
         </div>
         
       </div>
