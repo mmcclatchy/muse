@@ -6,12 +6,14 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 // import { getTraits } from '../store/actions/traits';
 import { SET_TRAITS } from '../store/constants/constants';
 import { compare } from '../utilities';
 import { setFormTrait, setImageUrl, setBio } from '../store/actions/createCharacters';
-import { postCharacter } from '../store/actions/characters';
+import { postCharacter, setSuccess } from '../store/actions/characters';
 import theme from './theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +50,7 @@ export default function CreateCharacter() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');
+  const [open, setOpen] = useState(false);
   const firstName = useSelector((state) => state.createCharacters.firstName);
   const lastName = useSelector((state) => state.createCharacters.lastName);
   const physical = useSelector((state) => state.createCharacters.physical);
@@ -58,6 +61,7 @@ export default function CreateCharacter() {
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
   const token = useSelector(state => state.authentication.token);
+  const success = useSelector(state => state.characters.success);
   const dispatch = useDispatch();
   const classes = useStyles(theme);
 
@@ -84,6 +88,13 @@ export default function CreateCharacter() {
     fetchTraits();
   }, []);
 
+  useEffect(() => {
+    if (success) {
+      setAvatar('');
+      setCharacterBio('');
+    }
+  }, [success])
+  
   
   // Set Local State
   const handleImgChange = (e) => setAvatar(e.target.value);
@@ -118,6 +129,15 @@ export default function CreateCharacter() {
   }, [characterBio]);
 
   
+  const handleClose = (event, reason) => {
+    // if (reason === 'clickaway') {
+    //   return;
+    // }
+
+    dispatch(setSuccess(false));
+  };
+  
+  
   
   return (
     <div className={classes.container}>
@@ -133,6 +153,13 @@ export default function CreateCharacter() {
           disableElevation
         >Save
         </Button>
+        
+        <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}>
+          <Alert elevation={6} variant='filled' onClose={handleClose} severity="success">
+            Your character has been saved!
+          </Alert>
+        </Snackbar>
+        
       </div>
 
       <FreeSoloCreateOptionDialog
@@ -194,12 +221,14 @@ export default function CreateCharacter() {
       />
 
       <TextField
+        value={avatar}
         className={classes.image}
         label='Character Image URL'
         onChange={handleImgChange}
       />
 
       <TextField
+        value={characterBio}
         className={classes.characterBio}
         label='Bio'
         multiline

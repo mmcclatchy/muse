@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -25,6 +25,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: '' });
+  const success = useSelector(state => state.characters.success)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +40,14 @@ export default function FreeSoloCreateOptionDialog(props) {
       dispatch(setFormTrait(value));
     }
   }, [value]);
+  
+  useEffect(() => {
+    console.log('USE EFFECT')
+    if (success) {
+      console.log('USE EFFECT SUCCESS')
+      setValue(null)
+    }
+  }, [success])
 
   const handleClose = () => {
     setDialogValue({

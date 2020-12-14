@@ -3,6 +3,7 @@ import {
   SET_BIO,
   SET_IMAGE_URL,
   CLEAR_CHARACTER_TRAIT,
+  CLEAR_FORM,
 } from '../constants/constants';
 
 const initState = {
@@ -30,6 +31,9 @@ export default function characterReducer(state = initState, { type, payload }) {
       const newStateClear = { ...state };
       newStateClear[payload] = '';
       return newStateClear
+    
+    case CLEAR_FORM:
+      return initState
 
     case SET_IMAGE_URL:
       return { ...state, imageUrl: payload };

@@ -2,8 +2,11 @@ import {
   API, 
   TOKEN_KEY,
   SET_CHARACTERS,
-  POST_CHARACTER } from '../constants/constants';
-import { baseApiUrl } from '../../config/config'
+  POST_CHARACTER,
+  SET_SUCCESS,
+  CLEAR_FORM,
+} from '../constants/constants';
+import { baseApiUrl } from '../../config/config';
 
 
 export const getCharacters = () => {
@@ -18,6 +21,10 @@ export const getCharacters = () => {
   }
 }
 
+
+export const setSuccess = success => async dispatch => {
+  dispatch({ type: SET_SUCCESS, payload: { success }})
+}
 
 
 export const postCharacter = character => async dispatch => {
@@ -34,7 +41,9 @@ export const postCharacter = character => async dispatch => {
   
   if (response.ok) {
     const payload = await response.json();
-    dispatch({ type: SET_CHARACTERS, payload })
+    dispatch({ type: SET_CHARACTERS, payload });
+    dispatch(setSuccess(true));
+    dispatch({ type: CLEAR_FORM })
   }
   
   

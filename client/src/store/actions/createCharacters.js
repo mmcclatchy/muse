@@ -6,6 +6,7 @@ import {
   TOKEN_KEY,
   SET_NEW_TRAIT,
   CLEAR_CHARACTER_TRAIT,
+  SET_SUCCESS,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
@@ -27,6 +28,9 @@ export const setImageUrl = (imageUrl) => async (dispatch) => {
 export const setBio = (bio) => async (dispatch) => {
   dispatch({ type: SET_BIO, payload: bio });
 };
+
+
+
 
 // export const postFormTrait = trait => dispatch => {
 // const token = localStorage.get(TOKEN_KEY);
@@ -60,6 +64,6 @@ export const postFormTrait = (trait) => async (dispatch) => {
   if (response.ok) {
     const payload = await response.json();
     dispatch({ type: SET_CHARACTER_TRAIT, payload });
-    dispatch({ type: SET_NEW_TRAIT, payload })
+    dispatch({ type: SET_NEW_TRAIT, payload });
   }
 };
