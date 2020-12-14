@@ -7,7 +7,7 @@ import {
   SET_NEW_TRAIT,
   CLEAR_CHARACTER_TRAIT,
 } from '../constants/constants';
-import { baseApiUrl, originUrl } from '../../config/config';
+import { baseApiUrl } from '../../config/config';
 
 export const setFormTrait = (trait) => async (dispatch) => {
   if (!trait) return;

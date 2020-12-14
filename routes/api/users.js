@@ -1,10 +1,10 @@
 const express = require('express');
-const bcrypt = require("bcryptjs");
-const { check } = require("express-validator");
+const bcrypt = require('bcryptjs');
+const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
-const { handleValidationErrors } = require("../../utilities");
-const { getUserToken, requireAuth } = require("../../auth");
+const { handleValidationErrors } = require('../../utilities');
+const { getUserToken, requireAuth } = require('../../auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
@@ -26,13 +26,13 @@ router.post(
   asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+
     const user = await User.create({ username, email, hashedPassword });
 
     const token = getUserToken(user);
     res.cookie('token', token);
     res.status(201).json({
-      user: { id: user.id, username: user.username },
+      user: { id: user.id, username: user.username, avatarUrl: user.avatarUrl },
       token,
     });
   })
@@ -46,7 +46,7 @@ router.post(
     const user = await User.findOne({
       where: { username },
     });
-    
+
     if (!user || !user.validatePassword(password)) {
       const err = new Error('Login failed');
       err.status = 401;
@@ -54,23 +54,34 @@ router.post(
       err.errors = ['The provided credentials were invalid.'];
       return next(err);
     }
-    
+
     const token = getUserToken(user);
     res.cookie('token', token);
-    res.json({ token, user: { id: user.id, username: user.username } });
+    res.json({ token, user: { id: user.id, username: user.username, avatarUrl: user.avatarUrl } });
   })
 );
-
 
 router.get(
   '/:id',
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const userId = parseInt(req.params.id, 10);
-    const { id, username } = await User.findByPk(userId);
+    const { id, username, avatarUrl } = await User.findByPk(userId);
     res.json({ user: { id, username } });
   })
 );
 
+router.put(
+  '/:id',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const user = await User.findByPk(req.body.id);
+    for (let prop in req.body) {
+      user[prop] = req.body[prop];
+    }
+    user.save();
+    res.json({ user: { id, username, avatarurl }})
+  })
+);
 
 module.exports = router;

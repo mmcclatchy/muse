@@ -1,5 +1,5 @@
 import { baseApiUrl } from '../config/config';
-import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN } from '../store/constants/constants'
+import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER } from '../store/constants/constants'
 
 
 
@@ -62,8 +62,12 @@ export default function reducer(state = {}, { type, payload }) {
     case REMOVE_TOKEN: {
       const newState = { ...state };
       delete newState.token;
+      delete newState.user;
       return newState;
     }
+    
+    case PUT_USER:
+      return { ...state, user: payload.user }
 
     default: return state;
   }
