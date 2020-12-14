@@ -40,16 +40,13 @@ export default function ListDividers() {
         <ListItemText primary="Create Character" />
       </ListItem>
       <Divider />
-      <ListItem button divider>
+      {/* <ListItem button divider>
         <ListItemText primary="Create Scene" />
       </ListItem>
       <ListItem button>
         <ListItemText primary="Create Story" />
       </ListItem>
-      <Divider light />
-      {/* <ListItem button>
-        <ListItemText primary="Spam" />
-      </ListItem> */}
+      <Divider light /> */}
     </List>
   );
 }
