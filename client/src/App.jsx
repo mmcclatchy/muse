@@ -9,6 +9,7 @@ import AppBar from './components/Material-UI/AppBar';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './components/theme';
 import SplashPage from './components/SplashPage/SplashPage';
+import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
 
 
 const useStyles = makeStyles(theme => ({

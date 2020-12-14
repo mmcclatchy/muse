@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -59,9 +59,9 @@ const useStyles = makeStyles((theme) => ({
 
 function ResponsiveDrawer(props) {
   const { window } = props;
-  const classes = useStyles();
-  const theme = useTheme();
   const drawerOpen = useSelector(state => state.authentication.drawerOpen)
+  const dispatch = useDispatch()
+  const classes = useStyles();
 
   const handleDrawerToggle = () => {
     dispatch(toggleDrawer(!drawerOpen));
@@ -70,7 +70,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
+      {/* <Divider /> */}
       <List>
         {['Create Character', 'Create Scene', 'Create Story'].map(text => (
           <>
@@ -95,7 +95,7 @@ function ResponsiveDrawer(props) {
             container={container}
             variant="temporary"
             // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            anchor='left'
+            // anchor='left'
             open={drawerOpen}
             onClose={handleDrawerToggle}
             classes={{
