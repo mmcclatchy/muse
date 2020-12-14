@@ -1,10 +1,11 @@
 import { baseApiUrl } from '../config/config';
-import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER } from '../store/constants/constants'
+import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER } from '../store/constants/constants'
 
 
 
 export const removeToken = token => ({ type: REMOVE_TOKEN });
-export const setToken = payload => ({ type: SET_TOKEN, payload });
+export const setToken = token => ({ type: SET_TOKEN, token });
+export const setUser = payload => ({ type: SET_USER, payload });
 
 export const loadToken = () => async dispatch => {
   const token = window.localStorage.getItem(TOKEN_KEY);
@@ -23,7 +24,7 @@ export const signUp = user => async dispatch => {
   if (response.ok) {
     const { token } = await response.json();
     window.localStorage.setItem(TOKEN_KEY, token);
-    dispatch(setToken(token));
+    dispatch(setUser({ token, user }));
   }
 }
 
@@ -39,7 +40,7 @@ export const login = (username, password) => async dispatch => {
     const { token, user } = await response.json();
     console.log('auth: ', token, user)
     window.localStorage.setItem(TOKEN_KEY, token);
-    dispatch(setToken({ token, user }));
+    dispatch(setUser({ token, user }));
   }
 };
 
@@ -53,11 +54,11 @@ export const logout = () => async (dispatch, getState) => {
 export default function reducer(state = {}, { type, payload }) {
   switch (type) {
     case SET_TOKEN: {
-      return {
-        ...state,
-        ...payload
-      };
+      return { ...state, token: payload };
     }
+    
+    case SET_USER:
+      return { ...state, ...payload }
 
     case REMOVE_TOKEN: {
       const newState = { ...state };

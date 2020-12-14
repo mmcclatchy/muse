@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
 
 import { logout } from '../../store/authentication';
 import { toggleDrawer } from '../../store/actions/navigation';
@@ -47,14 +48,20 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '25px',
     color: theme.palette.secondary.main,
   },
+  
+  darkBlue: {
+    backgroundColor: '#4a148c',
+    color: 'white',
+  }
 }));
 
 export default function MenuAppBar() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const token = useSelector(state => state.authentication.token)
   const drawerOpen = useSelector(state => state.navigation.drawerOpen)
+  const { avatarUrl, username } = useSelector(state => state.authentication.user)
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch()
+  const classes = useStyles();
   const open = Boolean(anchorEl);
 
   const handleLogOut = () => {
@@ -111,7 +118,10 @@ export default function MenuAppBar() {
                     onClick={handleMenu}
                     color="inherit"
                   >
-                    <AccountCircle />
+                    {avatarUrl 
+                      ? <Avatar alt='user avatar' src={avatarUrl} />
+                      : <Avatar className={classes.darkBlue}>{username[0]}</Avatar>
+                    }
                   </IconButton>
                   <Menu
                     id="menu-appbar"
