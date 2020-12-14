@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button';
 
 import { logout } from '../../store/authentication';
 import { toggleDrawer } from '../../store/actions/navigation';
-import { SatelliteSharp } from '@material-ui/icons';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,11 +39,13 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: theme.palette.secondary.main,
   },
   title: {
     flexGrow: 1,
     fontFamily: `'Sonsie One', cursive`,
-    fontSize: '25px'
+    fontSize: '25px',
+    color: theme.palette.secondary.main,
   },
 }));
 
