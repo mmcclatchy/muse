@@ -32,7 +32,7 @@ router.post(
     const token = getUserToken(user);
     res.cookie('token', token);
     res.status(201).json({
-      user: { id: user.id },
+      user: { id: user.id, username: user.username },
       token,
     });
   })
@@ -40,7 +40,7 @@ router.post(
 
 router.post(
   '/login',
-  // validateUsernameAndPassword,
+  validateUsernameAndPassword,
   asyncHandler(async (req, res, next) => {
     const { username, password } = req.body;
     const user = await User.findOne({
@@ -57,7 +57,7 @@ router.post(
     
     const token = getUserToken(user);
     res.cookie('token', token);
-    res.json({ token, user: { id: user.id } });
+    res.json({ token, user: { id: user.id, username: user.username } });
   })
 );
 
