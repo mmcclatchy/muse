@@ -70,7 +70,7 @@ export default function MenuAppBar() {
   };
 
   const handleMenu = (event) => {
-    console.log('Handle Menu')
+    
     setAnchorEl(event.currentTarget);
   };
 
