@@ -59,14 +59,14 @@ export default function Footer() {
         </a>
         
         <a
-          href='https://github.com/mmcclatchy' 
+          href='https://angel.co/u/mark-mcclatchy' 
           target="_blank" 
           rel="noopener noreferrer"
             className='tooltip'
         >
           <img src={angelist} className='angelist' />
           <div className="top">
-            <p>Angelist</p>
+            <p>AngelList</p>
           </div>
         </a>
         
