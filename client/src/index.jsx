@@ -1,23 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles/';
+
 import './index.css';
 import App from './App';
-import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles/'
 import theme from './components/theme';
 
 
-const store = configureStore()
+const { store, persistor } = configureStore()
 
+// <PersistGate loading={loading component} />
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <CssBaseline />
-      <ThemeProvider theme={theme} >
-        <App />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <CssBaseline />
+        <ThemeProvider theme={theme} >
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

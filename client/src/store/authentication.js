@@ -4,11 +4,12 @@ import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER } from '../store
 
 
 export const removeToken = token => ({ type: REMOVE_TOKEN });
-export const setToken = token => ({ type: SET_TOKEN, token });
+export const setToken = payload => ({ type: SET_TOKEN, payload });
 export const setUser = payload => ({ type: SET_USER, payload });
 
 export const loadToken = () => async dispatch => {
   const token = window.localStorage.getItem(TOKEN_KEY);
+  console.log('LOAD TOKEN: ', token)
   if (token) {
     dispatch(setToken(token));
   }
@@ -53,6 +54,7 @@ export const logout = () => async (dispatch, getState) => {
 export default function reducer(state = {}, { type, payload }) {
   switch (type) {
     case SET_TOKEN: {
+      console.log('SET_TOKEN: ', payload)
       return { ...state, token: payload };
     }
     

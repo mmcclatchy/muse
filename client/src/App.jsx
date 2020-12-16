@@ -10,6 +10,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './components/theme';
 import SplashPage from './components/SplashPage/SplashPage';
 import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
+import { TOKEN_KEY } from './store/constants/constants';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 const App = () => {
   const token = useSelector(state => state.authentication.token);
+  // const token = localStorage.getItem(TOKEN_KEY);
   // const token = false
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
