@@ -26,13 +26,13 @@ const reducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['authentication', 'createCharacters'],
-  stateReconciler: autoMergeLevel2,
+  // whitelist: ['authentication', 'createCharacters'],
+  stateReconciler: hardSet,
 }
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default () => {
+export default function createPersistentStore() {
   const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk, api)));
   const persistor = persistStore(store);
   return { store, persistor }

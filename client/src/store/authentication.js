@@ -9,7 +9,6 @@ export const setUser = payload => ({ type: SET_USER, payload });
 
 export const loadToken = () => async dispatch => {
   const token = window.localStorage.getItem(TOKEN_KEY);
-  console.log('LOAD TOKEN: ', token)
   if (token) {
     dispatch(setToken(token));
   }
@@ -54,7 +53,6 @@ export const logout = () => async (dispatch, getState) => {
 export default function reducer(state = {}, { type, payload }) {
   switch (type) {
     case SET_TOKEN: {
-      console.log('SET_TOKEN: ', payload)
       return { ...state, token: payload };
     }
     

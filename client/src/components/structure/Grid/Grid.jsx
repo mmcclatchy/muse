@@ -3,7 +3,7 @@ import './grid.css'
 import CreateCharacter from '../../CreateCharacter';
 import DisplayCharacter from '../../DisplayCharacter/DisplayCharacter';
 import NavListDivider from '../../Material-UI/NavListDivider'
-import ResponsiveDrawer from '../../Material-UI/ResponsiveDrawer';
+// import ResponsiveDrawer from '../../Material-UI/ResponsiveDrawer';
 import Footer from '../Footer/Footer';
 
 export default function Grid() {

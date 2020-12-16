@@ -8,11 +8,11 @@ import { ThemeProvider } from '@material-ui/core/styles/';
 
 import './index.css';
 import App from './App';
-import configureStore from './store/configureStore';
+import createPersistentStore from './store/configureStore';
 import theme from './components/theme';
 
 
-const { store, persistor } = configureStore()
+const { store, persistor } = createPersistentStore()
 
 // <PersistGate loading={loading component} />
 ReactDOM.render(

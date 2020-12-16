@@ -6,7 +6,7 @@ import {
   TOKEN_KEY,
   SET_NEW_TRAIT,
   CLEAR_CHARACTER_TRAIT,
-  SET_SUCCESS,
+  // SET_SUCCESS,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 

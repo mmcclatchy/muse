@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
 
 import TextField from '@material-ui/core/TextField';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 
 import { login, signUp } from '../../store/authentication';
 import theme from '../theme';
@@ -54,10 +55,11 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [errors, setErrors] = useState([]);
-  const token = useSelector((state) => state.authentication.token);
+  // const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
   const classes = useStyles(theme)
   
+  useEffect(() => {}, [errors])
 
   const updateProperty = (callback) => (e) => {
     callback(e.target.value);
@@ -83,7 +85,7 @@ const LoginForm = () => {
   };
   
   
-
+  
   // if (token) {
   //   return <Redirect to='/' />;
   // }
@@ -93,7 +95,9 @@ const LoginForm = () => {
       
       <h1 className={classes.title}>Muse</h1>
       <h1 className={classes.subTitle}>Sign Up</h1>
-    
+      
+      {errors  ?  errors.forEach(error => <Alert severity='error'>{error}</Alert>)  :  null}
+      
       <TextField 
         label="Username" 
         variant="outlined" 

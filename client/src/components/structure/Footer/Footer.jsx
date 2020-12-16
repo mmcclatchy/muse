@@ -40,7 +40,7 @@ export default function Footer() {
           rel="noopener noreferrer"
             className='tooltip'
         >
-          <img src={webIcon} className='my-site' />
+          <img src={webIcon} className='my-site' alt='my site link'/>
           <div className="top">
             <p>MySite</p>
           </div>
@@ -52,7 +52,10 @@ export default function Footer() {
           rel="noopener noreferrer"
             className='tooltip'
         >
-          <img src='https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg' className='linked-in' />
+          <img 
+            src='https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg' 
+            alt='LinkedIn link'
+            className='linked-in' />
           <div className="top">
             <p>LinkedIn</p>
           </div>
@@ -64,7 +67,7 @@ export default function Footer() {
           rel="noopener noreferrer"
             className='tooltip'
         >
-          <img src={angelist} className='angelist' />
+          <img src={angelist} className='angelist' alt='angel list link' />
           <div className="top">
             <p>AngelList</p>
           </div>
@@ -77,7 +80,10 @@ export default function Footer() {
             rel="noopener noreferrer"
             className='tooltip'
           > 
-            <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" className='github' />
+            <img 
+              src="https://www.vectorlogo.zone/logos/github/github-icon.svg"
+              alt='github link'
+              className='github' />
             <div className="top">
               <p>GitHub</p>
             </div>

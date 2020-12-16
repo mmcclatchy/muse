@@ -7,7 +7,7 @@ import {
 } from '../constants/constants';
 
 const initState = {
-  firstName: '',
+  firstName: 'First',
   lastName: '',
   physical: '',
   strengths: '',
@@ -19,7 +19,7 @@ const initState = {
 
 export default function characterReducer(state = initState, { type, payload }) {
   Object.freeze(state);
-
+  console.log('createCharacter Reducer: ', type, payload)
   switch (type) {
     case SET_CHARACTER_TRAIT:
 

@@ -22,10 +22,12 @@ import {
 const filter = createFilterOptions();
 
 export default function FreeSoloCreateOptionDialog(props) {
-  const [value, setValue] = React.useState(null);
+  const { name: reduxValue } = useSelector(state => state.createCharacters[props.traitType]);
+  console.log('REDUX VALUE: ', reduxValue)
+  const [value, setValue] = React.useState(reduxValue);
   const [open, toggleOpen] = React.useState(false);
-  const [dialogValue, setDialogValue] = React.useState({ name: '' });
-  const success = useSelector(state => state.characters.success)
+  const [dialogValue, setDialogValue] = React.useState({ name: "" });
+  const success = useSelector(state => state.characters.success);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export default function FreeSoloCreateOptionDialog(props) {
             <TextField
               {...params}
               label={props.typeLabel}
-              color='primary'
+              color='secondary'
               style={{ boxSizing: 'border-box' }}
               variant='standard'
             />

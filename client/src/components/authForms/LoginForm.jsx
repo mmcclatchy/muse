@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
 import { login } from '../../store/authentication';
 // import './auth.css';
 import TextField from '@material-ui/core/TextField';
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const token = useSelector((state) => state.authentication.token);
+  // const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
   const classes = useStyles(theme)
   

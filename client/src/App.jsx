@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { 
+  BrowserRouter, 
+  // Route, 
+  // Switch 
+} from 'react-router-dom';
 import Grid from './components/structure/Grid/Grid';
-import Navigation from './components/Navigation';
-import ProtectedRoute from './components/ProtectedRoute';
+// import Navigation from './components/Navigation';
+// import ProtectedRoute from './components/ProtectedRoute';
 import { loadToken } from './store/authentication';
 import { useSelector, useDispatch } from 'react-redux';
 import AppBar from './components/Material-UI/AppBar';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './components/theme';
 import SplashPage from './components/SplashPage/SplashPage';
-import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
-import { TOKEN_KEY } from './store/constants/constants';
+// import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
+// import { TOKEN_KEY } from './store/constants/constants';
 
 
 const useStyles = makeStyles(theme => ({

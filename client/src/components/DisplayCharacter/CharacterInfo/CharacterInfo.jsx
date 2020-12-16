@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CSSTransition, Transition } from 'react-transition-group';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 import './character_info.css';
 import infoFrame from './open_book.png';

@@ -12,7 +12,11 @@ import Alert from '@material-ui/lab/Alert';
 // import { getTraits } from '../store/actions/traits';
 import { SET_TRAITS } from '../store/constants/constants';
 import { compare } from '../utilities';
-import { setFormTrait, setImageUrl, setBio } from '../store/actions/createCharacters';
+import { 
+  // setFormTrait, 
+  setImageUrl, 
+  setBio 
+} from '../store/actions/createCharacters';
 import { postCharacter, setSuccess } from '../store/actions/characters';
 import theme from './theme';
 
@@ -50,7 +54,7 @@ export default function CreateCharacter() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const firstName = useSelector((state) => state.createCharacters.firstName);
   const lastName = useSelector((state) => state.createCharacters.lastName);
   const physical = useSelector((state) => state.createCharacters.physical);
