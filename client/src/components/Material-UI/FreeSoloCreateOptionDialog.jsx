@@ -23,7 +23,6 @@ const filter = createFilterOptions();
 
 export default function FreeSoloCreateOptionDialog(props) {
   const { name: reduxValue } = useSelector(state => state.createCharacters[props.traitType]);
-  console.log('REDUX VALUE: ', reduxValue)
   const [value, setValue] = React.useState(reduxValue);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: "" });
@@ -44,10 +43,12 @@ export default function FreeSoloCreateOptionDialog(props) {
   }, [value]);
   
   useEffect(() => {
-    if (success) {
-      setValue(null)
-    }
+    if (success) setValue(null)
   }, [success])
+  
+  useEffect(() => {
+    if (reduxValue === '') setValue(null)
+  }, [reduxValue])
 
   const handleClose = () => {
     setDialogValue({

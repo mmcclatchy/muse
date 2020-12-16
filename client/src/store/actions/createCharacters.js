@@ -6,6 +6,7 @@ import {
   TOKEN_KEY,
   SET_NEW_TRAIT,
   CLEAR_CHARACTER_TRAIT,
+  CLEAR_FORM,
   // SET_SUCCESS,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
@@ -29,7 +30,10 @@ export const setBio = (bio) => async (dispatch) => {
   dispatch({ type: SET_BIO, payload: bio });
 };
 
-
+export const clearForm = () => async dispatch => {
+  console.log('CLEAR FORM')
+  dispatch({ type: CLEAR_FORM })
+}
 
 
 // export const postFormTrait = trait => dispatch => {

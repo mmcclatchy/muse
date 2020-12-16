@@ -8,6 +8,7 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import ClearIcon from '@material-ui/icons/Clear';
 
 // import { getTraits } from '../store/actions/traits';
 import { SET_TRAITS } from '../store/constants/constants';
@@ -15,7 +16,8 @@ import { compare } from '../utilities';
 import { 
   // setFormTrait, 
   setImageUrl, 
-  setBio 
+  setBio, 
+  clearForm
 } from '../store/actions/createCharacters';
 import { postCharacter, setSuccess } from '../store/actions/characters';
 import theme from './theme';
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
   },
-  save: {
+  button: {
     maxHeight: '30px',
     margin: 'auto 7px',
   }
@@ -132,6 +134,8 @@ export default function CreateCharacter() {
     dispatch(setBio(characterBio));
   }, [characterBio]);
 
+  const handleClearClick = () => dispatch(clearForm());
+  
   
   const handleClose = (event, reason) => {
     // if (reason === 'clickaway') {
@@ -147,11 +151,22 @@ export default function CreateCharacter() {
     <div className={classes.container}>
       <div className={classes.header}>
         
+        <Button
+          color='secondary'
+          className={classes.button}
+          startIcon={<ClearIcon />}
+          variant='outlined'
+          disableElevation
+          onClick={handleClearClick}
+        >Clear
+        </Button>
+        
         <h3 className={classes.cc__title}>Create a New Character</h3>
+        
         <Button
           variant='contained'
           color='secondary'
-          className={classes.save}
+          className={classes.button}
           startIcon={<SaveAltIcon />}
           onClick={handleSaveClick}
           disableElevation
