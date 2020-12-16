@@ -55,7 +55,7 @@
 
 
 
-@media (max-width: 999px) {
+@media (max-width: 1099px) {
     .grid {
         width: 100vw;
         grid-template-columns: 1fr 1fr 1fr;
