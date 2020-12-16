@@ -71,7 +71,10 @@ export default function CreateCharacter() {
   const dispatch = useDispatch();
   const classes = useStyles(theme);
 
-  
+  useEffect(() => {
+    if (bio) setCharacterBio(bio);
+    if (imageUrl) setAvatar(imageUrl);
+  }, [])
   
   // Fetch Character Traits on init render of component
   useEffect(() => {
@@ -134,7 +137,11 @@ export default function CreateCharacter() {
     dispatch(setBio(characterBio));
   }, [characterBio]);
 
-  const handleClearClick = () => dispatch(clearForm());
+  const handleClearClick = () => {
+    setAvatar('');
+    setCharacterBio('');
+    dispatch(clearForm());
+  }
   
   
   const handleClose = (event, reason) => {
@@ -241,6 +248,7 @@ export default function CreateCharacter() {
 
       <TextField
         value={avatar}
+        defaultValue={imageUrl}
         className={classes.image}
         label='Character Image URL'
         onChange={handleImgChange}
