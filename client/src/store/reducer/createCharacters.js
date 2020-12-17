@@ -24,13 +24,12 @@ export default function characterReducer(state = initState, { type, payload }) {
     case SET_CHARACTER_TRAIT:
 
       const newState = { ...state };
-      // delete newState.undefined;
+      delete payload.undefined;
       newState[payload.type] = payload;
       return newState;
     
     case CLEAR_CHARACTER_TRAIT:
       const newStateClear = { ...state };
-      // delete newStateClear.undefined
       newStateClear[payload] = '';
       return newStateClear
     

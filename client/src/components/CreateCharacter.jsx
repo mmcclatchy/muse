@@ -56,7 +56,6 @@ export default function CreateCharacter() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');
-  // const [open, setOpen] = useState(false);
   const firstName = useSelector((state) => state.createCharacters.firstName);
   const lastName = useSelector((state) => state.createCharacters.lastName);
   const physical = useSelector((state) => state.createCharacters.physical);
@@ -76,7 +75,7 @@ export default function CreateCharacter() {
     if (imageUrl) setAvatar(imageUrl);
   }, [])
   
-  // Fetch Character Traits on init render of component
+  //* Fetch Character Traits on init render of component
   useEffect(() => {
     // dispatch(getTraits);
 
@@ -105,12 +104,12 @@ export default function CreateCharacter() {
   }, [success])
   
   
-  // Set Local State
+  //* Set Local State
   const handleImgChange = (e) => setAvatar(e.target.value);
   const handleBioChange = (e) => setCharacterBio(e.target.value);
   
   
-  // Post Character Traits and Info to the Backend
+  //* Post Character Traits and Info to the Backend
   const handleSaveClick = () => {
     const character = {
       firstName,
@@ -127,12 +126,12 @@ export default function CreateCharacter() {
   };
   
   
-  // Dispatch Url to Redux
+  //* Dispatch Url to Redux
   useEffect(() => {
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 
-  // Dispatch Bio to Redux
+  //* Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setBio(characterBio));
   }, [characterBio]);
@@ -145,10 +144,6 @@ export default function CreateCharacter() {
   
   
   const handleClose = (event, reason) => {
-    // if (reason === 'clickaway') {
-    //   return;
-    // }
-
     dispatch(setSuccess(false));
   };
   
@@ -260,8 +255,8 @@ export default function CreateCharacter() {
         label='Bio'
         multiline
         rows={5}
-        inputProps={{ maxLength: 500 }}
-        helperText={`${characterBio.length}/500`}
+        inputProps={{ maxLength: 300 }}
+        helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}
         defaultValue=''
         variant='outlined'

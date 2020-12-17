@@ -31,7 +31,6 @@ export const setBio = (bio) => async (dispatch) => {
 };
 
 export const clearForm = () => async dispatch => {
-  console.log('CLEAR FORM')
   dispatch({ type: CLEAR_FORM })
 }
 

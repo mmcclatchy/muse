@@ -21,13 +21,13 @@ export default function DisplayCharacter() {
           timeout={2000}
           classNames='character_image_box'
         >
-          <img src={imageUrl} className='character_image_box' />
+          <img src={imageUrl} className='character_image_box' alt='character' />
         </CSSTransition>  
         
         <img 
           src={imageFrame}
           className='character_image'
-          alt="image frame" />
+          alt="frame" />
         </div>
       </div>
       
