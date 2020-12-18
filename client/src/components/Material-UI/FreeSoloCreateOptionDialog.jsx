@@ -47,7 +47,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   }, [success])
   
   useEffect(() => {
-    if (reduxValue === '') setValue(null)
+    if (!reduxValue) setValue('')
   }, [reduxValue])
 
   const handleClose = () => {

@@ -30,6 +30,7 @@ export default function characterReducer(state = initState, { type, payload }) {
     
     case CLEAR_CHARACTER_TRAIT:
       const newStateClear = { ...state };
+      delete newStateClear.undefined
       newStateClear[payload] = '';
       return newStateClear
     
