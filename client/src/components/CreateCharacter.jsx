@@ -246,12 +246,14 @@ export default function CreateCharacter() {
         defaultValue={imageUrl}
         className={classes.image}
         label='Character Image URL'
+        color='secondary'
         onChange={handleImgChange}
       />
 
       <TextField
         value={characterBio}
         className={classes.characterBio}
+        color='secondary'
         label='Bio'
         multiline
         rows={5}
