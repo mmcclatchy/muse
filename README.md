@@ -51,12 +51,12 @@ Muse allows users to:
 - **Technologies**
 
   - [React.js](https://reactjs.org/)
-  - [Redux](#https://redux.js.org/)
-  - [Material-UI](#https://material-ui.com/)
-  - [Express.js](#https://expressjs.com/)
-  - [Node.js](#https://nodejs.org/en/)
-  - [Sequelize ORM](#https://sequelize.org/)
-  - [PostgreSQL](#https://www.postgresql.org/)
+  - [Redux](https://redux.js.org/)
+  - [Material-UI](https://material-ui.com/)
+  - [Express.js](https://expressjs.com/)
+  - [Node.js](https://nodejs.org/en/)
+  - [Sequelize ORM](https://sequelize.org/)
+  - [PostgreSQL](https://www.postgresql.org/)
 
 ---
 
