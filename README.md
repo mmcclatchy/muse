@@ -68,3 +68,7 @@ Muse allows users to:
 
 ## **Primary Components**
 
+- Character Creator
+
+  - Community generated traits allow easy to select characteristics that can be combined for unique characters
+  ![Character Creator Component](./create_character.gif)

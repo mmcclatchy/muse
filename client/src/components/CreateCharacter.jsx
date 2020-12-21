@@ -247,6 +247,7 @@ export default function CreateCharacter() {
         className={classes.image}
         label='Character Image URL'
         color='secondary'
+        inputProps={{ maxLength: 256 }}
         onChange={handleImgChange}
       />
 
