@@ -1,6 +1,6 @@
 .app-bar {
     width: 100vw;
-    height: 60px;
+    height: var(--app-bar-height);
     background-color: var(--primary);
     z-index: 1000;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, .3);
@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .app-bar__left,

@@ -15,6 +15,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from './components/theme';
 import SplashPage from './components/SplashPage/SplashPage';
 import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
+import NavDrawer from './components/structure/NavDrawer/NavDrawer';
 // import { TOKEN_KEY } from './store/constants/constants';
 
 
@@ -22,17 +23,9 @@ const useStyles = makeStyles(theme => ({
   main: {
     top: 0,
     left: 0,
-    height: '100vh',
-    width: '100vw',
+    // height: '100vh',
+    // width: '100vw',
   },
-  
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  
-  drawer: {
-    
-  }
 }))
 
 
@@ -60,7 +53,7 @@ const App = () => {
   
   return (
   <BrowserRouter>
-    <main className={classes.main}>
+    <div className='app-wrapper'>
       {/* <Switch> */}
         {/* <ProtectedRoute 
           isLoggedIn={token} 
@@ -77,10 +70,11 @@ const App = () => {
       {token  
         ? <>
             <AppBar />
+            <NavDrawer />
             <Grid />
           </>
         :  <SplashPage />}
-    </main>
+    </div>
   </BrowserRouter>
   )
 }

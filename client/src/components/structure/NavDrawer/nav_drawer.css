@@ -1,0 +1,6 @@
+.nav-drawer {
+    width: var(--drawer-width);
+    height: calc(100% - var(--app-bar-height));
+    left: 0px;
+    background-color: rgba(255, 255, 255, .7);
+}
