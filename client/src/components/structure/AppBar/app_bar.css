@@ -28,8 +28,12 @@
     color: var(--secondary);
 }
 
-.avatar {
+.default-avatar {
     background-color: #4a148c;
+}
+
+.avatar,
+.default-avatar {
     margin-left: 10px;
 }
 

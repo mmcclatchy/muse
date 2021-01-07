@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './app_bar.css';
 import { logout } from '../../../store/authentication';
+import { toggleDrawer } from '../../../store/actions/navigation';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,11 +13,12 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 export default function AppBar() {
-  const { avatarUrl, username } = useSelector(state => state.authentication.user)
+  const { avatarUrl, username } = useSelector(state => state.authentication.user);
+  const drawerOpen = useSelector(state => state.navigation.drawerOpen);
   const dispatch = useDispatch();
   
   const handleDrawerToggle = () => {
-    
+    dispatch(toggleDrawer(!drawerOpen));
   }
   
   const handleLogOut = () => {
@@ -58,7 +60,7 @@ export default function AppBar() {
         {
           avatarUrl 
             ? <Avatar alt='user avatar' src={avatarUrl} className='avatar' />
-            : <Avatar className='avatar' >{username[0]}</Avatar>
+            : <Avatar className='default-avatar' >{username[0]}</Avatar>
         }
       </div>
       
