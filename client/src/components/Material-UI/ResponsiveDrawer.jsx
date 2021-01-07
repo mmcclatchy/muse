@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import AppBar from '../Material-UI/AppBar';
 
 import { toggleDrawer } from '../../store/actions/navigation';
 
@@ -88,6 +89,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
+      <AppBar className={classes.appBar} />
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
