@@ -9,71 +9,48 @@ import Grid from './components/structure/Grid/Grid';
 // import ProtectedRoute from './components/ProtectedRoute';
 import { loadToken } from './store/authentication';
 import { useSelector, useDispatch } from 'react-redux';
-// import AppBar from './components/Material-UI/AppBar';
 import AppBar from './components/structure/AppBar/AppBar';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import theme from './components/theme';
 import SplashPage from './components/SplashPage/SplashPage';
-import ResponsiveDrawer from './components/Material-UI/ResponsiveDrawer';
 import NavDrawer from './components/structure/NavDrawer/NavDrawer';
-// import { TOKEN_KEY } from './store/constants/constants';
-
-
-const useStyles = makeStyles(theme => ({
-  main: {
-    top: 0,
-    left: 0,
-    // height: '100vh',
-    // width: '100vw',
-  },
-}))
 
 
 
 const App = () => {
+  // *** Redux ***
   const token = useSelector(state => state.authentication.token);
-  // const token = localStorage.getItem(TOKEN_KEY);
-  // const token = false
-  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  const classes = useStyles()
   
+  
+  // *** Local State ***
+  const [loaded, setLoaded] = useState(false);
+  
+  
+  // *** Use Effect Hooks ***
   useEffect(() => {
     setLoaded(true);
     dispatch(loadToken());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  useEffect(() => {
-    
-  }, [token])
+  useEffect(() => {}, [token])
   
   
   if (!loaded) return null;
   
+  
+  // *** JSX ***
   return (
   <BrowserRouter>
     <div className='app-wrapper'>
-      {/* <Switch> */}
-        {/* <ProtectedRoute 
-          isLoggedIn={token} 
-          path='/' 
-          exact={ true } 
-          component={ Grid } />
-        
-        <Route 
-          path='/' 
-          exact={true} 
-          component={SplashPage} /> */}
-          
-      {/* </Switch> */}
-      {token  
-        ? <>
-            <AppBar />
-            <NavDrawer />
-            <Grid />
-          </>
-        :  <SplashPage />}
+      {
+        token  
+          ? <>
+              <AppBar />
+              <NavDrawer />
+              <Grid />
+            </>
+          :  <SplashPage />
+      }
     </div>
   </BrowserRouter>
   )

@@ -6,10 +6,29 @@
     position: absolute;
 }
 
-.open {
-    left: 0px;
+.nav-link {
+    text-decoration: none;
+    font-family: var(--font-display-text);
+    font-size: 17px;
+    padding-left: 15px;
+    color: var(--secondary);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    transition: background-color 300ms ease-in-out;
 }
 
+.nav-link:not(.active):hover {
+    background-color: #d8f9ff;
+}
+
+.active {
+    /* background-color: var(--secondary); */
+    color: var(--secondary);
+    /* font-weight: bold; */
+    background-color: var(--primary-light);
+}
 
 
 

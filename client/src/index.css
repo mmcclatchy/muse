@@ -2,9 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@500;600&family=Sonsie+One&family=Marck+Script&family=Montserrat:ital,wght@0,400;0,700;1,200;1,400&display=swap');
 
-/* body {
-    margin: 0
-} */
 
 :root {
     margin: 0;
@@ -12,14 +9,14 @@
     --font-display-title: 'Marck Script', cursive;
     --font-display-text: 'Montserrat', sans-serif;
     --primary: #8aacc8;
+    --primary-light: #bbdefb;
     --secondary: #1a237e;
+    --secondary-light: #534bae;
     --drawer-width: 240px;
     --app-bar-height: 60px;
 }
 
 .app-wrapper {
-    /* height: calc(100vh - var(--app-bar-height));
-    width: calc(100vw - var(--drawer-width)); */
     height: 100vh;
     width: 100vw;
     background-image: url(./components/open_landscape_light_blur.jpg);
