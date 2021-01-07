@@ -35,7 +35,7 @@ export default function Footer() {
       
         
         <a
-          href='https://mmcclatchy.github.io/home/' 
+          href='https://markmcclatchy.com' 
           target="_blank" 
           rel="noopener noreferrer"
             className='tooltip'
