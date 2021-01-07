@@ -3,4 +3,24 @@
     height: calc(100% - var(--app-bar-height));
     left: 0px;
     background-color: rgba(255, 255, 255, .7);
+    position: absolute;
+}
+
+.open {
+    left: 0px;
+}
+
+
+
+
+
+@media (max-width: 1024px) {
+    .nav-drawer {
+        left: calc(0px - var(--drawer-width));
+        transition: 300ms ease-in-out;   
+    }
+    
+    .open {
+        transform: translateX(var(--drawer-width));
+    }
 }

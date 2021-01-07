@@ -44,7 +44,7 @@
 
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
     .drawer-button-wrapper {
         display: inherit;
     }
