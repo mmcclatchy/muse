@@ -4,22 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import FreeSoloCreateOptionDialog from '../Material-UI/FreeSoloCreateOptionDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
-import ClearIcon from '@material-ui/icons/Clear';
 
-// import { getTraits } from '../store/actions/traits';
 import { SET_TRAITS } from '../../store/constants/constants';
 import { compare } from '../../utilities';
-import { 
-  // setFormTrait, 
-  setImageUrl, 
-  setBio, 
-  clearForm
-} from '../../store/actions/createCharacters';
-import { postCharacter, setSuccess } from '../../store/actions/characters';
+import { setImageUrl, setBio } from '../../store/actions/createCharacters';
+import CharacterCardHeader from './CharacterFormHeader';
+import { clearForm } from '../../store/actions/createCharacters';
+import { setSuccess } from '../../store/actions/characters';
 import theme from '../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,13 +52,6 @@ export default function CharacterForm() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');
-  const firstName = useSelector((state) => state.createCharacters.firstName);
-  const lastName = useSelector((state) => state.createCharacters.lastName);
-  const physical = useSelector((state) => state.createCharacters.physical);
-  const strengths = useSelector((state) => state.createCharacters.strengths);
-  const weaknesses = useSelector((state) => state.createCharacters.weaknesses);
-  const motivations = useSelector((state) => state.createCharacters.motivations);
-  const secrets = useSelector((state) => state.createCharacters.secrets);
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
   const token = useSelector(state => state.authentication.token);
@@ -109,84 +93,42 @@ export default function CharacterForm() {
   }, [success])
   
   
-  //* Set Local State
+  //* Set Local State on TextArea Change
   const handleImgChange = (e) => setAvatar(e.target.value);
   const handleBioChange = (e) => setCharacterBio(e.target.value);
-  
-  
-  //* Post Character Traits and Info to the Backend
-  const handleSaveClick = () => {
-    const character = {
-      firstName,
-      lastName,
-      physical,
-      strengths,
-      weaknesses,
-      motivations,
-      secrets,
-      imageUrl,
-      bio
-    };
-    dispatch(postCharacter(character));
-  };
-  
+    
   
   //* Dispatch Url to Redux
   useEffect(() => {
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 
+  
   //* Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setBio(characterBio));
   }, [characterBio]);
-
+  
+  
+  // *** Helper Functions ***
+  // Clear form on click
   const handleClearClick = () => {
     setAvatar('');
     setCharacterBio('');
     dispatch(clearForm());
   }
   
-  
+  // Close Success Candy Bar
   const handleClose = (event, reason) => {
     dispatch(setSuccess(false));
   };
   
   
-  
+  // *** JSX ***
   return (
     <div className={classes.container}>
-      <div className={classes.header} style={{ opacity: 1 }}>
-        
-        <Button
-          color='secondary'
-          className={classes.button}
-          startIcon={<ClearIcon />}
-          variant='outlined'
-          disableElevation
-          onClick={handleClearClick}
-        >Clear
-        </Button>
-        
-        <h3 className={classes.cc__title}>Create a New Character</h3>
-        
-        <Button
-          variant='contained'
-          color='secondary'
-          className={classes.button}
-          startIcon={<SaveAltIcon />}
-          onClick={handleSaveClick}
-          disableElevation
-        >Save
-        </Button>
-        
-        <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}>
-          <Alert elevation={6} variant='filled' onClose={handleClose} severity="success">
-            Your character has been saved!
-          </Alert>
-        </Snackbar>
-        
-      </div>
+      
+      <CharacterCardHeader clear={handleClearClick} close={handleClose} />
 
       <FreeSoloCreateOptionDialog
         key='1'
