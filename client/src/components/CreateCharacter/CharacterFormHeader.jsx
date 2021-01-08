@@ -136,6 +136,7 @@ export default function CharacterForm() {
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 
+  
   //* Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setBio(characterBio));
@@ -165,7 +166,8 @@ export default function CharacterForm() {
           variant='outlined'
           disableElevation
           onClick={handleClearClick}
-        >Clear
+        >
+          Clear
         </Button>
         
         <h3 className={classes.cc__title}>Create a New Character</h3>
@@ -177,7 +179,8 @@ export default function CharacterForm() {
           startIcon={<SaveAltIcon />}
           onClick={handleSaveClick}
           disableElevation
-        >Save
+        >
+          Save
         </Button>
         
         <Snackbar open={success} autoHideDuration={5000} onClose={handleClose}>
@@ -187,91 +190,6 @@ export default function CharacterForm() {
         </Snackbar>
         
       </div>
-
-      <FreeSoloCreateOptionDialog
-        key='1'
-        typeLabel='First Name'
-        className={classes.traits}
-        traitType='firstName'
-        traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='2'
-        typeLabel='Last Name'
-        className={classes.traits}
-        traitType='lastName'
-        traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='3'
-        typeLabel='Identifying Characteristics'
-        className={classes.traits}
-        traitType='physical'
-        traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='4'
-        typeLabel='Character Strengths'
-        className={classes.traits}
-        traitType='strengths'
-        traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='5'
-        typeLabel='Character Weaknesses'
-        className={classes.traits}
-        traitType='weaknesses'
-        traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='6'
-        typeLabel='Motivations'
-        className={classes.traits}
-        traitType='motivations'
-        traits={
-          traits.motivations ? Object.values(traits.motivations).sort(compare) : null
-        }
-      />
-
-      <FreeSoloCreateOptionDialog
-        key='7'
-        typeLabel='Secrets'
-        className={classes.traits}
-        traitType='secrets'
-        traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
-      />
-
-      <TextField
-        value={avatar}
-        defaultValue={imageUrl}
-        className={classes.image}
-        label='Character Image URL'
-        color='secondary'
-        inputProps={{ maxLength: 256 }}
-        style={{ width: '95%', margin: '1% 2%' }}
-        onChange={handleImgChange}
-      />
-
-      <TextField
-        value={characterBio}
-        className={classes.characterBio}
-        color='secondary'
-        label='Bio'
-        multiline
-        rows={5}
-        inputProps={{ maxLength: 300 }}
-        helperText={`${characterBio.length}/300`}
-        onChange={handleBioChange}
-        style={{ width: '95%', margin: '2% 2%' }}
-        defaultValue=''
-        variant='outlined'
-      />
-
     </div>
   );
 }
