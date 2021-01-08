@@ -20,35 +20,38 @@ export default function CharacterCard() {
   
   
   return (
-    <div className="character_card" style={{ backgroundImage: `url(${imageUrl})` }} >
+    <div 
+      className="character_card" 
+      style={{ backgroundImage: `url(${imageUrl})` }} 
+    >
       <div className="card_grid">
         
-        <CSSTransition in={firstName} timeout={1000} classNames='first'>
-          <TraitRender id={firstId} trait={firstName} classNames='first' timeout={1000} />
+        <CSSTransition in={firstName} timeout={1000} classNames='card_first'>
+          <TraitRender id={firstId} trait={firstName} classNames='card_first' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={lastName} timeout={1000} classNames='last'>
-          <TraitRender id={lastId} trait={lastName} classNames='last' timeout={1000} />
+        <CSSTransition in={lastName} timeout={1000} classNames='card_last'>
+          <TraitRender id={lastId} trait={lastName} classNames='card_last' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={physical} timeout={1000} classNames='trait' >
-          <TraitRender id={physId} trait={physical} classNames='trait' timeout={1000} />
+        <CSSTransition in={physical} timeout={1000} classNames='card_trait' >
+          <TraitRender id={physId} trait={physical} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={strengths} timeout={1000} classNames='trait'>
-          <TraitRender id={strId} trait={strengths} classNames='trait' timeout={1000} />
+        <CSSTransition in={strengths} timeout={1000} classNames='card_trait'>
+          <TraitRender id={strId} trait={strengths} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={weaknesses} timeout={1000} classNames='trait'>
-          <TraitRender id={weakId} trait={weaknesses} classNames='trait' timeout={1000} />
+        <CSSTransition in={weaknesses} timeout={1000} classNames='card_trait'>
+          <TraitRender id={weakId} trait={weaknesses} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={motivations} timeout={1000} classNames='trait'>
-          <TraitRender id={motId} trait={motivations} classNames='trait' timeout={1000} />
+        <CSSTransition in={motivations} timeout={1000} classNames='card_trait'>
+          <TraitRender id={motId} trait={motivations} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
-        <CSSTransition in={secrets} timeout={1000} classNames='trait'>
-          <TraitRender id={secId} trait={secrets} classNames='trait' timeout={1000} />
+        <CSSTransition in={secrets} timeout={1000} classNames='card_trait'>
+          <TraitRender id={secId} trait={secrets} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
         <p className="bio">{bio}</p>
