@@ -1,5 +1,10 @@
 .character_card {
     height: 100%;
     width: 100%;
-    
+    word-wrap: break-word;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-size: 100% 100%; */
+    background-position-x: center;
+    background-position-y: top;
 }

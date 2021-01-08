@@ -4,11 +4,11 @@
     display: flex;
 }
 
-.form {
+.create-character_form {
     width: 50%;
 }
 
-.display {
+.create-character_display {
     height: 100%;
     width: 50%;
     display: flex;
