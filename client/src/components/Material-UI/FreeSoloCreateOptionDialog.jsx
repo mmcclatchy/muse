@@ -126,7 +126,7 @@ export default function FreeSoloCreateOptionDialog(props) {
           clearOnEscape
           handleHomeEndKeys
           renderOption={(option) => option.name}
-          style={{ width: '100%', margin: 5 }}
+          style={{ width: '95%', margin: '1% 2%' }}
           freeSolo
           // maxHeight={'75%'}
           // size='small'

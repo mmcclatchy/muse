@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '700px',
     width: '96%',
     margin: '15px 10px',
+    backgroundColor: 'white',
+    opacity: '.7',
   },
   cc__title: {
     margin: '10px auto',
@@ -48,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     maxHeight: '30px',
     margin: 'auto 7px',
+  },
+  traits: {
+    width: '90%',
   }
   
 }));
@@ -248,6 +253,7 @@ export default function CharacterForm() {
         label='Character Image URL'
         color='secondary'
         inputProps={{ maxLength: 256 }}
+        style={{ width: '95%', margin: '1% 2%' }}
         onChange={handleImgChange}
       />
 
@@ -261,6 +267,7 @@ export default function CharacterForm() {
         inputProps={{ maxLength: 300 }}
         helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}
+        style={{ width: '95%', margin: '2% 2%' }}
         defaultValue=''
         variant='outlined'
       />
