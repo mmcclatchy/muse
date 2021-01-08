@@ -6,7 +6,7 @@ import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
 
 
 
-export default function CharacterCard(props) {
+export default function CharacterCardBody(props) {
   const { id: physId, name: physical } = props.physical;
   const { id: strId, name: strengths } = props.strengths;
   const { id: weakId, name: weaknesses } = props.weaknesses;
