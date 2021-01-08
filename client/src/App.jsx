@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  BrowserRouter, 
-  // Route, 
-  // Switch 
-} from 'react-router-dom';
-import Grid from './components/structure/Grid/Grid';
-// import Navigation from './components/Navigation';
-// import ProtectedRoute from './components/ProtectedRoute';
-import { loadToken } from './store/authentication';
 import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
+import Body from './components/structure/Body/Body';
+import { loadToken } from './store/authentication';
 import AppBar from './components/structure/AppBar/AppBar';
 import SplashPage from './components/SplashPage/SplashPage';
-import NavDrawer from './components/structure/NavDrawer/NavDrawer';
 
 
 
@@ -46,8 +40,7 @@ const App = () => {
         token  
           ? <>
               <AppBar />
-              <NavDrawer />
-              <Grid />
+              <Body />
             </>
           :  <SplashPage />
       }

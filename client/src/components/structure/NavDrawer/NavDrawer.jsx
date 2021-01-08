@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ListItem from './ListItem/ListItem';
 
 import './nav_drawer.css';
 
@@ -22,7 +21,6 @@ export default function NavDrawer() {
       activeClassName='active' 
       >
         Create Character
-        {/* <ListItem text='Create Character' /> */}
       </NavLink>
       
       <NavLink 

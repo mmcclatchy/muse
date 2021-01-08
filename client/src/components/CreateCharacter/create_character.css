@@ -1,0 +1,10 @@
+.create-character {
+    height: 99%;
+    width: 100%;
+}
+
+.display {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}

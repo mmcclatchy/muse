@@ -2,8 +2,10 @@
     width: var(--drawer-width);
     height: calc(100% - var(--app-bar-height));
     left: 0px;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: white;
+    opacity: .7;
     position: absolute;
+    z-index: 500;
 }
 
 .nav-link {
@@ -16,7 +18,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(0,0,0,0.2);
-    transition: background-color 300ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
 
 .nav-link:not(.active):hover {
@@ -24,19 +26,22 @@
 }
 
 .active {
-    /* background-color: var(--secondary); */
     color: var(--secondary);
-    /* font-weight: bold; */
     background-color: var(--primary-light);
 }
 
 
 
 
+
+/********************** Media Queries **************************/
+
+
 @media (max-width: 1024px) {
     .nav-drawer {
         left: calc(0px - var(--drawer-width));
-        transition: 300ms ease-in-out;   
+        transition: 300ms ease-in-out;  
+        opacity: 1;
     }
     
     .open {

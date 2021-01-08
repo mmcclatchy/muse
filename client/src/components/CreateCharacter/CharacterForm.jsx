@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import FreeSoloCreateOptionDialog from './Material-UI/FreeSoloCreateOptionDialog';
+import FreeSoloCreateOptionDialog from '../Material-UI/FreeSoloCreateOptionDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
@@ -11,16 +11,16 @@ import Alert from '@material-ui/lab/Alert';
 import ClearIcon from '@material-ui/icons/Clear';
 
 // import { getTraits } from '../store/actions/traits';
-import { SET_TRAITS } from '../store/constants/constants';
-import { compare } from '../utilities';
+import { SET_TRAITS } from '../../store/constants/constants';
+import { compare } from '../../utilities';
 import { 
   // setFormTrait, 
   setImageUrl, 
   setBio, 
   clearForm
-} from '../store/actions/createCharacters';
-import { postCharacter, setSuccess } from '../store/actions/characters';
-import theme from './theme';
+} from '../../store/actions/createCharacters';
+import { postCharacter, setSuccess } from '../../store/actions/characters';
+import theme from '../theme';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export default function CreateCharacter() {
+export default function CharacterForm() {
   const traits = useSelector((state) => state.traits);
   const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');

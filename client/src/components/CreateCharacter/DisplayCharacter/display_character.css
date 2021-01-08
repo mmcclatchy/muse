@@ -1,9 +1,13 @@
 .display_character {
-    max-height: 700px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* max-height: 350px; */
+    /* max-width: 900px; */
+    display: flex;
+    /* grid-template-columns: repeat(3, 1fr); */
     font-family: var(--font-display-title);
     color: rgba(0, 0, 0, .65);
+    height: 38vw;
+    width: 100%;
+    margin: 0 auto
 }
 
 .image_wrapper {
@@ -18,19 +22,21 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
-    max-height: 425px;
-    grid-column: 1 / 2;
     height: 100%;
-    width: 300px;
-    position: absolute;
+    width: auto;
+    /* margin-top: 1%; */
+    /* position: absolute; */
+    margin-bottom: 2%;
 }
 
 .default_background {
 }
 
 .character_image {
-    max-height: 425px;
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: 5.5%;
 }
 
 .character_info_wrapper {
