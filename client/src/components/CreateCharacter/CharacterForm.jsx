@@ -13,6 +13,8 @@ import { clearForm } from '../../store/actions/createCharacters';
 import { setSuccess } from '../../store/actions/characters';
 import theme from '../theme';
 
+//**********************************************************
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -48,26 +50,32 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export default function CharacterForm() {
+//**********************************************************
+
+export default function CharacterForm({ header }) {
+  const classes = useStyles(theme);
+  
+  // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const [avatar, setAvatar] = useState('');
-  const [characterBio, setCharacterBio] = useState('');
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
   const token = useSelector(state => state.authentication.token);
   const success = useSelector(state => state.characters.success);
   const dispatch = useDispatch();
-  const classes = useStyles(theme);
+  
+  
+  // *** Local State ***
+  const [avatar, setAvatar] = useState('');
+  const [characterBio, setCharacterBio] = useState('');
 
+  
+  // *** Use Effect Hooks ***
+    
+  // Fetch Character Traits on init render of component
   useEffect(() => {
     if (bio) setCharacterBio(bio);
     if (imageUrl) setAvatar(imageUrl);
-  }, [])
-  
-  //* Fetch Character Traits on init render of component
-  useEffect(() => {
-    // dispatch(getTraits);
-
+    
     const fetchTraits = async () => {
       const response = await fetch('api/traits', { 
         'Content-Type': 'application/json',
@@ -85,6 +93,7 @@ export default function CharacterForm() {
     fetchTraits();
   }, []);
 
+  // Clear Avatar and Bio Fields when a save is successful
   useEffect(() => {
     if (success) {
       setAvatar('');
@@ -92,25 +101,24 @@ export default function CharacterForm() {
     }
   }, [success])
   
-  
-  //* Set Local State on TextArea Change
-  const handleImgChange = (e) => setAvatar(e.target.value);
-  const handleBioChange = (e) => setCharacterBio(e.target.value);
-    
-  
-  //* Dispatch Url to Redux
+  // Dispatch Url to Redux
   useEffect(() => {
     dispatch(setImageUrl(avatar));
   }, [avatar]);
 
   
-  //* Dispatch Bio to Redux
+  // Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setBio(characterBio));
   }, [characterBio]);
   
   
+  
   // *** Helper Functions ***
+  // Set Local State on TextArea Change
+  const handleImgChange = (e) => setAvatar(e.target.value);
+  const handleBioChange = (e) => setCharacterBio(e.target.value);
+  
   // Clear form on click
   const handleClearClick = () => {
     setAvatar('');
@@ -124,12 +132,17 @@ export default function CharacterForm() {
   };
   
   
+  
+  
   // *** JSX ***
   return (
     <div className={classes.container}>
       
-      <CharacterCardHeader clear={handleClearClick} close={handleClose} />
-
+      {
+        header === 'create' 
+          && <CharacterCardHeader clear={handleClearClick} close={handleClose} />
+      }
+      
       <FreeSoloCreateOptionDialog
         key='1'
         typeLabel='First Name'

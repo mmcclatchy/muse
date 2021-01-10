@@ -8,8 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import { clearForm } from '../../store/actions/createCharacters';
-import { postCharacter, setSuccess } from '../../store/actions/characters';
+import { postCharacter } from '../../store/actions/characters';
 import theme from '../theme';
 
 const useStyles = makeStyles((theme) => ({
