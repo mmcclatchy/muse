@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../auth');
+const { shapeAllForRedux } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
 
 const router = express.Router();
@@ -26,7 +27,7 @@ router.get(
       attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio']
     });
     
-    res.json({ payload: characters.map(character => character.shapeForRedux()) });
+    res.json({ payload: shapeAllForRedux(characters) });
   })
 );
 

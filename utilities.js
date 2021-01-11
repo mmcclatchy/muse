@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const character = require("./db/models/character");
 
 
 const handleValidationErrors = (req, res, next) => {
@@ -61,6 +62,13 @@ const sortTraits = traits => {
   return sortedTraits
 }
 
+const shapeAllForRedux = characters => {
+  const normalized = {};
+  
+  characters.forEach(character => normalized[character.id] = character.shapeForRedux());
+  
+  return normalized;
+}
 
 
 
@@ -69,4 +77,5 @@ module.exports = {
   normalize,
   normalizeTrait,
   sortTraits,
+  shapeAllForRedux,
 };

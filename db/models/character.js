@@ -41,14 +41,14 @@ module.exports = (sequelize, DataTypes) => {
       shapedTraits[trait.TraitType.type] = trait.id
     });
     
-    return { [this.id]: {
+    return {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
       imageUrl: this.imageUrl,
       bio: this.bio,
       traits: shapedTraits
-    }};
+    };
   };
 
   return Character;
