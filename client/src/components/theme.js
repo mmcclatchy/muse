@@ -18,7 +18,8 @@ const theme = createMuiTheme({
       main: '#d32f2f',
       light: '#ff6659',
       dark: '#9a0007'
-    }
+    },
+    backgroundColor: 'rgba(255,255,255,.7)',
   },
   font: {
     header: `'Sonsie One', cursive`,

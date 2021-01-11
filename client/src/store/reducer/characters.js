@@ -15,7 +15,6 @@ export default function characterReducer(state = initialState, { type, payload }
   
   switch (type) {
     case SET_CHARACTERS:
-      console.log('SET CHARACTERS: ', payload)
       return { ...state, allCharacters: { ...payload } };
     
     case SET_SUCCESS:

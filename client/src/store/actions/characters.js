@@ -11,17 +11,14 @@ import { baseApiUrl } from '../../config/config';
 
 
 export const getCharacters = () => {
-  const action = {
+  return {
     type: API,
     payload: {
       endpoint: `/characters`,
       method: 'GET',
       actionConst: SET_CHARACTERS,
     },
-  };
-  console.log('GET CHARACTER ACTION: ', action);
-  return action;
-  
+  };  
 }
 
 
