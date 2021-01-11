@@ -3,21 +3,14 @@ module.exports = (sequelize, DataTypes) => {
   const Character = sequelize.define(
     'Character',
     {
-      firstName: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-      },
       imageUrl: {
         type: DataTypes.STRING,
       },
-      bio: DataTypes.STRING(500),
+      bio: DataTypes.STRING(300),
     },
     {}
   );
+  
   Character.associate = function (models) {
     Character.belongsToMany(models.Scene, {
       through: models.SceneCharacter,

@@ -22,24 +22,26 @@ import {
 const filter = createFilterOptions();
 
 export default function FreeSoloCreateOptionDialog(props) {
+  // *** Redux ***
   const { name: reduxValue } = useSelector(state => state.createCharacters[props.traitType]);
+  const success = useSelector(state => state.characters.success);
+  const dispatch = useDispatch();
+  
+  
+  // *** Local State ***
   const [value, setValue] = React.useState(reduxValue);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: "" });
-  const success = useSelector(state => state.characters.success);
-  const dispatch = useDispatch();
 
+  
+  // *** Use Effect Hooks ***
   useEffect(() => {
     if (!value) {
       dispatch(clearFormTrait(props.traitType));
       return;
     }
 
-    if (value.new) {
-      dispatch(postFormTrait(value));
-    } else {
-      dispatch(setFormTrait(value));
-    }
+    value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
   }, [value]);
   
   useEffect(() => {
@@ -50,11 +52,11 @@ export default function FreeSoloCreateOptionDialog(props) {
     if (!reduxValue) setValue('')
   }, [reduxValue])
 
+  
+  // *** Helper Functions ***
+  
   const handleClose = () => {
-    setDialogValue({
-      name: '',
-      type: '',
-    });
+    setDialogValue({ name: '', type: '' });
 
     toggleOpen(false);
   };
@@ -111,6 +113,8 @@ export default function FreeSoloCreateOptionDialog(props) {
     return option.name;
   };
 
+  
+  // *** JSX ***
   return (
     <React.Fragment>
       {!props.traits ? null : (

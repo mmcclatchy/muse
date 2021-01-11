@@ -35,21 +35,31 @@ router.post(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, imageUrl, bio } = req.body;
+    const { 
+      imageUrl, 
+      bio, 
+      firstName, 
+      lastName, 
+      physical, 
+      strengths, 
+      weaknesses,
+      motivations,
+      secrets,
+    } = req.body;
 
     const character = await Character.create({
-      firstName: firstName.name,
-      lastName: lastName.name,
       imageUrl,
       bio,
     });
 
     const characterTraits = [
-      { characterId: character.id, traitId: req.body.physical.id },
-      { characterId: character.id, traitId: req.body.strengths.id },
-      { characterId: character.id, traitId: req.body.weaknesses.id },
-      { characterId: character.id, traitId: req.body.motivations.id },
-      { characterId: character.id, traitId: req.body.secrets.id },
+      { characterId: character.id, traitId: firstName.id },
+      { characterId: character.id, traitId: lastName.id },
+      { characterId: character.id, traitId: physical.id },
+      { characterId: character.id, traitId: strengths.id },
+      { characterId: character.id, traitId: weaknesses.id },
+      { characterId: character.id, traitId: motivations.id },
+      { characterId: character.id, traitId: secrets.id },
     ];
 
     await CharacterTrait.bulkCreate(characterTraits, {

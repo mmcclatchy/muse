@@ -14,6 +14,15 @@ class Trait {
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Traits', [
+      
+      
+      
+      
+      new Trait(1, 'Fredrick'),
+      new Trait(1, 'Delphia'),
+      new Trait(1, 'Donato'),
+      new Trait(1, 'Haley'),
+      new Trait(1, 'Myrna'),
       new Trait(1, faker.name.firstName()),
       new Trait(1, faker.name.firstName()),
       new Trait(1, faker.name.firstName()),
@@ -36,6 +45,11 @@ module.exports = {
       new Trait(1, faker.name.firstName()),
       new Trait(1, faker.name.firstName()),
       new Trait(1, faker.name.firstName()),
+      new Trait(2, 'Wyman'),
+      new Trait(2, `D'Amore`),
+      new Trait(2, 'Gutmann'),
+      new Trait(2, 'Braun'),
+      new Trait(2, 'Blick'),
       new Trait(2, faker.name.lastName()),
       new Trait(2, faker.name.lastName()),
       new Trait(2, faker.name.lastName()),
@@ -73,6 +87,8 @@ module.exports = {
       new Trait(3, 'Heavy footed'),
       new Trait(3, 'Hulking frame'),
       new Trait(3, 'Scrawny'),
+      new Trait(3, 'Cross eyed'),
+      new Trait(3, 'Walks with a swagger'),
       new Trait(4, 'Physically strong'),
       new Trait(4, 'Nimble'),
       new Trait(4, 'High pain tolerance'),

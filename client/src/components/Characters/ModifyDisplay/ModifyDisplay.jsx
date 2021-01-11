@@ -14,20 +14,9 @@ import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
 import CharacterCardBody from '../CharacterCard/CharacterCardBody';
 
 
-const useStyles = makeStyles(theme => ({
-  overrides: {
-    MuiAccordionSummary: {
-      backgroundColor: 'rgba(255,0,255,.5)',
-      root: {
-        'Mui-focused': {
-        }
-        
-        
-      },
-    },
-    
-  },
-  
+// **************************************************************
+
+const useStyles = makeStyles(theme => ({  
   modifyDisplay: {
     height: '100%',
     width: '100%',
@@ -60,6 +49,8 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
+
+// **************************************************************
 
 
 export default function ModifyDisplay() {
@@ -98,7 +89,7 @@ export default function ModifyDisplay() {
     return traits[traitType][character.traits[traitType]]
   }
   
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   
