@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import TextField from '@material-ui/core/TextField';
 
 import CreateCharacterHeader from './CreateCharacterHeader';
 import ModifyCharacterHeader from './ModifyCharacterHeader';
 import { SET_TRAITS } from '../../../store/constants/constants';
 import { compare } from '../../../utilities';
-import { setImageUrl, setBio } from '../../../store/actions/createCharacters';
 import { clearForm } from '../../../store/actions/createCharacters';
 import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
+import ImageBio from './ImageBio';
 
 //**********************************************************
 
@@ -22,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     justifyContent: 'space-around',
     height: '100%',
-    // maxHeight: '700px',
     width: '100%',
-    // margin: '15px 10px',
     backgroundColor: 'rgba(255,255,255,.7)',
   },
   cc__title: {
@@ -53,30 +50,19 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm({ header }) {
+export default function CharacterForm({ header, imgBio }) {
   const classes = useStyles(theme);
   
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
-  const bio = useSelector(state => state.createCharacters.bio);
   const token = useSelector(state => state.authentication.token);
-  const success = useSelector(state => state.characters.success);
   const dispatch = useDispatch();
-  
-  
-  // *** Local State ***
-  const [avatar, setAvatar] = useState('');
-  const [characterBio, setCharacterBio] = useState('');
 
   
   // *** Use Effect Hooks ***
     
   // Fetch Character Traits on init render of component
   useEffect(() => {
-    if (bio) setCharacterBio(bio);
-    if (imageUrl) setAvatar(imageUrl);
-    
     const fetchTraits = async () => {
       const response = await fetch('api/traits', { 
         'Content-Type': 'application/json',
@@ -93,39 +79,12 @@ export default function CharacterForm({ header }) {
 
     fetchTraits();
   }, []);
-
-  // Clear Avatar and Bio Fields when a save is successful
-  useEffect(() => {
-    if (success) {
-      setAvatar('');
-      setCharacterBio('');
-    }
-  }, [success])
-  
-  // Dispatch Url to Redux
-  useEffect(() => {
-    dispatch(setImageUrl(avatar));
-  }, [avatar]);
-
-  
-  // Dispatch Bio to Redux
-  useEffect(() => {
-    dispatch(setBio(characterBio));
-  }, [characterBio]);
-  
   
   
   // *** Helper Functions ***
-  // Set Local State on TextArea Change
-  const handleImgChange = (e) => setAvatar(e.target.value);
-  const handleBioChange = (e) => setCharacterBio(e.target.value);
   
   // Clear form on click
-  const handleClearClick = () => {
-    setAvatar('');
-    setCharacterBio('');
-    dispatch(clearForm());
-  }
+  const handleClearClick = () => dispatch(clearForm());
   
   // Close Success Candy Bar
   const handleClose = (event, reason) => {
@@ -206,32 +165,8 @@ export default function CharacterForm({ header }) {
         traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
       />
 
-      <TextField
-        value={avatar}
-        defaultValue={imageUrl}
-        className={classes.image}
-        label='Character Image URL'
-        color='secondary'
-        inputProps={{ maxLength: 256 }}
-        style={{ width: '95%', margin: '1% 2%' }}
-        onChange={handleImgChange}
-      />
-
-      <TextField
-        value={characterBio}
-        className={classes.characterBio}
-        color='secondary'
-        label='Bio'
-        multiline
-        rows={5}
-        inputProps={{ maxLength: 300 }}
-        helperText={`${characterBio.length}/300`}
-        onChange={handleBioChange}
-        style={{ width: '95%', margin: '2% 2%' }}
-        defaultValue=''
-        variant='outlined'
-      />
-
+      {imgBio && <ImageBio />}
+      
     </div>
   );
 }

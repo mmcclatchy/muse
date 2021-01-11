@@ -14,6 +14,7 @@ const initState = {
   weaknesses: { id: 0, name: '', type: '' },
   motivations: { id: 0, name: '', type: '' },
   secrets: { id: 0, name: '', type: '' },
+  imageUrl: '',
   bio: '',
 };
 
