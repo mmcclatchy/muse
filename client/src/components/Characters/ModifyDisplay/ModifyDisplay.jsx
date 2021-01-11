@@ -85,7 +85,6 @@ export default function ModifyDisplay() {
   // *** Helper Functions ***
   
   const retreiveCharacterTrait = (traitType, character) => {
-    console.log('Character Trait: ', character.id, traitType, traits[traitType][character.traits[traitType]])
     return traits[traitType][character.traits[traitType]]
   }
   
@@ -123,7 +122,7 @@ export default function ModifyDisplay() {
               </AccordionSummary>
               
               <AccordionDetails className={classes.details}>
-                <CharacterCardBody 
+                <CharacterCardBody
                   physical={retreiveCharacterTrait('physical', character)}
                   strengths={retreiveCharacterTrait('strengths', character)}
                   weaknesses={retreiveCharacterTrait('weaknesses', character)}
