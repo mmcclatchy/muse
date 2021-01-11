@@ -24,7 +24,7 @@ router.get(
           ]
         }
       ],
-      attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio']
+      attributes: ['id', 'imageUrl', 'bio']
     });
     
     res.json({ payload: shapeAllForRedux(characters) });

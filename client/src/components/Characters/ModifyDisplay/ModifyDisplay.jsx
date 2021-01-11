@@ -85,7 +85,7 @@ export default function ModifyDisplay() {
   // *** Helper Functions ***
   
   const retreiveCharacterTrait = (traitType, character) => {
-    console.log('Character Trait: ', traits[traitType][character.traits[traitType]])
+    console.log('Character Trait: ', character.id, traitType, traits[traitType][character.traits[traitType]])
     return traits[traitType][character.traits[traitType]]
   }
   
@@ -112,13 +112,14 @@ export default function ModifyDisplay() {
                 focus={expanded === character.id} 
                 expandIcon={<ExpandMoreIcon />}
               >
+              
                 <div className={classes.header}>
-                  {`${character.firstName} ${character.lastName}`}
+                  {
+                    `${retreiveCharacterTrait('firstName', character).name} 
+                     ${retreiveCharacterTrait('lastName', character).name}`
+                  }
                 </div>
-                {/* <CharacterCardHeader 
-                  firstName={character.firstName} 
-                  lastName={character.lastName}  
-                /> */}
+                
               </AccordionSummary>
               
               <AccordionDetails className={classes.details}>

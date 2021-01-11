@@ -20,7 +20,7 @@ module.exports = {
       new CharacterTrait(1, 65),
       new CharacterTrait(1, 72),
       new CharacterTrait(1, 91),
-      new CharacterTrait(1, 104),
+      new CharacterTrait(1, 116),
       new CharacterTrait(2, 2),
       new CharacterTrait(2, 29),
       new CharacterTrait(2, 61),
