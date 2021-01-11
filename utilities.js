@@ -65,7 +65,7 @@ const sortTraits = traits => {
 const shapeAllForRedux = characters => {
   const normalized = {};
   
-  characters.forEach(character => normalized[character.id] = character.shapeForRedux());
+  characters.forEach(character => normalized[character.id] = character.shapeTraits());
   
   return normalized;
 }

@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  Character.prototype.shapeForRedux = function () {
+  Character.prototype.shapeTraits = function () {
     const shapedTraits = {};
   
     this.Traits.forEach(trait => {
