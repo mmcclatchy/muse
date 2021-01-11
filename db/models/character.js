@@ -34,17 +34,21 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  Character.prototype.normalize = function () {
-    return {
-      [this.id]: {
-        id: this.id,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        imageUrl: this.imageUrl,
-        bio: this.bio,
-        traits: this.Traits,
-      },
-    };
+  Character.prototype.shapeForRedux = function () {
+    const shapedTraits = {};
+  
+    this.Traits.forEach(trait => {
+      shapedTraits[trait.TraitType.type] = trait.id
+    });
+    
+    return { [this.id]: {
+      id: this.id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      imageUrl: this.imageUrl,
+      bio: this.bio,
+      traits: shapedTraits
+    }};
   };
 
   return Character;

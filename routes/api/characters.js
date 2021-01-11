@@ -1,7 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../auth');
-const { sortTraits, normalize } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
 
 const router = express.Router();
@@ -16,12 +15,18 @@ router.get(
           model: Trait,
           attributes: ['id'],
           through: { attributes: [] },
+          include: [
+            {
+              model: TraitType,
+              attributes: ['type']
+            }
+          ]
         }
       ],
       attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio']
     });
     
-    res.json({ payload: normalize(characters) });
+    res.json({ payload: characters.map(character => character.shapeForRedux()) });
   })
 );
 
@@ -62,7 +67,7 @@ router.post(
       ],
     });
 
-    res.status(201).json(normalize(eagerCharacter));
+    res.status(201).json(eagerCharacter.shapeForRedux());
   })
 );
 
