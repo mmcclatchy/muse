@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm({ header, imgBio }) {
+export default function CharacterForm({ header, imgBio = true }) {
   const classes = useStyles(theme);
   
   // *** Redux ***
