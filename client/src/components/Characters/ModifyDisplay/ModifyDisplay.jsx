@@ -1,20 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import "./modify_display.css";
 import theme from '../../theme';
-import { getCharacters } from '../../../store/actions/characters';
+import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
 import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
 import CharacterCardBody from '../CharacterCard/CharacterCardBody';
 
 
 const useStyles = makeStyles(theme => ({
-  
+  overrides: {
+    MuiAccordionSummary: {
+      backgroundColor: 'rgba(255,0,255,.5)',
+      root: {
+        'Mui-focused': {
+        }
+        
+        
+      },
+    },
+    
+  },
   
   modifyDisplay: {
     height: '100%',
@@ -37,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'rgba(0,255,255,.5)',
     display: 'flex',
     justifyContent: 'center',
-    '&:focus': {
+    '&.Mui-expanded': {
       backgroundColor: 'rgba(255,0,255,.5)',
     },
   },
@@ -60,13 +72,23 @@ export default function ModifyDisplay() {
   
   
   // *** Local State ***
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [characters, setCharacters] = useState([])
 
   
   // *** Use Effect Hooks ***
   
   // get all characters on mount
   useEffect(() => dispatch(getCharacters()), []);
+  
+  useEffect(() => {
+    console.log('EXPANDED: ', allCharacters[expanded])
+    dispatch(setModifyCharacter(allCharacters[expanded]));
+  }, [expanded])
+  
+  useEffect(() => {
+    setCharacters(Object.values(allCharacters));
+  }, [allCharacters])
   
   
   // *** Helper Functions ***
@@ -85,16 +107,20 @@ export default function ModifyDisplay() {
   return (
     <div className={classes.modifyDisplay}>
       {
-        Object.values(allCharacters).map((character) => {
+        characters[0] && characters.map((character) => {
           return (
             <Accordion 
               key={character.id} 
               className={classes.accordion} 
-              expanded={expanded === `accordian-${character.id}`}
-              onChange={handleChange(`accordian-${character.id}`)}
+              expanded={expanded === character.id}
+              onChange={handleChange(character.id)}
             >
               
-              <AccordionSummary className={classes.summary} >
+              <AccordionSummary 
+                className={classes.summary} 
+                focus={expanded === character.id} 
+                expandIcon={<ExpandMoreIcon />}
+              >
                 <div className={classes.header}>
                   {`${character.firstName} ${character.lastName}`}
                 </div>

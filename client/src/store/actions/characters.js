@@ -6,9 +6,24 @@ import {
   SET_SUCCESS,
   CLEAR_FORM,
   PUT_CHARACTER,
+  SET_MODIFY_CHARACTER,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
+// ********************************************************
+
+export const setSuccess = success => async dispatch => {
+  dispatch({ type: SET_SUCCESS, payload: { success }})
+}
+
+
+export const setModifyCharacter = character => {
+  console.log('SET MODIFY CHARACTER', character)
+  return { type: SET_MODIFY_CHARACTER, payload: character };
+}
+
+
+// **********************************************************
 
 export const getCharacters = () => {
   return {
@@ -19,11 +34,6 @@ export const getCharacters = () => {
       actionConst: SET_CHARACTERS,
     },
   };  
-}
-
-
-export const setSuccess = success => async dispatch => {
-  dispatch({ type: SET_SUCCESS, payload: { success }})
 }
 
 
