@@ -1,9 +1,9 @@
 import React from 'react';
-import CharacterForm from './CharacterForm';
+import CharacterForm from './CharacterForm/CharacterForm';
 
-import './create_character.css';
+import './characters.css';
 // import DisplayCharacter from '../DisplayCharacter/DisplayCharacter';
-import CharacterCard from '../CharacterCard/CharacterCard';
+import CharacterCard from './CharacterCard/CharacterCard';
 
 
 export default function CreateCharacter() {

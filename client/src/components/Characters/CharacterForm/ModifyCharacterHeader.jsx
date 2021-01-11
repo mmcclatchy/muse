@@ -6,10 +6,10 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-import ClearIcon from '@material-ui/icons/Clear';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { postCharacter } from '../../store/actions/characters';
-import theme from '../theme';
+import { putCharacter } from '../../../store/actions/characters';
+import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
   cc__title: {
@@ -26,6 +26,15 @@ const useStyles = makeStyles((theme) => ({
   button: {
     maxHeight: '30px',
     margin: 'auto 7px',
+  },
+  delete: {
+    maxHeight: '30px',
+    margin: 'auto 7px',
+    color: 'white',
+    backgroundColor: theme.palette.warning.main,
+    '&:hover': {
+      backgroundColor: theme.palette.warning.dark,
+    }
   },
   
 }));
@@ -45,11 +54,13 @@ export default function CharacterFormHeader(props) {
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
   const success = useSelector(state => state.characters.success);
+  const allCharacters = useSelector(state => state.characters.allCharacters);
+  const modCharacter = useSelector(state => state.characters.modCharacter);
   const dispatch = useDispatch();
   
   
   //* Post Character Traits and Info to the Backend
-  const handleSaveClick = () => {
+  const handleUpdateClick = () => {
     const character = {
       firstName,
       lastName,
@@ -61,7 +72,7 @@ export default function CharacterFormHeader(props) {
       imageUrl,
       bio
     };
-    dispatch(postCharacter(character));
+    dispatch(putCharacter(character));
   };  
   
   
@@ -71,32 +82,31 @@ export default function CharacterFormHeader(props) {
     <div className={classes.header} style={{ opacity: 1 }}>
       
       <Button
-        color='secondary'
-        className={classes.button}
-        startIcon={<ClearIcon />}
-        variant='outlined'
+        className={classes.delete}
+        startIcon={<DeleteForeverIcon />}
+        variant='contained'
         disableElevation
         onClick={props.clear}
       >
-        Clear
+        Delete
       </Button>
       
-      <h3 className={classes.cc__title}>Create a New Character</h3>
+      <h3 className={classes.cc__title}>Modify a Character</h3>
       
       <Button
         variant='contained'
         color='secondary'
         className={classes.button}
         startIcon={<SaveAltIcon />}
-        onClick={handleSaveClick}
+        onClick={handleUpdateClick}
         disableElevation
       >
-        Save
+        Update
       </Button>
       
       <Snackbar open={success} autoHideDuration={5000} onClose={props.close}>
         <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
-          Your character has been saved!
+          Your character has been updated!
         </Alert>
       </Snackbar>
       

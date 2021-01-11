@@ -5,6 +5,7 @@ import {
   POST_CHARACTER,
   SET_SUCCESS,
   CLEAR_FORM,
+  PUT_CHARACTER,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
@@ -49,4 +50,17 @@ export const postCharacter = character => async dispatch => {
   
   
   dispatch({ type: POST_CHARACTER, payload: character })
+}
+
+
+export const putCharacter = character => {
+  return {
+    type: API,
+    payload: {
+      endpoint: `/characters/${character.id}`,
+      method: 'PUT',
+      body: JSON.stringify(character),
+      actionConst: PUT_CHARACTER,
+    }
+  }
 }

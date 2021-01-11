@@ -13,6 +13,11 @@ const theme = createMuiTheme({
       main: '#1a237e',
       light: '#534bae',
       dark: '#000051'
+    },
+    warning: {
+      main: '#d32f2f',
+      light: '#ff6659',
+      dark: '#9a0007'
     }
   },
   font: {

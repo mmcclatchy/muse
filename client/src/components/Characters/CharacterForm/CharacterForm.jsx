@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import FreeSoloCreateOptionDialog from '../Material-UI/FreeSoloCreateOptionDialog';
+import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 
-import { SET_TRAITS } from '../../store/constants/constants';
-import { compare } from '../../utilities';
-import { setImageUrl, setBio } from '../../store/actions/createCharacters';
-import CharacterCardHeader from './CharacterFormHeader';
-import { clearForm } from '../../store/actions/createCharacters';
-import { setSuccess } from '../../store/actions/characters';
-import theme from '../theme';
+import CreateCharacterHeader from './CreateCharacterHeader';
+import ModifyCharacterHeader from './ModifyCharacterHeader';
+import { SET_TRAITS } from '../../../store/constants/constants';
+import { compare } from '../../../utilities';
+import { setImageUrl, setBio } from '../../../store/actions/createCharacters';
+import { clearForm } from '../../../store/actions/createCharacters';
+import { setSuccess } from '../../../store/actions/characters';
+import theme from '../../theme';
 
 //**********************************************************
 
@@ -140,7 +141,11 @@ export default function CharacterForm({ header }) {
       
       {
         header === 'create' 
-          && <CharacterCardHeader clear={handleClearClick} close={handleClose} />
+          && <CreateCharacterHeader clear={handleClearClick} close={handleClose} />
+      }
+      {
+        header === 'modify'
+          && <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
       }
       
       <FreeSoloCreateOptionDialog

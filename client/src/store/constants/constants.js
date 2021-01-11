@@ -9,6 +9,7 @@ export const SET_TRAIT_TYPES = 'muse/api/SET_TRAIT_TYPES';
 export const SET_CHARACTER_TRAIT = 'muse/CreateCharacter/SET_CHARACTER_TRAIT';
 export const CLEAR_CHARACTER_TRAIT = 'muse/CreateCharacter/CLEAR_CHARACTER_TRAIT';
 export const POST_CHARACTER = 'muse/CreateCharacter/POST_CHARACTER';
+export const PUT_CHARACTER = 'muse/CreateCharacter/PUT_CHARACTER';
 export const SET_IMAGE_URL = 'muse/CreateCharacter/SET_IMAGE_URL';
 export const SET_BIO = 'muse/CreateCharacter/SET_BIO';
 export const SET_SUCCESS = 'muse/CreateCharacter/SET_SUCCESS';
