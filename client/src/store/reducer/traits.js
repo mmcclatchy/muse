@@ -1,6 +1,16 @@
-import { SET_TRAITS, SET_NEW_TRAIT } from '../constants/constants';
+import { SET_TRAITS, SET_NEW_TRAIT, CLEAR_TRAITS } from '../constants/constants';
 
-export default function traitsReducer(state = {}, { type, payload }) {
+const initialState = {
+  firstName: {},
+  lastName: {},
+  physical: {},
+  strengths: {},
+  weaknesses: {},
+  motivations: {},
+  secrets: {},
+}
+
+export default function traitsReducer(state = initialState, { type, payload }) {
   Object.freeze(state);
 
   switch (type) {
@@ -13,6 +23,9 @@ export default function traitsReducer(state = {}, { type, payload }) {
       const newState = { ...state };
       newState[payload.type][payload.id] = payload
       return newState
+      
+    case CLEAR_TRAITS:
+      return initialState;
 
     default:
       return state;

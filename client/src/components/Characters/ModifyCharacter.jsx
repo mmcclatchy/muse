@@ -2,7 +2,7 @@ import React from 'react';
 import CharacterForm from './CharacterForm/CharacterForm';
 
 import './characters.css';
-import CharacterCard from './CharacterCard/CharacterCard';
+import ModifyDisplay from './ModifyDisplay/ModifyDisplay';
 
 
 export default function CreateCharacter() {
@@ -18,7 +18,7 @@ export default function CreateCharacter() {
       
       <div className="modify-character_display">
         {/* <DisplayCharacter /> */}
-        <CharacterCard />
+        <ModifyDisplay />
       </div>
       
     </div>

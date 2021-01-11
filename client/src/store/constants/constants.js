@@ -17,3 +17,5 @@ export const CLEAR_FORM = 'muse/CreateCharacter/CLEAR_FORM';
 export const DRAWER_OPEN = 'muse/navigation/DRAWER_OPEN';
 export const PUT_USER = 'muse/users/PUT_USER';
 export const SET_USER = 'muse/users/SET_USER';
+export const CLEAR_CHARACTERS = 'muse/characters/CLEAR_CHARACTERS';
+export const CLEAR_TRAITS = 'muse/traits/CLEAR_TRAITS';

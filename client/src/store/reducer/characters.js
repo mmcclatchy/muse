@@ -1,14 +1,27 @@
-import { SET_CHARACTERS, SET_SUCCESS } from '../constants/constants';
+import { 
+  SET_CHARACTERS, 
+  SET_SUCCESS, 
+  CLEAR_CHARACTERS 
+} from '../constants/constants';
 
-export default function characterReducer(state = {}, { type, payload }) {
+const initialState = {
+  allCharacters: {},
+  modifyCharacter: {},
+  success: false,
+}
+
+export default function characterReducer(state = initialState, { type, payload }) {
   Object.freeze(state);
   
   switch (type) {
     case SET_CHARACTERS:
-      return { ...state, ...payload };  
+      return { ...state, allCharacters: { ...payload } };
     
     case SET_SUCCESS:
-      return { ...state, ...payload }
+      return { ...state, ...payload };
+      
+    case CLEAR_CHARACTERS:
+      return initialState;
     
     default:
       return state

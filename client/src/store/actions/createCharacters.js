@@ -7,6 +7,7 @@ import {
   SET_NEW_TRAIT,
   CLEAR_CHARACTER_TRAIT,
   CLEAR_FORM,
+  CLEAR_CHARACTERS,
   // SET_SUCCESS,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
@@ -34,6 +35,9 @@ export const clearForm = () => async dispatch => {
   dispatch({ type: CLEAR_FORM })
 }
 
+export const clearCharacters = () => async dispatch => {
+  dispatch({ type: CLEAR_CHARACTERS })
+}
 
 // export const postFormTrait = trait => dispatch => {
 // const token = localStorage.get(TOKEN_KEY);

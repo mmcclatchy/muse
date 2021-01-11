@@ -1,5 +1,5 @@
 import { baseApiUrl } from '../config/config';
-import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER } from '../store/constants/constants'
+import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER, CLEAR_TRAITS, CLEAR_FORM, CLEAR_CHARACTERS } from '../store/constants/constants'
 
 
 
@@ -47,6 +47,9 @@ export const login = (username, password) => async dispatch => {
 export const logout = () => async (dispatch, getState) => {
   window.localStorage.removeItem(TOKEN_KEY);
   dispatch(removeToken());
+  dispatch({ type: CLEAR_TRAITS });
+  dispatch({ type: CLEAR_FORM });
+  dispatch({ type: CLEAR_CHARACTERS });
 }
 
 

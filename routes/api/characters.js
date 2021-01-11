@@ -10,8 +10,18 @@ router.get(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const characters = Character.findAll();
-    res.json(normalize(characters));
+    const characters = await Character.findAll({
+      include: [
+        {
+          model: Trait,
+          attributes: ['id'],
+          through: { attributes: [] },
+        }
+      ],
+      attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio']
+    });
+    
+    res.json({ payload: normalize(characters) });
   })
 );
 
@@ -27,14 +37,14 @@ router.post(
       imageUrl,
       bio,
     });
-    
+
     const characterTraits = [
       { characterId: character.id, traitId: req.body.physical.id },
       { characterId: character.id, traitId: req.body.strengths.id },
       { characterId: character.id, traitId: req.body.weaknesses.id },
       { characterId: character.id, traitId: req.body.motivations.id },
       { characterId: character.id, traitId: req.body.secrets.id },
-    ]
+    ];
 
     await CharacterTrait.bulkCreate(characterTraits, {
       // ignoreDuplicates: true
@@ -52,7 +62,7 @@ router.post(
       ],
     });
 
-    res.status(201).json(eagerCharacter.cleanedForRedux());
+    res.status(201).json(normalize(eagerCharacter));
   })
 );
 
