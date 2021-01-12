@@ -84,7 +84,7 @@ export default function ModifyDisplay() {
   
   // *** Helper Functions ***
   
-  const retreiveCharacterTrait = (traitType, character) => {
+  const retrieveCharacterTrait = (traitType, character) => {
     return traits[traitType][character.traits[traitType]]
   }
   
@@ -114,8 +114,8 @@ export default function ModifyDisplay() {
               
                 <div className={classes.header}>
                   {
-                    `${retreiveCharacterTrait('firstName', character).name} 
-                     ${retreiveCharacterTrait('lastName', character).name}`
+                    `${retrieveCharacterTrait('firstName', character).name} 
+                     ${retrieveCharacterTrait('lastName', character).name}`
                   }
                 </div>
                 
@@ -123,11 +123,11 @@ export default function ModifyDisplay() {
               
               <AccordionDetails className={classes.details}>
                 <CharacterCardBody
-                  physical={retreiveCharacterTrait('physical', character)}
-                  strengths={retreiveCharacterTrait('strengths', character)}
-                  weaknesses={retreiveCharacterTrait('weaknesses', character)}
-                  motivations={retreiveCharacterTrait('motivations', character)}
-                  secrets={retreiveCharacterTrait('secrets', character)}
+                  physical={retrieveCharacterTrait('physical', character)}
+                  strengths={retrieveCharacterTrait('strengths', character)}
+                  weaknesses={retrieveCharacterTrait('weaknesses', character)}
+                  motivations={retrieveCharacterTrait('motivations', character)}
+                  secrets={retrieveCharacterTrait('secrets', character)}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />
