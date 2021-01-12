@@ -11,9 +11,7 @@ import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
 import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
-import ImageBioModify from './ImageBioModify';
-import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
-import { getTraits } from '../../../store/actions/traits';
+import ImageBio from './ImageBioCreate';
 
 //**********************************************************
 
@@ -51,18 +49,33 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm() {
+export default function CreateCharacterForm({ header, imgBio = true }) {
   const classes = useStyles(theme);
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
+  const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***
 
   // Fetch Character Traits on init render of component
   useEffect(() => {
-    dispatch(getTraits())
+    const fetchTraits = async () => {
+      const response = await fetch('api/traits', {
+        'Content-Type': 'application/json',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const { payload } = await response.json();
+        dispatch({ type: SET_TRAITS, payload });
+      }
+    };
+
+    fetchTraits();
   }, []);
 
   // *** Helper Functions ***
@@ -78,10 +91,10 @@ export default function CharacterForm() {
   // *** JSX ***
   return (
     <div className={classes.container}>
-    
-      <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
+      
+      <CreateCharacterHeader clear={handleClearClick} close={handleClose} />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='1'
         typeLabel='First Name'
         className={classes.traits}
@@ -89,7 +102,7 @@ export default function CharacterForm() {
         traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='2'
         typeLabel='Last Name'
         className={classes.traits}
@@ -97,7 +110,7 @@ export default function CharacterForm() {
         traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='3'
         typeLabel='Identifying Characteristics'
         className={classes.traits}
@@ -105,7 +118,7 @@ export default function CharacterForm() {
         traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='4'
         typeLabel='Character Strengths'
         className={classes.traits}
@@ -113,7 +126,7 @@ export default function CharacterForm() {
         traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='5'
         typeLabel='Character Weaknesses'
         className={classes.traits}
@@ -121,7 +134,7 @@ export default function CharacterForm() {
         traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='6'
         typeLabel='Motivations'
         className={classes.traits}
@@ -131,7 +144,7 @@ export default function CharacterForm() {
         }
       />
 
-      <ModifyFreeSolo
+      <FreeSoloCreateOptionDialog
         key='7'
         typeLabel='Secrets'
         className={classes.traits}
@@ -139,8 +152,7 @@ export default function CharacterForm() {
         traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
       />
 
-      <ImageBioModify />
-      
+      {imgBio && <ImageBio />}
     </div>
   );
 }

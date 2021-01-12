@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 
-import { setImageUrl, setBio } from '../../../store/actions/createCharacters';
+import { setModBio, setModImgUrl } from '../../../store/actions/characters';
 import theme from '../../theme';
 
 //**********************************************************
@@ -25,12 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function ImageBio() {
+export default function ImageBioCreate() {
   const classes = useStyles(theme);
   
   // *** Redux ***
-  const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
-  const bio = useSelector(state => state.createCharacters.bio);
+  const traits = useSelector(state => state.traits);
+  const modifyCharacter = useSelector(state => state.characters.modifyCharacter);
   const success = useSelector(state => state.characters.success);
   const dispatch = useDispatch();
   
@@ -41,13 +41,17 @@ export default function ImageBio() {
 
   
   // *** Use Effect Hooks ***
-    
-  // Fetch Character Traits on init render of component
+  
   useEffect(() => {
-    if (bio) setCharacterBio(bio);
-    if (imageUrl) setAvatar(imageUrl);
-  }, []);
-
+    console.log('MOD CHAR IMG: ', modifyCharacter?.imageUrl)
+    setAvatar(modifyCharacter?.imageUrl || '')
+  }, [modifyCharacter?.imageUrl])
+  
+  useEffect(() => {
+    console.log('MOD CHAR BIO: ', modifyCharacter?.bio)
+    setCharacterBio(modifyCharacter?.bio || '')
+  }, [modifyCharacter])
+   
   // Clear Avatar and Bio Fields when a save is successful
   useEffect(() => {
     if (success) {
@@ -58,23 +62,23 @@ export default function ImageBio() {
   
   // Dispatch Url to Redux
   useEffect(() => {
-    dispatch(setImageUrl(avatar));
+    dispatch(setModImgUrl(avatar));
   }, [avatar]);
 
   
   // Dispatch Bio to Redux
   useEffect(() => {
-    dispatch(setBio(characterBio));
+    dispatch(setModBio(characterBio));
   }, [characterBio]);
   
   // Clear Avatar and Bio Textareas when Redux is cleared
-  useEffect(() => {
-    if (imageUrl === '' && avatar !== '') setAvatar('');
-  }, [imageUrl]);
+  // useEffect(() => {
+  //   if (modifyCharacter?.imageUrl === '' && avatar !== '') setAvatar('');
+  // }, [imageUrl]);
   
-  useEffect(() => {
-    if (bio === '' && characterBio !== '') setCharacterBio('');
-  }, [bio])
+  // useEffect(() => {
+  //   if (modifyCharacter?.bio === '' && characterBio !== '') setCharacterBio('');
+  // }, [bio]);
   
   
   
@@ -91,7 +95,7 @@ export default function ImageBio() {
       
       <TextField
         value={avatar}
-        defaultValue={imageUrl}
+        defaultValue=''
         className={classes.image}
         label='Character Image URL'
         color='secondary'

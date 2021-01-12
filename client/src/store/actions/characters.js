@@ -7,6 +7,9 @@ import {
   CLEAR_FORM,
   PUT_CHARACTER,
   SET_MODIFY_CHARACTER,
+  SET_MODIFY_IMG_URL,
+  SET_MODIFY_BIO,
+  SET_MODIFY_TRAIT
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
@@ -18,8 +21,15 @@ export const setSuccess = success => async dispatch => {
 
 
 export const setModifyCharacter = character => {
-  console.log('SET MODIFY CHARACTER', character)
   return { type: SET_MODIFY_CHARACTER, payload: character };
+}
+
+export const setModImgUrl = imgUrl => {
+  return { type: SET_MODIFY_IMG_URL, payload: imgUrl };
+}
+
+export const setModBio = bio => {
+  return { type: SET_MODIFY_BIO, payload: bio };
 }
 
 

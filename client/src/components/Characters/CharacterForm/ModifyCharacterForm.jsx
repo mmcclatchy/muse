@@ -11,9 +11,8 @@ import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
 import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
-import ImageBioModify from './ImageBioModify';
+import ImageBio from './ImageBioCreate';
 import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
-import { getTraits } from '../../../store/actions/traits';
 
 //**********************************************************
 
@@ -51,18 +50,19 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm() {
+export default function CharacterForm({ imgBio = true }) {
   const classes = useStyles(theme);
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
+  const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***
 
   // Fetch Character Traits on init render of component
   useEffect(() => {
-    dispatch(getTraits())
+    
   }, []);
 
   // *** Helper Functions ***
@@ -139,8 +139,7 @@ export default function CharacterForm() {
         traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
       />
 
-      <ImageBioModify />
-      
+      {imgBio && <ImageBio />}
     </div>
   );
 }

@@ -98,9 +98,9 @@ export default function ModifyDisplay() {
     <div className={classes.modifyDisplay}>
       {
         Object.values(allCharacters)[0] && Object.values(allCharacters).map((character) => {
-          console.log('JSX CHARACTER: ', character);
+          {/* console.log('JSX CHARACTER: ', character);
           console.log('JSX TRAIT: ', traits, traits.firstName)
-          console.log('JSX CHARACTER TRAIT ID: ', character.traits.firstName)
+          console.log('JSX CHARACTER TRAIT ID: ', character.traits.firstName) */}
           return (
             <Accordion 
               key={character.id} 

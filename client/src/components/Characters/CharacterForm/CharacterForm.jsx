@@ -11,7 +11,7 @@ import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
 import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
-import ImageBio from './ImageBio';
+import ImageBio from './ImageBioCreate';
 import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
 import { getTraits } from '../../../store/actions/traits';
 
