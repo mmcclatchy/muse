@@ -49,6 +49,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   }, [success])
   
   useEffect(() => {
+    console.log('REDUX VALUE: ', reduxValue)
     if (!reduxValue) setValue('')
   }, [reduxValue])
 
