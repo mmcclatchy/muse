@@ -11,8 +11,10 @@ module.exports = {
       characterId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'CASCADE',
         references: {
-          model: 'Characters'
+          model: 'Characters',
+          'key': 'id'
         }
       },
       traitId: {
@@ -33,6 +35,7 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
+    // return queryInterface.removeColumn('CharacterTraits', 'characterId');
     return queryInterface.dropTable('CharacterTraits');
   }
 };

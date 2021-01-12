@@ -97,7 +97,7 @@ router.put(
   '/:id',
   requireAuth,
   asyncHandler(async (req, res) => {
-    const characterId = req.params.id;
+    const characterId = parseInt(req.params.id, 10);
     
     try {
       await sequelize.transaction(async (t) => {
@@ -136,8 +136,24 @@ router.put(
       
     } catch (e) {
       console.log(`*****\n\nERROR: \n\n${e}\n\n*****`);
-      res.status(500).statusMessage('An error occurred while updating character.')
+      res.status(500)
     }
+  })
+)
+
+
+router.delete(
+  '/:id',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const characterId = parseInt(req.params.id, 10);
+    
+    await CharacterTrait.destroy({ where: { characterId }})
+    
+    const character = await Character.findByPk(characterId);
+    await character.destroy()
+    
+    res.status(200).json({ payload: characterId, deleted: true })
   })
 )
 

@@ -7,12 +7,15 @@ import {
   SET_MODIFY_BIO,
   SET_MODIFY_TRAIT,
   DELETE_CHARACTER,
+  SET_DELETED,
+  CLEAR_MODIFIED,
 } from '../constants/constants';
 
 const initialState = {
   allCharacters: {},
   modifyCharacter: {},
   success: false,
+  deleted: false,
 }
 
 export default function characterReducer(state = initialState, { type, payload }) {
@@ -20,13 +23,19 @@ export default function characterReducer(state = initialState, { type, payload }
   
   switch (type) {
     case SET_CHARACTERS:
-      return { ...state, allCharacters: { ...payload } };
+      return { ...state, allCharacters: { ...state.allCharacters, ...payload } };
     
     case SET_SUCCESS:
       return { ...state, ...payload };
       
+    case SET_DELETED:
+      return { ...state, ...payload };
+      
     case CLEAR_CHARACTERS:
       return initialState;
+      
+    case CLEAR_MODIFIED:
+      return { ...state, modifiedCharacter: {} }
     
     case SET_MODIFY_CHARACTER:
       return { ...state, modifyCharacter: payload }

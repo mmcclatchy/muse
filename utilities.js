@@ -70,6 +70,16 @@ const shapeAllForRedux = characters => {
   return normalized;
 }
 
+const isEmpty = obj => {
+  if (!obj) return false;
+  
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
+}
 
 
 module.exports = { 
@@ -78,4 +88,5 @@ module.exports = {
   normalizeTrait,
   sortTraits,
   shapeAllForRedux,
+  isEmpty,
 };

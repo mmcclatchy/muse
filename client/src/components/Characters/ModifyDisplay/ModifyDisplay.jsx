@@ -7,11 +7,11 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import "./modify_display.css";
 import theme from '../../theme';
 import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
 import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
 import CharacterCardBody from '../CharacterCard/CharacterCardBody';
+import { isNotEmpty } from '../../../utilities';
 
 
 // **************************************************************
@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     backgroundColor: theme.palette.backgroundColor,
+    overflowY: 'scroll'
   },
   
   accordion: {
@@ -58,6 +59,7 @@ export default function ModifyDisplay() {
   
   // *** Redux ***
   const allCharacters = useSelector(state => state.characters.allCharacters);
+  const deleted = useSelector(state => state.characters.deleted);
   const traits = useSelector(state => state.traits);
   const dispatch = useDispatch();
   
@@ -72,7 +74,7 @@ export default function ModifyDisplay() {
   // get all characters on mount
   useEffect(() => {
     dispatch(getCharacters())
-  }, []);
+  }, [deleted]);
   
   useEffect(() => {
     dispatch(setModifyCharacter(allCharacters[expanded]));
@@ -83,7 +85,9 @@ export default function ModifyDisplay() {
     setCharacters(characterArr);
   }, [allCharacters])
   
-  useEffect(() => {}, [characters])
+  useEffect(() => {}, [characters]);
+  
+  // useEffect(() => {}, [deleted]);
   
   
   // *** Helper Functions ***
@@ -97,10 +101,12 @@ export default function ModifyDisplay() {
   return (
     <div className={classes.modifyDisplay}>
       {
-        Object.values(allCharacters)[0] && Object.values(allCharacters).map((character) => {
-          {/* console.log('JSX CHARACTER: ', character);
-          console.log('JSX TRAIT: ', traits, traits.firstName)
-          console.log('JSX CHARACTER TRAIT ID: ', character.traits.firstName) */}
+        isNotEmpty(allCharacters) 
+          && isNotEmpty(traits) 
+          && Object.values(allCharacters).map((character) => {
+          console.log('JSX CHARACTER: ', character);
+          console.log('JSX TRAIT: ', traits?.physical[character.traits?.physical])
+          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName)
           return (
             <Accordion 
               key={character.id} 
@@ -117,8 +123,8 @@ export default function ModifyDisplay() {
               
                 <div className={classes.header}>
                   {
-                    `${traits.firstName[character.traits.firstName].name} 
-                     ${traits.lastName[character.traits.lastName].name}`
+                    `${traits?.firstName[character.traits?.firstName]?.name} 
+                     ${traits?.lastName[character.traits?.lastName]?.name}`
                   }
                 </div>
                 
@@ -126,11 +132,11 @@ export default function ModifyDisplay() {
               
               <AccordionDetails className={classes.details}>
                 <CharacterCardBody
-                  physical={traits.physical[character.traits.physical]}
-                  strengths={traits.strengths[character.traits.strengths]}
-                  weaknesses={traits.weaknesses[character.traits.weaknesses]}
-                  motivations={traits.motivations[character.traits.motivations]}
-                  secrets={traits.secrets[character.traits.secrets]}
+                  physical={traits?.physical[character.traits?.physical]}
+                  strengths={traits?.strengths[character.traits?.strengths]}
+                  weaknesses={traits?.weaknesses[character.traits?.weaknesses]}
+                  motivations={traits?.motivations[character.traits?.motivations]}
+                  secrets={traits?.secrets[character.traits?.secrets]}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />

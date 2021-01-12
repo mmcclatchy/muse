@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-
-import CreateCharacterHeader from './CreateCharacterHeader';
-import ModifyCharacterHeader from './ModifyCharacterHeader';
-import { SET_TRAITS } from '../../../store/constants/constants';
-import { compare } from '../../../utilities';
-import { clearForm } from '../../../store/actions/createCharacters';
-import { setSuccess } from '../../../store/actions/characters';
-import theme from '../../theme';
-import ImageBioModify from './ImageBioModify';
 import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
+
+import ModifyCharacterHeader from './ModifyCharacterHeader';
+import ImageBioModify from './ImageBioModify';
+
 import { getTraits } from '../../../store/actions/traits';
+import { compare } from '../../../utilities';
+import theme from '../../theme';
 
 //**********************************************************
 
@@ -58,6 +54,7 @@ export default function CharacterForm() {
   const traits = useSelector((state) => state.traits);
   const dispatch = useDispatch();
 
+  
   // *** Use Effect Hooks ***
 
   // Fetch Character Traits on init render of component
@@ -65,21 +62,13 @@ export default function CharacterForm() {
     dispatch(getTraits())
   }, []);
 
-  // *** Helper Functions ***
-
-  // Clear form on click
-  const handleClearClick = () => dispatch(clearForm());
-
-  // Close Success Candy Bar
-  const handleClose = (event, reason) => {
-    dispatch(setSuccess(false));
-  };
+  
 
   // *** JSX ***
   return (
     <div className={classes.container}>
     
-      <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
+      <ModifyCharacterHeader />
 
       <ModifyFreeSolo
         key='1'

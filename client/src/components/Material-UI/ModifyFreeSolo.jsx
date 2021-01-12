@@ -24,13 +24,13 @@ const filter = createFilterOptions();
 export default function ModifyFreeSolo(props) {
   // *** Redux ***
   const reduxValueId = useSelector(state => state.characters.modifyCharacter?.traits?.[props.traitType]);
-  const traits = useSelector(state => state.traits[props.traitType]);
-  const success = useSelector(state => state.characters.success);
+  const traits = useSelector(state => state.traits?.[props.traitType]);
+  const deleted = useSelector(state => state.characters.deleted);
   const dispatch = useDispatch();
   
   
   // *** Local State ***
-  const [value, setValue] = React.useState(traits[reduxValueId] || '');
+  const [value, setValue] = React.useState(traits?.[reduxValueId] || '');
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: "" });
 
@@ -46,8 +46,8 @@ export default function ModifyFreeSolo(props) {
   }, [value]);
   
   useEffect(() => {
-    if (success) setValue('')
-  }, [success])
+    if (deleted) setValue('')
+  }, [deleted])
   
   useEffect(() => {
     reduxValueId  ?  setValue(traits[reduxValueId].name)  :  setValue('');

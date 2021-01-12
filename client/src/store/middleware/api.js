@@ -1,6 +1,6 @@
 import { baseApiUrl } from '../../config/config';
-import { API, CLEAR_FORM, SET_TRAIT_TYPES } from '../constants/constants';
-import { setSuccess } from '../actions/characters';
+import { API, CLEAR_FORM, CLEAR_MODIFIED } from '../constants/constants';
+import { setSuccess, setDeleted } from '../actions/characters';
 
 
 // API Middleware receives an action object and parses the data to make a specific fetch request
@@ -30,7 +30,14 @@ const api = ({ dispatch, getState }) => next => async action => {
   // console.log('RESPONSE: ', response)
 
   if (response.ok) {
-    const { payload, success } = await response.json();
+    const { payload, success, deleted } = await response.json();
+    
+
+    if (deleted) {
+      console.log('DELETED: ', deleted)
+      dispatch(setDeleted(true));
+      dispatch({ type: CLEAR_MODIFIED })
+    }
     
     if (success) {
       dispatch(setSuccess(true));

@@ -7,17 +7,24 @@ import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
 
 
 export default function CharacterCardBody(props) {
-  const { id: physId, name: physical } = props.physical;
-  const { id: strId, name: strengths } = props.strengths;
-  const { id: weakId, name: weaknesses } = props.weaknesses;
-  const { id: motId, name: motivations } = props.motivations;
-  const { id: secId, name: secrets } = props.secrets;
+  const physId = props.physical?.id;
+  const physical = props.physical?.name;
+  const strId = props.strengths?.id;
+  const strengths = props.strengths?.name;
+  const weakId = props.weaknesses?.id;
+  const weaknesses = props.weaknesses?.name;
+  const motId = props.motivations?.id;
+  const motivations = props.motivations?.name;
+  const secId = props.secrets?.id;
+  const secrets = props.secrets?.name;
   
+  // Prevent a bug attempting to 'GET' and empty string
+  const getUrl = url => url  ?  `url(${url})`  :  'none';
   
   return (
     <div 
       className="character_card_body" 
-      style={{ backgroundImage: `url(${props.imageUrl})` }} 
+      style={{ backgroundImage: getUrl(props.imageUrl) }} 
     >
       <div className="card_grid">
         

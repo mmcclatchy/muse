@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       through: models.CharacterTrait,
       foreignKey: 'characterId',
       otherKey: 'traitId',
-      // onDelete: 'CASCADE',
+      onDelete: 'CASCADE',
       // hooks: true
     });
   };

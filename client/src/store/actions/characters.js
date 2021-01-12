@@ -5,11 +5,12 @@ import {
   POST_CHARACTER,
   SET_SUCCESS,
   CLEAR_FORM,
-  PUT_CHARACTER,
+  SET_DELETED,
   SET_MODIFY_CHARACTER,
   SET_MODIFY_IMG_URL,
   SET_MODIFY_BIO,
   SET_MODIFY_TRAIT,
+  CLEAR_MODIFIED,
   DELETE_CHARACTER
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
@@ -17,9 +18,13 @@ import { baseApiUrl } from '../../config/config';
 // ********************************************************
 
 export const setSuccess = success => async dispatch => {
-  dispatch({ type: SET_SUCCESS, payload: { success }})
+  dispatch({ type: SET_SUCCESS, payload: { success }});
 }
 
+export const setDeleted = deleted => async dispatch => {
+  console.log("SET DELETED")
+  dispatch({ type: SET_DELETED, payload: { deleted }});
+}
 
 export const setModifyCharacter = character => {
   return { type: SET_MODIFY_CHARACTER, payload: character };

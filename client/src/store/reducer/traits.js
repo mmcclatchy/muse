@@ -1,13 +1,13 @@
 import { SET_TRAITS, SET_NEW_TRAIT, CLEAR_TRAITS } from '../constants/constants';
 
 const initialState = {
-  firstName: {},
-  lastName: {},
-  physical: {},
-  strengths: {},
-  weaknesses: {},
-  motivations: {},
-  secrets: {},
+  // firstName: {},
+  // lastName: {},
+  // physical: {},
+  // strengths: {},
+  // weaknesses: {},
+  // motivations: {},
+  // secrets: {},
 }
 
 export default function traitsReducer(state = initialState, { type, payload }) {
