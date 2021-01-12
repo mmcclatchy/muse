@@ -13,6 +13,7 @@ import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
 import ImageBio from './ImageBio';
 import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
+import { getTraits } from '../../../store/actions/traits';
 
 //**********************************************************
 
@@ -55,28 +56,13 @@ export default function CharacterForm({ imgBio = true }) {
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***
 
   // Fetch Character Traits on init render of component
   useEffect(() => {
-    const fetchTraits = async () => {
-      const response = await fetch('api/traits', {
-        'Content-Type': 'application/json',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const { payload } = await response.json();
-        dispatch({ type: SET_TRAITS, payload });
-      }
-    };
-
-    fetchTraits();
+    dispatch(getTraits())
   }, []);
 
   // *** Helper Functions ***

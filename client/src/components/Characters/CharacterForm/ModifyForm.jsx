@@ -56,7 +56,6 @@ export default function CharacterForm({ imgBio = true }) {
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***

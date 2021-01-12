@@ -41,8 +41,8 @@ export default function ModifyFreeSolo(props) {
       dispatch(clearFormTrait(props.traitType));
       return;
     }
-
-    value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
+    console.log('MODIFY FREE SOLO: VALUE: ', value)
+    // value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
   }, [value]);
   
   useEffect(() => {
@@ -50,7 +50,6 @@ export default function ModifyFreeSolo(props) {
   }, [success])
   
   useEffect(() => {
-    console.log('Modify Character: ',)
     console.log('Redux Value Id: ', reduxValueId, traits, traits[reduxValueId])
     reduxValueId  ?  setValue(traits[reduxValueId].name)  :  setValue('');
   }, [reduxValueId])

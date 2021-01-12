@@ -70,7 +70,9 @@ export default function ModifyDisplay() {
   // *** Use Effect Hooks ***
   
   // get all characters on mount
-  useEffect(() => dispatch(getCharacters()), []);
+  useEffect(() => {
+    dispatch(getCharacters())
+  }, []);
   
   useEffect(() => {
     dispatch(setModifyCharacter(allCharacters[expanded]));
@@ -78,22 +80,13 @@ export default function ModifyDisplay() {
   
   useEffect(() => {
     const characterArr = Object.values(allCharacters);
-    console.log('CHARACTERS: ', characterArr)
     setCharacters(characterArr);
   }, [allCharacters])
   
-  useEffect(() => {console.log('LOCAL STATE CHARACTERS: ', characters)}, [characters])
+  useEffect(() => {}, [characters])
   
   
   // *** Helper Functions ***
-  
-  const retrieveCharacterTrait = (traitType, character) => {
-    console.log('TRAITS: ', traits, traitType, traits[traitType]);
-    console.log('Character Trait Type: ', character.traits[traitType])
-    const trait = traits[traitType][character.traits[traitType]];
-    console.log('CHARACTER TRAIT: ', trait)
-    return trait
-  }
   
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
