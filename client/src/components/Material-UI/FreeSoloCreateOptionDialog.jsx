@@ -37,6 +37,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   // *** Use Effect Hooks ***
   useEffect(() => {
     if (!value) {
+      console.log('Value: ', value)
       dispatch(clearFormTrait(props.traitType));
       return;
     }
@@ -45,13 +46,15 @@ export default function FreeSoloCreateOptionDialog(props) {
   }, [value]);
   
   useEffect(() => {
-    if (success) setValue(null)
+    if (success) setValue('')
   }, [success])
   
   useEffect(() => {
-    console.log('REDUX VALUE: ', reduxValue)
     if (!reduxValue) setValue('')
   }, [reduxValue])
+  
+  // Forces rerender to clear values when redux is empty
+  useEffect(() => {}, [value])
 
   
   // *** Helper Functions ***

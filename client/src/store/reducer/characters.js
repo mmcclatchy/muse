@@ -6,6 +6,7 @@ import {
   SET_MODIFY_IMG_URL,
   SET_MODIFY_BIO,
   SET_MODIFY_TRAIT,
+  DELETE_CHARACTER,
 } from '../constants/constants';
 
 const initialState = {
@@ -42,7 +43,10 @@ export default function characterReducer(state = initialState, { type, payload }
       const modTrait = { ...state.modifyCharacter, [payload.trait]: payload.id };
       return { ...state, modifyCharacter: modTrait };
       
-    
+    case DELETE_CHARACTER:
+      const allCharacters = { ...state.allCharacters };
+      delete allCharacters[payload];
+      return { ...state, allCharacters }
       
     default:
       return state

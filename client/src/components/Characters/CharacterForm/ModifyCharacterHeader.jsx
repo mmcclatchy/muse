@@ -8,7 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { putCharacter } from '../../../store/actions/characters';
+import { putCharacter, deleteCharacter } from '../../../store/actions/characters';
 import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,36 +44,48 @@ export default function CharacterFormHeader(props) {
   
   
   // *** Redux ***
-  const firstName = useSelector((state) => state.createCharacters.firstName);
-  const lastName = useSelector((state) => state.createCharacters.lastName);
-  const physical = useSelector((state) => state.createCharacters.physical);
-  const strengths = useSelector((state) => state.createCharacters.strengths);
-  const weaknesses = useSelector((state) => state.createCharacters.weaknesses);
-  const motivations = useSelector((state) => state.createCharacters.motivations);
-  const secrets = useSelector((state) => state.createCharacters.secrets);
-  const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
-  const bio = useSelector(state => state.createCharacters.bio);
+  const id = useSelector((state) => state.characters.modifyCharacter?.id);
+  const traitIds = useSelector((state) => state.characters.modifyCharacter?.traits);
+  const imageUrl = useSelector((state) => state.characters.modifyCharacter?.imageUrl);
+  const bio = useSelector(state => state.characters.modifyCharacter?.bio);
   const success = useSelector(state => state.characters.success);
+  const traits = useSelector(state => state.traits);
   const allCharacters = useSelector(state => state.characters.allCharacters);
   const modCharacter = useSelector(state => state.characters.modCharacter);
   const dispatch = useDispatch();
   
   
-  //* Post Character Traits and Info to the Backend
+  // *** Helper Functions ***
+  
+  const findUpdatedTraits = old => {
+    const character = { id: old.id };
+    const traits = {};
+    
+    if (old.imageUrl !== imageUrl) character.imageUrl = imageUrl;
+    if (old.bio !== bio) character.bio = bio;
+    if (old.firstName.id !== traitIds.firstName) traits[old.firstName.id] = traitIds.firstName;
+    if (old.lastName.id !== traitIds.lastName) traits[old.lastName.id] = traitIds.lastName;
+    if (old.physical.id !== traitIds.physical) traits[old.physical.id] = traitIds.physical;
+    if (old.strengths.id !== traitIds.strengths) traits[old.strengths.id] = traitIds.strengths;
+    if (old.weaknesses.id !== traitIds.weaknesses) traits[old.weaknesses.id] = traitIds.weaknesses;
+    if (old.motivations.id !== traitIds.motivations) traits[old.motivations.id] = traitIds.motivations;
+    if (old.secrets.id !== traitIds.secrets) traits[old.secrets.id] = traitIds.secrets;
+    
+    return { ...character, traits };
+  }
+  
+  // Post Character Traits and Info to the Backend
   const handleUpdateClick = () => {
-    const character = {
-      firstName,
-      lastName,
-      physical,
-      strengths,
-      weaknesses,
-      motivations,
-      secrets,
-      imageUrl,
-      bio
-    };
+    const character = findUpdatedTraits(allCharacters[id]);
+    console.log('UPDATED CHARACTER TRAITS: ', character)
     dispatch(putCharacter(character));
   };  
+  
+  const handleDeleteClick = () => {
+    if (!id) return;
+    
+    dispatch(deleteCharacter(id))
+  }
   
   
   // *** JSX ***
@@ -86,7 +98,7 @@ export default function CharacterFormHeader(props) {
         startIcon={<DeleteForeverIcon />}
         variant='contained'
         disableElevation
-        onClick={props.clear}
+        onClick={handleDeleteClick}
       >
         Delete
       </Button>

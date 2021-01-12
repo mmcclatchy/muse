@@ -9,7 +9,8 @@ import {
   SET_MODIFY_CHARACTER,
   SET_MODIFY_IMG_URL,
   SET_MODIFY_BIO,
-  SET_MODIFY_TRAIT
+  SET_MODIFY_TRAIT,
+  DELETE_CHARACTER
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
@@ -47,29 +48,37 @@ export const getCharacters = () => {
 }
 
 
-export const postCharacter = character => async dispatch => {
-  const token = localStorage.getItem(TOKEN_KEY);
-  
-  const response = await fetch(`${baseApiUrl}/characters`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(character)
-  });
-  
-  if (response.ok) {
-    const payload = await response.json();
-    dispatch({ type: SET_CHARACTERS, payload });
-    dispatch(setSuccess(true));
-    dispatch({ type: CLEAR_FORM })
+export const postCharacter = character => {
+  return {
+    type: API,
+    payload: {
+      method: 'POST',
+      endpoint: `/characters`,
+      body: JSON.stringify(character),
+      actionConst: SET_CHARACTERS
+    }
   }
-  
-  
-  
-  dispatch({ type: POST_CHARACTER, payload: character })
 }
+
+// export const postCharacter = character => async dispatch => {
+//   const token = localStorage.getItem(TOKEN_KEY);
+  
+//   const response = await fetch(`${baseApiUrl}/characters`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify(character)
+//   });
+  
+//   if (response.ok) {
+//     const payload = await response.json();
+//     dispatch({ type: SET_CHARACTERS, payload });
+//     dispatch(setSuccess(true));
+//     dispatch({ type: CLEAR_FORM })
+//   }
+// }
 
 
 export const putCharacter = character => {
@@ -79,8 +88,19 @@ export const putCharacter = character => {
       endpoint: `/characters/${character.id}`,
       method: 'PUT',
       body: JSON.stringify(character),
-      actionConst: PUT_CHARACTER,
+      actionConst: SET_CHARACTERS,
     }
   }
 }
 
+
+export const deleteCharacter = characterId => {
+  return {
+    type: API,
+    payload: {
+      endpoint: `/characters/${characterId}`,
+      method: 'DELETE',
+      actionConst: DELETE_CHARACTER,
+    }
+  }
+}

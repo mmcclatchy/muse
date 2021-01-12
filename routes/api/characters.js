@@ -1,7 +1,9 @@
 const express = require('express');
+const sequelize = require('sequelize');
 const asyncHandler = require('express-async-handler');
+
 const { requireAuth } = require('../../auth');
-const { shapeAllForRedux } = require('../../utilities');
+const { shapeAllForRedux, normalize } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
 
 const router = express.Router();
@@ -35,6 +37,7 @@ router.post(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
+    console.log('***\n\nPOST CHARACTER\n\n***')
     const { 
       imageUrl, 
       bio, 
@@ -68,18 +71,75 @@ router.post(
 
     const eagerCharacter = await Character.findOne({
       where: { id: character.id },
-      attributes: ['id', 'firstName', 'lastName', 'imageUrl', 'bio'],
+      attributes: ['id', 'imageUrl', 'bio'],
       include: [
         {
           model: Trait,
           attributes: ['id'],
           through: { attributes: [] },
+          include: [{
+            model: TraitType,
+            attributes: ['type']
+          }]
         },
       ],
     });
 
-    res.status(201).json(eagerCharacter.shapeForRedux());
+    res.status(201).json({ 
+      payload: normalize(eagerCharacter.shapeTraits()), 
+      success: true 
+    });
   })
 );
+
+
+router.put(
+  '/:id',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const characterId = req.params.id;
+    
+    try {
+      await sequelize.transaction(async (t) => {
+        const character = await Character.findOne({
+          where: { id: characterId },
+          include: [{
+            model: Trait,
+            
+          }]
+        });
+        
+        await character.setImageUrl(req.body.imageUrl, { transaction: t });
+        await character.setBio(req.body.bio, { transaction: t });
+        character.save();
+        
+        for (const [traitId, newTraitId] of Object.entries(req.body.traits)) {
+          const characterTrait = await CharacterTrait.findOne({
+            where: { characterId, traitId }
+          });
+          
+          await characterTrait.setTraitId(newTraitId, { transaction: t });
+        }        
+      });
+      
+      const updatedCharacter = await Character.findOne({
+        where: { id: characterId },
+        attributes: ['id', 'imageUrl', 'bio'],
+        include: [{
+          model: Trait,
+          attributes: ['id'],
+          through: { attributes: [] },
+        }]
+      });
+      
+      res.json(normalize(updatedCharacter.shapeTraits()));
+      
+    } catch (e) {
+      console.log(`*****\n\nERROR: \n\n${e}\n\n*****`);
+      res.status(500).statusMessage('An error occurred while updating character.')
+    }
+  })
+)
+
 
 module.exports = router;

@@ -1,12 +1,15 @@
 import { baseApiUrl } from '../../config/config';
-import { API, SET_TRAIT_TYPES } from '../constants/constants';
+import { API, CLEAR_FORM, SET_TRAIT_TYPES } from '../constants/constants';
+import { setSuccess } from '../actions/characters';
 
 
 // API Middleware receives an action object and parses the data to make a specific fetch request
 const api = ({ dispatch, getState }) => next => async action => {
-  console.log('PASSING THROUGH API MIDDLEWARE: ', action)
+  
+  // console.log('PASSING THROUGH API MIDDLEWARE: ', action)
+  
   if (action.type !== API) return next(action);
-  console.log('PICKED UP BY API MIDDLEWARE')
+  // console.log('PICKED UP BY API MIDDLEWARE')
   
   const { authentication: { token } } = getState();
   
@@ -27,9 +30,12 @@ const api = ({ dispatch, getState }) => next => async action => {
   // console.log('RESPONSE: ', response)
 
   if (response.ok) {
-    const { payload, traitTypes } = await response.json();
+    const { payload, success } = await response.json();
     
-    if (traitTypes) dispatch({ type: SET_TRAIT_TYPES, payload: traitTypes })
+    if (success) {
+      dispatch(setSuccess(true));
+      dispatch({ type: CLEAR_FORM });
+    }
     
     dispatch({ type: actionConst, payload });
   }

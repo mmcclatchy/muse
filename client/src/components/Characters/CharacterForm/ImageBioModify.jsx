@@ -43,12 +43,10 @@ export default function ImageBioCreate() {
   // *** Use Effect Hooks ***
   
   useEffect(() => {
-    console.log('MOD CHAR IMG: ', modifyCharacter?.imageUrl)
     setAvatar(modifyCharacter?.imageUrl || '')
   }, [modifyCharacter?.imageUrl])
   
   useEffect(() => {
-    console.log('MOD CHAR BIO: ', modifyCharacter?.bio)
     setCharacterBio(modifyCharacter?.bio || '')
   }, [modifyCharacter])
    

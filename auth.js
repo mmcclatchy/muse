@@ -33,7 +33,6 @@ const restoreUser = (req, res, next) => {
   // const { token } = req.cookies;
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  console.log('***\n\ntoken: ', typeof token, token, '\n\n***')
 
   if (!token) {
     // Send a "401 Unauthorized" response status code
