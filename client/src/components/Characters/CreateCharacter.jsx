@@ -14,7 +14,7 @@ export default function CreateCharacter() {
     <div className="create-character">
       
       <div className="create-character_form">
-        <CharacterForm header='create' />
+        <CharacterForm />
       </div>
       
       <div className="create-character_display">

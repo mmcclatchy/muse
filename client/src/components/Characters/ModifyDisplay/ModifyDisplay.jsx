@@ -73,19 +73,26 @@ export default function ModifyDisplay() {
   useEffect(() => dispatch(getCharacters()), []);
   
   useEffect(() => {
-    console.log('EXPANDED: ', allCharacters[expanded])
     dispatch(setModifyCharacter(allCharacters[expanded]));
   }, [expanded])
   
   useEffect(() => {
-    setCharacters(Object.values(allCharacters));
+    const characterArr = Object.values(allCharacters);
+    console.log('CHARACTERS: ', characterArr)
+    setCharacters(characterArr);
   }, [allCharacters])
+  
+  useEffect(() => {console.log('LOCAL STATE CHARACTERS: ', characters)}, [characters])
   
   
   // *** Helper Functions ***
   
   const retrieveCharacterTrait = (traitType, character) => {
-    return traits[traitType][character.traits[traitType]]
+    console.log('TRAITS: ', traits, traitType, traits[traitType]);
+    console.log('Character Trait Type: ', character.traits[traitType])
+    const trait = traits[traitType][character.traits[traitType]];
+    console.log('CHARACTER TRAIT: ', trait)
+    return trait
   }
   
   const handleChange = panel => (event, isExpanded) => {
@@ -97,7 +104,10 @@ export default function ModifyDisplay() {
   return (
     <div className={classes.modifyDisplay}>
       {
-        characters[0] && characters.map((character) => {
+        Object.values(allCharacters)[0] && Object.values(allCharacters).map((character) => {
+          console.log('JSX CHARACTER: ', character);
+          console.log('JSX TRAIT: ', traits, traits.firstName)
+          console.log('JSX CHARACTER TRAIT ID: ', character.traits.firstName)
           return (
             <Accordion 
               key={character.id} 
@@ -114,8 +124,8 @@ export default function ModifyDisplay() {
               
                 <div className={classes.header}>
                   {
-                    `${retrieveCharacterTrait('firstName', character).name} 
-                     ${retrieveCharacterTrait('lastName', character).name}`
+                    `${traits.firstName[character.traits.firstName].name} 
+                     ${traits.lastName[character.traits.lastName].name}`
                   }
                 </div>
                 
@@ -123,11 +133,11 @@ export default function ModifyDisplay() {
               
               <AccordionDetails className={classes.details}>
                 <CharacterCardBody
-                  physical={retrieveCharacterTrait('physical', character)}
-                  strengths={retrieveCharacterTrait('strengths', character)}
-                  weaknesses={retrieveCharacterTrait('weaknesses', character)}
-                  motivations={retrieveCharacterTrait('motivations', character)}
-                  secrets={retrieveCharacterTrait('secrets', character)}
+                  physical={traits.physical[character.traits.physical]}
+                  strengths={traits.strengths[character.traits.strengths]}
+                  weaknesses={traits.weaknesses[character.traits.weaknesses]}
+                  motivations={traits.motivations[character.traits.motivations]}
+                  secrets={traits.secrets[character.traits.secrets]}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />

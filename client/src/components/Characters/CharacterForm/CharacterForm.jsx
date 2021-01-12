@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm({ header, imgBio = true }) {
+export default function CharacterForm({ imgBio = true }) {
   const classes = useStyles(theme);
 
   // *** Redux ***
@@ -94,12 +94,8 @@ export default function CharacterForm({ header, imgBio = true }) {
   // *** JSX ***
   return (
     <div className={classes.container}>
-      {header === 'create' && (
-        <CreateCharacterHeader clear={handleClearClick} close={handleClose} />
-      )}
-      {header === 'modify' && (
-        <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
-      )}
+      
+      <CreateCharacterHeader clear={handleClearClick} close={handleClose} />
 
       <FreeSoloCreateOptionDialog
         key='1'

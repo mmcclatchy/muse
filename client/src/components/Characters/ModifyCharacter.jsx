@@ -1,5 +1,5 @@
 import React from 'react';
-import CharacterForm from './CharacterForm/CharacterForm';
+import ModifyForm from './CharacterForm/ModifyForm';
 
 import './characters.css';
 import ModifyDisplay from './ModifyDisplay/ModifyDisplay';
@@ -13,7 +13,7 @@ export default function CreateCharacter() {
     <div className="modify-character">
       
       <div className="modify-character_form">
-        <CharacterForm header='modify' />
+        <ModifyForm />
       </div>
       
       <div className="modify-character_display">

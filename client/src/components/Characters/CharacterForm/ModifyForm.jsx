@@ -12,6 +12,8 @@ import { clearForm } from '../../../store/actions/createCharacters';
 import { setSuccess } from '../../../store/actions/characters';
 import theme from '../../theme';
 import ImageBio from './ImageBio';
+import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
+import { getTraits } from '../../../store/actions/traits';
 
 //**********************************************************
 
@@ -61,7 +63,7 @@ export default function CharacterForm({ imgBio = true }) {
 
   // Fetch Character Traits on init render of component
   useEffect(() => {
-    
+    dispatch(getTraits())
   }, []);
 
   // *** Helper Functions ***
@@ -80,7 +82,7 @@ export default function CharacterForm({ imgBio = true }) {
     
       <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='1'
         typeLabel='First Name'
         className={classes.traits}
@@ -88,7 +90,7 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='2'
         typeLabel='Last Name'
         className={classes.traits}
@@ -96,7 +98,7 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='3'
         typeLabel='Identifying Characteristics'
         className={classes.traits}
@@ -104,7 +106,7 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='4'
         typeLabel='Character Strengths'
         className={classes.traits}
@@ -112,7 +114,7 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='5'
         typeLabel='Character Weaknesses'
         className={classes.traits}
@@ -120,7 +122,7 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='6'
         typeLabel='Motivations'
         className={classes.traits}
@@ -130,7 +132,7 @@ export default function CharacterForm({ imgBio = true }) {
         }
       />
 
-      <FreeSoloCreateOptionDialog
+      <ModifyFreeSolo
         key='7'
         typeLabel='Secrets'
         className={classes.traits}
