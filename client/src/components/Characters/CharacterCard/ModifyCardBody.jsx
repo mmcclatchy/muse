@@ -1,9 +1,7 @@
 import React from 'react';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import { useSelector } from 'react-redux';
 
 import './character_card.css';
-import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
-import { useSelector } from 'react-redux';
 
 
 

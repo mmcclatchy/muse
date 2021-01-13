@@ -7,12 +7,7 @@ import {
   CLEAR_MODIFIED,
 } from '../constants/constants';
 
-const initialState = {
-  allCharacters: {},
-  modifyCharacter: {},
-  success: false,
-  deleted: false,
-}
+const initialState = {}
 
 export default function characterReducer(state = initialState, { type, payload }) {
   Object.freeze(state);
@@ -23,7 +18,7 @@ export default function characterReducer(state = initialState, { type, payload }
       return { ...state, ...payload };
       
     case CLEAR_MODIFIED:
-      return {}
+      return initialState;
     
     case SET_MODIFY_CHARACTER:
       return { ...state, ...payload }

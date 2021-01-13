@@ -3,6 +3,7 @@ import {
   SET_STATUS, 
   CLEAR_CHARACTERS,
   DELETE_CHARACTER,
+  PATCH_CHARACTER
 } from '../constants/constants';
 
 
@@ -18,6 +19,11 @@ export default function characterReducer(state = {}, { type, payload }) {
       
     case CLEAR_CHARACTERS:
       return {};
+      
+    case PATCH_CHARACTER:
+      const patchCharacter = { ...state };
+      patchCharacter.characters[payload.id] = payload;
+      return patchCharacter;
       
     case DELETE_CHARACTER:
       const deleteCharacter = { ...state };

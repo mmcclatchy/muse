@@ -1,10 +1,11 @@
 const express = require('express');
-const sequelize = require('sequelize');
 const asyncHandler = require('express-async-handler');
+const { Op } = require('sequelize');
 
 const { requireAuth } = require('../../auth');
 const { shapeAllForRedux, normalize } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
+const db = require('../../db/models/index')
 
 const router = express.Router();
 
@@ -13,20 +14,25 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const characters = await Character.findAll({
+      attributes: ['id', 'imageUrl', 'bio'],
       include: [
         {
-          model: Trait,
+          model: CharacterTrait,
           attributes: ['id'],
-          through: { attributes: [] },
           include: [
             {
-              model: TraitType,
-              attributes: ['type']
+              model: Trait,
+              attributes: ['id'],
+              include: [
+                {
+                  model: TraitType,
+                  attributes: ['type'],
+                }
+              ]
             }
           ]
         }
-      ],
-      attributes: ['id', 'imageUrl', 'bio']
+      ]
     });
     
     res.json({ payload: shapeAllForRedux(characters) });
@@ -74,15 +80,22 @@ router.post(
       attributes: ['id', 'imageUrl', 'bio'],
       include: [
         {
-          model: Trait,
+          model: CharacterTrait,
           attributes: ['id'],
-          through: { attributes: [] },
-          include: [{
-            model: TraitType,
-            attributes: ['type']
-          }]
-        },
-      ],
+          include: [
+            {
+              model: Trait,
+              attributes: ['id'],
+              include: [
+                {
+                  model: TraitType,
+                  attributes: ['type'],
+                }
+              ]
+            }
+          ]
+        }
+      ]
     });
 
     res.status(201).json({ 
@@ -93,51 +106,68 @@ router.post(
 );
 
 
-router.put(
+router.patch(
   '/:id',
   requireAuth,
   asyncHandler(async (req, res) => {
     const characterId = parseInt(req.params.id, 10);
+    const { imageUrl, bio, oldTraits, newTraits } = req.body;
     
-    try {
-      await sequelize.transaction(async (t) => {
+  
+      // const updatedCharacter = 
+      await db.sequelize.transaction(async (t) => {
         const character = await Character.findOne({
           where: { id: characterId },
-          include: [{
-            model: Trait,
-            
-          }]
+          attributes: ['id', 'imageUrl', 'bio']
         });
         
-        await character.setImageUrl(req.body.imageUrl, { transaction: t });
-        await character.setBio(req.body.bio, { transaction: t });
-        character.save();
+        if (imageUrl) character.imageUrl = imageUrl;
+        if (bio) character.bio = bio;
         
-        for (const [traitId, newTraitId] of Object.entries(req.body.traits)) {
-          const characterTrait = await CharacterTrait.findOne({
-            where: { characterId, traitId }
-          });
-          
-          await characterTrait.setTraitId(newTraitId, { transaction: t });
-        }        
+        const characterTraits = await CharacterTrait.findAll({
+          where: {
+            characterId,
+            traitId: {
+              [Op.or]: oldTraits
+            },
+          },
+        });
+        
+        
+        for (let i = 0; i < characterTraits.length; i++) {
+          characterTraits[i].traitId = newTraits[i];
+          characterTraits[i].save();
+        }
+        
+        character.save()
+        // return character;
       });
       
       const updatedCharacter = await Character.findOne({
         where: { id: characterId },
         attributes: ['id', 'imageUrl', 'bio'],
-        include: [{
-          model: Trait,
-          attributes: ['id'],
-          through: { attributes: [] },
-        }]
+        include: [
+          {
+            model: CharacterTrait,
+            attributes: ['id'],
+            include: [
+              {
+                model: Trait,
+                attributes: ['id'],
+                include: [
+                  {
+                    model: TraitType,
+                    attributes: ['type'],
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       });
       
-      res.json(normalize(updatedCharacter.shapeTraits()));
+      res.json({ payload: normalize(updatedCharacter.shapeTraits()), status: 'updated' });
       
-    } catch (e) {
-      console.log(`*****\n\nERROR: \n\n${e}\n\n*****`);
-      res.status(500)
-    }
   })
 )
 

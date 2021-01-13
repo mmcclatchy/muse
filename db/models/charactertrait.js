@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   CharacterTrait.associate = function(models) {
-    // associations can be defined here
+    CharacterTrait.belongsTo(models.Character, { foreignKey: 'characterId' })
+    CharacterTrait.belongsTo(models.Trait, { foreignKey: 'traitId' })
   };
   return CharacterTrait;
 };

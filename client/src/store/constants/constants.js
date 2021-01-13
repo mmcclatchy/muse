@@ -26,4 +26,5 @@ export const SET_MODIFY_BIO = 'muse/characters/SET_MODIFY_BIO';
 export const SET_MODIFY_TRAIT = 'muse/characters/SET_MODIFY_TRAIT';
 export const DELETE_CHARACTER = 'muse/characters/DELETE_CHARACTER';
 export const CLEAR_MODIFIED = 'muse/characters/CLEAR_MODIFIED';
+export const PATCH_CHARACTER = 'muse/characters/PATCH_CHARACTER';
 export const CLEAR_TRAITS = 'muse/traits/CLEAR_TRAITS';

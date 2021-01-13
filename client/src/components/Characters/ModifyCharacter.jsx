@@ -1,13 +1,11 @@
 import React from 'react';
-import ModifyForm from './CharacterForm/ModifyForm';
 
 import './characters.css';
+import ModifyForm from './CharacterForm/ModifyForm';
 import ModifyDisplay from './ModifyDisplay/ModifyDisplay';
 
 
 export default function CreateCharacter() {
-  
-  
   
   return (
     <div className="modify-character">

@@ -12,10 +12,6 @@ import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 import { setModTrait, postModTrait } from '../../store/actions/traits';
-import {
-  postFormTrait,
-  clearFormTrait,
-} from '../../store/actions/createCharacters';
 
 
 
@@ -33,7 +29,6 @@ export default function ModifyFreeSolo(props) {
   const [value, setValue] = useState(traits?.[reduxValueId] || '');
   const [open, toggleOpen] = useState(false);
   const [dialogValue, setDialogValue] = useState({ name: "" });
-  const [traitObj, setTraitObj] = useState({});
 
   
   // *** Use Effect Hooks ***
@@ -42,7 +37,7 @@ export default function ModifyFreeSolo(props) {
     //   dispatch(clearFormTrait(props.traitType));
     //   return;
     // }
-    if (value.new) {
+    if (value?.new) {
       dispatch(postModTrait(value));
       return;
     }
@@ -60,6 +55,8 @@ export default function ModifyFreeSolo(props) {
       console.log('TEST: ', id)
       dispatch(setModTrait(props.traitType, id));
     }
+    
+    if (value === null) dispatch(setModTrait(props.traitType, null))
     
   }, [value]);
   

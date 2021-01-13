@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       imageUrl: {
         type: DataTypes.STRING,
+        set(value) {
+          
+        }
       },
       bio: DataTypes.STRING(300),
     },
@@ -18,20 +21,18 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'sceneId',
     });
 
-    Character.belongsToMany(models.Trait, {
-      through: models.CharacterTrait,
+    Character.hasMany(models.CharacterTrait, { 
       foreignKey: 'characterId',
-      otherKey: 'traitId',
       onDelete: 'CASCADE',
-      // hooks: true
+      hooks: true
     });
   };
 
   Character.prototype.shapeTraits = function () {
     const shapedTraits = {};
   
-    this.Traits.forEach(trait => {
-      shapedTraits[trait.TraitType.type] = trait.id
+    this.CharacterTraits.forEach(characterTrait => {
+      shapedTraits[characterTrait.Trait.TraitType.type] = characterTrait.Trait.id;
     });
     
     return {

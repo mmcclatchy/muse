@@ -52,15 +52,12 @@ export default function CharacterForm() {
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   
   // *** Use Effect Hooks ***
 
-  // Fetch Character Traits on init render of component
-  useEffect(() => {
-    dispatch(getTraits())
-  }, []);
+  
 
   
 

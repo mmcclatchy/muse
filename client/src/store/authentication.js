@@ -1,5 +1,5 @@
 import { baseApiUrl } from '../config/config';
-import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER, CLEAR_TRAITS, CLEAR_FORM, CLEAR_CHARACTERS } from '../store/constants/constants'
+import { TOKEN_KEY, SET_TOKEN, REMOVE_TOKEN, PUT_USER, SET_USER, CLEAR_TRAITS, CLEAR_FORM, CLEAR_CHARACTERS, CLEAR_MODIFIED } from '../store/constants/constants'
 
 
 
@@ -50,6 +50,7 @@ export const logout = () => async (dispatch, getState) => {
   dispatch({ type: CLEAR_TRAITS });
   dispatch({ type: CLEAR_FORM });
   dispatch({ type: CLEAR_CHARACTERS });
+  dispatch({ type: CLEAR_MODIFIED });
 }
 
 

@@ -8,7 +8,11 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { putCharacter, deleteCharacter, setStatus } from '../../../store/actions/characters';
+import {
+  patchCharacter,
+  deleteCharacter,
+  setStatus,
+} from '../../../store/actions/characters';
 import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '10px auto',
     // fontFamily: 'var(--font-display-text)',
     fontSize: 17,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   header: {
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
-    opacity: '1'
+    opacity: '1',
   },
   button: {
     maxHeight: '30px',
@@ -34,105 +38,97 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.warning.main,
     '&:hover': {
       backgroundColor: theme.palette.warning.dark,
-    }
+    },
   },
-  
 }));
 
 export default function CharacterFormHeader() {
   const classes = useStyles(theme);
-  
-  
+
   // *** Redux ***
   const id = useSelector((state) => state.modifyCharacter?.id);
   const traitIds = useSelector((state) => state.modifyCharacter?.traits);
   const imageUrl = useSelector((state) => state.modifyCharacter?.imageUrl);
-  const bio = useSelector(state => state.modifyCharacter?.bio);
-  const status = useSelector(state => state.allCharacters.status);
-  const traits = useSelector(state => state.traits);
-  const allCharacters = useSelector(state => state.allCharacters.characters);
-  const modCharacter = useSelector(state => state.modCharacter);
+  const bio = useSelector((state) => state.modifyCharacter?.bio);
+  const status = useSelector((state) => state.allCharacters.status);
+  const traits = useSelector((state) => state.traits);
+  const allCharacters = useSelector((state) => state.allCharacters.characters);
+  const modCharacter = useSelector((state) => state.modCharacter);
   const dispatch = useDispatch();
-  
-  
-  
-  
+
   // *** Use Effect Hooks ***
-  const statusIsDeleted = status === 'deleted'
-  useEffect(() => {}, [statusIsDeleted])
-  
-  
+  const statusIsDeleted = status === 'deleted';
+  useEffect(() => {}, [statusIsDeleted]);
+
   // *** Helper Functions ***
-  
-  const findUpdatedTraits = old => {
-    const character = { id: old.id };
-    const traits = {};
-    console.log('FIND UPDATED TRAITS: ', old)
-    if (old.imageUrl !== imageUrl) character.imageUrl = imageUrl;
-    if (old.bio !== bio) character.bio = bio;
-    if (old.firstName.id !== traitIds.firstName) traits[old.firstName.id] = traitIds.firstName;
-    if (old.lastName.id !== traitIds.lastName) traits[old.lastName.id] = traitIds.lastName;
-    if (old.physical.id !== traitIds.physical) traits[old.physical.id] = traitIds.physical;
-    if (old.strengths.id !== traitIds.strengths) traits[old.strengths.id] = traitIds.strengths;
-    if (old.weaknesses.id !== traitIds.weaknesses) traits[old.weaknesses.id] = traitIds.weaknesses;
-    if (old.motivations.id !== traitIds.motivations) traits[old.motivations.id] = traitIds.motivations;
-    if (old.secrets.id !== traitIds.secrets) traits[old.secrets.id] = traitIds.secrets;
-    
-    console.log('FIND UPDATED TRAITS: ', character, traits, { ...character, traits })
-    return { ...character, traits };
-  }
-  
+
+  const findUpdatedTraits = (oldCharacter) => {
+    const character = { id: oldCharacter.id, oldTraits: [], newTraits: [] };
+
+    if (oldCharacter.imageUrl !== imageUrl) character.imageUrl = imageUrl;
+    if (oldCharacter.bio !== bio) character.bio = bio;
+
+    for (const [traitType, modTraitId] of Object.entries(traitIds)) {
+      if (oldCharacter.traits[traitType] !== modTraitId) {
+        character.oldTraits.push(oldCharacter.traits[traitType]);
+        character.newTraits.push(modTraitId);
+      }
+    }
+
+    console.log('FIND UPDATED TRAITS: ', character);
+    return character;
+  };
+
   // Post Character Traits and Info to the Backend
   const handleUpdateClick = () => {
     const character = findUpdatedTraits(allCharacters[id]);
-    dispatch(putCharacter(character));
-  };  
-  
+    dispatch(patchCharacter(character));
+  };
+
   const handleDeleteClick = () => {
     if (!id) return;
-    
-    dispatch(deleteCharacter(id))
-  }
-  
+
+    dispatch(deleteCharacter(id));
+  };
+
   // Close Success Candy Bar
   const handleClose = (event, reason) => {
     dispatch(setStatus(null));
   };
-  
+
   // *** JSX ***
-  
+
   return (
     <div className={classes.header} style={{ opacity: 1 }}>
-      
       <Button
         className={classes.delete}
         startIcon={<DeleteForeverIcon />}
         variant='contained'
         disableElevation
-        onClick={handleDeleteClick}
-      >
+        onClick={handleDeleteClick}>
         Delete
       </Button>
-      
+
       <h3 className={classes.cc__title}>Modify a Character</h3>
-      
+
       <Button
         variant='contained'
         color='secondary'
         className={classes.button}
         startIcon={<SaveAltIcon />}
         onClick={handleUpdateClick}
-        disableElevation
-      >
+        disableElevation>
         Update
       </Button>
-      
-      <Snackbar open={status === 'deleted'} autoHideDuration={3000} onClose={handleClose}>
-        <Alert elevation={6} variant='filled' onClose={handleClose} severity="success">
-          Your character has been successfully deleted
+
+      <Snackbar
+        open={status === 'deleted' || status === 'updated'}
+        autoHideDuration={3000}
+        onClose={handleClose}>
+        <Alert elevation={6} variant='filled' onClose={handleClose} severity='success'>
+          {`Your character has been successfully ${status}`}
         </Alert>
       </Snackbar>
-      
     </div>
   );
 }

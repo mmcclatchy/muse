@@ -15,11 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Trait.associate = function (models) {
-    Trait.belongsToMany(models.Character, {
-      through: models.CharacterTrait,
-      foreignKey: 'traitId',
-      otherKey: 'characterId',
-    });
+    Trait.hasMany(models.CharacterTrait, { foreignKey: 'traitId' });
 
     Trait.belongsTo(models.TraitType, { foreignKey: 'typeId' });
   };

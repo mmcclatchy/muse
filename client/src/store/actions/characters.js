@@ -1,5 +1,5 @@
-import { 
-  API, 
+import {
+  API,
   TOKEN_KEY,
   SET_CHARACTERS,
   SET_CHARACTER,
@@ -11,29 +11,28 @@ import {
   SET_MODIFY_IMG_URL,
   SET_MODIFY_BIO,
   SET_MODIFY_TRAIT,
-  CLEAR_MODIFIED,
-  DELETE_CHARACTER
+  PATCH_CHARACTER,
+  DELETE_CHARACTER,
 } from '../constants/constants';
 import { baseApiUrl } from '../../config/config';
 
 // ********************************************************
 
-export const setStatus = status => async dispatch => {
-  dispatch({ type: SET_STATUS, payload: { status }});
-}
+export const setStatus = (status) => async (dispatch) => {
+  dispatch({ type: SET_STATUS, payload: { status } });
+};
 
-export const setModifyCharacter = character => {
+export const setModifyCharacter = (character) => {
   return { type: SET_MODIFY_CHARACTER, payload: character };
-}
+};
 
-export const setModImgUrl = imgUrl => {
+export const setModImgUrl = (imgUrl) => {
   return { type: SET_MODIFY_IMG_URL, payload: imgUrl };
-}
+};
 
-export const setModBio = bio => {
+export const setModBio = (bio) => {
   return { type: SET_MODIFY_BIO, payload: bio };
-}
-
+};
 
 // **********************************************************
 
@@ -45,25 +44,24 @@ export const getCharacters = () => {
       method: 'GET',
       actionConst: SET_CHARACTERS,
     },
-  };  
-}
+  };
+};
 
-
-export const postCharacter = character => {
+export const postCharacter = (character) => {
   return {
     type: API,
     payload: {
       method: 'POST',
       endpoint: `/characters`,
       body: JSON.stringify(character),
-      actionConst: 'DO_NOTHING'
-    }
-  }
-}
+      actionConst: 'DO_NOTHING',
+    },
+  };
+};
 
 // export const postCharacter = character => async dispatch => {
 //   const token = localStorage.getItem(TOKEN_KEY);
-  
+
 //   const response = await fetch(`${baseApiUrl}/characters`, {
 //     method: 'POST',
 //     headers: {
@@ -72,7 +70,7 @@ export const postCharacter = character => {
 //     },
 //     body: JSON.stringify(character)
 //   });
-  
+
 //   if (response.ok) {
 //     const payload = await response.json();
 //     dispatch({ type: SET_CHARACTERS, payload });
@@ -81,27 +79,25 @@ export const postCharacter = character => {
 //   }
 // }
 
-
-export const putCharacter = character => {
+export const patchCharacter = (character) => {
   return {
     type: API,
     payload: {
       endpoint: `/characters/${character.id}`,
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify(character),
-      actionConst: SET_CHARACTERS,
-    }
-  }
-}
+      actionConst: PATCH_CHARACTER,
+    },
+  };
+};
 
-
-export const deleteCharacter = characterId => {
+export const deleteCharacter = (characterId) => {
   return {
     type: API,
     payload: {
       endpoint: `/characters/${characterId}`,
       method: 'DELETE',
       actionConst: DELETE_CHARACTER,
-    }
-  }
-}
+    },
+  };
+};
