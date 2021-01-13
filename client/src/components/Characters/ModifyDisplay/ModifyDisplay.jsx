@@ -58,8 +58,8 @@ export default function ModifyDisplay() {
   const classes = useStyles(theme);
   
   // *** Redux ***
-  const allCharacters = useSelector(state => state.characters.allCharacters);
-  const deleted = useSelector(state => state.characters.deleted);
+  const allCharacters = useSelector(state => state.allCharacters.characters);
+  const status = useSelector(state => state.allCharacters.status);
   const traits = useSelector(state => state.traits);
   const dispatch = useDispatch();
   
@@ -71,10 +71,11 @@ export default function ModifyDisplay() {
   
   // *** Use Effect Hooks ***
   
-  // get all characters on mount
+  // get all characters on mount and when a character has been deleted
+  const statusIsDeleted = status === 'deleted';
   useEffect(() => {
     dispatch(getCharacters())
-  }, [deleted]);
+  }, [statusIsDeleted]);
   
   useEffect(() => {
     dispatch(setModifyCharacter(allCharacters[expanded]));
@@ -87,7 +88,6 @@ export default function ModifyDisplay() {
   
   useEffect(() => {}, [characters]);
   
-  // useEffect(() => {}, [deleted]);
   
   
   // *** Helper Functions ***

@@ -8,7 +8,8 @@ import storage from 'redux-persist/lib/storage';
 import authentication from './authentication';
 import api from './middleware/api';
 import traits from './reducer/traits';
-import characters from './reducer/characters';
+import allCharacters from './reducer/allCharacters';
+import modifyCharacter from './reducer/modifyCharacter';
 import createCharacters from './reducer/createCharacters';
 import navigation from './reducer/navigation';
 
@@ -17,7 +18,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducer = combineReducers({
   // TODO: Add Reducers here
   authentication,
-  characters,
+  allCharacters,
+  modifyCharacter,
   traits,
   createCharacters,
   navigation,

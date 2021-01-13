@@ -87,7 +87,7 @@ router.post(
 
     res.status(201).json({ 
       payload: normalize(eagerCharacter.shapeTraits()), 
-      success: true 
+      status: 'success' 
     });
   })
 );
@@ -153,7 +153,7 @@ router.delete(
     const character = await Character.findByPk(characterId);
     await character.destroy()
     
-    res.status(200).json({ payload: characterId, deleted: true })
+    res.status(200).json({ payload: characterId, status: 'deleted' })
   })
 )
 

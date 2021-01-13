@@ -9,7 +9,7 @@ import ModifyCharacterHeader from './ModifyCharacterHeader';
 import { SET_TRAITS } from '../../../store/constants/constants';
 import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
-import { setSuccess } from '../../../store/actions/characters';
+import { setStatus } from '../../../store/actions/characters';
 import theme from '../../theme';
 import ImageBio from './ImageBioCreate';
 
@@ -85,7 +85,7 @@ export default function CreateCharacterForm({ header, imgBio = true }) {
 
   // Close Success Candy Bar
   const handleClose = (event, reason) => {
-    dispatch(setSuccess(false));
+    dispatch(setStatus(null));
   };
 
   // *** JSX ***

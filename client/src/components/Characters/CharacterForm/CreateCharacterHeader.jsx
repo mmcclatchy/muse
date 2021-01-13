@@ -44,7 +44,7 @@ export default function CharacterFormHeader(props) {
   const secrets = useSelector((state) => state.createCharacters.secrets);
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
-  const success = useSelector(state => state.characters.success);
+  const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   
   
@@ -94,7 +94,7 @@ export default function CharacterFormHeader(props) {
         Save
       </Button>
       
-      <Snackbar open={success} autoHideDuration={3000} onClose={props.close}>
+      <Snackbar open={status === 'success'} autoHideDuration={3000} onClose={props.close}>
         <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
           Your character has been saved!
         </Alert>

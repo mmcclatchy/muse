@@ -30,8 +30,8 @@ export default function ImageBioCreate() {
   
   // *** Redux ***
   const traits = useSelector(state => state.traits);
-  const modifyCharacter = useSelector(state => state.characters.modifyCharacter);
-  const deleted = useSelector(state => state.characters.deleted);
+  const modifyCharacter = useSelector(state => state.modifyCharacter);
+  const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   
   
@@ -52,11 +52,11 @@ export default function ImageBioCreate() {
    
   // Clear Avatar and Bio Fields when a save is successful
   useEffect(() => {
-    if (deleted) {
+    if (status === 'deleted') {
       setAvatar('');
       setCharacterBio('');
     }
-  }, [deleted])
+  }, [status])
   
   // Dispatch Url to Redux
   useEffect(() => {

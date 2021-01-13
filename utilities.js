@@ -52,7 +52,11 @@ const sortTraits = traits => {
   
   traits.forEach(trait => {
     if (!sortedTraits[trait.TraitType.type]) sortedTraits[trait.TraitType.type] = {};
-    sortedTraits[trait.TraitType.type][trait.id] = trait;
+    sortedTraits[trait.TraitType.type][trait.id] = { 
+      id: trait.id,
+      name: trait.name,
+      type: trait.TraitType.type,
+    }
   })
   
   return sortedTraits

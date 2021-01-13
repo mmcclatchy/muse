@@ -9,7 +9,7 @@ import ModifyCharacterHeader from './ModifyCharacterHeader';
 import { SET_TRAITS } from '../../../store/constants/constants';
 import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
-import { setSuccess } from '../../../store/actions/characters';
+import { setStatus } from '../../../store/actions/characters';
 import theme from '../../theme';
 import ImageBio from './ImageBioCreate';
 import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';

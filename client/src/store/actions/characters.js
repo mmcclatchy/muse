@@ -4,7 +4,7 @@ import {
   SET_CHARACTERS,
   SET_CHARACTER,
   POST_CHARACTER,
-  SET_SUCCESS,
+  SET_STATUS,
   CLEAR_FORM,
   SET_DELETED,
   SET_MODIFY_CHARACTER,
@@ -18,13 +18,8 @@ import { baseApiUrl } from '../../config/config';
 
 // ********************************************************
 
-export const setSuccess = success => async dispatch => {
-  dispatch({ type: SET_SUCCESS, payload: { success }});
-}
-
-export const setDeleted = deleted => async dispatch => {
-  console.log("SET DELETED")
-  dispatch({ type: SET_DELETED, payload: { deleted }});
+export const setStatus = status => async dispatch => {
+  dispatch({ type: SET_STATUS, payload: { status }});
 }
 
 export const setModifyCharacter = character => {

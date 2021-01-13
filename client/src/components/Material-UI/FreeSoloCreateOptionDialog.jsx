@@ -24,7 +24,7 @@ const filter = createFilterOptions();
 export default function FreeSoloCreateOptionDialog(props) {
   // *** Redux ***
   const { name: reduxValue } = useSelector(state => state.createCharacters[props.traitType]);
-  const success = useSelector(state => state.characters.success);
+  const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   
   
@@ -45,9 +45,10 @@ export default function FreeSoloCreateOptionDialog(props) {
     value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
   }, [value]);
   
+  const statusIsSuccess = status === 'success';
   useEffect(() => {
-    if (success) setValue('')
-  }, [success])
+    if (statusIsSuccess) setValue('')
+  }, [statusIsSuccess])
   
   useEffect(() => {
     if (!reduxValue) setValue('')

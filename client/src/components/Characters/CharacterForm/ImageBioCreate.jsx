@@ -31,7 +31,7 @@ export default function ImageBioCreate() {
   // *** Redux ***
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
-  const success = useSelector(state => state.characters.success);
+  const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   
   
@@ -49,12 +49,13 @@ export default function ImageBioCreate() {
   }, []);
 
   // Clear Avatar and Bio Fields when a save is successful
+  const statusIsSuccess = status === 'success';
   useEffect(() => {
-    if (success) {
+    if (statusIsSuccess) {
       setAvatar('');
       setCharacterBio('');
     }
-  }, [success])
+  }, [statusIsSuccess])
   
   // Dispatch Url to Redux
   useEffect(() => {

@@ -23,9 +23,9 @@ const filter = createFilterOptions();
 
 export default function ModifyFreeSolo(props) {
   // *** Redux ***
-  const reduxValueId = useSelector(state => state.characters.modifyCharacter?.traits?.[props.traitType]);
+  const reduxValueId = useSelector(state => state.modifyCharacter?.traits?.[props.traitType]);
   const traits = useSelector(state => state.traits?.[props.traitType]);
-  const deleted = useSelector(state => state.characters.deleted);
+  const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   
   
@@ -64,8 +64,8 @@ export default function ModifyFreeSolo(props) {
   }, [value]);
   
   useEffect(() => {
-    if (deleted) setValue('')
-  }, [deleted])
+    if (status === 'deleted') setValue('')
+  }, [status])
   
   useEffect(() => {
     reduxValueId  ?  setValue(traits[reduxValueId].name)  :  setValue('');

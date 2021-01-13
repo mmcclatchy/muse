@@ -8,7 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { putCharacter, deleteCharacter, setDeleted } from '../../../store/actions/characters';
+import { putCharacter, deleteCharacter, setStatus } from '../../../store/actions/characters';
 import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,20 +44,22 @@ export default function CharacterFormHeader() {
   
   
   // *** Redux ***
-  const id = useSelector((state) => state.characters.modifyCharacter?.id);
-  const traitIds = useSelector((state) => state.characters.modifyCharacter?.traits);
-  const imageUrl = useSelector((state) => state.characters.modifyCharacter?.imageUrl);
-  const bio = useSelector(state => state.characters.modifyCharacter?.bio);
-  const deleted = useSelector(state => state.characters.deleted);
+  const id = useSelector((state) => state.modifyCharacter?.id);
+  const traitIds = useSelector((state) => state.modifyCharacter?.traits);
+  const imageUrl = useSelector((state) => state.modifyCharacter?.imageUrl);
+  const bio = useSelector(state => state.modifyCharacter?.bio);
+  const status = useSelector(state => state.allCharacters.status);
   const traits = useSelector(state => state.traits);
-  const allCharacters = useSelector(state => state.characters.allCharacters);
-  const modCharacter = useSelector(state => state.characters.modCharacter);
+  const allCharacters = useSelector(state => state.allCharacters.characters);
+  const modCharacter = useSelector(state => state.modCharacter);
   const dispatch = useDispatch();
   
   
-  // *** Use Effect Hooks ***
   
-  useEffect(() => {}, [deleted])
+  
+  // *** Use Effect Hooks ***
+  const statusIsDeleted = status === 'deleted'
+  useEffect(() => {}, [statusIsDeleted])
   
   
   // *** Helper Functions ***
@@ -94,7 +96,7 @@ export default function CharacterFormHeader() {
   
   // Close Success Candy Bar
   const handleClose = (event, reason) => {
-    dispatch(setDeleted(false));
+    dispatch(setStatus(null));
   };
   
   // *** JSX ***
@@ -125,7 +127,7 @@ export default function CharacterFormHeader() {
         Update
       </Button>
       
-      <Snackbar open={deleted} autoHideDuration={3000} onClose={handleClose}>
+      <Snackbar open={status === 'deleted'} autoHideDuration={3000} onClose={handleClose}>
         <Alert elevation={6} variant='filled' onClose={handleClose} severity="success">
           Your character has been successfully deleted
         </Alert>
