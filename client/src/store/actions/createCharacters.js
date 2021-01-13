@@ -1,5 +1,5 @@
 import {
-  // API,
+  API,
   SET_IMAGE_URL,
   SET_CHARACTER_TRAIT,
   SET_BIO,
@@ -57,20 +57,33 @@ export const clearCharacters = () => async dispatch => {
 //   }
 // }
 
-export const postFormTrait = (trait) => async (dispatch) => {
-  const token = localStorage.getItem(TOKEN_KEY);
-  const response = await fetch(`${baseApiUrl}/traits`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(trait),
-  });
-
-  if (response.ok) {
-    const payload = await response.json();
-    dispatch({ type: SET_CHARACTER_TRAIT, payload });
-    dispatch({ type: SET_NEW_TRAIT, payload });
+export const postFormTrait = trait => {
+  return {
+    type: API,
+    payload: {
+      method: 'POST',
+      endpoint: '/traits',
+      body: JSON.stringify(trait),
+      actionConst: SET_CHARACTER_TRAIT,
+      secondActionConst: SET_NEW_TRAIT,
+    }
   }
-};
+}
+
+// export const postFormTrait = (trait) => async (dispatch) => {
+//   const token = localStorage.getItem(TOKEN_KEY);
+//   const response = await fetch(`${baseApiUrl}/traits`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify(trait),
+//   });
+
+//   if (response.ok) {
+//     const payload = await response.json();
+//     dispatch({ type: SET_CHARACTER_TRAIT, payload });
+//     dispatch({ type: SET_NEW_TRAIT, payload });
+//   }
+// };

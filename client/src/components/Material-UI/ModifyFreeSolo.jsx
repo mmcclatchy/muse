@@ -11,7 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
-import { setModTrait } from '../../store/actions/traits';
+import { setModTrait, postModTrait } from '../../store/actions/traits';
 import {
   postFormTrait,
   clearFormTrait,
@@ -38,14 +38,29 @@ export default function ModifyFreeSolo(props) {
   
   // *** Use Effect Hooks ***
   useEffect(() => {
-    if (!value) {
-      dispatch(clearFormTrait(props.traitType));
+    // if (!value) {
+    //   dispatch(clearFormTrait(props.traitType));
+    //   return;
+    // }
+    if (value.new) {
+      dispatch(postModTrait(value));
       return;
     }
     
-    console.log('VALUE: ', typeof value, value)
+    // Needing lots of guardrails against undefined during loading
+    const { name: traitName } = traits?.[reduxValueId] || { name: null }
     
-    value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setModTrait(value));
+    if (value && value !== traitName) {
+      const [{ id }] = Object.values(traits).filter(trait => {
+        console.log('VALUE: ', typeof value, value)
+        console.log('TRAIT: ', typeof trait, trait)
+        console.log('MATCHING: ', trait.name === value.name)
+        return trait.name === value.name
+      })
+      console.log('TEST: ', id)
+      dispatch(setModTrait(props.traitType, id));
+    }
+    
   }, [value]);
   
   useEffect(() => {

@@ -16,7 +16,7 @@ const api = ({ dispatch, getState }) => next => async action => {
   // console.log('API: ', token)
   
   // Payload will determine the fetch call and what is being dispatched
-  const { endpoint, method, body, actionConst } = action.payload;
+  const { endpoint, method, body, actionConst, secondActionConst } = action.payload;
   
   const response = await fetch(`${baseApiUrl}${endpoint}`, {
     method: method,
@@ -44,6 +44,7 @@ const api = ({ dispatch, getState }) => next => async action => {
     }
     
     dispatch({ type: actionConst, payload });
+    if (secondActionConst) dispatch({ type: secondActionConst, payload })
   }
   next(action);
 };
