@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import theme from '../../theme';
 import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
 import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
-import CharacterCardBody from '../CharacterCard/CharacterCardBody';
+import ModifyCardBody from '../CharacterCard/ModifyCardBody';
 import { isNotEmpty } from '../../../utilities';
 
 
@@ -78,10 +78,12 @@ export default function ModifyDisplay() {
   }, [statusIsDeleted]);
   
   useEffect(() => {
-    dispatch(setModifyCharacter(allCharacters[expanded]));
+    dispatch(setModifyCharacter(allCharacters?.[expanded]));
   }, [expanded])
   
   useEffect(() => {
+    if (!allCharacters) return;
+    
     const characterArr = Object.values(allCharacters);
     setCharacters(characterArr);
   }, [allCharacters])
@@ -131,7 +133,7 @@ export default function ModifyDisplay() {
               </AccordionSummary>
               
               <AccordionDetails className={classes.details}>
-                <CharacterCardBody
+                <ModifyCardBody
                   physical={traits.physical[character.traits.physical]}
                   strengths={traits.strengths[character.traits.strengths]}
                   weaknesses={traits.weaknesses[character.traits.weaknesses]}

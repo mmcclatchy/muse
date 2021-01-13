@@ -52,9 +52,9 @@ export default function ModifyFreeSolo(props) {
     
     if (value && value !== traitName) {
       const [{ id }] = Object.values(traits).filter(trait => {
-        console.log('VALUE: ', typeof value, value)
-        console.log('TRAIT: ', typeof trait, trait)
-        console.log('MATCHING: ', trait.name === value.name)
+        // console.log('VALUE: ', typeof value, value)
+        // console.log('TRAIT: ', typeof trait, trait)
+        // console.log('MATCHING: ', trait.name === value.name)
         return trait.name === value.name
       })
       console.log('TEST: ', id)

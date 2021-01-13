@@ -48,7 +48,14 @@ export default function CharacterCardBody(props) {
           <TraitRender id={secId} trait={secrets} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
-        <p className="bio">{props.bio}</p>
+        {/* <div className="card_physical">{props.physical}</div>
+        <div className="card_strengths">{props.strengths}</div>
+        <div className="card_weaknesses">{props.weaknesses}</div>
+        <div className="card_motivations">{props.physical}</div>
+        <div className="card_secrets">{props.secrets}</div> */}
+        <div className="bio">{props.bio}</div>
+        
+        
         
       </div>
     </div>
