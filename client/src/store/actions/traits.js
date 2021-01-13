@@ -1,4 +1,4 @@
-import { API, SET_TRAITS } from '../constants/constants';
+import { API, SET_TRAITS, SET_MODIFY_TRAIT } from '../constants/constants';
 
 
 export const getTraits = () => {
@@ -12,3 +12,10 @@ export const getTraits = () => {
   }
 }
 
+
+// ********************************************************
+
+
+export const setModTrait = (traitType, id) => {
+  return { type: SET_MODIFY_TRAIT, payload: { traitType, id }}
+}

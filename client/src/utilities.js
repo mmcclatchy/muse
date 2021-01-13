@@ -10,6 +10,5 @@ export const compare = (a, b) => {
 
 export const isNotEmpty = obj => {
   if (!obj) return false;
-  console.log('isNotEmpty: ', obj, Object.keys(obj).length > 0  ?  true  :  false)
   return Object.keys(obj).length > 0  ?  true  :  false
 }

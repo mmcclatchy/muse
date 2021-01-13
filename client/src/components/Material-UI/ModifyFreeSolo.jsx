@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
@@ -11,9 +11,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
+import { setModTrait } from '../../store/actions/traits';
 import {
   postFormTrait,
-  setFormTrait,
   clearFormTrait,
 } from '../../store/actions/createCharacters';
 
@@ -30,9 +30,10 @@ export default function ModifyFreeSolo(props) {
   
   
   // *** Local State ***
-  const [value, setValue] = React.useState(traits?.[reduxValueId] || '');
-  const [open, toggleOpen] = React.useState(false);
-  const [dialogValue, setDialogValue] = React.useState({ name: "" });
+  const [value, setValue] = useState(traits?.[reduxValueId] || '');
+  const [open, toggleOpen] = useState(false);
+  const [dialogValue, setDialogValue] = useState({ name: "" });
+  const [traitObj, setTraitObj] = useState({});
 
   
   // *** Use Effect Hooks ***
@@ -42,7 +43,9 @@ export default function ModifyFreeSolo(props) {
       return;
     }
     
-    // value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
+    console.log('VALUE: ', typeof value, value)
+    
+    value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setModTrait(value));
   }, [value]);
   
   useEffect(() => {
@@ -88,6 +91,7 @@ export default function ModifyFreeSolo(props) {
         type: props.traits[0].type,
       });
     } else {
+      console.log('3rd CONDITION: ', newValue)
       setValue(newValue);
     }
   };

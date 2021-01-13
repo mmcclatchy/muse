@@ -50,36 +50,26 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function CharacterForm({ imgBio = true }) {
+export default function CharacterForm() {
   const classes = useStyles(theme);
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  const token = useSelector((state) => state.authentication.token);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***
 
-  // Fetch Character Traits on init render of component
-  useEffect(() => {
-    
-  }, []);
+  
 
   // *** Helper Functions ***
 
-  // Clear form on click
-  const handleClearClick = () => dispatch(clearForm());
-
-  // Close Success Candy Bar
-  const handleClose = (event, reason) => {
-    dispatch(setSuccess(false));
-  };
+  
 
   // *** JSX ***
   return (
     <div className={classes.container}>
     
-      <ModifyCharacterHeader clear={handleClearClick} close={handleClose} />
+      <ModifyCharacterHeader />
 
       <ModifyFreeSolo
         key='1'
@@ -139,7 +129,8 @@ export default function CharacterForm({ imgBio = true }) {
         traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
       />
 
-      {imgBio && <ImageBio />}
+      <ImageBio />
+      
     </div>
   );
 }

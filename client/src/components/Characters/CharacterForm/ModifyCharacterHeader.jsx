@@ -82,9 +82,7 @@ export default function CharacterFormHeader() {
   
   // Post Character Traits and Info to the Backend
   const handleUpdateClick = () => {
-    console.log('HANDLE UPDATE CLICK')
     const character = findUpdatedTraits(allCharacters[id]);
-    console.log('UPDATED CHARACTER TRAITS: ', character)
     dispatch(putCharacter(character));
   };  
   

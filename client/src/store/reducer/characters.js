@@ -1,6 +1,5 @@
 import { 
   SET_CHARACTERS, 
-  SET_CHARACTER, 
   SET_SUCCESS, 
   CLEAR_CHARACTERS,
   SET_MODIFY_CHARACTER,
@@ -23,9 +22,6 @@ export default function characterReducer(state = initialState, { type, payload }
   Object.freeze(state);
   
   switch (type) {
-    case SET_CHARACTER:
-      return { ...state, allCharacters: { ...state.allCharacters, payload }};
-      
     case SET_CHARACTERS:
       return { ...state, allCharacters: { ...state.allCharacters, ...payload } };
     
@@ -53,7 +49,7 @@ export default function characterReducer(state = initialState, { type, payload }
       return { ...state, modifyCharacter: modBio };
       
     case SET_MODIFY_TRAIT:
-      const modTrait = { ...state.modifyCharacter, [payload.trait]: payload.id };
+      const modTrait = { ...state.modifyCharacter, [payload.traitType]: payload.id };
       return { ...state, modifyCharacter: modTrait };
       
     case DELETE_CHARACTER:

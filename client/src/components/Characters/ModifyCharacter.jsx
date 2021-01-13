@@ -17,7 +17,6 @@ export default function CreateCharacter() {
       </div>
       
       <div className="modify-character_display">
-        {/* <DisplayCharacter /> */}
         <ModifyDisplay />
       </div>
       

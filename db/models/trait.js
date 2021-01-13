@@ -26,9 +26,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Trait.prototype.shapedForRedux = function (traitType) {
     return {
-      id: this.id,
-      name: this.name,
-      type: traitType,
+      [this.id]: {
+        id: this.id,
+        name: this.name,
+        type: traitType,
+      }
     };
   };
 

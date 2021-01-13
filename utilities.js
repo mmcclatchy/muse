@@ -51,12 +51,8 @@ const sortTraits = traits => {
   const sortedTraits = {}
   
   traits.forEach(trait => {
-    // Sort Traits by Trait Type then normalize
-    sortedTraits[trait.TraitType.type] = { 
-      ...sortedTraits[trait.TraitType.type],
-      ...normalizeTrait(trait),
-      // typeId: trait.typeId,
-    }
+    if (!sortedTraits[trait.TraitType.type]) sortedTraits[trait.TraitType.type] = {};
+    sortedTraits[trait.TraitType.type][trait.id] = trait;
   })
   
   return sortedTraits
