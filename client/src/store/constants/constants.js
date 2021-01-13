@@ -3,6 +3,7 @@ export const TOKEN_KEY = 'muse/authentication/token';
 export const SET_TOKEN = 'muse/authentication/SET_TOKEN';
 export const REMOVE_TOKEN = 'muse/authentication/REMOVE_TOKEN';
 export const SET_CHARACTERS = 'muse/api/SET_CHARACTERS';
+export const SET_CHARACTER = 'muse/api/SET_CHARACTER';
 export const SET_TRAITS = 'muse/api/SET_TRAITS';
 export const SET_NEW_TRAIT = 'muse/api/SET_NEW_TRAIT';
 export const SET_TRAIT_TYPES = 'muse/api/SET_TRAIT_TYPES';

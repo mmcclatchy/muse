@@ -27,14 +27,13 @@ const api = ({ dispatch, getState }) => next => async action => {
     body: body
   });
   
-  // console.log('RESPONSE: ', response)
-
+  
   if (response.ok) {
     const { payload, success, deleted } = await response.json();
     
+    console.log('PAYLOAD: ', actionConst, payload)
 
     if (deleted) {
-      console.log('DELETED: ', deleted)
       dispatch(setDeleted(true));
       dispatch({ type: CLEAR_MODIFIED })
     }

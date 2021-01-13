@@ -2,6 +2,7 @@ import {
   API, 
   TOKEN_KEY,
   SET_CHARACTERS,
+  SET_CHARACTER,
   POST_CHARACTER,
   SET_SUCCESS,
   CLEAR_FORM,
@@ -60,7 +61,7 @@ export const postCharacter = character => {
       method: 'POST',
       endpoint: `/characters`,
       body: JSON.stringify(character),
-      actionConst: SET_CHARACTERS
+      actionConst: 'DO_NOTHING'
     }
   }
 }

@@ -104,9 +104,9 @@ export default function ModifyDisplay() {
         isNotEmpty(allCharacters) 
           && isNotEmpty(traits) 
           && Object.values(allCharacters).map((character) => {
-          console.log('JSX CHARACTER: ', character);
+          {/* console.log('JSX CHARACTER: ', character);
           console.log('JSX TRAIT: ', traits?.physical[character.traits?.physical])
-          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName)
+          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName) */}
           return (
             <Accordion 
               key={character.id} 
@@ -123,8 +123,8 @@ export default function ModifyDisplay() {
               
                 <div className={classes.header}>
                   {
-                    `${traits?.firstName[character.traits?.firstName]?.name} 
-                     ${traits?.lastName[character.traits?.lastName]?.name}`
+                    `${traits.firstName[character.traits.firstName].name} 
+                     ${traits.lastName[character.traits.lastName].name}`
                   }
                 </div>
                 
@@ -132,11 +132,11 @@ export default function ModifyDisplay() {
               
               <AccordionDetails className={classes.details}>
                 <CharacterCardBody
-                  physical={traits?.physical[character.traits?.physical]}
-                  strengths={traits?.strengths[character.traits?.strengths]}
-                  weaknesses={traits?.weaknesses[character.traits?.weaknesses]}
-                  motivations={traits?.motivations[character.traits?.motivations]}
-                  secrets={traits?.secrets[character.traits?.secrets]}
+                  physical={traits.physical[character.traits.physical]}
+                  strengths={traits.strengths[character.traits.strengths]}
+                  weaknesses={traits.weaknesses[character.traits.weaknesses]}
+                  motivations={traits.motivations[character.traits.motivations]}
+                  secrets={traits.secrets[character.traits.secrets]}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />

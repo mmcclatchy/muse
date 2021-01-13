@@ -94,7 +94,7 @@ export default function CharacterFormHeader(props) {
         Save
       </Button>
       
-      <Snackbar open={success} autoHideDuration={4000} onClose={props.close}>
+      <Snackbar open={success} autoHideDuration={3000} onClose={props.close}>
         <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
           Your character has been saved!
         </Alert>

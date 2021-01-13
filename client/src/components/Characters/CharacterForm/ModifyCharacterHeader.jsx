@@ -127,7 +127,7 @@ export default function CharacterFormHeader() {
         Update
       </Button>
       
-      <Snackbar open={deleted} autoHideDuration={4000} onClose={handleClose}>
+      <Snackbar open={deleted} autoHideDuration={3000} onClose={handleClose}>
         <Alert elevation={6} variant='filled' onClose={handleClose} severity="success">
           Your character has been successfully deleted
         </Alert>

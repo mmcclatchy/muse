@@ -1,5 +1,6 @@
 import { 
   SET_CHARACTERS, 
+  SET_CHARACTER, 
   SET_SUCCESS, 
   CLEAR_CHARACTERS,
   SET_MODIFY_CHARACTER,
@@ -22,6 +23,9 @@ export default function characterReducer(state = initialState, { type, payload }
   Object.freeze(state);
   
   switch (type) {
+    case SET_CHARACTER:
+      return { ...state, allCharacters: { ...state.allCharacters, payload }};
+      
     case SET_CHARACTERS:
       return { ...state, allCharacters: { ...state.allCharacters, ...payload } };
     
