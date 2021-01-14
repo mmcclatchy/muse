@@ -23,7 +23,6 @@ export default function ModifyFreeSolo(props) {
   const traits = useSelector(state => state.traits?.[props.traitType]);
   const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
-  console.log('REDUX VALUE ID: ', reduxValueId)
   
   // *** Local State ***
   const [value, setValue] = useState(traits?.[reduxValueId] || '');

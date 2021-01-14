@@ -22,7 +22,7 @@
 }
 
 .nav-link:not(.active):hover {
-    background-color: #d8f9ff;
+    background-color: var(--primary-lighter);
 }
 
 .active {

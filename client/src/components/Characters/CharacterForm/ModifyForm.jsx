@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
     opacity: '1',
+    height: 50,
   },
   button: {
     maxHeight: '30px',

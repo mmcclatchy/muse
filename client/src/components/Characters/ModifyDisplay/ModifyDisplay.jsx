@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -12,41 +12,67 @@ import { getCharacters, setModifyCharacter } from '../../../store/actions/charac
 import { CLEAR_MODIFIED } from '../../../store/constants/constants';
 import ModifyCardBody from '../CharacterCard/ModifyCardBody';
 import { isNotEmpty } from '../../../utilities';
+import { withStyles } from '@material-ui/core';
 
 
 // **************************************************************
+
+const AccordionSummary = withStyles({
+  root: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    '&.Mui-expanded': { 
+      maxHeight: 50, 
+      minHeight: 50,
+    }
+    
+  },
+  content: {
+    margin: 0,
+    display: 'flex',
+    'justifyContent': 'center',
+    '&.Mui-expanded': { margin: 0 }
+  }
+})(MuiAccordionSummary);
+
+
 
 const useStyles = makeStyles(theme => ({  
   modifyDisplay: {
     height: '100%',
     width: '100%',
     backgroundColor: theme.palette.backgroundColor,
-    overflowY: 'scroll'
-  },
-  
-  accordion: {
-    
-  },
-  
-  header: {
-    margin: '0 auto',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  
-  
-  summary: {
-    backgroundColor: 'rgba(0,255,255,.5)',
-    display: 'flex',
-    justifyContent: 'center',
-    '&.Mui-expanded': {
-      backgroundColor: 'rgba(255,0,255,.5)',
+    overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+      width: 10
     },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 5px grey',
+      background: theme.palette.primary.lighter,
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: '#888',
+      borderRadius: 10
+    },
+    '&::-webkit-scrollbar-thumb:hover': {
+      background: '#555',
+    }
+  },
+  
+  summary: { 
+    backgroundColor: theme.palette.primary.lighter,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
+    '&.Mui-expanded': {
+      backgroundColor: theme.palette.primary.light,
+    },
+    transition: 'background-color 250ms ease-in-out'
   },
   
   details: {
     padding: 0,
-  }
+  },
   
 }))
 

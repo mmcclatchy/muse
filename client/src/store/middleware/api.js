@@ -31,7 +31,7 @@ const api = ({ dispatch, getState }) => next => async action => {
   if (response.ok) {
     const { payload, status } = await response.json();
     
-    console.log('PAYLOAD: ', actionConst, payload)
+    // console.log('PAYLOAD: ', actionConst, payload)
     
     if (status) {
       dispatch(setStatus(status));

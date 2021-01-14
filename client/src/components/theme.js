@@ -3,10 +3,17 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 
 const theme = createMuiTheme({
+  root: {
+    backgroundColor: 'red',
+    '&.MuiAccordionSummary-content': { backgroundColor: 'blue' },
+    
+  },
+  
   palette: {
     primary: {
       main: '#8aacc8',
-      light: '#9be7ff',
+      light: '#bbdefb',
+      lighter: '#d8f9ff',
       dark: '#2286c3'
     },
     secondary: {

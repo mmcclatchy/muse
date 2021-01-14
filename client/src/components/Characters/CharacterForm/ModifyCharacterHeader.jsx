@@ -24,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     display: 'flex',
+    alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
     opacity: '1',
+    height: 50,
   },
   button: {
     maxHeight: '30px',
