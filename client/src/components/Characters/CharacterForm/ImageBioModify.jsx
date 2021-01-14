@@ -97,6 +97,7 @@ export default function ImageBioCreate() {
         value={avatar}
         defaultValue=''
         className={classes.image}
+        disabled={!modifyCharacter.id}
         label='Character Image URL'
         color='secondary'
         inputProps={{ maxLength: 256 }}
@@ -109,6 +110,7 @@ export default function ImageBioCreate() {
         className={classes.characterBio}
         color='secondary'
         label='Bio'
+        disabled={!modifyCharacter.id}
         multiline
         rows={5}
         inputProps={{ maxLength: 300 }}

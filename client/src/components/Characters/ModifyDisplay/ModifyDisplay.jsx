@@ -10,7 +10,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import theme from '../../theme';
 import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
 import { CLEAR_MODIFIED } from '../../../store/constants/constants';
-import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
 import ModifyCardBody from '../CharacterCard/ModifyCardBody';
 import { isNotEmpty } from '../../../utilities';
 
@@ -80,7 +79,6 @@ export default function ModifyDisplay() {
   }, [statusIsDeleted]);
   
   useEffect(() => {
-    console.log(expanded)
     expanded 
       ? dispatch(setModifyCharacter(allCharacters?.[expanded]))
       : dispatch({ type: CLEAR_MODIFIED });
