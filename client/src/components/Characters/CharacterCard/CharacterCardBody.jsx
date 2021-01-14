@@ -26,9 +26,8 @@ export default function CharacterCardBody(props) {
       className="character_card_body" 
       style={{ backgroundImage: getUrl(props.imageUrl) }} 
     >
-      <div className="card_grid">
         
-        <CSSTransition in={physical} timeout={1000} classNames='card_trait' >
+        {/* <CSSTransition in={physical} timeout={1000} classNames='card_trait' >
           <TraitRender id={physId} trait={physical} classNames='card_trait' timeout={1000} />
         </CSSTransition>
         
@@ -46,16 +45,17 @@ export default function CharacterCardBody(props) {
         
         <CSSTransition in={secrets} timeout={1000} classNames='card_trait'>
           <TraitRender id={secId} trait={secrets} classNames='card_trait' timeout={1000} />
-        </CSSTransition>
+        </CSSTransition> */}
         
-        {/* <div className="card_physical">{props.physical}</div>
-        <div className="card_strengths">{props.strengths}</div>
-        <div className="card_weaknesses">{props.weaknesses}</div>
-        <div className="card_motivations">{props.physical}</div>
-        <div className="card_secrets">{props.secrets}</div> */}
+        
+      <div className="character_card_text">
+        
+        <div className="card_physical">{props.physical?.name}</div>
+        <div className="card_strengths">{props.strengths?.name}</div>
+        <div className="card_weaknesses">{props.weaknesses?.name}</div>
+        <div className="card_motivations">{props.motivations?.name}</div>
+        <div className="card_secrets">{props.secrets?.name}</div>
         <div className="bio">{props.bio}</div>
-        
-        
         
       </div>
     </div>

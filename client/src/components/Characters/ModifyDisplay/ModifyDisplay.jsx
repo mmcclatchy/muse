@@ -171,9 +171,9 @@ export default function ModifyDisplay() {
                 <ModifyCardBody
                   physical={getTrait(traits, 'physical', character.traits?.physical)}
                   strengths={getTrait(traits, 'strengths', character.traits?.strengths)}
-                  weaknesses={getTrait(traits, 'weaknesses', character.traits?.physical)}
-                  motivations={getTrait(traits, 'motivations', character.traits?.physical)}
-                  secrets={getTrait(traits, 'physical', character.traits?.physical)}
+                  weaknesses={getTrait(traits, 'weaknesses', character.traits?.weaknesses)}
+                  motivations={getTrait(traits, 'motivations', character.traits?.motivations)}
+                  secrets={getTrait(traits, 'physical', character.traits?.secrets)}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />

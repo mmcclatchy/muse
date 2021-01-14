@@ -22,21 +22,17 @@ export default function CharacterCard() {
   return (
     <div className="character_card" >
     
-      <div className="card_header_wrapper">
-        <CharacterCardHeader firstName={firstName} lastName={lastName} />
-      </div>
+      <CharacterCardHeader firstName={firstName} lastName={lastName} />
       
-      <div className="card_body_wrapper">
-        <CharacterCardBody
-          physical={physical}
-          strengths={strengths}
-          weaknesses={weaknesses}
-          motivations={motivations}
-          secrets={secrets}
-          bio={bio}
-          imageUrl={imageUrl}
-        />
-      </div>
+      <CharacterCardBody
+        physical={physical}
+        strengths={strengths}
+        weaknesses={weaknesses}
+        motivations={motivations}
+        secrets={secrets}
+        bio={bio}
+        imageUrl={imageUrl}
+      />
       
     </div>
   )
