@@ -42,33 +42,35 @@ export default function ImageBioCreate() {
   
   // *** Use Effect Hooks ***
   
+  // // useEffect(() => {
+  // }, [modifyCharacter?.imageUrl])
+  // TODO *****************   Re-Rendering Conflict  ***********************
+  const statusIsDeleted = status === 'deleted';
   useEffect(() => {
     setAvatar(modifyCharacter?.imageUrl || '')
-  }, [modifyCharacter?.imageUrl])
-  
-  useEffect(() => {
     setCharacterBio(modifyCharacter?.bio || '')
   }, [modifyCharacter])
-   
+  
   // Clear Avatar and Bio Fields when a save is successful
   useEffect(() => {
-    if (status === 'deleted') {
+    // if (status === 'deleted') {
       setAvatar('');
       setCharacterBio('');
-    }
-  }, [status])
+    // }
+  }, [statusIsDeleted])
   
   // Dispatch Url to Redux
   useEffect(() => {
     dispatch(setModImgUrl(avatar));
   }, [avatar]);
-
+  
   
   // Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setModBio(characterBio));
   }, [characterBio]);
   
+  // TODO **********************************************************
   // Clear Avatar and Bio Textareas when Redux is cleared
   // useEffect(() => {
   //   if (modifyCharacter?.imageUrl === '' && avatar !== '') setAvatar('');

@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import theme from '../../theme';
 import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
+import { CLEAR_MODIFIED } from '../../../store/constants/constants';
 import CharacterCardHeader from '../CharacterCard/CharacterCardHeader';
 import ModifyCardBody from '../CharacterCard/ModifyCardBody';
 import { isNotEmpty } from '../../../utilities';
@@ -59,13 +60,14 @@ export default function ModifyDisplay() {
   
   // *** Redux ***
   const allCharacters = useSelector(state => state.allCharacters.characters);
+  const modCharacterId = useSelector(state => state.modifyCharacter?.id)
   const status = useSelector(state => state.allCharacters.status);
   const traits = useSelector(state => state.traits);
   const dispatch = useDispatch();
   
   
   // *** Local State ***
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(modCharacterId);
   // const [characters, setCharacters] = useState([])
 
   
@@ -78,7 +80,10 @@ export default function ModifyDisplay() {
   }, [statusIsDeleted]);
   
   useEffect(() => {
-    dispatch(setModifyCharacter(allCharacters?.[expanded]));
+    console.log(expanded)
+    expanded 
+      ? dispatch(setModifyCharacter(allCharacters?.[expanded]))
+      : dispatch({ type: CLEAR_MODIFIED });
   }, [expanded])
   
   // useEffect(() => {
@@ -112,9 +117,9 @@ export default function ModifyDisplay() {
         isNotEmpty(allCharacters) 
           && isNotEmpty(traits) 
           && Object.values(allCharacters).map((character) => {
-          console.log('JSX CHARACTER: ', character);
+          {/* console.log('JSX CHARACTER: ', character);
           console.log('JSX TRAIT: ', traits?.physical[character.traits?.physical])
-          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName)
+          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName) */}
           return (
             <Accordion 
               key={character.id} 
