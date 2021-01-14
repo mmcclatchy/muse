@@ -36,8 +36,8 @@ export default function ImageBioCreate() {
   
   
   // *** Local State ***
-  const [avatar, setAvatar] = useState('');
-  const [characterBio, setCharacterBio] = useState('');
+  const [avatar, setAvatar] = useState(imageUrl);
+  const [characterBio, setCharacterBio] = useState(bio);
 
   
   // *** Use Effect Hooks ***
