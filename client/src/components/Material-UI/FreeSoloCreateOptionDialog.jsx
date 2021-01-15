@@ -45,10 +45,11 @@ export default function FreeSoloCreateOptionDialog(props) {
     value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
   }, [value]);
   
-  const statusIsSuccess = status === 'success';
+  // const statusIsSuccess = status === 'success';
   useEffect(() => {
-    if (statusIsSuccess) setValue('')
-  }, [statusIsSuccess])
+    console.log('Status is Success: ', status === 'success');
+    if (status === 'success') setValue('')
+  }, [status])
   
   useEffect(() => {
     if (!reduxValue) setValue('')

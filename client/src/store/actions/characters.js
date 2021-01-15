@@ -48,6 +48,7 @@ export const getCharacters = () => {
 };
 
 export const postCharacter = (character) => {
+  console.log('Post Character: ', character)
   return {
     type: API,
     payload: {

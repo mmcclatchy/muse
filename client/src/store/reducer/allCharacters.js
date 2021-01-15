@@ -15,6 +15,7 @@ export default function characterReducer(state = {}, { type, payload }) {
       return { ...state, characters: payload };
     
     case SET_STATUS:
+      console.log('SET_STATUS: ', payload)
       return { ...state, ...payload };
       
     case CLEAR_CHARACTERS:

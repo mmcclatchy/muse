@@ -55,12 +55,12 @@ router.post(
       motivations,
       secrets,
     } = req.body;
-
+    console.log(`****\n\nImage URL: `, imageUrl);
     const character = await Character.create({
       imageUrl,
       bio,
     });
-
+    console.log(`****\n\nCharacter: ${character}\n\n${character.imageUrl}\n\n****`)
     const characterTraits = [
       { characterId: character.id, traitId: firstName.id },
       { characterId: character.id, traitId: lastName.id },
@@ -97,6 +97,7 @@ router.post(
         }
       ]
     });
+    console.log(`****\n\nEagerCharacter: ${eagerCharacter}\n\n${eagerCharacter.imageUrl}\n\n****`)
 
     res.status(201).json({ 
       payload: normalize(eagerCharacter.shapeTraits()), 

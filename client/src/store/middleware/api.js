@@ -9,7 +9,7 @@ const api = ({ dispatch, getState }) => next => async action => {
   // console.log('PASSING THROUGH API MIDDLEWARE: ', action)
   
   if (action.type !== API) return next(action);
-  // console.log('PICKED UP BY API MIDDLEWARE')
+  console.log('PICKED UP BY API MIDDLEWARE: ', action)
   
   const { authentication: { token } } = getState();
   
@@ -17,6 +17,8 @@ const api = ({ dispatch, getState }) => next => async action => {
   
   // Payload will determine the fetch call and what is being dispatched
   const { endpoint, method, body, actionConst, secondActionConst } = action.payload;
+  
+  console.log('API Payload after destructuring: ', endpoint, method, body, actionConst)
   
   const response = await fetch(`${baseApiUrl}${endpoint}`, {
     method: method,
@@ -31,9 +33,10 @@ const api = ({ dispatch, getState }) => next => async action => {
   if (response.ok) {
     const { payload, status } = await response.json();
     
-    // console.log('PAYLOAD: ', actionConst, payload)
+    console.log('Response: ', payload, status)
     
     if (status) {
+      console.log('Inside Status Conditional')
       dispatch(setStatus(status));
       if (status === 'success') dispatch({ type: CLEAR_FORM });
       if (status === 'deleted') dispatch({ type: CLEAR_MODIFIED });
