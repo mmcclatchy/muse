@@ -5,7 +5,6 @@ import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDi
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import CreateCharacterHeader from './CreateCharacterHeader';
-import ModifyCharacterHeader from './ModifyCharacterHeader';
 import { SET_TRAITS } from '../../../store/constants/constants';
 import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
@@ -76,6 +75,7 @@ export default function CreateCharacterForm({ header, imgBio = true }) {
     };
 
     fetchTraits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // *** Helper Functions ***

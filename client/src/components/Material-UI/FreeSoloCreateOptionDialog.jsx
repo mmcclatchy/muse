@@ -29,38 +29,30 @@ export default function FreeSoloCreateOptionDialog(props) {
   
   
   // *** Local State ***
-  const [value, setValue] = React.useState(reduxValue);
+  const [value, setValue] = React.useState(reduxValue || null);
   const [open, toggleOpen] = React.useState(false);
   const [dialogValue, setDialogValue] = React.useState({ name: "" });
 
   
   // *** Use Effect Hooks ***
   useEffect(() => {
-    // console.log('1')
-    // console.log('If No Value, Clear Form Trait Type: ', typeof value, value, props.traitType)
     if (!value) {
-      // console.log('Inside !value conditional')
       if (reduxValue) dispatch(clearFormTrait(props.traitType))
       return;
     }
 
     value.new  ?  dispatch(postFormTrait(value))  :  dispatch(setFormTrait(value));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
   
-  // const statusIsSuccess = status === 'success';
   useEffect(() => {
-    // console.log('2')
-    // console.log('Status is Success: ', status === 'success');
     if (status === 'success') setValue(null)
   }, [status])
   
   useEffect(() => {
-    // console.log(3)
     if (!reduxValue) setValue(null)
   }, [reduxValue])
   
-  // Forces rerender to clear values when redux is empty
-  // useEffect(() => {}, [value])
 
   
   // *** Helper Functions ***
@@ -127,7 +119,9 @@ export default function FreeSoloCreateOptionDialog(props) {
   // *** JSX ***
   return (
     <React.Fragment>
+      
       {!props.traits ? null : (
+      
         <Autocomplete
           value={value}
           onChange={handleChange}
@@ -142,9 +136,8 @@ export default function FreeSoloCreateOptionDialog(props) {
           renderOption={(option) => option.name}
           style={{ width: '95%', margin: '1% 2%' }}
           freeSolo
-          // maxHeight={'75%'}
-          // size='small'
           renderInput={(params) => (
+      
             <TextField
               {...params}
               label={props.typeLabel}
@@ -155,13 +148,17 @@ export default function FreeSoloCreateOptionDialog(props) {
           )}
         />
       )}
+      
       <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
         <form onSubmit={handleSubmit}>
+      
           <DialogTitle id='form-dialog-title'>Add new {props.typeLabel}</DialogTitle>
+      
           <DialogContent>
             <DialogContentText>
               Did not see what you were looking for in our list? Please, add it!
             </DialogContentText>
+      
             <TextField
               autoFocus
               margin='dense'
@@ -173,15 +170,8 @@ export default function FreeSoloCreateOptionDialog(props) {
               label={props.typeLabel}
               type='text'
             />
-            {/* <TextField
-              margin="dense"
-              id="name"
-              value={dialogValue.year}
-              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
-              label="year"
-              type="number"
-            /> */}
           </DialogContent>
+      
           <DialogActions>
             <Button onClick={handleClose} color='primary'>
               Cancel
@@ -190,6 +180,7 @@ export default function FreeSoloCreateOptionDialog(props) {
               Add
             </Button>
           </DialogActions>
+      
         </form>
       </Dialog>
     </React.Fragment>

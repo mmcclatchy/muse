@@ -1,20 +1,13 @@
 import {
   API,
-  TOKEN_KEY,
   SET_CHARACTERS,
-  SET_CHARACTER,
-  POST_CHARACTER,
   SET_STATUS,
-  CLEAR_FORM,
-  SET_DELETED,
   SET_MODIFY_CHARACTER,
   SET_MODIFY_IMG_URL,
   SET_MODIFY_BIO,
-  SET_MODIFY_TRAIT,
   PATCH_CHARACTER,
   DELETE_CHARACTER,
 } from '../constants/constants';
-import { baseApiUrl } from '../../config/config';
 
 // ********************************************************
 
@@ -59,26 +52,6 @@ export const postCharacter = (character) => {
     },
   };
 };
-
-// export const postCharacter = character => async dispatch => {
-//   const token = localStorage.getItem(TOKEN_KEY);
-
-//   const response = await fetch(`${baseApiUrl}/characters`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify(character)
-//   });
-
-//   if (response.ok) {
-//     const payload = await response.json();
-//     dispatch({ type: SET_CHARACTERS, payload });
-//     dispatch(setSuccess(true));
-//     dispatch({ type: CLEAR_FORM })
-//   }
-// }
 
 export const patchCharacter = (character) => {
   return {

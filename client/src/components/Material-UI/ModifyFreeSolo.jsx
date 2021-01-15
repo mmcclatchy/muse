@@ -32,10 +32,6 @@ export default function ModifyFreeSolo(props) {
   
   // *** Use Effect Hooks ***
   useEffect(() => {
-    // if (!value) {
-    //   dispatch(clearFormTrait(props.traitType));
-    //   return;
-    // }
     if (value?.new) {
       dispatch(postModTrait(value));
       return;
@@ -46,17 +42,15 @@ export default function ModifyFreeSolo(props) {
     
     if (value && value !== traitName) {
       const [{ id }] = Object.values(traits).filter(trait => {
-        // console.log('VALUE: ', typeof value, value)
-        // console.log('TRAIT: ', typeof trait, trait)
-        // console.log('MATCHING: ', trait.name === value.name)
         return trait.name === value.name
       })
-      // console.log('TEST: ', id)
+      
       dispatch(setModTrait(props.traitType, id));
     }
     
     if (value === null) dispatch(setModTrait(props.traitType, null))
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
   
   useEffect(() => {
@@ -65,6 +59,7 @@ export default function ModifyFreeSolo(props) {
   
   useEffect(() => {
     reduxValueId  ?  setValue(traits[reduxValueId].name)  :  setValue('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxValueId])
 
   
@@ -102,7 +97,6 @@ export default function ModifyFreeSolo(props) {
         type: props.traits[0].type,
       });
     } else {
-      // console.log('3rd CONDITION: ', newValue)
       setValue(newValue);
     }
   };
@@ -133,6 +127,7 @@ export default function ModifyFreeSolo(props) {
   // *** JSX ***
   return (
     <React.Fragment>
+      
       {!props.traits ? null : (
         <Autocomplete
           value={value}
@@ -149,8 +144,6 @@ export default function ModifyFreeSolo(props) {
           renderOption={(option) => option.name}
           style={{ width: '95%', margin: '1% 2%' }}
           freeSolo
-          // maxHeight={'75%'}
-          // size='small'
           renderInput={(params) => (
             <TextField
               {...params}
@@ -162,13 +155,17 @@ export default function ModifyFreeSolo(props) {
           )}
         />
       )}
+      
       <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
         <form onSubmit={handleSubmit}>
+      
           <DialogTitle id='form-dialog-title'>Add new {props.typeLabel}</DialogTitle>
+      
           <DialogContent>
             <DialogContentText>
               Did not see what you were looking for in our list? Please, add it!
             </DialogContentText>
+      
             <TextField
               autoFocus
               margin='dense'
@@ -180,15 +177,8 @@ export default function ModifyFreeSolo(props) {
               label={props.typeLabel}
               type='text'
             />
-            {/* <TextField
-              margin="dense"
-              id="name"
-              value={dialogValue.year}
-              onChange={(event) => setDialogValue({ ...dialogValue, year: event.target.value })}
-              label="year"
-              type="number"
-            /> */}
           </DialogContent>
+      
           <DialogActions>
             <Button onClick={handleClose} color='primary'>
               Cancel
@@ -197,8 +187,10 @@ export default function ModifyFreeSolo(props) {
               Add
             </Button>
           </DialogActions>
+      
         </form>
       </Dialog>
+      
     </React.Fragment>
   );
 }

@@ -20,7 +20,6 @@ export default function SplashPage() {
   };
 
   const handleClose = () => {
-    // debugger;
     setSignUpOpen(false);
     setLoginOpen(false);
   };

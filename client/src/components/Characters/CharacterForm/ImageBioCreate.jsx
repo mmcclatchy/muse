@@ -46,6 +46,7 @@ export default function ImageBioCreate() {
   useEffect(() => {
     if (bio) setCharacterBio(bio);
     if (imageUrl) setAvatar(imageUrl);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Clear Avatar and Bio Fields when a save is successful
@@ -60,21 +61,25 @@ export default function ImageBioCreate() {
   // Dispatch Url to Redux
   useEffect(() => {
     dispatch(setImageUrl(avatar));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [avatar]);
 
   
   // Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setBio(characterBio));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterBio]);
   
   // Clear Avatar and Bio Textareas when Redux is cleared
   useEffect(() => {
     if (imageUrl === '' && avatar !== '') setAvatar('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageUrl]);
   
   useEffect(() => {
     if (bio === '' && characterBio !== '') setCharacterBio('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bio])
   
   
@@ -92,7 +97,7 @@ export default function ImageBioCreate() {
       
       <TextField
         value={avatar}
-        defaultValue={imageUrl}
+        // defaultValue={imageUrl}
         className={classes.image}
         label='Character Image URL'
         color='secondary'
@@ -112,7 +117,7 @@ export default function ImageBioCreate() {
         helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}
         style={{ width: '95%', margin: '2% 2%' }}
-        defaultValue=''
+        // defaultValue=''
         variant='outlined'
       />
 

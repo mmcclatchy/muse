@@ -26,7 +26,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3} style={{ width: '100%' }} >
-          <Typography>{children}</Typography>
+          <Typography variant='body1' component='div'>{children}</Typography>
         </Box>
       )}
     </div>
@@ -107,35 +107,31 @@ export default function CharacterInfo(props) {
   
   
   return (
-    // <div className="character_info">
+    <div className={classes.root}>
       
-      <div className={classes.root}>
-       
-        <AppBar position="static" className={classes.header} >
-          <Tabs 
-            value={value} 
-            onChange={handleChange} 
-            centered
-            className={classes.headerTabs}
-            aria-label="simple tabs example"
-          >
-            <Tab label="Traits" className={classes.tab} {...a11yProps(0)} />
-            <Tab label="Bio" className={classes.tab} {...a11yProps(1)} />
-          </Tabs>
-        </AppBar>
-        
-        <TabPanel value={value} index={0} className={classes.tabPanel} >
-          <CharacterTraits props={props.props} className={classes.traits} />
-        </TabPanel>
-        
-        <TabPanel value={value} index={1} className={classes.tabPanel} >
-          <div className={classes.bioWrapper} >
-            <div className={classes.bio} >{props.props.bio}</div>
-          </div>
-        </TabPanel>
+      <AppBar position="static" className={classes.header} >
+        <Tabs 
+          value={value} 
+          onChange={handleChange} 
+          centered
+          className={classes.headerTabs}
+          aria-label="simple tabs example"
+        >
+          <Tab label="Traits" className={classes.tab} {...a11yProps(0)} />
+          <Tab label="Bio" className={classes.tab} {...a11yProps(1)} />
+        </Tabs>
+      </AppBar>
       
-      </div>
+      <TabPanel value={value} index={0} className={classes.tabPanel} >
+        <CharacterTraits props={props.props} className={classes.traits} />
+      </TabPanel>
       
-    // </div>
+      <TabPanel value={value} index={1} className={classes.tabPanel} >
+        <div className={classes.bioWrapper} >
+          <div className={classes.bio} >{props.props.bio}</div>
+        </div>
+      </TabPanel>
+    
+    </div>
   )
 }

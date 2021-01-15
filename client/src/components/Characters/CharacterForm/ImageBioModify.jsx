@@ -29,7 +29,6 @@ export default function ImageBioCreate() {
   const classes = useStyles(theme);
   
   // *** Redux ***
-  const traits = useSelector(state => state.traits);
   const modifyCharacter = useSelector(state => state.modifyCharacter);
   const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
@@ -42,44 +41,31 @@ export default function ImageBioCreate() {
   
   // *** Use Effect Hooks ***
   
-  // // useEffect(() => {
-  // }, [modifyCharacter?.imageUrl])
-  // TODO *****************   Re-Rendering Conflict  ***********************
-  const statusIsDeleted = status === 'deleted';
   useEffect(() => {
     setAvatar(modifyCharacter?.imageUrl || '')
     setCharacterBio(modifyCharacter?.bio || '')
   }, [modifyCharacter])
   
   // Clear Avatar and Bio Fields when a save is successful
+  const statusIsDeleted = status === 'deleted';
   useEffect(() => {
-    // if (status === 'deleted') {
       setAvatar('');
       setCharacterBio('');
-    // }
   }, [statusIsDeleted])
   
   // Dispatch Url to Redux
   useEffect(() => {
     dispatch(setModImgUrl(avatar));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [avatar]);
   
   
   // Dispatch Bio to Redux
   useEffect(() => {
     dispatch(setModBio(characterBio));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterBio]);
-  
-  // TODO **********************************************************
-  // Clear Avatar and Bio Textareas when Redux is cleared
-  // useEffect(() => {
-  //   if (modifyCharacter?.imageUrl === '' && avatar !== '') setAvatar('');
-  // }, [imageUrl]);
-  
-  // useEffect(() => {
-  //   if (modifyCharacter?.bio === '' && characterBio !== '') setCharacterBio('');
-  // }, [bio]);
-  
+    
   
   
   // *** Helper Functions ***
@@ -95,7 +81,7 @@ export default function ImageBioCreate() {
       
       <TextField
         value={avatar}
-        defaultValue=''
+        // defaultValue=''
         className={classes.image}
         disabled={!modifyCharacter.id}
         label='Character Image URL'
@@ -117,7 +103,7 @@ export default function ImageBioCreate() {
         helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}
         style={{ width: '95%', margin: '2% 2%' }}
-        defaultValue=''
+        // defaultValue=''
         variant='outlined'
       />
 

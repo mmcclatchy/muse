@@ -76,6 +76,7 @@ export default function CharacterForm({ header, imgBio = true }) {
     };
 
     fetchTraits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // *** Helper Functions ***

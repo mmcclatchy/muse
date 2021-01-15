@@ -73,22 +73,21 @@ export default function Footer() {
           </div>
         </a>
         
-        {/* <div className="tooltip"> */}
-          <a 
-            href='https://github.com/mmcclatchy' 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className='tooltip'
-          > 
-            <img 
-              src="https://www.vectorlogo.zone/logos/github/github-icon.svg"
-              alt='github link'
-              className='github' />
-            <div className="top">
-              <p>GitHub</p>
-            </div>
-          </a>
-        {/* </div> */}
+        <a 
+          href='https://github.com/mmcclatchy' 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className='tooltip'
+        > 
+          <img 
+            src="https://www.vectorlogo.zone/logos/github/github-icon.svg"
+            alt='github link'
+            className='github' />
+          <div className="top">
+            <p>GitHub</p>
+          </div>
+        </a>
+        
       </div>
       
     </div>

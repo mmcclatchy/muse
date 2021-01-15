@@ -19,7 +19,6 @@ import theme from '../../theme';
 const useStyles = makeStyles((theme) => ({
   cc__title: {
     margin: '10px auto',
-    // fontFamily: 'var(--font-display-text)',
     fontSize: 17,
     fontWeight: 'bold',
   },
@@ -54,9 +53,7 @@ export default function CharacterFormHeader() {
   const imageUrl = useSelector((state) => state.modifyCharacter?.imageUrl);
   const bio = useSelector((state) => state.modifyCharacter?.bio);
   const status = useSelector((state) => state.allCharacters.status);
-  const traits = useSelector((state) => state.traits);
   const allCharacters = useSelector((state) => state.allCharacters.characters);
-  const modCharacter = useSelector((state) => state.modCharacter);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***
@@ -78,7 +75,6 @@ export default function CharacterFormHeader() {
       }
     }
 
-    // console.log('FIND UPDATED TRAITS: ', character);
     return character;
   };
 

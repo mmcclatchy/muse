@@ -12,17 +12,6 @@ import AppBar from '../Material-UI/AppBar';
 
 import { toggleDrawer } from '../../store/actions/navigation';
 
-// import PropTypes from 'prop-types';
-// import AppBar from '@material-ui/core/AppBar';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import MailIcon from '@material-ui/icons/Mail';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +60,7 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      {/* <Divider /> */}
+      
       <List>
         {['Create Character', 'Create Scene', 'Create Story'].map(text => (
           <>
@@ -96,8 +85,6 @@ function ResponsiveDrawer(props) {
           <Drawer
             container={container}
             variant="temporary"
-            // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            // anchor='left'
             open={drawerOpen}
             onClose={handleDrawerToggle}
             classes={{

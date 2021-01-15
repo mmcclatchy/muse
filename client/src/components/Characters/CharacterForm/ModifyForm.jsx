@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
@@ -7,7 +7,6 @@ import ModifyFreeSolo from '../../Material-UI/ModifyFreeSolo';
 import ModifyCharacterHeader from './ModifyCharacterHeader';
 import ImageBioModify from './ImageBioModify';
 
-import { getTraits } from '../../../store/actions/traits';
 import { compare } from '../../../utilities';
 import theme from '../../theme';
 
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   cc__title: {
     margin: '10px auto',
-    // fontFamily: 'var(--font-display-text)',
     fontSize: 17,
     fontWeight: 'bold',
   },
@@ -53,13 +51,6 @@ export default function CharacterForm() {
 
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
-  // const dispatch = useDispatch();
-
-  
-  // *** Use Effect Hooks ***
-
-  
-
   
 
   // *** JSX ***

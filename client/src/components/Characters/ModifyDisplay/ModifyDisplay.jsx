@@ -45,17 +45,14 @@ const useStyles = makeStyles(theme => ({
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       width: 10,
-      // borderRadius: 10,
     },
     '&::-webkit-scrollbar-track': {
       boxShadow: 'inset 0 0 5px grey',
       background: theme.palette.primary.lightGrey,
-      // borderRadius: 10,
     },
     '&::-webkit-scrollbar-thumb': {
       background: theme.palette.primary.main,
       borderRadius: 10,
-      // transition: 'background 300ms ease-in-out'
     },
     '&::-webkit-scrollbar-thumb:hover': {
       background: theme.palette.primary.dark,
@@ -96,7 +93,6 @@ export default function ModifyDisplay() {
   
   // *** Local State ***
   const [expanded, setExpanded] = useState(modCharacterId);
-  // const [characters, setCharacters] = useState([])
 
   
   // *** Use Effect Hooks ***
@@ -105,39 +101,31 @@ export default function ModifyDisplay() {
   const statusIsDeleted = status === 'deleted';
   useEffect(() => {
     dispatch(getCharacters())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusIsDeleted]);
+  
   
   useEffect(() => {
     expanded 
       ? dispatch(setModifyCharacter(allCharacters?.[expanded]))
       : dispatch({ type: CLEAR_MODIFIED });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded])
-  
-  // useEffect(() => {
-  //   if (!allCharacters) return;
     
-  //   const characterArr = Object.values(allCharacters);
-  //   setCharacters(characterArr);
-  // }, [allCharacters])
-  
-  // useEffect(() => {}, [characters]);
-  
   
   
   // *** Helper Functions ***
   
   const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+    setExpanded(isExpanded ? panel : null);
   };
   
   const getTrait = (traits, type, id) => {
-    if (!traits && !traits.firstName) return { name: '' };
+    if (!traits || !traits[type]) return { name: '' };
     
     return traits[type][id]
   }
   
-  // console.log('All Characters: ', allCharacters);
-  // console.log('Traits: ', traits);
   // *** JSX ***
   return (
     <div className={classes.modifyDisplay}>
@@ -145,9 +133,6 @@ export default function ModifyDisplay() {
         isNotEmpty(allCharacters) 
           && isNotEmpty(traits) 
           && Object.values(allCharacters).map((character) => {
-          {/* console.log('JSX CHARACTER: ', character);
-          console.log('JSX TRAIT: ', traits?.physical[character.traits?.physical])
-          console.log('JSX CHARACTER TRAIT ID: ', character.traits?.firstName) */}
           return (
             <Accordion 
               key={character.id} 
@@ -158,14 +143,14 @@ export default function ModifyDisplay() {
               
               <AccordionSummary 
                 className={classes.summary} 
-                focus={expanded === character.id} 
+                // focus={expanded === character.id} 
                 expandIcon={<ExpandMoreIcon />}
               >
               
                 <div className={classes.header}>
                   {`
-                      ${getTrait(traits, 'firstName', character.traits.firstName).name}
-                      ${getTrait(traits, 'lastName', character.traits.lastName).name}
+                      ${getTrait(traits, 'firstName', character.traits.firstName)?.name}
+                      ${getTrait(traits, 'lastName', character.traits.lastName)?.name}
                   `}
                 </div>
                 

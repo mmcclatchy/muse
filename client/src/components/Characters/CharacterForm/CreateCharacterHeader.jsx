@@ -15,7 +15,6 @@ import theme from '../../theme';
 const useStyles = makeStyles((theme) => ({
   cc__title: {
     margin: '10px auto',
-    // fontFamily: 'var(--font-display-text)',
     fontSize: 17,
     fontWeight: 'bold',
     color: theme.palette.secondary.main,
@@ -63,7 +62,7 @@ export default function CharacterFormHeader(props) {
       imageUrl,
       bio
     };
-    // console.log('Save Click: ', character)
+    
     dispatch(postCharacter(character));
   };  
   
