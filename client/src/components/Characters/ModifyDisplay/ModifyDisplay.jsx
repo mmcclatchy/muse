@@ -173,7 +173,7 @@ export default function ModifyDisplay() {
                   strengths={getTrait(traits, 'strengths', character.traits?.strengths)}
                   weaknesses={getTrait(traits, 'weaknesses', character.traits?.weaknesses)}
                   motivations={getTrait(traits, 'motivations', character.traits?.motivations)}
-                  secrets={getTrait(traits, 'physical', character.traits?.secrets)}
+                  secrets={getTrait(traits, 'secrets', character.traits?.secrets)}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />
