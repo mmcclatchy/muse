@@ -36,7 +36,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   
   // *** Use Effect Hooks ***
   useEffect(() => {
-    console.log('If No Value, Clear Form Trait Type: ', value, traitType)
+    // console.log('If No Value, Clear Form Trait Type: ', value, traitType)
     if (!value) {
       dispatch(clearFormTrait(props.traitType));
       return;
@@ -47,7 +47,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   
   // const statusIsSuccess = status === 'success';
   useEffect(() => {
-    console.log('Status is Success: ', status === 'success');
+    // console.log('Status is Success: ', status === 'success');
     if (status === 'success') setValue('')
   }, [status])
   

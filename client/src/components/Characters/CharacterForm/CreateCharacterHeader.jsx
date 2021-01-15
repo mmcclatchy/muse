@@ -62,7 +62,7 @@ export default function CharacterFormHeader(props) {
       imageUrl,
       bio
     };
-    console.log('Save Click: ', character)
+    // console.log('Save Click: ', character)
     dispatch(postCharacter(character));
   };  
   

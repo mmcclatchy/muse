@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     this.CharacterTraits.forEach(characterTrait => {
       shapedTraits[characterTrait.Trait.TraitType.type] = characterTrait.Trait.id;
     });
-    console.log(`****\n\nShape Traits - ImageUrl: ${this.imageUrl}\n\n****`)
+    // console.log(`****\n\nShape Traits - ImageUrl: ${this.imageUrl}\n\n****`)
     return {
       id: this.id,
       firstName: this.firstName,

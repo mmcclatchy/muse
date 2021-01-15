@@ -136,8 +136,8 @@ export default function ModifyDisplay() {
     return traits[type][id]
   }
   
-  console.log('All Characters: ', allCharacters);
-  console.log('Traits: ', traits);
+  // console.log('All Characters: ', allCharacters);
+  // console.log('Traits: ', traits);
   // *** JSX ***
   return (
     <div className={classes.modifyDisplay}>
