@@ -23,7 +23,7 @@ const filter = createFilterOptions();
 
 export default function FreeSoloCreateOptionDialog(props) {
   // *** Redux ***
-  const { name: reduxValue } = useSelector(state => state.createCharacters[props.traitType]);
+  const reduxValue = useSelector(state => state.createCharacters[props.traitType]?.name);
   const status = useSelector(state => state.allCharacters.status);
   const dispatch = useDispatch();
   

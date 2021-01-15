@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import ClearIcon from '@material-ui/icons/Clear';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import { postCharacter } from '../../../store/actions/characters';
 import theme from '../../theme';
@@ -96,11 +97,13 @@ export default function CharacterFormHeader(props) {
         Save
       </Button>
       
-      <Snackbar open={status === 'success'} autoHideDuration={3000} onClose={props.close}>
-        <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
-          Your character has been saved!
-        </Alert>
-      </Snackbar>
+      <ClickAwayListener onClickAway={props.close} >
+        <Snackbar open={status === 'success'} autoHideDuration={2000} onClose={props.close}>
+          <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
+            Your character has been saved!
+          </Alert>
+        </Snackbar>
+      </ClickAwayListener>
       
     </div>
   );

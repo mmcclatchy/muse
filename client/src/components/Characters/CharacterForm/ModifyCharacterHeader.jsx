@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 import {
   patchCharacter,
@@ -123,14 +124,16 @@ export default function CharacterFormHeader() {
         Update
       </Button>
 
-      <Snackbar
-        open={status === 'deleted' || status === 'updated'}
-        autoHideDuration={3000}
-        onClose={handleClose}>
-        <Alert elevation={6} variant='filled' onClose={handleClose} severity='success'>
-          {`Your character has been successfully ${status}`}
-        </Alert>
-      </Snackbar>
+      <ClickAwayListener onClickAway={handleClose} >
+        <Snackbar
+          open={status === 'deleted' || status === 'updated'}
+          autoHideDuration={2000}
+          onClose={handleClose}>
+          <Alert elevation={6} variant='filled' onClose={handleClose} severity='success'>
+            {`Your character has been successfully ${status}`}
+          </Alert>
+        </Snackbar>
+      </ClickAwayListener>
     </div>
   );
 }

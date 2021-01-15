@@ -8,8 +8,8 @@ import Fade from '@material-ui/core/Fade';
 
 
 export default function CharacterCardHeader(props) {
-  const { name: firstName } = props.firstName;
-  const { name: lastName } = props.lastName;
+  const firstName = props.firstName?.name;
+  const lastName = props.lastName?.name;
   
   
   return (
