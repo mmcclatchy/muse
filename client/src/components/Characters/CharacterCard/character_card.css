@@ -1,10 +1,10 @@
+
 .character_card {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-flow: column;
+  height: 100%;
+  width: 100%;
 }
-
 
 
 .character_card_header {
