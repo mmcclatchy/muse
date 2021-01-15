@@ -34,6 +34,8 @@ export default function CharacterCard() {
         imageUrl={imageUrl}
       />
       
+      <div className='this-is-here-to-prevent-a-heroku-bug'></div>
+      
     </div>
   )
 }
