@@ -18,7 +18,7 @@ export const setFormTrait = (trait) => async (dispatch) => {
 };
 
 export const clearFormTrait = traitType => async dispatch => {
-  console.log('clearFormTrait: ', traitType)
+  // console.log('clearFormTrait: ', traitType)
   if (!traitType) return;
   
   dispatch({ type: CLEAR_CHARACTER_TRAIT, payload: traitType })

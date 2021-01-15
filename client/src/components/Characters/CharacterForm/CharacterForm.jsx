@@ -69,6 +69,7 @@ export default function CharacterForm({ imgBio = true }) {
 
   // Clear form on click
   const handleClearClick = () => {
+    console.log('clearForm')
     dispatch(clearForm());
   }
 

@@ -36,11 +36,11 @@ export default function FreeSoloCreateOptionDialog(props) {
   
   // *** Use Effect Hooks ***
   useEffect(() => {
-    console.log('If No Value, Clear Form Trait Type: ', value, props.traitType)
-    setTimeout(() => {});
+    // console.log('1')
+    // console.log('If No Value, Clear Form Trait Type: ', typeof value, value, props.traitType)
     if (!value) {
-      console.log('Inside !value conditional')
-      dispatch(clearFormTrait(props.traitType))
+      // console.log('Inside !value conditional')
+      if (reduxValue) dispatch(clearFormTrait(props.traitType))
       return;
     }
 
@@ -49,12 +49,14 @@ export default function FreeSoloCreateOptionDialog(props) {
   
   // const statusIsSuccess = status === 'success';
   useEffect(() => {
+    // console.log('2')
     // console.log('Status is Success: ', status === 'success');
-    if (status === 'success') setValue('')
+    if (status === 'success') setValue(null)
   }, [status])
   
   useEffect(() => {
-    if (!reduxValue) setValue('')
+    // console.log(3)
+    if (!reduxValue) setValue(null)
   }, [reduxValue])
   
   // Forces rerender to clear values when redux is empty
