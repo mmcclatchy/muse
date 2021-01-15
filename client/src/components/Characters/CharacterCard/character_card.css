@@ -1,5 +1,9 @@
 /****************************************/
 
+.this-is-here-to-prevent-a-heroku-bug {
+  width: 100%;
+}
+
 .character_card_header {
   background-color: var(--primary-light);
   color: var(--secondary);
