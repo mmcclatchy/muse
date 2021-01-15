@@ -77,7 +77,7 @@ export default function CharacterFormHeader() {
       }
     }
 
-    console.log('FIND UPDATED TRAITS: ', character);
+    // console.log('FIND UPDATED TRAITS: ', character);
     return character;
   };
 

@@ -51,7 +51,7 @@ export default function ModifyFreeSolo(props) {
         // console.log('MATCHING: ', trait.name === value.name)
         return trait.name === value.name
       })
-      console.log('TEST: ', id)
+      // console.log('TEST: ', id)
       dispatch(setModTrait(props.traitType, id));
     }
     
@@ -102,7 +102,7 @@ export default function ModifyFreeSolo(props) {
         type: props.traits[0].type,
       });
     } else {
-      console.log('3rd CONDITION: ', newValue)
+      // console.log('3rd CONDITION: ', newValue)
       setValue(newValue);
     }
   };

@@ -43,7 +43,7 @@ router.post(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log('***\n\nPOST CHARACTER\n\n***')
+    // console.log('***\n\nPOST CHARACTER\n\n***')
     const { 
       imageUrl, 
       bio, 

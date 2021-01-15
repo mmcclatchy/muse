@@ -37,7 +37,7 @@ export default function FreeSoloCreateOptionDialog(props) {
   // *** Use Effect Hooks ***
   useEffect(() => {
     if (!value) {
-      console.log('Value: ', value)
+      // console.log('Value: ', value)
       dispatch(clearFormTrait(props.traitType));
       return;
     }

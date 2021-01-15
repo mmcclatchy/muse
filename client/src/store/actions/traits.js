@@ -35,6 +35,6 @@ export const postModTrait = trait => {
 
 
 export const setModTrait = (traitType, id) => {
-  console.log('SET MOD TRAIT: ', )
+  // console.log('SET MOD TRAIT: ', )
   return { type: SET_MODIFY_TRAIT, payload: { traitType, id }}
 }
