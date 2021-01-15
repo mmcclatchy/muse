@@ -80,6 +80,14 @@ const useStyles = makeStyles((theme) => ({
   },
   traits: {
     height: '100%'
+  },
+  bioWrapper: {
+    display: 'flex',
+    minHeight: 100
+  },
+  bio: {
+    height: '100%',
+    width: '100%',
   }
   
 }));
@@ -121,7 +129,9 @@ export default function CharacterInfo(props) {
         </TabPanel>
         
         <TabPanel value={value} index={1} className={classes.tabPanel} >
-          <div className={classes.bio} >{props.props.bio}</div>
+          <div className={classes.bioWrapper} >
+            <div className={classes.bio} >{props.props.bio}</div>
+          </div>
         </TabPanel>
       
       </div>
