@@ -44,18 +44,21 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.backgroundColor,
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
-      width: 10
+      width: 10,
+      // borderRadius: 10,
     },
     '&::-webkit-scrollbar-track': {
       boxShadow: 'inset 0 0 5px grey',
-      background: theme.palette.primary.lighter,
+      background: theme.palette.primary.lightGrey,
+      // borderRadius: 10,
     },
     '&::-webkit-scrollbar-thumb': {
-      background: '#888',
-      borderRadius: 10
+      background: theme.palette.primary.main,
+      borderRadius: 10,
+      // transition: 'background 300ms ease-in-out'
     },
     '&::-webkit-scrollbar-thumb:hover': {
-      background: '#555',
+      background: theme.palette.primary.dark,
     }
   },
   
