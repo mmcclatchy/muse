@@ -109,7 +109,7 @@ export default function CharacterForm({ imgBio = true }) {
 
       <FreeSoloCreateOptionDialog
         key='4'
-        typeLabel='Character Strengths'
+        typeLabel='Virtues'
         className={classes.traits}
         traitType='strengths'
         traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
@@ -117,7 +117,7 @@ export default function CharacterForm({ imgBio = true }) {
 
       <FreeSoloCreateOptionDialog
         key='5'
-        typeLabel='Character Weaknesses'
+        typeLabel='Flaws'
         className={classes.traits}
         traitType='weaknesses'
         traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}

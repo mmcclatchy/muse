@@ -8,8 +8,8 @@ import Fade from '@material-ui/core/Fade';
 
 
 export default function CharacterCardHeader(props) {
-  const { id: firstId, name: firstName } = props.firstName;
-  const { id: lastId, name: lastName } = props.lastName;
+  const { name: firstName } = props.firstName;
+  const { name: lastName } = props.lastName;
   
   
   return (
@@ -25,12 +25,12 @@ export default function CharacterCardHeader(props) {
       
       <div className="card_header_name_wrapper">
         
-        <Fade in={props.firstName.name} timeout={{ enter: 300, exit: 300 }} >
-          <div className="card_first">{props.firstName.name}</div>
+        <Fade in={firstName} timeout={{ enter: 300, exit: 300 }} >
+          <div className="card_first">{firstName}</div>
         </Fade>
       
-        <Fade in={props.firstName.name} timeout={{ enter: 300, exit: 300 }} >
-          <div className="card_last">{props.lastName.name}</div>
+        <Fade in={firstName} timeout={{ enter: 300, exit: 300 }} >
+          <div className="card_last">{lastName}</div>
         </Fade>
       
       </div>

@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '10px auto',
     // fontFamily: 'var(--font-display-text)',
     fontSize: 17,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: theme.palette.secondary.main,
   },
   header: {
     display: 'flex',
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     opacity: '1'
   },
   button: {
