@@ -24,8 +24,8 @@ export const postModTrait = trait => {
       method: 'POST',
       endpoint: '/traits',
       body: JSON.stringify(trait),
-      actionConst: SET_MODIFY_TRAIT,
-      secondActionConst: SET_NEW_TRAIT,
+      actionConst: SET_NEW_TRAIT,
+      secondActionConst: SET_MODIFY_TRAIT,
     }
   }
 }
@@ -34,7 +34,7 @@ export const postModTrait = trait => {
 // ********************************************************
 
 
-export const setModTrait = (traitType, id) => {
+export const setModTrait = payload => {
   // console.log('SET MOD TRAIT: ', )
-  return { type: SET_MODIFY_TRAIT, payload: { traitType, id }}
+  return { type: SET_MODIFY_TRAIT, payload }
 }

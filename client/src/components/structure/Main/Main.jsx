@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Switch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './main.css'
+import ProtectedRoute from '../../ProtectedRoute';
 import CreateCharacter from '../../Characters/CreateCharacter';
 import ModifyCharacter from '../../Characters/ModifyCharacter';
 import { getTraits } from '../../../store/actions/traits';
 
 
 export default function Main() {
+  const loggedIn = useSelector(state => state.authentication.user?.id);
   const dispatch = useDispatch();
   
   // Fetch Character Traits on init render of component
@@ -16,18 +18,17 @@ export default function Main() {
   useEffect(() => { dispatch(getTraits()) }, []);
   
   
-  
   return (
     <div className="main">
       <Switch>
       
-        <Route path='/create-character'>
+        <ProtectedRoute path='/create-character' isLoggedIn={loggedIn} >
           <CreateCharacter />
-        </Route>
+        </ProtectedRoute>
       
-        <Route path='/modify-character'>
+        <ProtectedRoute path='/modify-character' isLoggedIn={loggedIn} >
           <ModifyCharacter />
-        </Route>
+        </ProtectedRoute>
       
       </Switch>
     </div>

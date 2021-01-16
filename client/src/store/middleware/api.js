@@ -18,7 +18,7 @@ const api = ({ dispatch, getState }) => next => async action => {
   // Payload will determine the fetch call and what is being dispatched
   const { endpoint, method, body, actionConst, secondActionConst } = action.payload;
   
-  // console.log('API Payload after destructuring: ', endpoint, method, body, actionConst)
+  // console.log('API Payload after destructuring: ', endpoint, method, body, actionConst, secondActionConst)
   
   const response = await fetch(`${baseApiUrl}${endpoint}`, {
     method: method,
@@ -42,7 +42,7 @@ const api = ({ dispatch, getState }) => next => async action => {
       if (status === 'deleted') dispatch({ type: CLEAR_MODIFIED });
     }
     
-    dispatch({ type: actionConst, payload });
+    await dispatch({ type: actionConst, payload });
     
     if (secondActionConst) dispatch({ type: secondActionConst, payload })
   }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './app_bar.css';
 import { logout } from '../../../store/authentication';
@@ -23,7 +23,6 @@ export default function AppBar() {
   
   const handleLogOut = () => {
     dispatch(logout())
-    return <Redirect to='/' />
   };
   
   return (
@@ -43,7 +42,7 @@ export default function AppBar() {
           </IconButton>
         </div>
         
-        <div className="title">Muse</div>
+        <Link className="title" to='/' >Muse</Link>
         
       </div>
       

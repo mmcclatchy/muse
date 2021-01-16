@@ -27,6 +27,7 @@
     font-weight: bold;
     font-family: var(--font-header);
     color: var(--secondary);
+    text-decoration: none;
 }
 
 .default-avatar {

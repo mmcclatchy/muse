@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -10,7 +10,7 @@ import { setStatus } from '../../../store/actions/characters';
 import theme from '../../theme';
 import ImageBio from './ImageBioCreate';
 import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';
-import { getTraits } from '../../../store/actions/traits';
+// import { getTraits } from '../../../store/actions/traits';
 
 //**********************************************************
 
@@ -57,10 +57,10 @@ export default function CharacterForm({ imgBio = true }) {
   // *** Use Effect Hooks ***
 
   // Fetch Character Traits on init render of component
-  useEffect(() => {
-    dispatch(getTraits())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getTraits())
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // *** Helper Functions ***
 

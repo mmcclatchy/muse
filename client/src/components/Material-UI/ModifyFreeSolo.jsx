@@ -45,7 +45,7 @@ export default function ModifyFreeSolo(props) {
         return trait.name === value.name
       })
       
-      dispatch(setModTrait(props.traitType, id));
+      dispatch(setModTrait({ type: props.traitType, id }));
     }
     
     if (value === null) dispatch(setModTrait(props.traitType, null))

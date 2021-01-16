@@ -35,8 +35,9 @@ router.post(
     const data = req.body;
     const traitType = await TraitType.findOne({ where: { type: data.type } });
     const trait = await Trait.create({ name: data.name, typeId: traitType.id });
-
-    res.status(201).json(trait.shapedForRedux(data.type));
+    
+    // Not normalized so that Redux can sort by Trait Type and normalize it there
+    res.status(201).json({ payload: trait.shapedForRedux(data.type) });
   })
 );
 
