@@ -4,6 +4,7 @@ import './character_card.css';
 
 export default function CharacterTraits(props) {
   
+  console.log('PROPS: ', props)
   
   return (
     <div className="character_traits">

@@ -158,11 +158,12 @@ export default function ModifyDisplay() {
               
               <AccordionDetails className={classes.details}>
                 <ModifyCardBody
-                  physical={getTrait(traits, 'physical', character.traits?.physical)}
-                  strengths={getTrait(traits, 'strengths', character.traits?.strengths)}
-                  weaknesses={getTrait(traits, 'weaknesses', character.traits?.weaknesses)}
-                  motivations={getTrait(traits, 'motivations', character.traits?.motivations)}
-                  secrets={getTrait(traits, 'secrets', character.traits?.secrets)}
+                  id={character.id}
+                  physical={character.traits?.physical}
+                  strengths={character.traits?.strengths}
+                  weaknesses={character.traits?.weaknesses}
+                  motivations={character.traits?.motivations}
+                  secrets={character.traits?.secrets}
                   imageUrl={character.imageUrl}
                   bio={character.bio}
                 />
