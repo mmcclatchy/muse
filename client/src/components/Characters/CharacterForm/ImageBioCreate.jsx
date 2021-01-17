@@ -31,7 +31,7 @@ export default function ImageBioCreate() {
   // *** Redux ***
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
-  const status = useSelector(state => state.allCharacters.status);
+  const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
   
   

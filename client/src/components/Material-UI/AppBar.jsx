@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 
 import { logout } from '../../store/authentication';
-import { toggleDrawer } from '../../store/actions/navigation';
+import { toggleDrawer } from '../../store/actions/utilities';
 
 
 
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
   const token = useSelector(state => state.authentication.token)
-  const drawerOpen = useSelector(state => state.navigation.drawerOpen)
+  const drawerOpen = useSelector(state => state.utilities.drawerOpen)
   const { avatarUrl, username } = useSelector(state => state.authentication.user)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch()

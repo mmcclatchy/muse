@@ -11,7 +11,7 @@ import traits from './reducer/traits';
 import allCharacters from './reducer/allCharacters';
 import modifyCharacter from './reducer/modifyCharacter';
 import createCharacters from './reducer/createCharacters';
-import navigation from './reducer/navigation';
+import utilities from './reducer/utilites';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -22,7 +22,7 @@ const reducer = combineReducers({
   modifyCharacter,
   traits,
   createCharacters,
-  navigation,
+  utilities,
 });
 
 const persistConfig = {

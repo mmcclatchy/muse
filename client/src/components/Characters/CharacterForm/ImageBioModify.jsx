@@ -30,7 +30,7 @@ export default function ImageBioCreate() {
   
   // *** Redux ***
   const modifyCharacter = useSelector(state => state.modifyCharacter);
-  const status = useSelector(state => state.allCharacters.status);
+  const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
   
   

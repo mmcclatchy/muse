@@ -6,7 +6,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import CreateCharacterHeader from './CreateCharacterHeader';
 import { compare } from '../../../utilities';
 import { clearForm } from '../../../store/actions/createCharacters';
-import { setStatus } from '../../../store/actions/characters';
+import { setStatus } from '../../../store/actions/utilities';
 import theme from '../../theme';
 import ImageBio from './ImageBioCreate';
 import FreeSoloCreateOptionDialog from '../../Material-UI/FreeSoloCreateOptionDialog';

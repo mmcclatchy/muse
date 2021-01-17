@@ -1,6 +1,5 @@
 import { 
   SET_CHARACTERS, 
-  SET_STATUS, 
   CLEAR_CHARACTERS,
   DELETE_CHARACTER,
   PATCH_CHARACTER
@@ -12,10 +11,6 @@ export default function characterReducer(state = {}, { type, payload }) {
   
   switch (type) {
     case SET_CHARACTERS:
-      return { ...state, characters: payload };
-    
-    case SET_STATUS:
-      // console.log('SET_STATUS: ', payload)
       return { ...state, ...payload };
       
     case CLEAR_CHARACTERS:
@@ -23,7 +18,7 @@ export default function characterReducer(state = {}, { type, payload }) {
       
     case PATCH_CHARACTER:
       const patchCharacter = { ...state };
-      patchCharacter.characters[payload.id] = payload;
+      patchCharacter[payload.id] = payload;
       return patchCharacter;
       
     case DELETE_CHARACTER:

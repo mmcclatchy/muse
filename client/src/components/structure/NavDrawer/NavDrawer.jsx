@@ -8,7 +8,7 @@ import './nav_drawer.css';
 
 
 export default function NavDrawer() {
-  const drawerOpen = useSelector(state => state.navigation.drawerOpen);
+  const drawerOpen = useSelector(state => state.utilities.drawerOpen);
   
   useEffect(() => {}, [drawerOpen]);
   

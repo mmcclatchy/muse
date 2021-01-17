@@ -21,7 +21,7 @@ export default function ModifyFreeSolo(props) {
   // *** Redux ***
   const reduxValueId = useSelector(state => state.modifyCharacter?.traits?.[props.traitType]);
   const traits = useSelector(state => state.traits?.[props.traitType]);
-  const status = useSelector(state => state.allCharacters.status);
+  const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
   
   // *** Local State ***

@@ -9,11 +9,8 @@ import Alert from '@material-ui/lab/Alert';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
-import {
-  patchCharacter,
-  deleteCharacter,
-  setStatus,
-} from '../../../store/actions/characters';
+import { setStatus } from '../../../store/actions/utilities';
+import { patchCharacter, deleteCharacter } from '../../../store/actions/characters';
 import theme from '../../theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,8 +49,8 @@ export default function CharacterFormHeader() {
   const traitIds = useSelector((state) => state.modifyCharacter?.traits);
   const imageUrl = useSelector((state) => state.modifyCharacter?.imageUrl);
   const bio = useSelector((state) => state.modifyCharacter?.bio);
-  const status = useSelector((state) => state.allCharacters.status);
-  const allCharacters = useSelector((state) => state.allCharacters.characters);
+  const status = useSelector((state) => state.utilities.status);
+  const allCharacters = useSelector((state) => state.allCharacters);
   const dispatch = useDispatch();
 
   // *** Use Effect Hooks ***

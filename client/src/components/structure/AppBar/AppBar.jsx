@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './app_bar.css';
 import { logout } from '../../../store/authentication';
-import { toggleDrawer } from '../../../store/actions/navigation';
+import { toggleDrawer } from '../../../store/actions/utilities';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,7 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 export default function AppBar() {
   const { avatarUrl, username } = useSelector(state => state.authentication.user);
-  const drawerOpen = useSelector(state => state.navigation.drawerOpen);
+  const drawerOpen = useSelector(state => state.utilities.drawerOpen);
   const dispatch = useDispatch();
   
   const handleDrawerToggle = () => {

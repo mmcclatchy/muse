@@ -6,13 +6,17 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { withStyles } from '@material-ui/core';
 
 import theme from '../../theme';
-import { getCharacters, setModifyCharacter } from '../../../store/actions/characters';
 import { CLEAR_MODIFIED } from '../../../store/constants/constants';
 import ModifyCardBody from '../CharacterCard/ModifyCardBody';
 import { isNotEmpty } from '../../../utilities';
-import { withStyles } from '@material-ui/core';
+import { 
+  getCharacters, 
+  setModifyCharacter, 
+  setStatus 
+} from '../../../store/actions/characters';
 
 
 // **************************************************************
@@ -84,9 +88,9 @@ export default function ModifyDisplay() {
   const classes = useStyles(theme);
   
   // *** Redux ***
-  const allCharacters = useSelector(state => state.allCharacters.characters);
+  const allCharacters = useSelector(state => state.allCharacters);
   const modCharacterId = useSelector(state => state.modifyCharacter?.id)
-  const status = useSelector(state => state.allCharacters.status);
+  const status = useSelector(state => state.utilities.status);
   const traits = useSelector(state => state.traits);
   const dispatch = useDispatch();
   
@@ -106,9 +110,13 @@ export default function ModifyDisplay() {
   
   
   useEffect(() => {
-    expanded 
-      ? dispatch(setModifyCharacter(allCharacters?.[expanded]))
-      : dispatch({ type: CLEAR_MODIFIED });
+    (async () => {
+      if (status) await dispatch(setStatus(null));
+      
+      expanded 
+        ? dispatch(setModifyCharacter(allCharacters?.[expanded]))
+        : dispatch({ type: CLEAR_MODIFIED });
+    })()
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded])
     

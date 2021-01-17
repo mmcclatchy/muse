@@ -45,7 +45,7 @@ export default function CharacterFormHeader(props) {
   const secrets = useSelector((state) => state.createCharacters.secrets);
   const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
-  const status = useSelector(state => state.allCharacters.status);
+  const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
   
   
