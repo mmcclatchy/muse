@@ -35,7 +35,7 @@ const App = () => {
   // *** JSX ***
   return (
   <BrowserRouter>
-    <div className='app-wrapper'>
+    {/* <div className='app-wrapper'> */}
       {
         token  
           ? <>
@@ -44,7 +44,7 @@ const App = () => {
             </>
           :  <SplashPage />
       }
-    </div>
+    {/* </div> */}
   </BrowserRouter>
   )
 }

@@ -22,16 +22,14 @@
   --background-color-dark: rgba(210,210,210,.7);
   --grey-light: #aaa;
   --grey-dark: #777;
+  --shadow: rgba(0,0,0,0.3);
   --drawer-width: 240px;
   --app-bar-height: 60px;
 }
 
 .app-wrapper {
-  height: 100vh;
-  width: 100vw;
-  background-image: url(./components/open_landscape_light_blur.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }

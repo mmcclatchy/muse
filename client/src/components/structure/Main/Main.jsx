@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './main.css'
 import ProtectedRoute from '../../ProtectedRoute';
 import CreateCharacter from '../../Characters/CreateCharacter';
 import ModifyCharacter from '../../Characters/ModifyCharacter';
+import IntroPage from '../../IntroPage/IntroPage';
 import { getTraits } from '../../../store/actions/traits';
 
 
@@ -21,6 +22,10 @@ export default function Main() {
   return (
     <div className="main">
       <Switch>
+      
+        <Route exact path='/' >
+          <IntroPage />
+        </Route>
       
         <ProtectedRoute path='/create-character' isLoggedIn={loggedIn} >
           <CreateCharacter />

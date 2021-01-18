@@ -1,6 +1,32 @@
 .splash_page {
+    height: fit-content;
+    width: 100vw;
     display: flex;
+    flex-flow: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+.splash_page::-webkit-scrollbar {
+    width: 10px;
+}
+
+.splash_page::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0,255,0,0,);
+    background-color: var(--grey-light);
+}
+
+.splash_page::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.splash_page::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+
+/**************  FEATURE SECTION *****************/
 
 .feature {
     width: 100vw;
@@ -18,9 +44,24 @@
     font-size: 6rem;
     font-weight: bold;
     font-family: var(--font-header);
+    /* color: var(--secondary-dark); */
 }
 
 .feature__subtitle {
     font-size: 2.5rem;
     font-family: var(--font-header);
+    /* color: var(--secondary-dark) */
 }
+
+
+
+/****************  INFO SECTION *******************/
+
+.splash_info {
+    max-width: 1200px;
+    padding: 1.5% auto;
+}
+
+
+
+/*****************  FOOTER SECTION *****************/

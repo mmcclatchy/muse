@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './splash_page.css';
-import Button from '@material-ui/core/Button';
-import AuthModal from './AuthModal/AuthModal';
 import { useSelector } from 'react-redux';
+
+import Button from '@material-ui/core/Button';
+
+import './splash_page.css';
+import AuthModal from './AuthModal/AuthModal';
+import Footer from '../structure/Footer/Footer';
 
 export default function SplashPage() {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -31,6 +34,7 @@ export default function SplashPage() {
 
   return (
     <div className='splash_page'>
+    
       <div className='feature'>
         <div className='feature__title'>Muse</div>
         <div className='feature__subtitle'>Spark Your Story</div>
@@ -60,6 +64,15 @@ export default function SplashPage() {
           />
         </div>
       </div>
+      
+      <div className="splash_info">
+        
+      </div>
+      
+      <div className="splash_footer">
+        <Footer />
+      </div>
+      
     </div>
   );
 }
