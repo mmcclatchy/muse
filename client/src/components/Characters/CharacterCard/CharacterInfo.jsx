@@ -116,8 +116,26 @@ const useStyles = makeStyles((theme) => ({
   bio: {
     height: '100%',
     width: '100%',
+    padding: 10
   },
-  '[hidden]': { display: 'none' }
+  
+  
+  
+  '@media screen and (orientation: portrait)': {
+    panelWrapper: {
+      padding: 5,
+    }
+  },
+  '@media screen and (max-device-height: 500px) and (orientation: landscape)': {
+    root: { 
+      height: '50%'
+    },
+    panelWrapper: {
+      padding: 3,
+      overflow: 'auto',
+      height: 100
+    }
+  }
   
 }));
 

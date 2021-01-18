@@ -43,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
   traits: {
     width: '90%',
   },
+  '@media only screen and (max-device-width: 1024px)': {
+    container: {
+      height: 'fit-content',
+     
+    }
+  },
 }));
 
 //**********************************************************

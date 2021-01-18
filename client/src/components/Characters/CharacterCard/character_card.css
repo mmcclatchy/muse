@@ -133,6 +133,16 @@
 
 @media screen and (orientation: portrait) {
   .modify_card_body {
-    height: 40vh;
+    height: 45vh;
   }
+}
+@media screen and (orientation: portrait) and (max-device-width: 1000px) {
+  .card_trait {
+    font-size: 1.5rem;
+  }
+  
+}
+
+@media screen and (max-device-height: 500px) and (orientation: landscape) {
+  
 }

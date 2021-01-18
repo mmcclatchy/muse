@@ -11,7 +11,7 @@
 .modify-character_form {
     width: 48%;
     height: 100%;
-    margin: auto 0;
+    /* margin: auto 0; */
 }
 
 .create-character_display,
@@ -51,11 +51,6 @@
         height: 49%;
     }
     
-    .create-character_display,
-    .modify-character_display {
-        max-height: none;
-        
-    }
 }
 
 @media only screen 
