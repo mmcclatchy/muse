@@ -5,7 +5,8 @@
     background-color: white;
     opacity: .7;
     position: absolute;
-    z-index: 500;
+    z-index: 1500;
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, .3);
 }
 
 .nav-link {
