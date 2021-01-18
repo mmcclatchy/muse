@@ -11,6 +11,7 @@
 .modify-character_form {
     width: 48%;
     height: 100%;
+    margin: auto 0;
 }
 
 .create-character_display,
@@ -61,7 +62,7 @@
     and (max-device-width: 1024px) {
         .create-character_form,
         .modify-character_form {
-            overflow-y: scroll;
+            overflow-y: auto;
         }
         .create-character_form::-webkit-scrollbar,
         .modify-character_form::-webkit-scrollbar {

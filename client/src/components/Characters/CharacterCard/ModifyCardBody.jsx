@@ -12,14 +12,17 @@ export default function ModifyCardBody(props) {
   
   useEffect(() => {}, [modCharacter]);
   
+  // If character is selected in ModifyCharacter, return modTraits
+  // else return allCharacter Traits. 
   const getCharacterInfo = traitType => {
     return (
       props.id === modCharacter.id 
-        ? traits[traitType][modCharacter.traits[traitType]]
-        : traits[traitType][props[traitType]] 
-    )
-  }
-  
+      ? traits[traitType][modCharacter.traits[traitType]]
+      : traits[traitType][props[traitType]] 
+      )
+    }
+    
+  // This allows the CharacterInfo to render updated traits on the form
   const characterInfo = {
     physical: getCharacterInfo('physical'),  
     strengths: getCharacterInfo('strengths'), 

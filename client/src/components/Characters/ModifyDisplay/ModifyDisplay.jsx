@@ -62,7 +62,6 @@ const useStyles = makeStyles(theme => ({
       background: theme.palette.primary.dark,
     }
   },
-  
   summary: { 
     backgroundColor: theme.palette.primary.lighter,
     '&:hover': {
@@ -133,6 +132,7 @@ export default function ModifyDisplay() {
     
     return traits[type][id]
   }
+  
   
   // *** JSX ***
   return (

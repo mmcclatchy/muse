@@ -81,7 +81,6 @@ export default function ImageBioCreate() {
       
       <TextField
         value={avatar}
-        // defaultValue=''
         className={classes.image}
         disabled={!modifyCharacter.id}
         label='Character Image URL'
@@ -98,12 +97,11 @@ export default function ImageBioCreate() {
         label='Bio'
         disabled={!modifyCharacter.id}
         multiline
-        rows={5}
+        rows={3}
         inputProps={{ maxLength: 300 }}
         helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}
         style={{ width: '95%', margin: '2% 2%' }}
-        // defaultValue=''
         variant='outlined'
       />
 
