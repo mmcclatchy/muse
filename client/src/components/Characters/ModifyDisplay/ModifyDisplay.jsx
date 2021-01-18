@@ -96,7 +96,7 @@ export default function ModifyDisplay() {
   
   // *** Local State ***
   const [expanded, setExpanded] = useState(modCharacterId);
-
+  
   
   // *** Use Effect Hooks ***
   
@@ -155,7 +155,7 @@ export default function ModifyDisplay() {
                 expandIcon={<ExpandMoreIcon />}
               >
               
-                <div className={classes.header}>
+                <div className={classes.header} >
                   {`
                       ${getTrait(traits, 'firstName', character.traits.firstName)?.name}
                       ${getTrait(traits, 'lastName', character.traits.lastName)?.name}

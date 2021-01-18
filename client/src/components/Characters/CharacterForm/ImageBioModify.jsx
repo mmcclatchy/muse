@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
   characterBio: {
     margin: '20px 0',
   },
+  bioInput: {
+    // fontSize: '0.875rem'
+  },
+  '@media screen and (orientation: portrait) and (max-device-width: 500px)': {
+    bioInput: {
+      fontSize: '.55rem',
+    }
+  },
   
 }));
 
@@ -98,6 +106,7 @@ export default function ImageBioCreate() {
         disabled={!modifyCharacter.id}
         multiline
         rows={3}
+        InputProps={{ classes: { input: classes.bioInput } }}
         inputProps={{ maxLength: 300 }}
         helperText={`${characterBio.length}/300`}
         onChange={handleBioChange}

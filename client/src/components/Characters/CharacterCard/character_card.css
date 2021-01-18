@@ -121,3 +121,12 @@
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
 }
+
+
+/*********************  Media Queries  *****************/
+
+@media only screen and (max-device-width: 1025px) {
+    .character_card_body {
+      height: 40vh;
+    }
+}
