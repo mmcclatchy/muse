@@ -102,9 +102,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 24
   },
   tabPanel: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    height: '100%'
+    // display: 'flex',
+    // justifyContent: 'space-around',
+    height: '100%',
   },
   traits: {
     height: '100%'
@@ -116,7 +116,8 @@ const useStyles = makeStyles((theme) => ({
   bio: {
     height: '100%',
     width: '100%',
-  }
+  },
+  '[hidden]': { display: 'none' }
   
 }));
 
