@@ -53,14 +53,7 @@ export default function CharacterForm({ imgBio = true }) {
   // *** Redux ***
   const traits = useSelector((state) => state.traits);
   const dispatch = useDispatch();
-
-  // *** Use Effect Hooks ***
-
-  // Fetch Character Traits on init render of component
-  // useEffect(() => {
-  //   dispatch(getTraits())
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  
 
   // *** Helper Functions ***
 
@@ -74,71 +67,78 @@ export default function CharacterForm({ imgBio = true }) {
     dispatch(setStatus(null));
   };
 
+  
   // *** JSX ***
   return (
     <div className={classes.container}>
       
       <CreateCharacterHeader clear={handleClearClick} close={handleClose} />
 
-      <FreeSoloCreateOptionDialog
-        key='1'
-        typeLabel='First Name'
-        className={classes.traits}
-        traitType='firstName'
-        traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
-      />
+      <div className="traits_wrapper">
+        
+        <FreeSoloCreateOptionDialog
+          key='1'
+          typeLabel='First Name'
+          className={classes.traits}
+          traitType='firstName'
+          traits={traits.firstName ? Object.values(traits.firstName).sort(compare) : null}
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='2'
-        typeLabel='Last Name'
-        className={classes.traits}
-        traitType='lastName'
-        traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
-      />
+        <FreeSoloCreateOptionDialog
+          key='2'
+          typeLabel='Last Name'
+          className={classes.traits}
+          traitType='lastName'
+          traits={traits.lastName ? Object.values(traits.lastName).sort(compare) : null}
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='3'
-        typeLabel='Identifying Characteristics'
-        className={classes.traits}
-        traitType='physical'
-        traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
-      />
+        <FreeSoloCreateOptionDialog
+          key='3'
+          typeLabel='Identifying Characteristics'
+          className={classes.traits}
+          traitType='physical'
+          traits={traits.physical ? Object.values(traits.physical).sort(compare) : null}
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='4'
-        typeLabel='Virtues'
-        className={classes.traits}
-        traitType='strengths'
-        traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
-      />
+        <FreeSoloCreateOptionDialog
+          key='4'
+          typeLabel='Virtues'
+          className={classes.traits}
+          traitType='strengths'
+          traits={traits.strengths ? Object.values(traits.strengths).sort(compare) : null}
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='5'
-        typeLabel='Flaws'
-        className={classes.traits}
-        traitType='weaknesses'
-        traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
-      />
+        <FreeSoloCreateOptionDialog
+          key='5'
+          typeLabel='Flaws'
+          className={classes.traits}
+          traitType='weaknesses'
+          traits={traits.weaknesses ? Object.values(traits.weaknesses).sort(compare) : null}
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='6'
-        typeLabel='Motivations'
-        className={classes.traits}
-        traitType='motivations'
-        traits={
-          traits.motivations ? Object.values(traits.motivations).sort(compare) : null
-        }
-      />
+        <FreeSoloCreateOptionDialog
+          key='6'
+          typeLabel='Motivations'
+          className={classes.traits}
+          traitType='motivations'
+          traits={
+            traits.motivations ? Object.values(traits.motivations).sort(compare) : null
+          }
+        />
 
-      <FreeSoloCreateOptionDialog
-        key='7'
-        typeLabel='Secrets'
-        className={classes.traits}
-        traitType='secrets'
-        traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
-      />
+        <FreeSoloCreateOptionDialog
+          key='7'
+          typeLabel='Secrets'
+          className={classes.traits}
+          traitType='secrets'
+          traits={traits.secrets ? Object.values(traits.secrets).sort(compare) : null}
+        />
 
-      {imgBio && <ImageBio />}
+      </div>
+      
+      <div className="img-bio_wrapper">
+        <ImageBio />
+      </div>
     </div>
   );
 }
