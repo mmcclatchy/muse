@@ -93,8 +93,14 @@
 }
 
 
-
 /*****************  CharacterTraits  ****************/
+
+.character_traits {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
 
 .card_trait {
   display: grid;
@@ -125,8 +131,8 @@
 
 /*********************  Media Queries  *****************/
 
-@media only screen and (max-device-width: 1025px) {
-    .character_card_body {
-      height: 40vh;
-    }
+@media screen and (orientation: portrait) {
+  .modify_card_body {
+    height: 40vh;
+  }
 }

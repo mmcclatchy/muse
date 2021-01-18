@@ -3,15 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
+import MuiTabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import './character_card.css';
 import CharacterTraits from './CharacterTraits';
+import { withStyles } from '@material-ui/core';
 
 //***********************************************
+
+const Tabs = withStyles({
+  flexContainer: {
+    justifyContent: 'space-around',
+  }
+})(MuiTabs)
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -25,8 +32,14 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3} style={{ width: '100%' }} >
-          <Typography variant='body1' component='div'>{children}</Typography>
+        <Box p={3} style={{ height: '100%', width: '100%', padding: 0 }} >
+          <Typography 
+            variant='body1' 
+            component='div'
+            style={{ height: '100%' }}
+          >
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -49,14 +62,19 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    border: '2px solid var(--secondary)',
-    borderRadius: 10,
-    margin: 10
+    margin: 10,
+    display: 'flex',
+    flexFlow: 'column',
+    justifyContent: 'flex-end',
+    height: '20%'
   },
   character_info: {
   },
   header: {
     backgroundColor: theme.palette.primary.transparent,
+    borderRight: '2px solid var(--secondary)',
+    borderLeft: '2px solid var(--secondary)',
+    borderTop: '2px solid var(--secondary)',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     height: '40px',
@@ -72,12 +90,21 @@ const useStyles = makeStyles((theme) => ({
     height: '40px',
     minHeight: '30px',
   },
-  tabPanel: {
+  panelWrapper: {
+    width: '100%',
+    height: '100%',
     backgroundColor: theme.palette.backgroundColor,
+    borderRight: '2px solid var(--secondary)',
+    borderLeft: '2px solid var(--secondary)',
+    borderBottom: '2px solid var(--secondary)',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
+    padding: 24
+  },
+  tabPanel: {
     display: 'flex',
     justifyContent: 'space-around',
+    height: '100%'
   },
   traits: {
     height: '100%'
@@ -114,7 +141,6 @@ export default function CharacterInfo(props) {
         <Tabs 
           value={value} 
           onChange={handleChange} 
-          centered
           className={classes.headerTabs}
           aria-label="simple tabs example"
         >
@@ -123,15 +149,17 @@ export default function CharacterInfo(props) {
         </Tabs>
       </AppBar>
       
-      <TabPanel value={value} index={0} className={classes.tabPanel} >
-        <CharacterTraits props={props.props} className={classes.traits} />
-      </TabPanel>
-      
-      <TabPanel value={value} index={1} className={classes.tabPanel} >
-        <div className={classes.bioWrapper} >
-          <div className={classes.bio} >{props.props.bio}</div>
-        </div>
-      </TabPanel>
+      <div className={classes.panelWrapper}>
+        <TabPanel value={value} index={0} className={classes.tabPanel} >
+            <CharacterTraits props={props.props} className={classes.traits} />
+        </TabPanel>
+        
+        <TabPanel value={value} index={1} className={classes.tabPanel} >
+          <div className={classes.bioWrapper} >
+            <div className={classes.bio} >{props.props.bio}</div>
+          </div>
+        </TabPanel>
+      </div>
     
     </div>
   )
