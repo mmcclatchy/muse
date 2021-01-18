@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     display: 'flex',
+    justifyContent: 'space-around',
   },
   traits: {
     height: '100%'
@@ -117,7 +118,7 @@ export default function CharacterInfo(props) {
           className={classes.headerTabs}
           aria-label="simple tabs example"
         >
-          <Tab label="Traits" className={classes.tab} {...a11yProps(0)} />
+          <Tab label="Traits" disabled={false} className={classes.tab} {...a11yProps(0)} />
           <Tab label="Bio" className={classes.tab} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
