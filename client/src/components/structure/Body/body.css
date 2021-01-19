@@ -2,6 +2,9 @@
     display: grid;
     height: calc(100vh - var(--app-bar-height));
     grid-template-columns: var(--drawer-width) 1fr;
+    background-image: url(../../open_landscape_light_blur.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 

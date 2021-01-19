@@ -65,13 +65,13 @@ export default function SplashPage() {
         </div>
       </div>
       
-      <div className="splash_info">
+      {/* <div className="splash_info">
         
       </div>
       
       <div className="splash_footer">
         <Footer />
-      </div>
+      </div> */}
       
     </div>
   );

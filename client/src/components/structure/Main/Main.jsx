@@ -8,6 +8,7 @@ import CreateCharacter from '../../Characters/CreateCharacter';
 import ModifyCharacter from '../../Characters/ModifyCharacter';
 import IntroPage from '../../IntroPage/IntroPage';
 import { getTraits } from '../../../store/actions/traits';
+import lightBlurImg from '../../open_landscape_light_blur.jpg';
 
 
 export default function Main() {
@@ -20,7 +21,7 @@ export default function Main() {
   
   
   return (
-    <div className="main">
+    <div className="main" style={{ backgroundImage: lightBlurImg }}>
       <Switch>
       
         <Route exact path='/' >
