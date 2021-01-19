@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@500;600&family=Sonsie+One&family=Marck+Script&family=Montserrat:ital,wght@0,400;0,700;1,200;1,400&display=swap');
 
+
 :root {
   margin: 0;
   --font-header: 'Sonsie One', cursive;
@@ -12,19 +13,23 @@
   --primary-lighter: #d8f9ff;
   --primary-dark: #7b9bba;
   --primary-transparent: rgba(187, 222, 251, .8);
+  --primary-font-color: #242424;
   --secondary: #1a237e;
   --secondary-light: #534bae;
   --secondary-dark: #000051;
+  --secondary-font-color: #d1d1d1;
   --warning: #d32f2f;
   --warning-light: #ff6659;
   --warning-dark: #9a0007;
   --background-color: rgba(255,255,255,.7);
   --background-color-dark: rgba(210,210,210,.7);
-  --grey-light: #aaa;
+  --grey: #999999;
+  --grey-light: #d1d1d1;
   --grey-dark: #777;
   --shadow: rgba(0,0,0,0.3);
   --drawer-width: 240px;
   --app-bar-height: 60px;
+  font-size: 16px;
 }
 
 .app-wrapper {
@@ -38,4 +43,27 @@ p {
   margin-block-start: 0px;
   margin-block-end: 0px;
   margin: 0px;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0,255,0,0,);
+  background-color: var(--grey-light);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--grey);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--grey-dark);
 }
