@@ -39,7 +39,7 @@ export default function SplashPage() {
         <div className='feature__title'>Muse</div>
         <div className='feature__subtitle'>Spark Your Story</div>
         <div className='buttons'>
-          <Button
+          {/* <Button
             variant='contained'
             disableElevation
             style={{ margin: '40px 60px' }}
@@ -54,7 +54,7 @@ export default function SplashPage() {
             color='secondary'
             onClick={handleSignUpOpen}>
             Sign Up
-          </Button>
+          </Button> */}
         </div>
         <div className='modal'>
           <AuthModal
