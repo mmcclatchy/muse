@@ -23,17 +23,58 @@ const MyDropzoneArea = withStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'var(--primary-font-color)'
+    color: 'var(--primary-font-color)',
+    '&.MuiDropzonePreviewList-root': {
+      
+    },
+    '& .MuiGrid-root': {
+      display: 'flex',
+      width: '100%',
+    },
+    '& .MuiGrid-grid-xs-4': {
+      maxWidth: '100%',
+      'flex-basis': 'auto',
+      height: 'auto'
+    },
+    '& .MuiGrid-grid-xs-8': {
+      width: '100%',
+      height: '100%',
+      margin: 0,
+    },
+    '& .MuiGrid-spacing-xs-8': {
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      '& > .MuiGrid-item': { 
+        padding: 0
+      },
+    },
+    '& .MuiDropzonePreviewList-image': {
+      width: '100%',
+      height: '100%'
+      
+    }
   },
   active: {
     backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
+  },
+  textContainer: {
+    position: 'absolute'
+  },
+  imageContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+  },
+  image: {
   }
+  
   
 })(DropzoneArea)
 
 const useStyles = makeStyles(theme => ({
   dropzoneWrapper: {
-    padding: '2%',
     height: '60%',
   },
   
@@ -41,12 +82,24 @@ const useStyles = makeStyles(theme => ({
 
 
 
-
 //***************************************************/
+
+
 
 export default function CharacterCardBody(props) {
   const classes = useStyles(theme)
   const dispatch = useDispatch()
+  
+  
+  const handleDrop = images => {
+    if (!images || images.length === 0) return;
+    
+    const formData = new FormData();
+    const img = images[0];
+    formData.append('file', img);
+    dispatch(postImage(formData));
+  }
+  
   
   // Prevent a bug attempting to 'GET' and empty string
   const getUrl = url => url  ?  `url(${url})`  :  'none';
@@ -59,11 +112,11 @@ export default function CharacterCardBody(props) {
         
       <div className={classes.dropzoneWrapper}>
         <MyDropzoneArea
-          acceptedFiles={['image/*']}
+          acceptedFiles={["image/jpeg", "image/png"]}
           maxFileSize={200000000}
           filesLimit={1}
           dropzoneText={"Drag and drop an image here or click"}
-          onChange={(files) => dispatch(postImage(files))}
+          onChange={handleDrop}
         />
       </div>
         

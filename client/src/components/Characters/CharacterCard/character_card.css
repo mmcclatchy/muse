@@ -49,6 +49,7 @@
   background-color: var(--background-color);
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 }
 
 .character_card_body {

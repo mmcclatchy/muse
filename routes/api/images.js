@@ -2,10 +2,11 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const AWS = require('aws-sdk');
 const multer = require('multer');
-const encryptor = require('simple-encryptor');
 const upload = multer();
 
 const { awsKeys, jwtConfig: { secret } } = require('../../config/index');
+const encryptor = require('simple-encryptor')(secret);
+
 const { requireAuth } = require('../../auth');
 
 const router = express.Router();
@@ -24,9 +25,11 @@ const s3 = new AWS.S3();
 
 const fileFilter = (req, res, next) => {
   const file = req.files[0];
+  
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     next();
-  } else {
+  } 
+  else {
     next({ status: 422, errors: ["Invalid Mime Type: JPEG and PNG only"] });
   }
 };
@@ -40,9 +43,10 @@ router.post(
   upload.any(),
   fileFilter,
   asyncHandler(async (req, res) => {
-    
     // Post image to S3 bucket
     const file = req.files[0];
+    console.log('****\n\FILE: ', file, '\n\n*****')
+    return
     const params = {
       Bucket: "app-muse",
       Key: Date.now().toString() + file.originalname,
@@ -50,8 +54,33 @@ router.post(
       ACL: "public-read",
       ContentType: file.mimetype,
     };
-    const uploadedImage = await s3.upload(params).promise();
-    const { Location: imageUrl, Key: imageKey } = uploadedImage.Location;
+    
+    console.log(`************
+      Params: ${params}
+      ***********************
+    `)
+    
+    const promise = s3.upload(params).promise();
+    const uploadedImage = await promise;
+    
+    console.log(`**********
+      uploadedImage: 
+      ${Objec.entries(uploadedImage)}
+      *********************
+    `)
+    
+    const { Location: imageUrl, Key } = uploadedImage.Location;
+    
+    console.log(`
+      *************
+        
+        KEY:  
+        ${typeof Key}, ${Key}
+        
+      *************
+    `)
+    const imageKey = encryptor.encrypt(Key);
+    console.log('\n\nABOUT TO RESPOND:', imageKey ,'\n\n')
     
     res.json({ payload: { imageUrl, imageKey: encryptor.encrypt(imageKey) }})
   })
@@ -60,7 +89,7 @@ router.post(
 router.put(
   '/:key',
   requireAuth,
-  upload.any(),
+  // upload.any(),
   fileFilter,
   asyncHandler(async (req, res) => {
     const encryptedKey = req.params.key;

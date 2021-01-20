@@ -1,17 +1,17 @@
 import { 
-  API,
+  IMAGES,
   SET_IMAGE_URL,
 } from '../constants/constants';
 
 
 
-export const postImage = img => {
+export const postImage = formData => {
   return {
-    type: API,
+    type: IMAGES,
     payload: {
       method: 'POST',
       endpoint: '/images',
-      body: img,
+      body: formData,
       actionConst: SET_IMAGE_URL
     }
   }
@@ -20,7 +20,7 @@ export const postImage = img => {
 
 export const putImage = (newImg, oldImgKey) => {
   return {
-    type: API,
+    type: IMAGES,
     payload: {
       method: 'PUT',
       endpoint: `/images/${oldImgKey}`,
@@ -29,3 +29,4 @@ export const putImage = (newImg, oldImgKey) => {
     }
   }
 }
+
