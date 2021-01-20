@@ -84,3 +84,8 @@ router.put(
     res.json({ payload: { imageUrl, imageKey: encryptor.encrypt(imageKey) }})
   })
 )
+
+
+
+
+module.exports = router;
