@@ -1,4 +1,5 @@
 export const API = 'muse/middleware/API';
+export const IMAGES = 'muse/middleware/IMAGES';
 export const TOKEN_KEY = 'muse/authentication/token';
 export const SET_TOKEN = 'muse/authentication/SET_TOKEN';
 export const REMOVE_TOKEN = 'muse/authentication/REMOVE_TOKEN';
@@ -28,3 +29,5 @@ export const DELETE_CHARACTER = 'muse/characters/DELETE_CHARACTER';
 export const CLEAR_MODIFIED = 'muse/characters/CLEAR_MODIFIED';
 export const PATCH_CHARACTER = 'muse/characters/PATCH_CHARACTER';
 export const CLEAR_TRAITS = 'muse/traits/CLEAR_TRAITS';
+export const POST_IMAGE = 'muse/images/POST_IMAGE';
+export const PUT_IMAGE = 'muse/images/PUT_IMAGE';

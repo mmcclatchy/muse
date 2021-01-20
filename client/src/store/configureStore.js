@@ -12,6 +12,7 @@ import allCharacters from './reducer/allCharacters';
 import modifyCharacter from './reducer/modifyCharacter';
 import createCharacters from './reducer/createCharacters';
 import utilities from './reducer/utilites';
+import imgMidWare from './middleware/images';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -34,7 +35,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducer);
 
 export default function createPersistentStore() {
-  const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk, api)));
+  const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk, api, imgMidWare)));
   const persistor = persistStore(store);
   return { store, persistor }
 }
