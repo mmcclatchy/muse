@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -49,9 +49,20 @@ export default function CharacterFormHeader(props) {
   const dispatch = useDispatch();
   
   
+  // *** Local State ***
+  const [errors, setErrors] = useState(false);
+  // const [character, setCharacter] = useState(null);
+  
+  
+  // *** Use Effect Hooks ***
+  useEffect(() => {console.log('useEffect errors: ', errors)}, [errors])
+  
+  // useEffect(() => { dispatch(postCharacter(character)) }, [character])
+  
+  
   //* Post Character Traits and Info to the Backend
   const handleSaveClick = () => {
-    const character = {
+    const characterTraits = [
       firstName,
       lastName,
       physical,
@@ -59,12 +70,33 @@ export default function CharacterFormHeader(props) {
       weaknesses,
       motivations,
       secrets,
-      imageUrl,
-      bio
-    };
+    ];
     
-    dispatch(postCharacter(character));
+    if (characterTraits.every(trait => trait.id) && imageUrl && bio) {
+      dispatch(postCharacter({
+        firstName,
+        lastName,
+        physical,
+        strengths,
+        weaknesses,
+        motivations,
+        secrets,
+        imageUrl,
+        bio
+      }))
+    }
+    else {
+      setErrors(true);
+    }
+    
+    
   };  
+  
+  
+  const handleErrorClose = () => {
+    console.log('handleErrorClose');
+    setErrors(false)
+  }
   
   
   // *** JSX ***
@@ -97,12 +129,38 @@ export default function CharacterFormHeader(props) {
       </Button>
       
       <ClickAwayListener onClickAway={props.close} >
-        <Snackbar open={status === 'success'} autoHideDuration={2000} onClose={props.close}>
-          <Alert elevation={6} variant='filled' onClose={props.close} severity="success">
+        <Snackbar 
+          open={status === 'success'} 
+          autoHideDuration={2000} 
+          onClose={props.close}
+        >
+          <Alert 
+            elevation={6} 
+            variant='filled' 
+            onClose={props.close} 
+            severity="success"
+          >
             Your character has been saved!
           </Alert>
         </Snackbar>
       </ClickAwayListener>
+      
+      {/* <ClickAwayListener onClickAway={handleErrorClose} > */}
+        <Snackbar 
+          open={errors} 
+          autoHideDuration={4000} 
+          onClose={handleErrorClose}
+        >
+          <Alert 
+            elevation={6} 
+            variant='filled' 
+            onClose={handleErrorClose} 
+            severity="warning"
+          >
+            All fields are required for character save
+          </Alert>
+        </Snackbar>
+      {/* </ClickAwayListener> */}
       
     </div>
   );
