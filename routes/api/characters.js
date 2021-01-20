@@ -1,13 +1,42 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
+// const AWS = require('aws-sdk');
+// const multer = require('multer');
+// const upload = multer();
 
+// const { awsKeys } = require('../../config/index')
 const { requireAuth } = require('../../auth');
 const { shapeAllForRedux, normalize } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
 const db = require('../../db/models/index')
 
 const router = express.Router();
+
+
+
+//*********************** AWS Setup ****************************/
+
+// AWS.config.update({
+//   secretAccessKey: awsKeys.secretAccessKey,
+//   accessKeyId: awsKeys.accessKeyId,
+//   region: awsKeys.region,
+// });
+
+// const s3 = new AWS.S3();
+
+// const fileFilter = (req, res, next) => {
+//   const file = req.files[0];
+//   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+//     next();
+//   } else {
+//     next({ status: 422, errors: ["Invalid Mime Type: JPEG and PNG only"] });
+//   }
+// };
+
+
+
+//***********************  Routes  *****************************/
 
 router.get(
   '/',
@@ -42,10 +71,26 @@ router.get(
 router.post(
   '/',
   requireAuth,
+  // upload.any(),
+  // fileFilter,
   asyncHandler(async (req, res) => {
-    // console.log('***\n\nPOST CHARACTER\n\n***')
+    
+    // Post image to S3 bucket
+    // const file = req.files[0];
+    // const params = {
+    //   Bucket: "picarus",
+    //   Key: Date.now().toString() + file.originalname,
+    //   Body: file.buffer,
+    //   ACL: "public-read",
+    //   ContentType: file.mimetype,
+    // };
+    // const uploadedImage = await s3.upload(params).promise();
+    // const url = uploadedImage.Location;
+    
+    // Parse character data from request
     const { 
-      imageUrl, 
+      imageUrl,
+      imageKey,
       bio, 
       firstName, 
       lastName, 
@@ -55,12 +100,15 @@ router.post(
       motivations,
       secrets,
     } = req.body;
-    // console.log(`****\n\nImage URL: `, imageUrl);
+    
+    // Create character in db
     const character = await Character.create({
       imageUrl,
+      imageKey,
       bio,
     });
-    // console.log(`****\n\nCharacter: ${character}\n\n${character.imageUrl}\n\n****`)
+    
+    // Create array to bulkCreate all character traits
     const characterTraits = [
       { characterId: character.id, traitId: firstName.id },
       { characterId: character.id, traitId: lastName.id },
@@ -71,10 +119,17 @@ router.post(
       { characterId: character.id, traitId: secrets.id },
     ];
 
-    await CharacterTrait.bulkCreate(characterTraits, {
-      // ignoreDuplicates: true
-    });
+    await CharacterTrait.bulkCreate(characterTraits, {});
 
+    /*  
+        Get character again with all relevant data
+        
+        NOTE: I considered several ways to do this attempting to avoid
+        accessing the db twice for the same character, but due to needing 
+        each trait's type, this seemed to be the least expensive alternative
+        
+        TODO: Attempt to build the character, setTraits, and get all data on the save
+    */
     const eagerCharacter = await Character.findOne({
       where: { id: character.id },
       attributes: ['id', 'imageUrl', 'bio'],
