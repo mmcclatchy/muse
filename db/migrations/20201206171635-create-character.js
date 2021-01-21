@@ -10,9 +10,15 @@ module.exports = {
       },
       imageUrl: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      imageKey: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       bio: {
-        type: Sequelize.STRING(500)
+        type: Sequelize.STRING(500),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

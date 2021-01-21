@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       imageKey: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       bio: {
         type: DataTypes.STRING(300),
