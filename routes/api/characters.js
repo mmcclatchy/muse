@@ -220,14 +220,14 @@ router.delete(
   asyncHandler(async (req, res) => {
     const characterId = parseInt(req.params.id, 10);
     
-    await CharacterTrait.destroy({ where: { characterId }, truncate: true });
+    await CharacterTrait.destroy({ where: { characterId }});
     
     const character = await Character.findByPk(characterId);
     
     const deleteParams = { Bucket: 'app-muse', Key: key };
     await s3.deleteObject(deleteParams).promise();
         
-    await character.destroy({ truncate: true });
+    await character.destroy();
     
     res.status(200).json({ payload: characterId, status: 'deleted' })
   })
