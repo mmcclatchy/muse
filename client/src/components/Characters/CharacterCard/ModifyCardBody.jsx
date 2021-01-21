@@ -1,15 +1,46 @@
 import React, { useEffect } from 'react';
-import CharacterInfo from './CharacterInfo';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { makeStyles } from '@material-ui/core/styles';
+import { ModifyDropzoneArea } from '../DropZone/MyDropZone';
 
 import './character_card.css';
-import { useSelector } from 'react-redux';
+import theme from '../../theme';
+import CharacterInfo from './CharacterInfo';
+import { putImage } from '../../../store/actions/images'
 
+
+//*****************  Styling  ***********************/
+
+
+
+const useStyles = makeStyles(theme => ({
+  dropzoneWrapper: {
+    height: '100%',
+    gridRow: '1 / span 2',
+    gridColumn: '1 / span 1',
+    '& .MuiSnackbar-anchorOriginBottomLeft': {
+      marginLeft: 'calc(50% - 165px)',
+    }
+  },
+  
+}))
+
+
+
+//*************************  Component  **************************/
 
 
 export default function ModifyCardBody(props) {
+  // *** Material UI ***
+  const classes = useStyles(theme);
+  
   // *** Redux ***
   const modCharacter = useSelector(state => state.modifyCharacter);
   const traits = useSelector(state => state.traits);
+  const imageUrl = useSelector(state => state.modifyCharacter.imageUrl);
+  const imageKey = useSelector(state => state.modifyCharacter.imageKey);
+  const dispatch = useDispatch();
   
   
   // *** Use Effect Hooks ***
@@ -22,10 +53,11 @@ export default function ModifyCardBody(props) {
   const getCharacterInfo = traitType => {
     return (
       props.id === modCharacter.id 
-      ? traits[traitType][modCharacter.traits[traitType]]
-      : traits[traitType][props[traitType]] 
+        ? traits[traitType][modCharacter.traits[traitType]]
+        : traits[traitType][props[traitType]] 
       )
-    }
+  }
+    
     
   // This allows the CharacterInfo to render updated traits on the form
   const characterInfo = {
@@ -37,15 +69,16 @@ export default function ModifyCardBody(props) {
     bio: props.id === modCharacter.id  ?  modCharacter.bio  :  props.bio,
   }
   
-  // Prevent a bug attempting to 'GET' and empty string
-  const getUrl = url => {
-    if(props.id === modCharacter.id) {
-      return modCharacter.imageUrl ? `url(${modCharacter.imageUrl})` : `none`;
-    } 
-    else {
-      return url  ?  `url(${url})`  :  'none';
-    }
+  
+  const handleDrop = images => {
+    if (!images || images.length === 0) return;
+    
+    const formData = new FormData();
+    const img = images[0];
+    formData.append('file', img);
+    dispatch(putImage(formData, imageKey, modCharacter.id));
   }
+  
   
   
   // *** JSX ***
@@ -53,10 +86,20 @@ export default function ModifyCardBody(props) {
   return (
     <div 
       className="modify_card_body" 
-      style={{ backgroundImage: getUrl(props.imageUrl) }}  
+      style={{ backgroundImage: imageUrl ? `url(${props.imageUrl})` : `url(${props.imageUrl})` }} 
     >
       
-      <div className="modify_card_space"></div>
+      
+      <div className={classes.dropzoneWrapper}>
+        <ModifyDropzoneArea
+          acceptedFiles={["image/jpeg", "image/png"]}
+          maxFileSize={200000000}
+          filesLimit={1}
+          alertSnackbarProps={{ autoHideDuration: 2000 }}
+          dropzoneText={"Drag and drop an image here or click"}
+          onChange={handleDrop}
+        />
+      </div>
         
       <CharacterInfo props={characterInfo} />
       

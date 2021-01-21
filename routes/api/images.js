@@ -6,6 +6,7 @@ const upload = multer();
 
 const { awsKeys } = require('../../config/index');
 const { requireAuth } = require('../../auth');
+const { Character } = require('../../db/models')
 
 const router = express.Router();
 
@@ -44,7 +45,6 @@ router.post(
     // Post image to S3 bucket
     const file = req.files[0];
     
-    return
     const params = {
       Bucket: "app-muse",
       Key: Date.now().toString() + file.originalname,
@@ -62,13 +62,15 @@ router.post(
 )
 
 router.put(
-  '/:key',
+  '/:key/:characterId',
   requireAuth,
   upload.any(),
   fileFilter,
   asyncHandler(async (req, res) => {
-    const encryptedKey = req.params.key;
-    const key = encryptor.decrypt(encryptedKey);
+    const { key, characterId } = req.params;
+    const id = parseInt(characterId, 10);
+    
+    const character = await Character.findByPk(id);
     
     const deleteParams = { Bucket: 'app-muse', Key: key };
     const deleteRes = await s3.deleteObject(deleteParams).promise();
@@ -82,10 +84,16 @@ router.put(
       ACL: "public-read",
       ContentType: file.mimetype,
     };
-    const uploadedImage = await s3.upload(params).promise();
-    const { Location: imageUrl, Key: imageKey } = uploadedImage.Location;
     
-    res.json({ payload: { imageUrl, imageKey }})
+    const uploadedImage = await s3.upload(params).promise();
+    const { Location: imageUrl, Key: imageKey } = uploadedImage;
+    
+    character.imageUrl = imageUrl;
+    character.imageKey = imageKey;
+    
+    character.save();
+    
+    res.json({ payload: { imageUrl, imageKey, characterId }})
   })
 )
 

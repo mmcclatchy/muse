@@ -5,6 +5,7 @@ import {
   SET_MODIFY_TRAIT,
   SET_DELETED,
   CLEAR_MODIFIED,
+  PUT_IMAGE,
 } from '../constants/constants';
 
 const initialState = {}
@@ -34,7 +35,8 @@ export default function characterReducer(state = initialState, { type, payload }
       const traits = { ...state.traits, [payload.type]: payload.id };
       return { ...state, traits };
       
-    
+    case PUT_IMAGE:
+      return { ...state, imageUrl: payload.imageUrl, imageKey: payload.imageKey };
       
     default:
       return state

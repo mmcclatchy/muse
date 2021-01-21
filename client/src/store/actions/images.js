@@ -1,6 +1,7 @@
 import { 
   IMAGES,
   SET_IMAGE_URL,
+  PUT_IMAGE,
 } from '../constants/constants';
 
 
@@ -18,15 +19,16 @@ export const postImage = formData => {
 }
 
 
-export const putImage = (newImg, oldImgKey) => {
+export const putImage = (newImg, oldImgKey, characterId) => {
   return {
     type: IMAGES,
     payload: {
       method: 'PUT',
-      endpoint: `/images/${oldImgKey}`,
+      endpoint: `/images/${oldImgKey}/${characterId}`,
       body: newImg,
-      actionConst: SET_IMAGE_URL
+      actionConst: PUT_IMAGE
     }
   }
 }
+
 

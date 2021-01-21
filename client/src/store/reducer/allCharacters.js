@@ -2,7 +2,8 @@ import {
   SET_CHARACTERS, 
   CLEAR_CHARACTERS,
   DELETE_CHARACTER,
-  PATCH_CHARACTER
+  PATCH_CHARACTER,
+  PUT_IMAGE,
 } from '../constants/constants';
 
 
@@ -25,6 +26,11 @@ export default function characterReducer(state = {}, { type, payload }) {
       const deleteCharacter = { ...state };
       delete deleteCharacter[payload]
       return deleteCharacter
+      
+    case PUT_IMAGE:
+      const { imageUrl, imageKey, characterId } = payload;
+      const character = { ...state[characterId], imageUrl, imageKey };
+      return { ...state, [characterId]: character }
       
     default:
       return state

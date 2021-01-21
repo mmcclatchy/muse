@@ -1,11 +1,11 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Op } = require('sequelize');
-// const AWS = require('aws-sdk');
-// const multer = require('multer');
-// const upload = multer();
+const AWS = require('aws-sdk');
+const multer = require('multer');
+const upload = multer();
 
-// const { awsKeys } = require('../../config/index')
+const { awsKeys } = require('../../config/index')
 const { requireAuth } = require('../../auth');
 const { shapeAllForRedux, normalize } = require('../../utilities');
 const { Character, CharacterTrait, Trait, TraitType } = require('../../db/models');
@@ -17,22 +17,22 @@ const router = express.Router();
 
 //*********************** AWS Setup ****************************/
 
-// AWS.config.update({
-//   secretAccessKey: awsKeys.secretAccessKey,
-//   accessKeyId: awsKeys.accessKeyId,
-//   region: awsKeys.region,
-// });
+AWS.config.update({
+  secretAccessKey: awsKeys.secretAccessKey,
+  accessKeyId: awsKeys.accessKeyId,
+  region: awsKeys.region,
+});
 
-// const s3 = new AWS.S3();
+const s3 = new AWS.S3();
 
-// const fileFilter = (req, res, next) => {
-//   const file = req.files[0];
-//   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-//     next();
-//   } else {
-//     next({ status: 422, errors: ["Invalid Mime Type: JPEG and PNG only"] });
-//   }
-// };
+const fileFilter = (req, res, next) => {
+  const file = req.files[0];
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    next();
+  } else {
+    next({ status: 422, errors: ["Invalid Mime Type: JPEG and PNG only"] });
+  }
+};
 
 
 
@@ -220,10 +220,14 @@ router.delete(
   asyncHandler(async (req, res) => {
     const characterId = parseInt(req.params.id, 10);
     
-    await CharacterTrait.destroy({ where: { characterId }})
+    await CharacterTrait.destroy({ where: { characterId }, truncate: true });
     
     const character = await Character.findByPk(characterId);
-    await character.destroy()
+    
+    const deleteParams = { Bucket: 'app-muse', Key: key };
+    await s3.deleteObject(deleteParams).promise();
+        
+    await character.destroy({ truncate: true });
     
     res.status(200).json({ payload: characterId, status: 'deleted' })
   })

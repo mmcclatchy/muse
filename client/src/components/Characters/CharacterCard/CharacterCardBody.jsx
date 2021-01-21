@@ -1,9 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { DropzoneArea } from 'material-ui-dropzone';
-import { withStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { CreateDropzoneArea } from '../DropZone/MyDropZone';
 
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
@@ -11,102 +10,11 @@ import { makeStyles } from '@material-ui/core/styles';
 // import './character_card.css';
 import theme from '../../theme';
 import CharacterInfo from './CharacterInfo';
-import { postImage } from '../../../store/actions/images'
+import { postImage } from '../../../store/actions/images';
 
 //*****************  Styling  ***********************/
 
-const MyDropzoneArea = withStyles({
-  root: {
-    height: '100%',
-    padding: '1%',
-    display: 'flex',
-    justifyContent: 'center',
-    color: 'rgba(0,0,0,0.6)',
-    border: 'none',
-    borderRadius: 0,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(0,0,0,0.0)',
-    transition: 'color 300ms ease-in-out, background-color 300ms ease-in-out',
-    '&:hover': {
-      backgroundColor: 'var(--background-color)',
-      color: 'rgba(0,0,0,1)',
-      '& .MuiDropzoneArea-icon': {
-        color: 'black',
-      }
-    },
-    
-    '& .MuiDropzoneArea-icon': {
-      color: 'rgba(0,0,0,.6)',
-      transition: 'color 350ms ease-in-out',
-    },
-    
-    '& .MuiGrid-root': {
-      display: 'flex',
-      width: '100%',
-    },
-    
-    '& .MuiGrid-grid-xs-4': {
-      maxWidth: '100%',
-      'flex-basis': 'auto',
-      height: 'auto'
-    },
-    
-    '& .MuiGrid-grid-xs-8': {
-      width: '100%',
-      height: '100%',
-      margin: 0,
-    },
-    
-    '& .MuiGrid-spacing-xs-8': {
-      width: '100%',
-      margin: 0,
-      position: 'absolute',
-      top: 0,
-      
-      
-      '& > .MuiGrid-item': { 
-        padding: 0
-      },
-    },
-    
-    '& .MuiDropzonePreviewList-image': {
-      width: '100%',
-      height: '100%',
-      borderRadius: 0,
-    },
-    
-    '& .MuiDropzonePreviewList-root': {
-      '& .MuiDropzonePreviewList-removeButton': {
-        top: '50px',
-        right: '50px',
-      },
-      
-      '& .MuiFab-root': {
-        backgroundColor: 'var(--warning)',
-        color: 'var(--background-color)',
-        '&:hover': { backgroundColor: 'var(--warning-dark)' },
-        zIndex: 50,
-      },
-    },
-    
-    
-  },
-  active: {
-    backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
-  },
-  textContainer: {
-    position: 'absolute',
-    marginTop: '25%'
-  },
-  imageContainer: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden',
-  },
-  
-  
-})(DropzoneArea)
+
 
 const useStyles = makeStyles(theme => ({
   dropzoneWrapper: {
@@ -147,11 +55,6 @@ export default function CharacterCardBody(props) {
     dispatch(postImage(formData));
   }
   
-  const snackBarProps = {
-    // anchorOrigin: { horizontal: 'center' },
-    autoHideDuration: 2000,
-    
-  }
   
   
   // *** JSX ***
@@ -162,11 +65,11 @@ export default function CharacterCardBody(props) {
     >
         
       <div className={classes.dropzoneWrapper}>
-        <MyDropzoneArea
+        <CreateDropzoneArea
           acceptedFiles={["image/jpeg", "image/png"]}
           maxFileSize={200000000}
           filesLimit={1}
-          alertSnackbarProps={snackBarProps}
+          alertSnackbarProps={{ autoHideDuration: 2000 }}
           dropzoneText={"Drag and drop an image here or click"}
           onChange={handleDrop}
         />
