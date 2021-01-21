@@ -110,11 +110,39 @@
     justify-content: center;
 }
 
-.footer_wrapper {
+.splash_footer_wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
-    max-width: 1025px;
+    max-width: 1100px;
     color: var(--primary-font-color);
     padding: 10px 0;
     
+}
+
+
+
+/*******************  MEDIA QUERIES  *******************/
+
+@media screen and (min-width: 2000px) {
+    .splash_section_content {
+    }
+    
+    .splash_content {
+        flex-flow: row;
+        width: 100%;
+        max-width: none;
+        justify-content: space-evenly;
+    }
+    
+    .section1,
+    .section2 {
+        width: 42.5%;
+        max-height: 320px;
+        margin: 0;
+    }
+    
+    .splash_footer_wrapper {
+        max-width: none;
+    }
 }

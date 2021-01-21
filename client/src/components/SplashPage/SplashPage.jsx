@@ -71,7 +71,7 @@ export default function SplashPage() {
       <SplashInfo />
                 
       <div className="splash_footer">
-        <div className="footer_wrapper">
+        <div className="splash_footer_wrapper">
           <Footer />
         </div>
       </div>
