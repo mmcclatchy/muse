@@ -26,8 +26,9 @@ const MyDropzoneArea = withStyles({
     borderRadius: 0,
     overflow: 'hidden',
     backgroundColor: 'rgba(0,0,0,0.0)',
-    transition: 'color 300ms ease-in-out',
+    transition: 'color 300ms ease-in-out, background-color 300ms ease-in-out',
     '&:hover': {
+      backgroundColor: 'var(--background-color)',
       color: 'rgba(0,0,0,1)',
       '& .MuiDropzoneArea-icon': {
         color: 'black',
@@ -142,6 +143,12 @@ export default function CharacterCardBody(props) {
     dispatch(postImage(formData));
   }
   
+  const snackBarProps = {
+    // anchorOrigin: { horizontal: 'center' },
+    autoHideDuration: 2000,
+    
+  }
+  
   
   // *** JSX ***
   return (
@@ -155,6 +162,7 @@ export default function CharacterCardBody(props) {
           acceptedFiles={["image/jpeg", "image/png"]}
           maxFileSize={200000000}
           filesLimit={1}
+          alertSnackbarProps={snackBarProps}
           dropzoneText={"Drag and drop an image here or click"}
           onChange={handleDrop}
         />
