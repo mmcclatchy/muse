@@ -43,7 +43,7 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const characters = await Character.findAll({
-      attributes: ['id', 'imageUrl', 'bio'],
+      attributes: ['id', 'imageUrl', 'imageKey', 'bio'],
       include: [
         {
           model: CharacterTrait,
@@ -71,21 +71,7 @@ router.get(
 router.post(
   '/',
   requireAuth,
-  // upload.any(),
-  // fileFilter,
   asyncHandler(async (req, res) => {
-    
-    // Post image to S3 bucket
-    // const file = req.files[0];
-    // const params = {
-    //   Bucket: "picarus",
-    //   Key: Date.now().toString() + file.originalname,
-    //   Body: file.buffer,
-    //   ACL: "public-read",
-    //   ContentType: file.mimetype,
-    // };
-    // const uploadedImage = await s3.upload(params).promise();
-    // const url = uploadedImage.Location;
     
     // Parse character data from request
     const { 

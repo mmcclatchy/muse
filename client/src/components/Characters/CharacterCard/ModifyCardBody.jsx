@@ -48,9 +48,13 @@ export default function ModifyCardBody(props) {
   }
   
   
+  // *** JSX ***
   
   return (
-    <div className="modify_card_body" style={{ backgroundImage: getUrl(props.imageUrl) }}  >
+    <div 
+      className="modify_card_body" 
+      style={{ backgroundImage: getUrl(props.imageUrl) }}  
+    >
       
       <div className="modify_card_space"></div>
         

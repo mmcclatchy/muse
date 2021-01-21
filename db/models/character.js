@@ -1,4 +1,9 @@
 'use strict';
+
+
+const { jwtConfig: { secret } } = require('../../config/index');
+const encryptor = require('simple-encryptor')(secret);
+
 module.exports = (sequelize, DataTypes) => {
   const Character = sequelize.define(
     'Character',
@@ -32,18 +37,24 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  //*******************************************************/
+  
+    
   Character.prototype.shapeTraits = function () {
     const shapedTraits = {};
-  
+    
     this.CharacterTraits.forEach(characterTrait => {
       shapedTraits[characterTrait.Trait.TraitType.type] = characterTrait.Trait.id;
     });
-    // console.log(`****\n\nShape Traits - ImageUrl: ${this.imageUrl}\n\n****`)
+    
+    const encryptedKey = encryptor.encrypt(this.imageKey);
+    
     return {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
       imageUrl: this.imageUrl,
+      imageKey: encryptedKey,
       bio: this.bio,
       traits: shapedTraits
     };
