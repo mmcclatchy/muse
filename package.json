@@ -42,7 +42,6 @@
     "react-shepherd": "^3.3.3",
     "sequelize": "^5.21.7",
     "sequelize-cli": "^5.5.1",
-    "simple-encryptor": "^4.0.0",
     "uuid": "^8.0.0"
   },
   "devDependencies": {

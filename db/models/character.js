@@ -1,9 +1,6 @@
 'use strict';
 
 
-const { jwtConfig: { secret } } = require('../../config/index');
-const encryptor = require('simple-encryptor')(secret);
-
 module.exports = (sequelize, DataTypes) => {
   const Character = sequelize.define(
     'Character',
@@ -48,14 +45,13 @@ module.exports = (sequelize, DataTypes) => {
       shapedTraits[characterTrait.Trait.TraitType.type] = characterTrait.Trait.id;
     });
     
-    const encryptedKey = encryptor.encrypt(this.imageKey);
     
     return {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
       imageUrl: this.imageUrl,
-      imageKey: encryptedKey,
+      imageKey: this.imageKey,
       bio: this.bio,
       traits: shapedTraits
     };

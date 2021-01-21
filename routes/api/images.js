@@ -4,9 +4,7 @@ const AWS = require('aws-sdk');
 const multer = require('multer');
 const upload = multer();
 
-const { awsKeys, jwtConfig: { secret } } = require('../../config/index');
-const encryptor = require('simple-encryptor')(secret);
-
+const { awsKeys } = require('../../config/index');
 const { requireAuth } = require('../../auth');
 
 const router = express.Router();
@@ -45,7 +43,7 @@ router.post(
   asyncHandler(async (req, res) => {
     // Post image to S3 bucket
     const file = req.files[0];
-    console.log('****\n\FILE: ', file, '\n\n*****')
+    
     return
     const params = {
       Bucket: "app-muse",
@@ -55,35 +53,9 @@ router.post(
       ContentType: file.mimetype,
     };
     
-    console.log(`************
-      Params: ${params}
-      ***********************
-    `)
-    
     const promise = s3.upload(params).promise();
     const uploadedImage = await promise;
-    
-    console.log(`**********
-      uploadedImage: 
-      ${Object.entries(uploadedImage)}
-      *********************
-    `)
-    
-    const { Location: imageUrl, Key } = uploadedImage;
-    
-    console.log(`
-      *************
-        
-        Image Url:
-        ${imageUrl}
-      
-        KEY:  
-        ${typeof Key}, ${Key}
-        
-      *************
-    `)
-    const imageKey = encryptor.encrypt(Key);
-    console.log('\n\nABOUT TO RESPOND:', imageKey ,'\n\n')
+    const { Location: imageUrl, Key: imageKey } = uploadedImage;
     
     res.json({ payload: { imageUrl, imageKey }})
   })
@@ -92,7 +64,7 @@ router.post(
 router.put(
   '/:key',
   requireAuth,
-  // upload.any(),
+  upload.any(),
   fileFilter,
   asyncHandler(async (req, res) => {
     const encryptedKey = req.params.key;
@@ -113,7 +85,7 @@ router.put(
     const uploadedImage = await s3.upload(params).promise();
     const { Location: imageUrl, Key: imageKey } = uploadedImage.Location;
     
-    res.json({ payload: { imageUrl, imageKey: encryptor.encrypt(imageKey) }})
+    res.json({ payload: { imageUrl, imageKey }})
   })
 )
 
