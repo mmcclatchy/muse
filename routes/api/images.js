@@ -46,7 +46,6 @@ router.post(
     // Post image to S3 bucket
     const file = req.files[0];
     console.log('****\n\FILE: ', file, '\n\n*****')
-    return
     const params = {
       Bucket: "app-muse",
       Key: Date.now().toString() + file.originalname,
@@ -65,15 +64,18 @@ router.post(
     
     console.log(`**********
       uploadedImage: 
-      ${Objec.entries(uploadedImage)}
+      ${Object.entries(uploadedImage)}
       *********************
     `)
     
-    const { Location: imageUrl, Key } = uploadedImage.Location;
+    const { Location: imageUrl, Key } = uploadedImage;
     
     console.log(`
       *************
         
+        Image Url:
+        ${imageUrl}
+      
         KEY:  
         ${typeof Key}, ${Key}
         
@@ -82,7 +84,7 @@ router.post(
     const imageKey = encryptor.encrypt(Key);
     console.log('\n\nABOUT TO RESPOND:', imageKey ,'\n\n')
     
-    res.json({ payload: { imageUrl, imageKey: encryptor.encrypt(imageKey) }})
+    res.json({ payload: { imageUrl, imageKey }})
   })
 )
 

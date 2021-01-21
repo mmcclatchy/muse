@@ -62,11 +62,14 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    margin: 10,
+    padding: 10,
     display: 'flex',
     flexFlow: 'column',
     justifyContent: 'flex-end',
-    height: '20%'
+    height: '100%',
+    gridRow: '2 / span 1',
+    gridColumn: '1 / span 1',
+    zIndex: 100,
   },
   character_info: {
   },

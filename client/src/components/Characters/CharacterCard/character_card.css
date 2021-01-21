@@ -47,8 +47,9 @@
   background-position-x: center;
   background-position-y: top;
   background-color: var(--background-color);
-  display: flex;
-  flex-flow: column;
+  display: grid;
+  grid-template-rows: 60% 1fr;
+  grid-template-columns: 1fr;
   overflow: hidden;
 }
 
@@ -57,7 +58,7 @@
 }
 
 .modify_card_body {
-  height: 60vh;
+  height: 65vh;
   overflow: hidden;
   width: 100%;
 }

@@ -21,45 +21,68 @@ const MyDropzoneArea = withStyles({
     backgroundColor: 'rgba(0,0,0,0)',
     padding: '1%',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
     color: 'var(--primary-font-color)',
-    '&.MuiDropzonePreviewList-root': {
-      
-    },
+    border: 'none',
+    borderRadius: 0,
+    overflow: 'hidden',
+    
     '& .MuiGrid-root': {
       display: 'flex',
       width: '100%',
     },
+    
     '& .MuiGrid-grid-xs-4': {
       maxWidth: '100%',
       'flex-basis': 'auto',
       height: 'auto'
     },
+    
     '& .MuiGrid-grid-xs-8': {
       width: '100%',
       height: '100%',
       margin: 0,
     },
+    
     '& .MuiGrid-spacing-xs-8': {
       width: '100%',
+      margin: 0,
       position: 'absolute',
       top: 0,
+      
+      
       '& > .MuiGrid-item': { 
         padding: 0
       },
     },
+    
     '& .MuiDropzonePreviewList-image': {
       width: '100%',
-      height: '100%'
+      height: '100%',
+      borderRadius: 0,
+    },
+    
+    '& .MuiDropzonePreviewList-root': {
+      '& .MuiDropzonePreviewList-removeButton': {
+        top: '50px',
+        right: '50px',
+      },
       
-    }
+      '& .MuiFab-root': {
+        backgroundColor: 'var(--warning)',
+        color: 'var(--background-color)',
+        '&:hover': { backgroundColor: 'var(--warning-dark)' },
+        zIndex: 50,
+      },
+      
+    },
   },
   active: {
     backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
   },
   textContainer: {
-    position: 'absolute'
+    position: 'absolute',
+    marginTop: '25%'
   },
   imageContainer: {
     display: 'flex',
@@ -67,15 +90,15 @@ const MyDropzoneArea = withStyles({
     height: '100%',
     overflow: 'hidden',
   },
-  image: {
-  }
   
   
 })(DropzoneArea)
 
 const useStyles = makeStyles(theme => ({
   dropzoneWrapper: {
-    height: '60%',
+    height: '100%',
+    gridRow: '1 / span 2',
+    gridColumn: '1 / span 1',
   },
   
 }))
