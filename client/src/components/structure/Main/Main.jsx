@@ -9,6 +9,7 @@ import ModifyCharacter from '../../Characters/ModifyCharacter';
 import IntroPage from '../../IntroPage/IntroPage';
 import { getTraits } from '../../../store/actions/traits';
 import lightBlurImg from '../../open_landscape_light_blur.jpg';
+import SplashPage from '../../SplashPage/SplashPage';
 
 
 export default function Main() {
@@ -25,7 +26,7 @@ export default function Main() {
       <Switch>
       
         <Route exact path='/' >
-          <IntroPage />
+          { loggedIn ? <IntroPage /> : <SplashPage /> }
         </Route>
       
         <ProtectedRoute path='/create-character' isLoggedIn={loggedIn} >

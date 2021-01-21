@@ -31,4 +31,3 @@ export const putImage = (newImg, oldImgKey, characterId) => {
   }
 }
 
-
