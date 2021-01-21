@@ -41,7 +41,6 @@ export const getCharacters = () => {
 };
 
 export const postCharacter = (character) => {
-  // console.log('Post Character: ', character)
   return {
     type: API,
     payload: {
@@ -66,12 +65,13 @@ export const patchCharacter = (character) => {
 };
 
 export const deleteCharacter = (characterId, imageKey) => {
+  
   return {
     type: API,
     payload: {
       endpoint: `/characters/${characterId}`,
       method: 'DELETE',
-      body: JSON.stringify(imageKey),
+      body: JSON.stringify({ imageKey }),
       actionConst: DELETE_CHARACTER,
     },
   };

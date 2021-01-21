@@ -4,9 +4,9 @@ import { IMAGES } from '../constants/constants';
 
 
 const images = ({ dispatch, getState }) => next => async action => {
-  console.log('ACTION PASSING THROUGH IMAGES MIDDLEWARE: ', action)
+  
   if (action.type !== IMAGES) return next(action);
-  console.log('PAYLOAD: ', action.payload)
+  
   
   const { authentication: { token } } = getState();
   
@@ -20,7 +20,7 @@ const images = ({ dispatch, getState }) => next => async action => {
       Authorization: `Bearer ${token}`,
       // 'Content-Type': 'multipart/form-data'
   }};
-  console.log('FORM: ', fetchInfo)
+  
   const response = await fetch(`${baseApiUrl}${endpoint}`, fetchInfo);
   
   

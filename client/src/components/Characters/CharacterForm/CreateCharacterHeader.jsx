@@ -56,9 +56,7 @@ export default function CharacterFormHeader(props) {
   
   
   // *** Use Effect Hooks ***
-  useEffect(() => {console.log('useEffect errors: ', errors)}, [errors])
-  
-  // useEffect(() => { dispatch(postCharacter(character)) }, [character])
+  useEffect(() => {}, [errors])
   
   
   //* Post Character Traits and Info to the Backend
@@ -96,7 +94,6 @@ export default function CharacterFormHeader(props) {
   
   
   const handleErrorClose = () => {
-    console.log('handleErrorClose');
     setErrors(false)
   }
   

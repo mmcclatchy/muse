@@ -15,6 +15,7 @@ const api = ({ dispatch, getState }) => next => async action => {
   // Payload will determine the fetch call and what is being dispatched
   const { endpoint, method, body, actionConst, secondActionConst } = action.payload;
   
+
   
   const response = await fetch(`${baseApiUrl}${endpoint}`, {
     method: method,

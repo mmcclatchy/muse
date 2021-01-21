@@ -101,6 +101,7 @@ export default function CharacterFormHeader() {
         className={classes.delete}
         startIcon={<DeleteForeverIcon />}
         variant='contained'
+        disabled={!id}
         disableElevation
         onClick={handleDeleteClick}>
         Delete
@@ -111,6 +112,7 @@ export default function CharacterFormHeader() {
       <Button
         variant='contained'
         color='secondary'
+        disabled={!id}
         className={classes.button}
         startIcon={<SaveAltIcon />}
         onClick={handleUpdateClick}

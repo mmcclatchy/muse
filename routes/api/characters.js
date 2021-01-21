@@ -138,7 +138,6 @@ router.post(
         }
       ]
     });
-    // console.log(`****\n\nEagerCharacter: ${eagerCharacter}\n\n${eagerCharacter.imageUrl}\n\n****`)
 
     res.status(201).json({ 
       payload: normalize(eagerCharacter.shapeTraits()), 
@@ -219,12 +218,13 @@ router.delete(
   requireAuth,
   asyncHandler(async (req, res) => {
     const characterId = parseInt(req.params.id, 10);
+    const { imageKey } = req.body;
     
     await CharacterTrait.destroy({ where: { characterId }});
     
     const character = await Character.findByPk(characterId);
     
-    const deleteParams = { Bucket: 'app-muse', Key: key };
+    const deleteParams = { Bucket: 'app-muse', Key: imageKey };
     await s3.deleteObject(deleteParams).promise();
         
     await character.destroy();

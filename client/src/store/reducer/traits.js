@@ -19,7 +19,6 @@ export default function traitsReducer(state = initialState, { type, payload }) {
       return { ...state, ...payload };
 
     case SET_NEW_TRAIT:
-      // console.log('SET_NEW_TRAIT: ', payload)
       const newState = { ...state };
       newState[payload.type][payload.id] = payload
       return newState

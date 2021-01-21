@@ -17,7 +17,6 @@ export default function utilitiesReducer(state = initialState, { type, payload }
       return { ...state, ...payload };
     
     case SET_STATUS:
-      // console.log('SET_STATUS: ', payload)
       return { ...state, ...payload };
       
     default:

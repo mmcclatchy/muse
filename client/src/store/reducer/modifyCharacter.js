@@ -31,7 +31,6 @@ export default function characterReducer(state = initialState, { type, payload }
       return { ...state, bio: payload };
       
     case SET_MODIFY_TRAIT:
-      // console.log('SET_MODIFY_TRAIT: ', payload)
       const traits = { ...state.traits, [payload.type]: payload.id };
       return { ...state, traits };
       
