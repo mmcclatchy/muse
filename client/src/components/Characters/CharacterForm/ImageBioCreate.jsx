@@ -34,14 +34,12 @@ export default function ImageBioCreate() {
   const classes = useStyles(theme);
   
   // *** Redux ***
-  const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
   const bio = useSelector(state => state.createCharacters.bio);
   const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
   
   
   // *** Local State ***
-  const [avatar, setAvatar] = useState(imageUrl);
   const [characterBio, setCharacterBio] = useState(bio);
 
   
@@ -50,25 +48,18 @@ export default function ImageBioCreate() {
   // Fetch Character Traits on init render of component
   useEffect(() => {
     if (bio) setCharacterBio(bio);
-    if (imageUrl) setAvatar(imageUrl);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
   // Clear Avatar and Bio Fields when a save is successful
   const statusIsSuccess = status === 'success';
   useEffect(() => {
     if (statusIsSuccess) {
-      setAvatar('');
       setCharacterBio('');
     }
   }, [statusIsSuccess])
   
-  // Dispatch Url to Redux
-  useEffect(() => {
-    dispatch(setImageUrl(avatar));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [avatar]);
-
   
   // Dispatch Bio to Redux
   useEffect(() => {
@@ -76,12 +67,8 @@ export default function ImageBioCreate() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterBio]);
   
-  // Clear Avatar and Bio Textareas when Redux is cleared
-  useEffect(() => {
-    if (imageUrl === '' && avatar !== '') setAvatar('');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrl]);
   
+  // Persistent State from redux-persist
   useEffect(() => {
     if (bio === '' && characterBio !== '') setCharacterBio('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,7 +78,6 @@ export default function ImageBioCreate() {
   
   // *** Helper Functions ***
   // Set Local State on TextArea Change
-  const handleImgChange = (e) => setAvatar(e.target.value);
   const handleBioChange = (e) => setCharacterBio(e.target.value);  
   
   
@@ -99,17 +85,6 @@ export default function ImageBioCreate() {
   // *** JSX ***
   return (
     <div className={classes.imageBioContainer}>
-      
-      <TextField
-        value={avatar}
-        // defaultValue={imageUrl}
-        className={classes.image}
-        label='Character Image URL'
-        color='secondary'
-        inputProps={{ maxLength: 256 }}
-        style={{ width: '95%', margin: '1% 2%' }}
-        onChange={handleImgChange}
-      />
 
       <TextField
         value={characterBio}
@@ -117,7 +92,7 @@ export default function ImageBioCreate() {
         color='secondary'
         label='Bio'
         multiline
-        rows={3}
+        rows={5}
         InputProps={{ classes: { input: classes.bioInput } }}
         inputProps={{ maxLength: 300 }}
         helperText={`${characterBio.length}/300`}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { DropzoneArea } from 'material-ui-dropzone';
 import { withStyles } from '@material-ui/core';
@@ -18,14 +18,26 @@ import { postImage } from '../../../store/actions/images'
 const MyDropzoneArea = withStyles({
   root: {
     height: '100%',
-    backgroundColor: 'rgba(0,0,0,0)',
     padding: '1%',
     display: 'flex',
     justifyContent: 'center',
-    color: 'var(--primary-font-color)',
+    color: 'rgba(0,0,0,0.6)',
     border: 'none',
     borderRadius: 0,
     overflow: 'hidden',
+    backgroundColor: 'rgba(0,0,0,0.0)',
+    transition: 'color 300ms ease-in-out',
+    '&:hover': {
+      color: 'rgba(0,0,0,1)',
+      '& .MuiDropzoneArea-icon': {
+        color: 'black',
+      }
+    },
+    
+    '& .MuiDropzoneArea-icon': {
+      color: 'rgba(0,0,0,.6)',
+      transition: 'color 350ms ease-in-out',
+    },
     
     '& .MuiGrid-root': {
       display: 'flex',
@@ -74,8 +86,8 @@ const MyDropzoneArea = withStyles({
         '&:hover': { backgroundColor: 'var(--warning-dark)' },
         zIndex: 50,
       },
-      
     },
+    
   },
   active: {
     backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
@@ -105,15 +117,22 @@ const useStyles = makeStyles(theme => ({
 
 
 
-//***************************************************/
+//*************************  Component  **************************/
 
 
 
 export default function CharacterCardBody(props) {
+  // *** Material UI ***
   const classes = useStyles(theme)
+  
+  
+  // *** Redux ***
+  const imageUrl = useSelector(state => state.createCharacters.image?.imageUrl)
+  const imageKey = useSelector(state => state.createCharacters.image?.imageKey)
   const dispatch = useDispatch()
   
   
+  // *** Helper Functions ***
   const handleDrop = images => {
     if (!images || images.length === 0) return;
     
@@ -124,13 +143,11 @@ export default function CharacterCardBody(props) {
   }
   
   
-  // Prevent a bug attempting to 'GET' and empty string
-  const getUrl = url => url  ?  `url(${url})`  :  'none';
-  
+  // *** JSX ***
   return (
     <div 
       className="character_card_body" 
-      style={{ backgroundImage: getUrl(props.imageUrl) }} 
+      style={{ backgroundImage: imageUrl ? `url(${imageUrl})` : 'none' }}
     >
         
       <div className={classes.dropzoneWrapper}>

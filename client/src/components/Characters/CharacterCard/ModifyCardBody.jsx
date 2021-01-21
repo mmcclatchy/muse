@@ -7,11 +7,16 @@ import { useSelector } from 'react-redux';
 
 
 export default function ModifyCardBody(props) {
+  // *** Redux ***
   const modCharacter = useSelector(state => state.modifyCharacter);
   const traits = useSelector(state => state.traits);
   
+  
+  // *** Use Effect Hooks ***
   useEffect(() => {}, [modCharacter]);
   
+  
+  // *** Helper Functions ***
   // If character is selected in ModifyCharacter, return modTraits
   // else return allCharacter Traits. 
   const getCharacterInfo = traitType => {

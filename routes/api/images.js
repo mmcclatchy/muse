@@ -46,6 +46,7 @@ router.post(
     // Post image to S3 bucket
     const file = req.files[0];
     console.log('****\n\FILE: ', file, '\n\n*****')
+    return
     const params = {
       Bucket: "app-muse",
       Key: Date.now().toString() + file.originalname,

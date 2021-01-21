@@ -14,7 +14,7 @@ const initState = {
   weaknesses: '',
   motivations: '',
   secrets: '',
-  imageUrl: '',
+  image: {},
   bio: '',
 };
 
@@ -39,7 +39,7 @@ export default function characterReducer(state = initState, { type, payload }) {
       return initState;
 
     case SET_IMAGE_URL:
-      return { ...state, imageUrl: payload };
+      return { ...state, image: payload };
 
     case SET_BIO:
       return { ...state, bio: payload };
