@@ -48,6 +48,7 @@ export default function CharacterFormHeader() {
   const id = useSelector((state) => state.modifyCharacter?.id);
   const traitIds = useSelector((state) => state.modifyCharacter?.traits);
   const imageUrl = useSelector((state) => state.modifyCharacter?.imageUrl);
+  const imageKey = useSelector((state) => state.modifyCharacter?.imageKey);
   const bio = useSelector((state) => state.modifyCharacter?.bio);
   const status = useSelector((state) => state.utilities.status);
   const allCharacters = useSelector((state) => state.allCharacters);
@@ -84,7 +85,7 @@ export default function CharacterFormHeader() {
   const handleDeleteClick = () => {
     if (!id) return;
 
-    dispatch(deleteCharacter(id));
+    dispatch(deleteCharacter(id, imageKey));
   };
 
   // Close Success Candy Bar

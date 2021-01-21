@@ -46,7 +46,8 @@ module.exports = (sequelize, DataTypes) => {
     });
     
     
-    return {
+    
+    const shapedCharacter = {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
@@ -55,6 +56,9 @@ module.exports = (sequelize, DataTypes) => {
       bio: this.bio,
       traits: shapedTraits
     };
+    
+    // console.log(`***\n\n${Object.entries(shapedCharacter)}\n\nTraits: ${Object.entries(shapedCharacter.traits)}\n\n***`)
+    
   };
 
   return Character;

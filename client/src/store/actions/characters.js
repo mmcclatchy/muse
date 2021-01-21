@@ -65,12 +65,13 @@ export const patchCharacter = (character) => {
   };
 };
 
-export const deleteCharacter = (characterId) => {
+export const deleteCharacter = (characterId, imageKey) => {
   return {
     type: API,
     payload: {
       endpoint: `/characters/${characterId}`,
       method: 'DELETE',
+      body: JSON.stringify(imageKey),
       actionConst: DELETE_CHARACTER,
     },
   };
