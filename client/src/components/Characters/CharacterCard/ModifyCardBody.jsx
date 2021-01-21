@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { ModifyDropzoneArea } from '../DropZone/MyDropZone';
+import { DropzoneNoBackground } from '../DropZone/MyDropZone';
 
 import './character_card.css';
 import theme from '../../theme';
@@ -91,7 +91,7 @@ export default function ModifyCardBody(props) {
       
       
       <div className={classes.dropzoneWrapper}>
-        <ModifyDropzoneArea
+        <DropzoneNoBackground
           acceptedFiles={["image/jpeg", "image/png"]}
           maxFileSize={200000000}
           filesLimit={1}

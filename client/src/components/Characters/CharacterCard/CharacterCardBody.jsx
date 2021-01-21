@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { CreateDropzoneArea } from '../DropZone/MyDropZone';
+import { DropzoneNoBackground, DropzoneBackground } from '../DropZone/MyDropZone';
 
 // import CSSTransition from 'react-transition-group/CSSTransition';
 // import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
@@ -40,8 +40,8 @@ export default function CharacterCardBody(props) {
   
   
   // *** Redux ***
-  const imageUrl = useSelector(state => state.createCharacters.image?.imageUrl)
-  const imageKey = useSelector(state => state.createCharacters.image?.imageKey)
+  const imageUrl = useSelector(state => state.createCharacters.image?.imageUrl);
+  const imageKey = useSelector(state => state.createCharacters.image?.imageKey);
   const dispatch = useDispatch()
   
   
@@ -52,7 +52,8 @@ export default function CharacterCardBody(props) {
     const formData = new FormData();
     const img = images[0];
     formData.append('file', img);
-    dispatch(postImage(formData));
+    if (imageKey) formData.append('imageKey', imageKey);
+    dispatch(postImage(formData, imageKey));
   }
   
   
@@ -65,14 +66,25 @@ export default function CharacterCardBody(props) {
     >
         
       <div className={classes.dropzoneWrapper}>
-        <CreateDropzoneArea
-          acceptedFiles={["image/jpeg", "image/png"]}
-          maxFileSize={200000000}
-          filesLimit={1}
-          alertSnackbarProps={{ autoHideDuration: 2000 }}
-          dropzoneText={"Drag and drop an image here or click"}
-          onChange={handleDrop}
-        />
+        { imageUrl
+            ? <DropzoneNoBackground
+                acceptedFiles={["image/jpeg", "image/png"]}
+                maxFileSize={200000000}
+                filesLimit={1}
+                alertSnackbarProps={{ autoHideDuration: 2000 }}
+                dropzoneText={"Drag and drop an image here or click"}
+                onChange={handleDrop}
+              />
+              
+            : <DropzoneBackground
+                acceptedFiles={["image/jpeg", "image/png"]}
+                maxFileSize={200000000}
+                filesLimit={1}
+                alertSnackbarProps={{ autoHideDuration: 2000 }}
+                dropzoneText={"Drag and drop an image here or click"}
+                onChange={handleDrop}
+              />
+        }
       </div>
         
       <CharacterInfo props={props} />

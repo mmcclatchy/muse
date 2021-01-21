@@ -2,7 +2,7 @@ import { DropzoneArea } from 'material-ui-dropzone';
 import { withStyles } from '@material-ui/core';
   
   
-const MyDropzoneArea = withStyles({
+export const DropzoneBackground = withStyles({
   root: {
     height: '100%',
     padding: '1%',
@@ -13,8 +13,10 @@ const MyDropzoneArea = withStyles({
     overflow: 'hidden',
     color: 'rgba(0,0,0,0.6)',
     backgroundColor: 'rgba(0,0,0,0.0)',
+    boxSizing: 'border-box',
     transition: 'color 300ms ease-in-out, background-color 300ms ease-in-out',
     '&:hover': {
+      border: '2px dashed rgba(0,0,0,.3)',
       backgroundColor: 'var(--background-color)',
       color: 'rgba(0,0,0,1)',
       '& .MuiDropzoneArea-icon': {
@@ -91,7 +93,7 @@ const MyDropzoneArea = withStyles({
   textContainer: {
     position: 'absolute',
     marginTop: '25%',
-    opacity: 0,
+    opacity: 1,
     transition: 'opacity 300ms ease-in-out',
   },
   imageContainer: {
@@ -106,14 +108,12 @@ const MyDropzoneArea = withStyles({
 
 
 
-export const CreateDropzoneArea = withStyles({
-})(MyDropzoneArea)
 
 
 
-export const ModifyDropzoneArea = withStyles({
-  root: {
-    '& .MuiFab-root': { display: 'none' },
+export const DropzoneNoBackground = withStyles({
+  textContainer: {
+    opacity: 0,
   },
-})(MyDropzoneArea)
+})(DropzoneBackground)
   

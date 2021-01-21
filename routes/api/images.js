@@ -38,12 +38,18 @@ const fileFilter = (req, res, next) => {
 
 router.post(
   '/',
-  requireAuth,
+  // requireAuth,
   upload.any(),
   fileFilter,
   asyncHandler(async (req, res) => {
     // Post image to S3 bucket
     const file = req.files[0];
+    const { imageKey: key } = req.body;
+    
+    if (key) {
+      const deleteParams = { Bucket: 'app-muse', Key: key };
+      const deleteRes = await s3.deleteObject(deleteParams).promise();
+    }
     
     const params = {
       Bucket: "app-muse",
