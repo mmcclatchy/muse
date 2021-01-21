@@ -43,7 +43,8 @@ export default function CharacterFormHeader(props) {
   const weaknesses = useSelector((state) => state.createCharacters.weaknesses);
   const motivations = useSelector((state) => state.createCharacters.motivations);
   const secrets = useSelector((state) => state.createCharacters.secrets);
-  const imageUrl = useSelector((state) => state.createCharacters.imageUrl);
+  const imageUrl = useSelector((state) => state.createCharacters.image?.imageUrl);
+  const imageKey = useSelector((state) => state.createCharacters.image?.imageKey);
   const bio = useSelector(state => state.createCharacters.bio);
   const status = useSelector(state => state.utilities.status);
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ export default function CharacterFormHeader(props) {
       secrets,
     ];
     
-    if (characterTraits.every(trait => trait.id) && imageUrl && bio) {
+    if (characterTraits.every(trait => trait.id) && imageUrl && imageUrl && bio) {
       dispatch(postCharacter({
         firstName,
         lastName,
@@ -82,6 +83,7 @@ export default function CharacterFormHeader(props) {
         motivations,
         secrets,
         imageUrl,
+        imageKey,
         bio
       }))
     }
@@ -157,7 +159,7 @@ export default function CharacterFormHeader(props) {
             onClose={handleErrorClose} 
             severity="warning"
           >
-            All fields are required for character save
+            An image and all fields are required for character save
           </Alert>
         </Snackbar>
       {/* </ClickAwayListener> */}

@@ -89,6 +89,7 @@ const MyDropzoneArea = withStyles({
       },
     },
     
+    
   },
   active: {
     backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
@@ -112,6 +113,9 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     gridRow: '1 / span 2',
     gridColumn: '1 / span 1',
+    '& .MuiSnackbar-anchorOriginBottomLeft': {
+      marginLeft: 'calc(50% - 165px)',
+    }
   },
   
 }))
