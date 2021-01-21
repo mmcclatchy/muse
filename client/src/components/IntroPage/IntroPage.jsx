@@ -16,7 +16,7 @@ export default function IntroPage() {
         <h1 className="intro_header">Muse</h1>
         
         <div className="intro_body">
-          <SplashInfo />      
+          
         </div>
         
       </div>
