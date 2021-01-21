@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 
-import { setModBio, setModImgUrl } from '../../../store/actions/characters';
+import { setModBio } from '../../../store/actions/characters';
 import theme from '../../theme';
 
 //**********************************************************
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function ImageBioCreate() {
+export default function BioModify() {
   const classes = useStyles(theme);
   
   // *** Redux ***
@@ -43,29 +43,20 @@ export default function ImageBioCreate() {
   
   
   // *** Local State ***
-  const [avatar, setAvatar] = useState('');
   const [characterBio, setCharacterBio] = useState('');
 
   
   // *** Use Effect Hooks ***
   
   useEffect(() => {
-    setAvatar(modifyCharacter?.imageUrl || '')
     setCharacterBio(modifyCharacter?.bio || '')
   }, [modifyCharacter])
   
   // Clear Avatar and Bio Fields when a save is successful
   const statusIsDeleted = status === 'deleted';
   useEffect(() => {
-      setAvatar('');
       setCharacterBio('');
   }, [statusIsDeleted])
-  
-  // Dispatch Url to Redux
-  useEffect(() => {
-    dispatch(setModImgUrl(avatar));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [avatar]);
   
   
   // Dispatch Bio to Redux
@@ -78,7 +69,6 @@ export default function ImageBioCreate() {
   
   // *** Helper Functions ***
   // Set Local State on TextArea Change
-  const handleImgChange = (e) => setAvatar(e.target.value);
   const handleBioChange = (e) => setCharacterBio(e.target.value);  
   
   
@@ -86,17 +76,6 @@ export default function ImageBioCreate() {
   // *** JSX ***
   return (
     <div className={classes.imageBioContainer}>
-      
-      <TextField
-        value={avatar}
-        className={classes.image}
-        disabled={!modifyCharacter.id}
-        label='Character Image URL'
-        color='secondary'
-        inputProps={{ maxLength: 256 }}
-        style={{ width: '95%', margin: '1% 2%' }}
-        onChange={handleImgChange}
-      />
 
       <TextField
         value={characterBio}
@@ -105,7 +84,7 @@ export default function ImageBioCreate() {
         label='Bio'
         disabled={!modifyCharacter.id}
         multiline
-        rows={3}
+        rows={5}
         InputProps={{ classes: { input: classes.bioInput } }}
         inputProps={{ maxLength: 300 }}
         helperText={`${characterBio.length}/300`}

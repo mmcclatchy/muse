@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 
-import { setImageUrl, setBio } from '../../../store/actions/createCharacters';
+import { setBio } from '../../../store/actions/createCharacters';
 import theme from '../../theme';
 
 //**********************************************************
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 //**********************************************************
 
-export default function ImageBioCreate() {
+export default function BioCreate() {
   const classes = useStyles(theme);
   
   // *** Redux ***
@@ -52,7 +52,7 @@ export default function ImageBioCreate() {
   }, []);
 
   
-  // Clear Avatar and Bio Fields when a save is successful
+  // Clear Bio Field when a save is successful
   const statusIsSuccess = status === 'success';
   useEffect(() => {
     if (statusIsSuccess) {
