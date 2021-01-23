@@ -58,7 +58,8 @@
     position:absolute;
     z-index:99999999;
     box-sizing:border-box;
-    border:1px solid #222;box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    border:1px solid #222;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
     visibility:hidden; 
     opacity:0; 
     transition:opacity 0.8s;
@@ -88,5 +89,15 @@
     left:50%;
     transform:translate(-50%,-50%) rotate(45deg);
     background-color:#888888;
-    border:1px solid #222;box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    border:1px solid #222;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
+
+
+/************************  Media Queries ************************/
+/* 
+@media screen and (min-width: 1025px) {
+    .footer_wrapper {
+        border-left: var(--drawer-width);
+    }
+} */

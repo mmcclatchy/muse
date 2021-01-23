@@ -18,8 +18,25 @@
     padding: 1.5%;
     margin: auto;
     box-sizing: border-box;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
+/* .content_wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.content_wrapper::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px rgba(0,255,0,0,);
+background-color: var(--grey-light);
+}
+
+.content_wrapper::-webkit-scrollbar-thumb {
+background: var(--grey);
+border-radius: 10px;
+}
+
+.content_wrapper::-webkit-scrollbar-thumb:hover {
+background: var(--grey-dark);
+} */
 
 .intro_header {
     text-align: center;
