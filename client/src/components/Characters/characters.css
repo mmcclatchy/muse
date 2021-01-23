@@ -17,12 +17,6 @@
     box-shadow: 0px 0px 10px var(--shadow);
 }
 
-.create-character_display,
-.modify-character_display {
-    height: 100%;
-    width: 48%;
-}
-
 .traits_wrapper {
     height: 70%;
     display: flex;

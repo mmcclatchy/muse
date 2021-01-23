@@ -71,7 +71,10 @@ export default function CharacterCardBody(props) {
                 acceptedFiles={["image/jpeg", "image/png"]}
                 maxFileSize={200000000}
                 filesLimit={1}
-                alertSnackbarProps={{ autoHideDuration: 2000 }}
+                getDropRejectMessage={
+                  () => `The image must be a JPG/JPEG or a PNG file.`
+                }
+                alertSnackbarProps={{ autoHideDuration: 3000 }}
                 dropzoneText={"Drag and drop an image here or click"}
                 onChange={handleDrop}
               />
@@ -80,7 +83,10 @@ export default function CharacterCardBody(props) {
                 acceptedFiles={["image/jpeg", "image/png"]}
                 maxFileSize={200000000}
                 filesLimit={1}
-                alertSnackbarProps={{ autoHideDuration: 2000 }}
+                getDropRejectMessage={
+                  () => `The image must be a JPG/JPEG or a PNG file.`
+                }
+                alertSnackbarProps={{ autoHideDuration: 3000 }}
                 dropzoneText={"Drag and drop an image here or click"}
                 onChange={handleDrop}
               />

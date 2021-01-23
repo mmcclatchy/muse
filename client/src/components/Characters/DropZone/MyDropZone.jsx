@@ -90,6 +90,10 @@ export const DropzoneBackground = withStyles({
   active: {
     backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,255,255,.6), rgba(255,255,255.3) 25px, rgba(26,35,126, 0.3) 25px, rgba(26,35,126, 0.3) 50px)'
   },
+  invalid: {
+    backgroundImage: 'repeating-linear-gradient(-45deg, rgba(255,0,0,.3), rgba(255,0,0,.3) 25px, rgba(255,0,0,.7) 25px, rgba(255,0,0,.7) 50px)'
+    
+  },
   textContainer: {
     position: 'absolute',
     marginTop: '25%',
