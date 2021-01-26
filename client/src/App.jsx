@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import Body from './components/structure/Body/Body';
 import { loadToken } from './store/authentication';
 import AppBar from './components/structure/AppBar/AppBar';
 import SplashPage from './components/SplashPage/SplashPage';
 
+
+
+function initializeReactGA() {
+  ReactGA.initialize('G-THRD3N2K3Y');
+  ReactGA.pageview('/');
+}
 
 
 const App = () => {
