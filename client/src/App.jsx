@@ -35,6 +35,7 @@ const App = () => {
   
   useEffect(() => {}, [token])
   
+  initializeReactGA();
   
   if (!loaded) return null;
   
