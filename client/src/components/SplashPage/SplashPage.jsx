@@ -4,11 +4,7 @@ import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import './splash_page.css';
-import struggle from './struggle.jpg';
-import inspired from './inspired.jpg';
 import AuthModal from './AuthModal/AuthModal';
-import Footer from '../structure/Footer/Footer';
-import SplashInfo from './SplashInfo';
 
 export default function SplashPage() {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -67,14 +63,6 @@ export default function SplashPage() {
           />
         </div>
       </div>
-      
-      {/* <SplashInfo />
-                
-      <div className="splash_footer">
-        <div className="splash_footer_wrapper">
-          <Footer />
-        </div>
-      </div> */}
       
     </div>
   );

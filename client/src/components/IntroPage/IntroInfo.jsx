@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './splash_page.css';
+import './intro_page.css';
 import struggle from './struggle.jpg';
 import inspired from './inspired.jpg';
 
-export default function SplashInfo() {
+export default function IntroInfo() {
 
 
   return (

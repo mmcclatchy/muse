@@ -1,4 +1,4 @@
-.intro_page {
+#intro_page {
     height: 100%;
     width: 100%;
     /* padding: 2%; */
@@ -6,7 +6,7 @@
     grid-template-rows: 1fr 100px;
 }
 
-.content_wrapper {
+#intro_page .content_wrapper {
     height: 96%;
     width: 96%;
     background-color: var(--background-color);
@@ -24,51 +24,51 @@
     width: 10px;
 }
 
-.content_wrapper::-webkit-scrollbar-track {
+#intro_page .content_wrapper::-webkit-scrollbar-track {
 box-shadow: inset 0 0 5px rgba(0,255,0,0,);
 background-color: var(--grey-light);
 }
 
-.content_wrapper::-webkit-scrollbar-thumb {
+#intro_page .content_wrapper::-webkit-scrollbar-thumb {
 background: var(--grey);
 border-radius: 10px;
 }
 
-.content_wrapper::-webkit-scrollbar-thumb:hover {
+#intro_page .content_wrapper::-webkit-scrollbar-thumb:hover {
 background: var(--grey-dark);
 } */
 
-.intro_header {
+#intro_page .intro_header {
     text-align: center;
     font-family: var(--font-header);
     color: var(--secondary);
 }
 
-.intro_body {
+#intro_page .intro_body {
     width: 100%;
     height: 80%;
     overflow-y: auto;
 }
 
-.intro_body::-webkit-scrollbar {
+#intro_page .intro_body::-webkit-scrollbar {
     width: 10px;
   }
   
-.intro_body::-webkit-scrollbar-track {
+#intro_page .intro_body::-webkit-scrollbar-track {
 box-shadow: inset 0 0 5px rgba(0,255,0,0,);
 background-color: var(--grey-light);
 }
 
-.intro_body::-webkit-scrollbar-thumb {
+#intro_page .intro_body::-webkit-scrollbar-thumb {
 background: var(--primary);
 border-radius: 10px;
 }
 
-.intro_body::-webkit-scrollbar-thumb:hover {
+#intro_page .intro_body::-webkit-scrollbar-thumb:hover {
 background: var(--primary-dark);
 }
 
-.intro_footer {
+#intro_page .intro_footer {
     width: 100%;
     height: 100px;
     position: absolute;
@@ -81,6 +81,116 @@ background: var(--primary-dark);
     align-items: center;
 }
 
-.intro_footer_wrapper {
+#intro_page .intro_footer_wrapper {
     display: flex;
+}
+
+
+/****************  IntroInfo  *******************/
+
+#intro_page .splash_info {
+    display: flex;
+    justify-content: center;
+    background-color: currentColor;
+    padding: 20px 0;
+}
+
+#intro_page .splash_content {
+    max-width: 1000px;
+    width: 100%;
+    padding: 1.5% auto;
+    display: flex;
+    flex-flow: column;
+}
+
+#intro_page .section1,
+#intro_page .section2 {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 10px; */
+    background-color: var(--background-color);
+    /* border: 2px solid var(--secondary);
+    border-radius: 10px; */
+}
+
+#intro_page .section2 {
+    flex-flow: row-reverse;
+    margin-top: 20px;
+}
+
+#intro_page .splash_section_img_wrapper {
+    /* width: 30%; */
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* padding: 5px; */
+}
+
+#intro_page .section_img {
+    /* border-radius: 10px; */
+}
+
+#intro_page .splash_section_content {
+    width: 65%;
+    margin: 0 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: var(--font-display-text);
+    font-size: 1.25rem;
+    /* font-weight: bold; */
+}
+
+#intro_page .content_header {
+    margin: 30px 0;
+    font-family: var(--font-header);
+    color: var(--secondary);
+}
+
+/*****************  FOOTER SECTION *****************/
+
+#intro_page .splash_footer {
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+}
+
+#intro_page .splash_footer_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    max-width: 1100px;
+    color: var(--primary-font-color);
+    padding: 10px 0;
+    
+}
+
+
+
+/*******************  MEDIA QUERIES  *******************/
+
+@media screen and (min-width: 2000px) {
+    #intro_page .splash_section_content {
+    }
+    
+    #intro_page .splash_content {
+        flex-flow: row;
+        width: 100%;
+        max-width: none;
+        justify-content: space-evenly;
+    }
+    
+    #intro_page .section1,
+    #intro_page .section2 {
+        width: 42.5%;
+        max-height: 320px;
+        margin: 0;
+    }
+    
+    #intro_page .splash_footer_wrapper {
+        max-width: none;
+    }
 }

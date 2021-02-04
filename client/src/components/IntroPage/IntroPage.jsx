@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 import './intro_page.css';
 import MobileStepper from '../Material-UI/MobileStepper';
 import Footer from '../structure/Footer/Footer';
-import SplashInfo from '../SplashPage/SplashInfo';
-import CarouselSlide from '../Material-UI/CarouselSlide';
+import IntroInfo from './IntroInfo';
 import { Slide } from '@material-ui/core';
 
 
 const slideContent = [
-  <SplashInfo />,
+  <IntroInfo />,
 ];
 
 
@@ -17,15 +16,15 @@ const slideContent = [
 export default function IntroPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [slideIn, setSlideIn] = useState(true);
-  const [slideDirection, setSlideDirection] = useState('down');
+  const [slideDirection, setSlideDirection] = useState('left');
 
   const handleClick = direction => {
     console.log(direction)
     const oppoDirection = direction === 'right' ? 'left' : 'right'
     const stepChange = direction === 'right'  ?  1  :  -1;
     
-    setSlideDirection(direction);
     setSlideIn(false);
+    setSlideDirection(direction);
 
     setTimeout(() => {
         setSlideDirection(oppoDirection);
@@ -38,7 +37,7 @@ export default function IntroPage() {
   
   
   return (
-    <div className="intro_page">
+    <div id="intro_page">
       <div className="content_wrapper">
         
         <h1 className="intro_header">Muse</h1>
