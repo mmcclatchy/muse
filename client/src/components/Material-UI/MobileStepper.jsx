@@ -49,7 +49,7 @@ export default function MobileStepper({ onClick, steps, activeStep }) {
           onClick={() => onClick('right')} 
           color='secondary'
           style={{ fontWeight: 'bold', fontFamily: 'var(--font-display-text)' }}
-          disabled={activeStep === 5}
+          disabled={activeStep === steps - 1}
         >
           Next
           {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
