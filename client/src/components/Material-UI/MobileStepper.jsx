@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function MobileStepper({ nextOnClick, backOnClick, activeStep }) {
+export default function MobileStepper({ onClick, steps, activeStep }) {
   const classes = useStyles();
   const theme = useTheme();
   
@@ -39,14 +39,14 @@ export default function MobileStepper({ nextOnClick, backOnClick, activeStep }) 
     
     <MyMobileStepper
       variant="dots"
-      steps={6}
+      steps={steps}
       position="static"
       activeStep={activeStep}
       className={classes.root}
       nextButton={
         <Button 
           size="small" 
-          onClick={nextOnClick} 
+          onClick={() => onClick('right')} 
           color='secondary'
           style={{ fontWeight: 'bold', fontFamily: 'var(--font-display-text)' }}
           disabled={activeStep === 5}
@@ -58,7 +58,7 @@ export default function MobileStepper({ nextOnClick, backOnClick, activeStep }) 
       backButton={
         <Button 
           size="small" 
-          onClick={backOnClick} 
+          onClick={() => onClick('left')} 
           color='secondary'
           style={{ fontWeight: 'bold', fontFamily: 'var(--font-display-text)' }}
           disabled={activeStep === 0}

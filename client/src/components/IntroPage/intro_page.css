@@ -18,7 +18,7 @@
     padding: 1.5%;
     margin: auto;
     box-sizing: border-box;
-    /* overflow-y: scroll; */
+    overflow-y: hidden;
 }
 /* .content_wrapper::-webkit-scrollbar {
     width: 10px;
