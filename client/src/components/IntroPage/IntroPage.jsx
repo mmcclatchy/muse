@@ -28,22 +28,16 @@ export default function IntroPage() {
   const handleClick = direction => {
     console.log(direction)
     const oppoDirection = direction === 'right' ? 'left' : 'right'
-    
-    if (direction === 'right') {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
-    
-    if (direction === 'left') {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    }
+    const stepChange = direction === 'right'  ?  1  :  -1;
     
     setSlideDirection(direction);
     setSlideIn(false);
 
     setTimeout(() => {
         setSlideDirection(oppoDirection);
+        setActiveStep(previousStep => previousStep + stepChange)
         setSlideIn(true);
-    }, 500);
+    }, 300);
     
   };
 
