@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { DropzoneNoBackground, DropzoneBackground } from '../DropZone/MyDropZone';
 
-// import CSSTransition from 'react-transition-group/CSSTransition';
-// import TraitRender from '../DisplayCharacter/CharacterInfo/TraitRender';
-
-// import './character_card.css';
 import theme from '../../theme';
 import CharacterInfo from './CharacterInfo';
 import { postImage } from '../../../store/actions/images';
