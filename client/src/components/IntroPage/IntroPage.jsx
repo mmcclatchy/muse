@@ -48,13 +48,13 @@ export default function IntroPage() {
           </div>
         </Slide>
         
-        <div className='intro_stepper'>
+        {/* <div className='intro_stepper'>
           <MobileStepper
             onClick={handleClick}
             steps={slideContent.length}
             activeStep={activeStep}
           />
-        </div>
+        </div> */}
         
       </div>
       

@@ -9,6 +9,7 @@
 #intro_page .slider_wrapper {
     height: 96%;
     width: 96%;
+    max-height: 1000px;
     max-width: 1200px;
     background-color: var(--background-color);
     border: 2px solid var(--secondary);
@@ -41,7 +42,8 @@ background: var(--grey-dark);
 
 #intro_page .intro_body {
     width: 100%;
-    height: calc(100% - 50px);
+    /* height: calc(100% - 50px); */
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -81,14 +83,12 @@ background: var(--primary-dark);
 }
 
 
-/****************  IntroInfo  *******************/
+/****************  Slides  *******************/
 
 #intro_page .intro_info {
     display: flex;
     flex-flow: column;
-    /* justify-content: center; */
     background-color: rgba(0,0,0,0);
-    /* padding: 20px 0; */
     height: 100%;
 }
 
@@ -112,6 +112,8 @@ background: var(--primary-dark);
     flex-flow: column;
     justify-content: space-evenly;
 }
+
+/****************  IntroInfo  *******************/
 
 #intro_page .section1,
 #intro_page .section2 {
