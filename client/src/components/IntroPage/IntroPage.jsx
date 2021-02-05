@@ -42,11 +42,11 @@ export default function IntroPage() {
       <div className="slider_wrapper">
         
         
-        <Slide in={slideIn} direction={slideDirection} >
+        {/* <Slide in={slideIn} direction={slideDirection} > */}
           <div className="intro_body">
             {slideContent[activeStep]}
           </div>
-        </Slide>
+        {/* </Slide> */}
         
         {/* <div className='intro_stepper'>
           <MobileStepper

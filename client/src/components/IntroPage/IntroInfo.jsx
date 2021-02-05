@@ -22,7 +22,7 @@ export default function IntroInfo() {
           <div className="intro_section_content">
             <h3 className="content_header">Imagination Blocked?</h3>
             <p className="content_description">
-              Are you a story-teller or table-top gamer? Well then, you know the challenges of creating interesting characters. Sometimes you need a spark of inspiration for side-characters. Why waste time and energy thinking of constantly creating characters by yourself when a community can support you?
+              Are you a story-teller or table-top gamer? Well then, you know the challenges of creating interesting characters. Sometimes you need a spark of inspiration. Why waste time and energy constantly thinking of new side-characters by yourself when a community can support you?
             </p>
           </div>
         </div>
