@@ -16,9 +16,9 @@ export default function IntroInfo() {
             <img className='section_img' src={struggle} alt="woman struggling with writer's block"/>
           </div>
           <div className="splash_section_content">
-            <h1 className="content_header">Writer's Block?</h1>
+            <h3 className="content_header">Imagination Blocked?</h3>
             <p className="content_description">
-              Are you a story-teller? Well then, you know the challenges of writer's block. Sometimes you need a spark of inspiration for side-characters and scenes. These little mini-stops along the journey can often open up a whole new way to connect your story arc.
+              Are you a story-teller or table-top gamer? Well then, you know the challenges of creating interesting characters. Sometimes you need a spark of inspiration for side-characters. Why waste time and energy thinking of constantly creating characters by yourself when a community can support you?
             </p>
           </div>
         </div>
@@ -28,9 +28,9 @@ export default function IntroInfo() {
               <img className='section_img' src={inspired} alt="woman having an inspired idea"/>
           </div>
           <div className="splash_section_content">
-            <h1 className="content_header">Muse</h1>
+            <h3 className="content_header">Generate or Discover New Characters!</h3>
             <p className="content_description">
-              A web app where story-tellers can go when suffering from writer's block. This app offers your story community created characters (and scenes coming soon) with light weight, yet evocative descriptions that you can drop into your story.
+              A web app where story-tellers and table-top gamers can go when needing a spark of imagination. This app offers your story community-created characters (and scenes coming soon) with light weight, yet evocative descriptions that you can drop into your story.
             </p>
           </div>
         </div>
