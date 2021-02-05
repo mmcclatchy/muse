@@ -6,7 +6,7 @@
     grid-template-rows: 1fr 100px;
 }
 
-#intro_page .content_wrapper {
+#intro_page .slider_wrapper {
     height: 96%;
     width: 96%;
     max-width: 1200px;
@@ -38,13 +38,6 @@ border-radius: 10px;
 #intro_page .content_wrapper::-webkit-scrollbar-thumb:hover {
 background: var(--grey-dark);
 } */
-
-#intro_page .intro_header {
-    text-align: center;
-    font-family: var(--font-header);
-    color: var(--secondary);
-    font-size: 2rem;
-}
 
 #intro_page .intro_body {
     width: 100%;
@@ -90,19 +83,34 @@ background: var(--primary-dark);
 
 /****************  IntroInfo  *******************/
 
-#intro_page .splash_info {
+#intro_page .intro_info {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    /* justify-content: center; */
     background-color: rgba(0,0,0,0);
-    padding: 20px 0;
+    /* padding: 20px 0; */
     height: 100%;
 }
 
-#intro_page .splash_content {
+#intro_page .intro_header {
+    text-align: center;
+    font-family: var(--font-header);
+    font-weight: bold;
+    color: var(--secondary);
+    font-size: 2rem;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#intro_page .intro_content {
     width: 100%;
+    height: 90%;
     padding: 0 2.5%;
     display: flex;
     flex-flow: column;
+    justify-content: space-evenly;
 }
 
 #intro_page .section1,
@@ -121,7 +129,7 @@ background: var(--primary-dark);
     margin-top: 20px;
 }
 
-#intro_page .splash_section_img_wrapper {
+#intro_page .intro_section_img_wrapper {
     min-width: fit-content;
     height: 100%;
     overflow: hidden;
@@ -135,7 +143,7 @@ background: var(--primary-dark);
     /* border-radius: 10px; */
 }
 
-#intro_page .splash_section_content {
+#intro_page .intro_section_content {
     margin: 0 20px;
     padding: 0 20px;
     display: flex;
@@ -157,7 +165,16 @@ background: var(--primary-dark);
     margin-bottom: 5%;
 }
 
-/*****************  FOOTER SECTION *****************/
+
+/*****************  IntoCreate  *****************/
+
+#intro_page .intro_create {
+    
+}
+
+
+
+/*****************  FOOTER SECTION  *****************/
 
 #intro_page .splash_footer {
     background-color: var(--primary);
@@ -179,7 +196,7 @@ background: var(--primary-dark);
 
 /*******************  MEDIA QUERIES  *******************/
 
-@media screen and (min-width: 2000px) {
+/* @media screen and (min-width: 2000px) {
     #intro_page .splash_section_content {
     }
     
@@ -200,4 +217,4 @@ background: var(--primary-dark);
     #intro_page .splash_footer_wrapper {
         max-width: none;
     }
-}
+} */

@@ -9,6 +9,7 @@ import { Slide } from '@material-ui/core';
 
 const slideContent = [
   <IntroInfo />,
+  
 ];
 
 
@@ -38,9 +39,8 @@ export default function IntroPage() {
   
   return (
     <div id="intro_page">
-      <div className="content_wrapper">
+      <div className="slider_wrapper">
         
-        <h1 className="intro_header">Muse</h1>
         
         <Slide in={slideIn} direction={slideDirection} >
           <div className="intro_body">
